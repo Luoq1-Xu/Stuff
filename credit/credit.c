@@ -112,6 +112,7 @@ int get_creditnum(void)
     return n;
     return j;
     return valid;
+    printf("%li\n",n);
 }
 
 

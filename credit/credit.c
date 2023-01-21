@@ -9,7 +9,7 @@ int main(void)
   long n = get_creditnum();
 
   //Function to check checksum
-  
+
 
 
 
@@ -109,4 +109,5 @@ int get_creditnum(void)
 
     return n;
     return j;
+    return valid;
 }

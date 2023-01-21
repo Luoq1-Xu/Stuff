@@ -43,7 +43,7 @@ int main(void)
             printf("#");
             i++;
         }
-        while ( ( ( (y-l) -1) < i) && ( i < (y-1)) )
+        while ( ( ( (y-l) -1) < i) && ( i < y) )
         {
             printf(" ");
             i++;

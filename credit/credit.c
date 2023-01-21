@@ -3,6 +3,8 @@
 
 long get_creditnum(void);
 
+int get_creditnum(void);
+
 int get_validity(long creditnum);
 
 int main(void)
@@ -16,7 +18,7 @@ int main(void)
 
   //
   printf("%i\n",c);
-  
+
   if ((valid == 1) && c==1)
   {
     printf("AMEX\n");

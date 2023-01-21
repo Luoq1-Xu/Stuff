@@ -11,7 +11,17 @@ int main(void)
   long n = get_creditnum();
 
   //Function to check checksum
-  int o = get_validity(n);
+  int c = get_validity(n);
+
+
+  //
+  printf("%i\n",c);
+
+  if ((valid == 1) && c==1)
+  {
+    printf("AMEX\n");
+  }
+
 
 
 
@@ -159,7 +169,20 @@ int get_validity(long creditnum)
   }
 
   int o = totalsumofproductdigit + sumofremaindigit;
-  return o;
+  printf("%i\n",o);
+
+  int c;
+
+  if ((o % 10)==0)
+  {
+     c = 1;
+  }
+  else
+  {
+     c = 0;
+  }
+
+  return c;
 }
 
 

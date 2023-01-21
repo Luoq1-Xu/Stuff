@@ -40,14 +40,14 @@ int main(void)
             printf("#");
             i++;
         }
-
-    }
         printf("\n");
         k++;
         i = 0;
         l = (l-1);
 
     }
+
+}
 
 
 

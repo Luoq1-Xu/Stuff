@@ -23,6 +23,19 @@ int main(void)
   {
     printf("AMEX\n");
   }
+  else if ((valid == 2) && c==1)
+  {
+    printf("MASTERCARD\n");
+  }
+  else if ((valid ==3) && c==1)
+  {
+    printf("VISA\n");
+  }
+  else
+  {
+    printf("INVALID\n");
+  }
+
 
 
 

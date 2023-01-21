@@ -50,7 +50,7 @@ int get_creditnum(void)
 
     int i;
 
-    string valid;
+    int valid;
 
     float y = (float) n;
 
@@ -68,7 +68,7 @@ int get_creditnum(void)
     {
         n = get_long("Credit Card Number Please. ");
 
-        valid = "nil";
+        valid = 100;
 
         y = n;
 
@@ -85,24 +85,24 @@ int get_creditnum(void)
 
         if ( ((i==34) || (i==37)) && j == 15)
         {
-          valid = "a";
+          valid = 1;
         }
         else if ( ((i>50) && (i<56)) && j == 16 )
         {
-          valid = "m";
+          valid = 2;
         }
         else if ( ((i>39) && (i<50)) && (j ==13 || j==16) )
         {
-          valid = "v";
+          valid = 3;
         }
         else
         {
-          valid = "n";
+          valid = 0;
         }
 
 
     }
-    while(valid = "n");
+    while(valid == 0);
 
     }
     return n;

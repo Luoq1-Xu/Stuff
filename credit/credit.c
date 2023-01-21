@@ -9,5 +9,5 @@ int main(void)
   {
     n = get_long("Credit Card Number Please. ");
   }
-  while (n<1 || n>);
+  while ((n<1) && (n<13) && (n==14) && (n>16));
 }

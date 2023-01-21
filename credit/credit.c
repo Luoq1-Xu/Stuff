@@ -8,6 +8,9 @@ int main(void)
   //Getting the creditcardnumber
   long n = get_creditnum();
 
+  //Function to check checksum
+  
+
 
 
 

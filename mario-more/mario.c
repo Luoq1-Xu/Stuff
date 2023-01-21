@@ -21,7 +21,7 @@ int main(void)
     while (k<h)
     {
 
-    while (i<y)
+    while (i<(y-1))
     {
         while (i<l)
         {
@@ -43,7 +43,7 @@ int main(void)
             printf("#");
             i++;
         }
-        while ( ( ( (y-l) -1) < i) && ( i < y) )
+        while ( ( ( (y-l) -1) < i) && ( i < (y-1)) )
         {
             printf(" ");
             i++;

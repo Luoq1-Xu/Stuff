@@ -12,6 +12,7 @@ int main(void)
 
     int x = 4;
     int y = 4 + (2*(h-1));
+    int v = y
 
     int i = 0;
 
@@ -22,24 +23,8 @@ int main(void)
 
     while (i<y)
     {
-        if ( i < ((y/2)-1) )
-        {
-            printf("#");
-            i++;
-        }
+        for(i)
 
-        else if (i == (y/2) || i == ((y/2)-1) )
-
-        {
-            printf(" ");
-            i++;
-        }
-
-        else
-        {
-            printf("#");
-            i++;
-        }
 
     }
         printf("\n");

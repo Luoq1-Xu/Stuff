@@ -5,9 +5,10 @@ int get_creditnum(void);
 
 int main(void)
 {
-
+  //Getting the creditcardnumber
   long n = get_creditnum();
-  printf("%li\n",n);
+
+
 
 
 
@@ -79,4 +80,5 @@ int get_creditnum(void)
 
     }
     return n;
+    return j;
 }

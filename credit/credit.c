@@ -135,8 +135,6 @@ int get_validity(long creditnum)
 
       sumofcurrentproduct = sumofcurrentproduct + (q % 10);
       q = q/10;
-      printf("%i ",sumofcurrentproduct);
-      printf("%i\n",q);
 
     }
 

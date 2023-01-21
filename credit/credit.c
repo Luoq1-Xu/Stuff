@@ -8,9 +8,6 @@ int main(void)
   //Getting the creditcardnumber
   long n = get_creditnum();
 
-  int k = j;
-
-  for ()
 
 
 
@@ -53,6 +50,8 @@ int get_creditnum(void)
 
     int i;
 
+    string valid;
+
     float y = (float) n;
 
     //calculating the number of digits in the credit card number (denoted by j)
@@ -71,6 +70,7 @@ int get_creditnum(void)
 
         y = n;
 
+        i = 0;
 
         j=(-1);
 
@@ -79,10 +79,28 @@ int get_creditnum(void)
             y = (y/10);
         }
 
-        i = ( n/(10*(j-2))
+        i = ( n/(10*(j-2)) );
+
+        if ( ((i==34) || (i==37)) && j == 15)
+        {
+          valid = a;
+        }
+        else if ( ((i>50) && (i<56)) && j == 16 )
+        {
+          valid = m;
+        }
+        else if ( ((i>39) && (i<50)) && (j ==13 || j==16) )
+        {
+          valid = v;
+        }
+        else
+        {
+          valid = n;
+        }
+
 
     }
-    while( ((j<13) || (j==14) || (j>16)) && ( (i!=34) && (i!=37) && ((i))     )    );
+    while(valid = n);
 
     }
     return n;

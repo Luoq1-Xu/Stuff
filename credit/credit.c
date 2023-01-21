@@ -10,15 +10,13 @@ int main(void)
   //Getting the creditcardnumber
   long n = get_creditnum();
 
-  int valid = get_creditnum();
-
   //Function to check checksum
   int c = get_validity(n);
 
 
   //
   printf("%i\n",c);
-
+  
   if ((valid == 1) && c==1)
   {
     printf("AMEX\n");

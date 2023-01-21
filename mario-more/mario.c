@@ -16,7 +16,7 @@ int main(void)
 
     int j = h
 
-    for(i=0; i<j; i++)
+    for(i=0; i<(y/2) || i>((y/2)+1); i++)
     {
         printf("#")
     }

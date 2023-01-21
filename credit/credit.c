@@ -20,6 +20,7 @@ int main(void)
 
   //
   printf("%i\n",c);
+  printf("%i\n",valid);
 
   if ((valid == 1) && c==1)
   {

@@ -44,29 +44,22 @@ int get_creditnum(void)
 {
     long n;
 
-    n = get_long("Credit Card Number Please. ");
-
     int j;
 
     int i;
 
     int valid;
 
-    float y = (float) n;
+
 
     //calculating the number of digits in the credit card number (denoted by j)
-
-    for (j=(-1);y>=1;j++)
-    {
-        y = (y/10);
-    }
 
     {
 
         n = get_long("Credit Card Number Please. ");
 
 
-        y = n;
+        float y = (float) n;
 
         i = 0;
 
@@ -94,13 +87,14 @@ int get_creditnum(void)
         else
         {
           valid = 0;
+          printf("INVALID\n");
         }
 
 
     }
 
 
-    
+
     return n;
     return j;
 }

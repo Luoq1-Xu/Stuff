@@ -3,7 +3,7 @@
 
 int get_creditnum(void);
 
-int get_validity(void);
+int get_validity(long creditcardnumber);
 
 int main(void)
 {
@@ -115,7 +115,7 @@ int get_creditnum(void)
 }
 
 
-int get_validity(void)
+int get_validity(long creditcardnumber)
 {
   long v = n
   int q = 0;

@@ -132,7 +132,7 @@ int get_creditnum(long n)
 
     }
 
-
+    printf("%i\n",valid);
     return j;
     return valid;
 

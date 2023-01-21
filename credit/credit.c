@@ -46,7 +46,7 @@ int get_creditnum(void)
 
     int j;
 
-    int i;
+    float i;
 
     int valid;
 

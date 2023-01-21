@@ -13,6 +13,7 @@ int main(void)
     int x = 4;
     int y = 4 + (2*(h-1));
     int v = y
+    int m = 0
 
     int i = 0;
 
@@ -23,7 +24,7 @@ int main(void)
 
     while (i<y)
     {
-        for(i)
+        
 
 
     }

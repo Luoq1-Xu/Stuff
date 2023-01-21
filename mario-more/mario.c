@@ -3,5 +3,11 @@
 
 int main(void)
 {
-    do()
+    int Rows;
+    do
+    {
+         Rows = get_int("Please pick a number between 1 and 8. ");
+    }
+    while ( Rows<1 || Rows>8);
+    
 }

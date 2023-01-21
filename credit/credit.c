@@ -141,6 +141,7 @@ int get_validity(long creditnum)
    totalsumofproductdigit = totalsumofproductdigit + sumofcurrentproduct;
    sumofcurrentproduct = 0;
    printf("%i\n",totalsumofproductdigit);
+   printf("%i\n",counter);
 
 
   }

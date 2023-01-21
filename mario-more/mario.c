@@ -14,11 +14,10 @@ int main(void)
 
     int y = 4 + (2*h)
 
-    int j = h
+    int i
 
-    for(i=0; i<(y/2) || i>((y/2)+1); i++)
-    {
-        printf("#")
-    }
+    if (i<2)
+
+
 
 }

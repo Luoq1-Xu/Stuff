@@ -78,7 +78,7 @@ int get_creditnum(void)
         }
 
     }
-    while((j<13) || (j==14) || (j>16));
+    while( ((j<13) || (j==14) || (j>16)) );
 
     }
     return n;

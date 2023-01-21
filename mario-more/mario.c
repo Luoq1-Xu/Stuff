@@ -10,21 +10,31 @@ int main(void)
     }
     while ( h<1 || h>8);
 
-    int x = 4
+    int x = 4;
 
-    int y = 4 + (2*h)
+    int y = 4 + (2*(h-1));
 
-    int i = 0
+    int i = 0;
 
-    while (i<(y+1))
+    while (i<y)
     {
         if (i<(y+2))
         {
             printf("#");
             i++;
         }
-        else if (i)
+        else if (i == (y/2) || i == ((y/2)+1))
+        {
+            printf(" ");
+            i++;
+        }
+        else
+        {
+            printf("#");
+            i++;
+        }
     }
+        printf("\n");
 
 
 

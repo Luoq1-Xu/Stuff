@@ -123,26 +123,23 @@ int get_validity(long creditnum)
   int sumofcurrentproduct=0;
   int totalsumofproductdigit =0;
 
-  printf("%li\n",creditnum);
 
   for(int counter=0;v>=1;counter++)
   {
     v = (v/10);
     q = ((v % 10)*2);
+
     for (int count=0;q>=1;count++)
     {
 
       sumofcurrentproduct = sumofcurrentproduct + (q % 10);
       q = q/10;
-      printf("%i",sumofcurrentproduct);
+      printf("%i\n",sumofcurrentproduct);
 
     }
 
    totalsumofproductdigit = totalsumofproductdigit + sumofcurrentproduct;
    sumofcurrentproduct = 0;
-   printf("%i\n",totalsumofproductdigit);
-   printf("%i\n",counter);
-
 
   }
   int o = totalsumofproductdigit;

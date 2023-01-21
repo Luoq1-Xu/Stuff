@@ -17,6 +17,8 @@ int main(void)
 
     int i = 0;
 
+    int l = (h-1)
+
     int k = 0;
 
     while (k<h)
@@ -24,7 +26,12 @@ int main(void)
 
     while (i<y)
     {
-        
+        while (i<l)
+        {
+            printf(" ");
+            i++
+        }
+        while (
 
 
     }

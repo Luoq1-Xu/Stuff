@@ -18,22 +18,25 @@ int main(void)
 
     while (i<y)
     {
-        if (i<(y+2))
+        while (i<(y+2))
         {
             printf("#");
             i++;
         }
-        else if (i == (y/2) || i == ((y/2)+1) )
+        while (i == (y/2) || i == ((y/2)+1) )
         {
             printf(" ");
             i++;
         }
-        else
+        while (i > ( (y/2)+1 ) )
         {
             printf("#");
             i++;
         }
-    }
+
+
+        }
+
         printf("\n");
 
 

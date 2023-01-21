@@ -17,7 +17,7 @@ int main(void)
 
     //calculating the number of digits in the credit card number (denoted by j)
 
-    for (j=(-1);y>1;j++)
+    for (j=(-1);y>=1;j++)
     {
         y = (y/10);
     }

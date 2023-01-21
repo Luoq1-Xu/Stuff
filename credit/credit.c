@@ -51,6 +51,8 @@ int get_creditnum(void)
 
     int j;
 
+    int i;
+
     float y = (float) n;
 
     //calculating the number of digits in the credit card number (denoted by j)
@@ -76,6 +78,8 @@ int get_creditnum(void)
         {
             y = (y/10);
         }
+
+
 
     }
     while( ((j<13) || (j==14) || (j>16)) );

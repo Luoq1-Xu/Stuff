@@ -118,6 +118,7 @@ long get_creditnum(void)
 int get_validity(long creditnum)
 {
   long v = creditnum;
+  long e = creditnum;
   int q = 0;
   int b;
   int sumofcurrentproduct=0;
@@ -144,7 +145,20 @@ int get_validity(long creditnum)
 
   }
   printf("%i\n",totalsumofproductdigit);
-  int o = totalsumofproductdigit;
+
+  int sumofremaindigit = 0;
+
+  while(e>=1)
+  {
+
+    sumofremaindigit = sumofremaindigit + (e % 10);
+    e = e/10;
+    e = e/10;
+    printf("%i\n",sumofremaindigit);
+
+  }
+
+  int o = totalsumofproductdigit + sumofremaindigit;
   return o;
 }
 

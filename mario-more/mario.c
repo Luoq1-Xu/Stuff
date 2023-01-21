@@ -10,10 +10,7 @@ int main(void)
     }
     while ( h<1 || h>8);
 
-    int x = 4;
     int y = 4 + (2*(h-1));
-    int v = y;
-    int m = 0;
 
     int i = 0;
 
@@ -41,9 +38,14 @@ int main(void)
             printf(" ");
             i++;
         }
-        while ( ((y/2)<i) && (i<y) )
+        while ( ((y/2)<i) && (i< (y-l)) )
         {
             printf("#");
+            i++;
+        }
+        while ( ( ( (y-l) -1) < i) && ( i < y ) )
+        {
+            printf(" ");
             i++;
         }
 
@@ -52,6 +54,7 @@ int main(void)
         printf("\n");
         k++;
         i = 0;
+        l = (l-1);
 
     }
 

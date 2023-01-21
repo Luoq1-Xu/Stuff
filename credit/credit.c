@@ -9,18 +9,13 @@ int main(void)
 {
   long n;
 
-  n = get_long("Credit Card Number Please. ");
+  n = get_long("Number: ");
 
   //Getting the creditcardnumber
   int valid = get_creditnum(n);
-  printf("%ifinalvalueofvalid\n",valid);
 
   //Function to check checksum
   int c = get_validity(n);
-
-
-  //
-  printf("%i\n",c);
 
 
   if ((valid == 1) && c==1)
@@ -99,41 +94,32 @@ int get_creditnum(long n)
             y = (y/10);
         }
 
-        printf("%i\n",j);
-
         for (int u=0;u<(j-2);u++)
         {
           r = (r/10);
         }
 
 
-        printf("%li\n",r);
-
         if ( ((r==34) || (r==37)) && j == 15)
         {
           valid = 1;
-          printf("AMEX\n");
         }
         else if ( ((r>50) && (r<56)) && j == 16 )
         {
           valid = 2;
-          printf("MASTERCARD\n");
         }
         else if ( ((r>39) && (r<50)) && ((j ==13) || (j==16)) )
         {
           valid = 3;
-          printf("VISA\n");
         }
         else
         {
           valid = 0;
-          printf("INVALID\n");
         }
 
 
     }
 
-    printf("%ithisisvalid\n",valid);
     return valid;
 
 }
@@ -153,7 +139,6 @@ int get_validity(long creditnum)
   {
     v = (v/10);
     q = ((v % 10)*2);
-    printf("%i\n",q);
 
     for (int count=0;q>=1;count++)
     {
@@ -168,7 +153,6 @@ int get_validity(long creditnum)
    v = (v/10);
 
   }
-  printf("%i\n",totalsumofproductdigit);
 
   int sumofremaindigit = 0;
 
@@ -178,12 +162,10 @@ int get_validity(long creditnum)
     sumofremaindigit = sumofremaindigit + (e % 10);
     e = e/10;
     e = e/10;
-    printf("%i\n",sumofremaindigit);
 
   }
 
   int o = totalsumofproductdigit + sumofremaindigit;
-  printf("%i\n",o);
 
   int c;
 

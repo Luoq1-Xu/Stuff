@@ -20,9 +20,6 @@ int main(void)
 
     while (k<h)
     {
-
-    while (i<(y-1))
-    {
         while (i<l)
         {
             printf(" ");
@@ -43,12 +40,6 @@ int main(void)
             printf("#");
             i++;
         }
-        while ( ( ( (y-l) -1) < i) && ( i < (y-1)) )
-        {
-            printf(" ");
-            i++;
-        }
-
 
     }
         printf("\n");
@@ -62,5 +53,3 @@ int main(void)
 
 
 
-
-}

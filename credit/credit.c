@@ -7,17 +7,20 @@ int get_validity(long creditnum);
 
 int main(void)
 {
+
   long n;
 
+  //Requesting Number to check.
   n = get_long("Number: ");
 
-  //Getting the creditcardnumber
+  //Checking whether Card qualifies as AMEX, MASTERCARD, VISA or none of them.
   int valid = get_creditnum(n);
 
-  //Function to check checksum
+  //Function to check checksum is correct. c is 1 if checksum is valid and 0 if checksum is invalid.
   int c = get_validity(n);
 
 
+  //Final classification of which brand card belongs to if it is valid or invalid(due to wrong length of number like 14 digits).
   if ((valid == 1) && c==1)
   {
     printf("AMEX\n");
@@ -34,16 +37,6 @@ int main(void)
   {
     printf("INVALID\n");
   }
-
-
-
-
-
-
-
-
-
-
 
 }
 
@@ -71,16 +64,11 @@ int main(void)
 
 int get_creditnum(long n)
 {
-
+    //j denotes the number of digits of the number entered
     int j;
-
+    //valid classifies whether the card could one of AMEX, MASTERCARD, VISA, or is an INVALID number
     int valid;
 
-
-
-    //calculating the number of digits in the credit card number (denoted by j)
-
-    {
 
         long r = n;
 
@@ -99,7 +87,7 @@ int get_creditnum(long n)
           r = (r/10);
         }
 
-
+        // Classifying into AMEX, MASTERCARD, VISA, or INVALID by checking the first 2 digits of the number
         if ( ((r==34) || (r==37)) && j == 15)
         {
           valid = 1;
@@ -117,9 +105,6 @@ int get_creditnum(long n)
           valid = 0;
         }
 
-
-    }
-
     return valid;
 
 }
@@ -134,7 +119,7 @@ int get_validity(long creditnum)
   int sumofcurrentproduct=0;
   int totalsumofproductdigit =0;
 
-
+  //calculating the total sum of the digits of the products of the alternating digits multiplied by 2.
   for(int counter=0;v>=1;counter++)
   {
     v = (v/10);
@@ -154,7 +139,11 @@ int get_validity(long creditnum)
 
   }
 
+
+  //sumofremaindigit denotes the sum of the remaining digits that weren't multiplied by 2.
   int sumofremaindigit = 0;
+
+
 
   while(e>=1)
   {
@@ -165,6 +154,8 @@ int get_validity(long creditnum)
 
   }
 
+
+  //o denotes the final sum of all relevant digits. Checking if last digit of o is zero or not.
   int o = totalsumofproductdigit + sumofremaindigit;
 
   int c;

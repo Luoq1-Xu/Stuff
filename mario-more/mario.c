@@ -14,14 +14,20 @@ int main(void)
 
     int y = 4 + (2*h)
 
-    int i
+    int i = 0
 
-    
-
-    if (i<(y/2))
+    while (i<(y+1))
     {
-
+        if (i<(y+2))
+        {
+            printf("#");
+            i++;
+        }
+        else if (i)
     }
+
+
+
 
 
 

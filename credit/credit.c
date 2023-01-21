@@ -63,7 +63,7 @@ int get_creditnum(void)
 
         j=0;
 
-        for (j=0;y>1;j++)
+        for (j=0;y>=1;j++)
         {
             y = (y/10);
         }

@@ -3,7 +3,10 @@
 
 int main(void)
 {
+  // Set Variable n to be the actual credit card number
   long n;
+
+  //Get a variable for the numberof digits of the credit card number (n)
 
   do
   {

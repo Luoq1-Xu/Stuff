@@ -1,16 +1,18 @@
 #include <cs50.h>
 #include <stdio.h>
 
-long get_creditnum(void);
-
-int get_creditnum(void);
+int get_creditnum(long n);
 
 int get_validity(long creditnum);
 
 int main(void)
 {
+  long n;
+
+  n = get_long("Credit Card Number Please. ");
+
   //Getting the creditcardnumber
-  long n = get_creditnum();
+  int valid = get_creditnum(n);
 
   //Function to check checksum
   int c = get_validity(n);
@@ -70,9 +72,8 @@ int main(void)
 
 
 
-long get_creditnum(void)
+int get_creditnum(long n)
 {
-    long n;
 
     int j;
 
@@ -83,8 +84,6 @@ long get_creditnum(void)
     //calculating the number of digits in the credit card number (denoted by j)
 
     {
-
-        n = get_long("Credit Card Number Please. ");
 
         long r = n;
 
@@ -133,7 +132,6 @@ long get_creditnum(void)
     }
 
 
-    return n;
     return j;
     return valid;
 

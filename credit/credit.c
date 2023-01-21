@@ -3,7 +3,7 @@
 
 int get_creditnum(void);
 
-int get_validity(long creditcardnumber);
+int get_validity(long creditnum);
 
 int main(void)
 {
@@ -11,7 +11,7 @@ int main(void)
   long n = get_creditnum();
 
   //Function to check checksum
-  int o =get_validity(n);
+  int o = get_validity(n);
 
 
 
@@ -115,7 +115,7 @@ int get_creditnum(void)
 }
 
 
-int get_validity(long creditcardnumber)
+int get_validity(long creditnum)
 {
   long v = n
   int q = 0;

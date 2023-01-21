@@ -11,10 +11,14 @@ int main(void)
     while ( h<1 || h>8);
 
     int x = 4;
-
     int y = 4 + (2*(h-1));
 
     int i = 0;
+
+    int k = 0;
+
+    while (k<h)
+    {
 
     while (i<y)
     {
@@ -38,11 +42,11 @@ int main(void)
         }
 
     }
-
-
-
-
         printf("\n");
+        k++;
+        i = 0;
+
+    }
 
 
 

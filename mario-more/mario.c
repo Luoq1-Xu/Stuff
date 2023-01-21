@@ -28,7 +28,7 @@ int main(void)
             printf(" ");
             i++;
         }
-        while (i > ( (y/2)+1 ) )
+        if (i > ( (y/2)+1 ))
         {
             printf("#");
             i++;

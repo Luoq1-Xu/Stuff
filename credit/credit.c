@@ -66,6 +66,7 @@ int get_creditnum(void)
 
     do
     {
+      
         n = get_long("Credit Card Number Please. ");
 
         valid = 100;

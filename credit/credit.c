@@ -117,7 +117,7 @@ int get_creditnum(void)
 
 int get_validity(long creditnum)
 {
-  long v = n
+  long v = creditnum;
   int q = 0;
   int b;
   int sumofcurrentproduct=0;
@@ -125,12 +125,12 @@ int get_validity(long creditnum)
 
   for(int counter=0;v>=1;counter++)
   {
-    v = (v/10)
-    q = (v % 10)*2
+    v = (v/10);
+    q = ((v % 10)*2);
     for (int count=0;q>=1;count++)
     {
 
-      int sumofcurrentproduct = sumofcurrentproduct + (q % 10)
+      sumofcurrentproduct = sumofcurrentproduct + (q % 10);
 
     }
 

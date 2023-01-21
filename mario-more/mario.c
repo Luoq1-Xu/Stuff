@@ -31,10 +31,12 @@ int main(void)
             printf(" ");
             i++
         }
-        while (l < i < l+2)
+        while ((l-1) < i < ((y/2)-1))
         {
-            printf()
+            printf("#");
+            i++
         }
+        while ( ((y/2)-2) < i < ((y/2)) )
 
 
     }

@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int get_creditnum(void);
+long get_creditnum(void);
 
 int get_validity(long creditnum);
 
@@ -45,7 +45,7 @@ int main(void)
 
 
 
-int get_creditnum(void)
+long get_creditnum(void)
 {
     long n;
 
@@ -103,13 +103,11 @@ int get_creditnum(void)
           valid = 0;
           printf("INVALID\n");
         }
-        printf("%li\n",n);
 
 
     }
 
 
-    printf("%li\n",n);
     return n;
     return j;
     return valid;

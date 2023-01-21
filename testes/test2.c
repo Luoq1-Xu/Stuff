@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    int y = 10;
-    int j = y % 10;
+    int y = 2;
+    int j = y/10;
     printf("%i\n",j);
 }

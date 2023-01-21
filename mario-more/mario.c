@@ -18,13 +18,13 @@ int main(void)
 
     while (i<y)
     {
-        if ( i < (y/2) )
+        if ( i < ((y/2)-1) )
         {
             printf("#");
             i++;
         }
 
-        else if (i == (y/2) || i == ((y/2)+1) )
+        else if (i == (y/2) || i == ((y/2)-1) )
 
         {
             printf(" ");

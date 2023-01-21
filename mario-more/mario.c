@@ -31,7 +31,10 @@ int main(void)
             printf(" ");
             i++
         }
-        while (
+        while (l < i < l+2)
+        {
+            printf()
+        }
 
 
     }

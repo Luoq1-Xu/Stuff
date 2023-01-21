@@ -13,18 +13,23 @@ int main(void)
     float y = (float) n;
 
     //calculating the number of digits in the credit card number
-    
+
     for (j=(-1);y>1;j++)
     {
         y = (y/10);
     }
 
+    if ((j<13) || (j==14) || (j>16))
 
     do
     {
         n = get_long("Credit Card Number Please. ");
     }
     while((j<13) || (j==14) || (j>16));
+
+    
+    }
+
 
 
 

@@ -10,4 +10,11 @@ int main(void)
     }
     while ( h<1 || h>8);
 
+    int j = h
+
+    for(i=0; i<j; i++)
+    {
+        printf("#")
+    }
+
 }

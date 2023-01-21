@@ -8,7 +8,9 @@ int main(void)
   //Getting the creditcardnumber
   long n = get_creditnum();
 
+  int k = j;
 
+  for ()
 
 
 

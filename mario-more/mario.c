@@ -10,6 +10,10 @@ int main(void)
     }
     while ( h<1 || h>8);
 
+    int x = 4
+
+    int y = 4 + (2*h)
+
     int j = h
 
     for(i=0; i<j; i++)

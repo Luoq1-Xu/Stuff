@@ -58,6 +58,8 @@ int get_creditnum(void)
 
         n = get_long("Credit Card Number Please. ");
 
+        int r = (int) n;
+
 
         float y = (float) n;
 
@@ -70,19 +72,25 @@ int get_creditnum(void)
 
         printf("%i\n",j);
 
-        i = ( n/(10*(j-2)) );
+        for (int u=0;u<(j-2);u++)
+        {
+          r = r/10;
+        }
 
-        printf("%f\n",i);
 
-        if ( ((i==34) || (i==37)) && j == 15)
+
+
+        printf("%i\n",r);
+
+        if ( ((r==34) || (r==37)) && j == 15)
         {
           valid = 1;
         }
-        else if ( ((i>50) && (i<56)) && j == 16 )
+        else if ( ((r>50) && (r<56)) && j == 16 )
         {
           valid = 2;
         }
-        else if ( ((i>39) && (i<50)) && ((j ==13) || (j==16)) )
+        else if ( ((r>39) && (r<50)) && ((j ==13) || (j==16)) )
         {
           valid = 3;
         }

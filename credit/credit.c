@@ -103,16 +103,17 @@ int get_creditnum(void)
           valid = 0;
           printf("INVALID\n");
         }
+        printf("%li\n",n);
 
 
     }
 
 
-
+    printf("%li\n",n);
     return n;
     return j;
     return valid;
-    printf("%li\n",n);
+
 }
 
 

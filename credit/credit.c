@@ -100,7 +100,7 @@ int get_creditnum(void)
     }
 
 
-    }
+    
     return n;
     return j;
 }

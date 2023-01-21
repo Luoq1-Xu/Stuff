@@ -1,19 +1,48 @@
 #include <cs50.h>
 #include <stdio.h>
 
+int get_creditnum(void);
+
 int main(void)
 {
 
-  //getting credit card number
-  long n = get_cardnumber ();
+  long n = get_creditnum();
+  printf("%li\n",n);
 
 
 
 
-  //this whole section is validating whether the input is actually valid. ()
 
-  // Set Variable n to be the actual credit card number
-  long n;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int get_creditnum(void)
+{
+    long n;
 
     n = get_long("Credit Card Number Please. ");
 
@@ -49,24 +78,5 @@ int main(void)
     while((j<13) || (j==14) || (j>16));
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-  // Set Variable M to be the length of the credit card number
-
-
-
-  //j is the number of digits.
-
-
-
+    return n;
 }

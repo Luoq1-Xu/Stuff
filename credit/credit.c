@@ -7,16 +7,22 @@ int main(void)
   long n;
   int j;
   float y = (float) n;
-   for (j=(-1);y>1;j++)
-  {
-    y = (y/10);
-  }
+
+
+    n = get_long("Credit Card Number Please. ");
+
+
+    for (j=(-1);y>1;j++)
+    {
+        y = (y/10);
+    }
+
 
     do
     {
         n = get_long("Credit Card Number Please. ");
     }
-    while((j<13) && (j==15) && (j>16));
+    while((j<13) && (j==14) && (j>16));
 
 
 

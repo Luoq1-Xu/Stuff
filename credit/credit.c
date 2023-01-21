@@ -115,7 +115,13 @@ int get_creditnum(void)
 
 int get_validity(void)
 {
-  
+  long v = n
+  int q;
+  for(int counter=0;v>=1;counter++)
+  {
+    v = (v/10)
+    v
+  }
 }
 
 

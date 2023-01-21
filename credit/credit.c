@@ -4,6 +4,12 @@
 int main(void)
 {
 
+  //getting credit card number
+  long n = get_cardnumber ();
+
+
+
+
   //this whole section is validating whether the input is actually valid. ()
 
   // Set Variable n to be the actual credit card number

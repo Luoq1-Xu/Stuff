@@ -3,13 +3,15 @@
 
 int get_creditnum(void);
 
+int get_validity(void);
+
 int main(void)
 {
   //Getting the creditcardnumber
   long n = get_creditnum();
 
   //Function to check checksum
-  int o =get_validity()
+  int o =get_validity();
 
 
 
@@ -116,9 +118,11 @@ int get_creditnum(void)
 int get_validity(void)
 {
   long v = n
-  int q;
+  int q = 0;
   int b;
-  int sumofcurrentproduct=0
+  int sumofcurrentproduct=0;
+  int totalsumofproductdigit =0;
+
   for(int counter=0;v>=1;counter++)
   {
     v = (v/10)
@@ -129,7 +133,11 @@ int get_validity(void)
       int sumofcurrentproduct = sumofcurrentproduct + (q % 10)
 
     }
-    
+
+   totalsumofproductdigit = totalsumofproductdigit + sumofcurrentproduct
+   sumofcurrentproduct = 0
+   printf("%i\n",totalsumofproductdigit);
+
 
   }
 }

@@ -131,11 +131,12 @@ int get_validity(long creditnum)
     {
 
       sumofcurrentproduct = sumofcurrentproduct + (q % 10);
+      q = q/10;
 
     }
 
-   totalsumofproductdigit = totalsumofproductdigit + sumofcurrentproduct
-   sumofcurrentproduct = 0
+   totalsumofproductdigit = totalsumofproductdigit + sumofcurrentproduct;
+   sumofcurrentproduct = 0;
    printf("%i\n",totalsumofproductdigit);
 
 

@@ -20,15 +20,27 @@ int main(void)
     }
 
     if ((j<13) || (j==14) || (j>16))
+    {
 
     do
     {
         n = get_long("Credit Card Number Please. ");
+
+        j=(-1);
+
+        for (j=(-1);y>1;j++)
+     {
+        y = (y/10);
+     }
+
     }
     while((j<13) || (j==14) || (j>16));
 
-    
+
     }
+
+
+
 
 
 

@@ -13,6 +13,7 @@ int main(void)
 
   //Getting the creditcardnumber
   int valid = get_creditnum(n);
+  printf("%i\n",valid);
 
   //Function to check checksum
   int c = get_validity(n);
@@ -20,7 +21,7 @@ int main(void)
 
   //
   printf("%i\n",c);
-  printf("%i\n",valid);
+
 
   if ((valid == 1) && c==1)
   {
@@ -132,7 +133,7 @@ int get_creditnum(long n)
 
     }
 
-    printf("%i\n",valid);
+    printf("%ithisisvalid\n",valid);
     return j;
     return valid;
 

@@ -10,6 +10,8 @@ int main(void)
   //Getting the creditcardnumber
   long n = get_creditnum();
 
+  int valid = get_creditnum();
+
   //Function to check checksum
   int c = get_validity(n);
 

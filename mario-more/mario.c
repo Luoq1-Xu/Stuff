@@ -8,6 +8,6 @@ int main(void)
     {
          h = get_int("Height: ");
     }
-    while ( h<1 || hcd>8);
+    while ( h<1 || h>8);
 
 }

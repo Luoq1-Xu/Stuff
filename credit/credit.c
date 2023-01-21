@@ -61,9 +61,9 @@ int get_creditnum(void)
 
         float y = (float) n;
 
-        j=(-1);
+        j=0;
 
-        for (j=(-1);y>1;j++)
+        for (j=0;y>1;j++)
         {
             y = (y/10);
         }

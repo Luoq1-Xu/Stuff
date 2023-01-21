@@ -16,7 +16,12 @@ int main(void)
 
     int i
 
-    if (i<2)
+    
+
+    if (i<(y/2))
+    {
+
+    }
 
 
 

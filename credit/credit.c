@@ -61,15 +61,10 @@ int get_creditnum(void)
         y = (y/10);
     }
 
-    if ((j<13) || (j==14) || (j>16))
-    {
-
-    do
     {
 
         n = get_long("Credit Card Number Please. ");
 
-        valid = 100;
 
         y = n;
 

@@ -72,7 +72,7 @@ int get_creditnum(void)
 
         i = ( n/(10*(j-2)) );
 
-        printf("%i\n",i);
+        printf("%f\n",i);
 
         if ( ((i==34) || (i==37)) && j == 15)
         {

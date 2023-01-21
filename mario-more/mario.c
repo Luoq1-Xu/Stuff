@@ -12,12 +12,12 @@ int main(void)
 
     int x = 4;
     int y = 4 + (2*(h-1));
-    int v = y
-    int m = 0
+    int v = y;
+    int m = 0;
 
     int i = 0;
 
-    int l = (h-1)
+    int l = (h-1);
 
     int k = 0;
 
@@ -29,14 +29,23 @@ int main(void)
         while (i<l)
         {
             printf(" ");
-            i++
+            i++;
         }
         while ((l-1) < i < ((y/2)-1))
         {
             printf("#");
-            i++
+            i++;
         }
-        while ( ((y/2)-2) < i < ((y/2)) )
+        while ( ((y/2)-2) < i < ((y/2)+1) )
+        {
+            printf(" ");
+            i++;
+        }
+        while ((y/2)<i<y)
+        {
+            printf("#");
+            i++;
+        }
 
 
     }

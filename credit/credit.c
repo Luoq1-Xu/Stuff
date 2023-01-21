@@ -11,7 +11,7 @@ int main(void)
   long n = get_creditnum();
 
   //Function to check checksum
-  int o =get_validity();
+  int o =get_validity(n);
 
 
 

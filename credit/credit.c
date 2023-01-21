@@ -128,6 +128,7 @@ int get_validity(long creditnum)
   {
     v = (v/10);
     q = ((v % 10)*2);
+    printf("%i\n",q);
 
     for (int count=0;q>=1;count++)
     {

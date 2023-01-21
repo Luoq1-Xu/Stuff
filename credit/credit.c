@@ -78,7 +78,7 @@ int get_creditnum(void)
         {
           valid = 2;
         }
-        else if ( ((i>39) && (i<50)) && (j ==13 || j==16) )
+        else if ( ((i>39) && (i<50)) && ((j ==13) || (j==16)) )
         {
           valid = 3;
         }

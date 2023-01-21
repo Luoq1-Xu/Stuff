@@ -31,17 +31,17 @@ int main(void)
             printf(" ");
             i++;
         }
-        while ((l-1) < i < ((y/2)-1))
+        while (((l-1) < i) && (i < ((y/2)-1)) )
         {
             printf("#");
             i++;
         }
-        while ( ((y/2)-2) < i < ((y/2)+1) )
+        while ( (((y/2)-2) < i) && (i < ((y/2)+1)) )
         {
             printf(" ");
             i++;
         }
-        while ((y/2)<i<y)
+        while ( ((y/2)<i) && (i<y) )
         {
             printf("#");
             i++;

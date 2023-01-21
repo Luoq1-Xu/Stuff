@@ -67,6 +67,8 @@ int get_creditnum(void)
         {
             y = (y/10);
         }
+        
+        printf("%i\n",j);
 
         i = ( n/(10*(j-2)) );
 

@@ -22,6 +22,7 @@ int main(int argc, string argv[])
         int k = 0;
         int b = 0;
         int j = length;
+        int counter = 0;
 
         for (int v = 0 ; v < j; v++)
              {
@@ -45,7 +46,7 @@ int main(int argc, string argv[])
             {
                 if (x[w] == x [e])
                 {
-                    int counter ++;
+                    counter ++;
                 }
             }
         }

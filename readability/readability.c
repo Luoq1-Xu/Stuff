@@ -19,7 +19,11 @@ int main(void)
 
    float L = ((letters/words)*100.0);
 
+   printf("%f\n", L);
+
    float S = ((sentences/words)*100.0);
+
+   printf("%f\n", S);
 
    float result = 0.0588 * L - 0.296 * S - 15.8;
 

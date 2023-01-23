@@ -57,3 +57,15 @@ int count_words(string text)
     return words;
 
 }
+
+
+int count_sentences(string text)
+{
+    int sentences = 0;
+
+    for (int i=0;text[i] != '\0'; i++)
+    {
+        if ((text[i] == 46) || )
+    }
+
+}

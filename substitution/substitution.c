@@ -22,7 +22,7 @@ int main(int argc, string argv[])
         int k = 0;
         int a = 2015;
         int b = 0;
-        int j = strlen(argv[1]);
+        int j = length;
 
         for (int i = 0 ; i < j; i++)
         {

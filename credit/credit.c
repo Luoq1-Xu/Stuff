@@ -20,7 +20,7 @@ int main(void)
   int c = get_validity(n);
 
 
-  //Final classification of which brand card belongs to if it is valid or invalid(due to wrong length of number like 14 digits).
+  //Final classification of which brand card id or invalid(due to wrong length of number like 14 digits).
   if ((valid == 1) && c==1)
   {
     printf("AMEX\n");

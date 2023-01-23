@@ -65,7 +65,7 @@ int count_sentences(string text)
 
     for (int i=0;text[i] != '\0'; i++)
     {
-        if ((text[i] == 46) || )
+        if ((text[i] == 46) || (text[i] == 33) || (text[i] == 63))
     }
 
 }

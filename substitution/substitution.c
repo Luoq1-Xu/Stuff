@@ -20,7 +20,6 @@ int main(int argc, string argv[])
 
         int y;
         int k = 0;
-        int a = 2015;
         int b = 0;
         int j = length;
 
@@ -28,6 +27,8 @@ int main(int argc, string argv[])
              {
                 x[v] = tolower(x[v]);
              }
+
+             printf("%s\n", x);
 
         for (int i = 0 ; i < j; i++)
         {
@@ -42,9 +43,10 @@ int main(int argc, string argv[])
         {
             b += x[w];
         }
+        printf("%i\n",b);
 
 
-        if (length != 26 || k != 0 || b != a)
+        if (length != 26 || k != 0 || b != 2847)
         {
             printf("Key must contain 26 characters.\n");
             return 1;
@@ -56,6 +58,7 @@ int main(int argc, string argv[])
              string plaintext = get_string("plaintext:  ");
 
              string p = plaintext;
+
              for (int l = 0, r = strlen(p); l < r ; l++)
             {
                 if (isupper(p[l]))

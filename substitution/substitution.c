@@ -57,14 +57,15 @@ int main(int argc, string argv[])
 
 
 
-        // 
+        //Rejecting the key if not 26 characters OR not all alphabets OR duplicated characters
         if (length != 26 || k != 0 || counter != 26)
         {
             printf("Key must contain 26 characters.\n");
             return 1;
         }
 
-
+        //Taking each character and changing it to follow the equivalent value of the key (forcing everything to lowercase for easy manipulation then changing back later if required)
+        //Example: alphabet a in the plaintext will take on the value of the ((ASCII NUMBER:97)-97)th char in the key so a becomes the first character in the key
         else
         {
             string plaintext = get_string("plaintext:  ");

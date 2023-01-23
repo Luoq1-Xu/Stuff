@@ -40,7 +40,7 @@ int main(int argc, string argv[])
         }
         else
         {
-             string plaintext = get_string("plaintext: \n");
+             string plaintext = get_string("plaintext: ");
              for (int v = 0, j = strlen(argv[1]); v < j; v++)
              {
                 x[v] = tolower(x[v]);

@@ -31,6 +31,7 @@ int main(int argc, string argv[])
                 k++;
             }
         }
+        
 
 
         if (length != 26 || k != 0 || b != 0)

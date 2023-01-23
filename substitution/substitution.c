@@ -41,14 +41,19 @@ int main(int argc, string argv[])
 
         for (int w = 0; w < j; w++)
         {
-            b += x[w];
+            for (int e = 0; e < j; e++)
+            {
+                if (x[w] == x [e])
+                {
+                    int counter ++;
+                }
+            }
         }
-        printf("%i\n",b);
-
-        
 
 
-        if (length != 26 || k != 0 || b != 2847)
+
+
+        if (length != 26 || k != 0 || counter != 26)
         {
             printf("Key must contain 26 characters.\n");
             return 1;

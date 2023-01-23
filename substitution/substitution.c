@@ -39,6 +39,10 @@ int main(int argc, string argv[])
         else
         {
              string plaintext = get_string("plaintext: \n");
+             for (i = 0, j = strlen(argv[1]); i < j; i++)
+             {
+                x[i] = tolower(x[i]);
+             }
         }
     }
 
@@ -56,5 +60,6 @@ int main(int argc, string argv[])
 string = encrypt(string plaintext)
 {
     
+
 }
 

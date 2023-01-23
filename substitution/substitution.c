@@ -38,10 +38,12 @@ int main(int argc, string argv[])
             {
                 printf("this is xw%i\n",x[w]);
                 printf("this is xo+1%i\n",x[o+1]);
+
                 if (x[w] == x[o+1])
                 {
                    b++;
                 }
+                printf("%i\n",b);
             }
         }
         printf("%i\n",b);

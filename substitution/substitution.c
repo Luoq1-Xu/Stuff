@@ -31,7 +31,12 @@ int main(int argc, string argv[])
                 k++;
             }
         }
-        
+
+        for (int w = 0; w < j; w++)
+        {
+            b += x[w]
+        }
+
 
 
         if (length != 26 || k != 0 || b != 0)

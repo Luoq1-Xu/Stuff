@@ -17,11 +17,11 @@ int main(void)
 
    int sentences = count_sentences(text);
 
-   float L = ((letters/words)*100.0);
+   float L = (( (float) letters/words)*100.0);
 
    printf("%f\n", L);
 
-   float S = ((sentences/words)*100.0);
+   float S = (( (float) sentences/words)*100.0);
 
    printf("%f\n", S);
 

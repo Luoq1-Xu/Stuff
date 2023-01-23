@@ -3,8 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 
-string encrypt(string plaintext);
-
 
 int main(int argc, string argv[])
 {

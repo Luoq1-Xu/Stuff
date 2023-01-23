@@ -20,6 +20,7 @@ int main(int argc, string argv[])
 
         int y;
         int k = 0;
+        int a = 65;
         int b = 0;
         int j = strlen(argv[1]);
 
@@ -34,12 +35,19 @@ int main(int argc, string argv[])
 
         for (int w = 0; w < j; w++)
         {
-            b += x[w]
+            b += x[w];
+        }
+
+        for (int m = 0; m < 25, m++)
+        {
+            a += (a+1);
         }
 
 
 
-        if (length != 26 || k != 0 || b != 0)
+
+
+        if (length != 26 || k != 0 || b != a)
         {
             printf("Key must contain 26 characters.\n");
             return 1;

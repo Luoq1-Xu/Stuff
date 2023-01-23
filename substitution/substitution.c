@@ -34,7 +34,7 @@ int main(int argc, string argv[])
 
         for (int w = 0 ; w < j; w++)
         {
-            for (int o = 0; o < (j - 1); o++)
+            for (int o = 0; o < j ; o++)
             {
                 printf("this is xw%i\n",x[w]);
                 printf("this is xo+1%i\n",x[o+1]);

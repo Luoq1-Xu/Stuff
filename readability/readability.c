@@ -18,11 +18,10 @@ int main(void)
    int sentences = count_sentences(text);
 
 
-   printf("%i letters\n",letters);
+   int index = 0.0588*()
 
-   printf("%i words \n", words);
 
-   printf("%i sentences \n", sentences);
+
 
 }
 

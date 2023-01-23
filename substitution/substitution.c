@@ -6,15 +6,18 @@
 
 int main(int argc, string argv[])
 {
-     if (argc != 2)
+
+    //Rejecting key if more or less than 1 string.
+    if (argc != 2)
     {
-         printf("Usage: ./substitution key\n");
+        printf("Usage: ./substitution key\n");
         return 1;
     }
 
     else
     {
-        int length = strlen (argv[1]);
+        //Forcing key to all lowercase and then checking if string is valid.
+        int length = strlen(argv[1]);
 
         string x = argv[1];
 
@@ -25,12 +28,11 @@ int main(int argc, string argv[])
         int counter = 0;
 
         for (int v = 0 ; v < j; v++)
-             {
-                x[v] = tolower(x[v]);
-             }
+        {
+            x[v] = tolower(x[v]);
+        }
 
-             printf("%s\n", x);
-
+        //This part is checking if all characters are alphabets - k is non zero if there are non-alphabet characters.
         for (int i = 0 ; i < j; i++)
         {
             y = isalpha(x[i]);
@@ -40,6 +42,8 @@ int main(int argc, string argv[])
             }
         }
 
+        //Checking if there are duplicate characters. Individually take each character and check if it matches with every character in the string
+        //By right every character should match exactly once if there are no duplicates, thus the counter should be 26.
         for (int w = 0; w < j; w++)
         {
             for (int e = 0; e < j; e++)
@@ -53,7 +57,7 @@ int main(int argc, string argv[])
 
 
 
-
+        // 
         if (length != 26 || k != 0 || counter != 26)
         {
             printf("Key must contain 26 characters.\n");
@@ -63,26 +67,26 @@ int main(int argc, string argv[])
 
         else
         {
-             string plaintext = get_string("plaintext:  ");
+            string plaintext = get_string("plaintext:  ");
 
-             string p = plaintext;
+            string p = plaintext;
 
-             for (int l = 0, r = strlen(p); l < r ; l++)
+            for (int l = 0, r = strlen(p); l < r ; l++)
             {
                 if (isupper(p[l]))
                 {
-                      p[l] = tolower(p[l]);
-                      p[l] = x[((p[l]) - 97)];
-                      p[l] = toupper(p[l]);
+                    p[l] = tolower(p[l]);
+                    p[l] = x[((p[l]) - 97)];
+                    p[l] = toupper(p[l]);
                 }
                 else if (islower(p[l]))
                 {
                     p[l] = x[((p[l]) - 97)];
                 }
             }
-                 printf("ciphertext: %s\n",p);
-                 return 0;
-    }
+            printf("ciphertext: %s\n", p);
+            return 0;
+        }
 
     }
 

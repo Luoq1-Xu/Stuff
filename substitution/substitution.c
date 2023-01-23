@@ -3,10 +3,22 @@
 #include <string.h>
 #include <ctype.h>
 
+string get_plaintext(void);
 
 int main(int argc, string argv[])
 {
 
+  string plaintext = get_plaintext();
+
+}
+
+
+
+
+//Program to check if key is valid and subsequently getting the plaintext (if key is valid)
+
+string get_plaintext(void)
+{
     if (argc != 2)
     {
          printf("Usage: ./substitution key\n");
@@ -42,15 +54,7 @@ int main(int argc, string argv[])
              string plaintext = get_string("plaintext: \n");
         }
 
-
     }
-
-
-
+    return plaintext;
 }
-
-
-
-
-//Program to read the input
 

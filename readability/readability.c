@@ -18,7 +18,11 @@ int main(void)
    int sentences = count_sentences(text);
 
 
-   int index = 0.0588*((letters/words)*100) - 0.296*((sentences/words)*100) - 15.8
+   float result = 0.0588*((letters/words)*100) - 0.296*((sentences/words)*100) - 15.8;
+
+   printf("%f\n", result);
+
+   int index = (int) result;
 
    if (index > 16)
    {
@@ -32,9 +36,8 @@ int main(void)
 
    else if (index < 1)
    {
-    printf("Before Grade 1)
+    printf("Before Grade 1");
    }
-
 
 
 

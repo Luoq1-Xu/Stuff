@@ -15,7 +15,14 @@ int main(int argc, string argv[])
     else
     {
         int length = strlen (argv[1]);
-        for (int i = 0;)
+
+        string x = argv[1]
+
+        for (int i = 0, j = strlen(argv[1]); i < j; i++)
+        {
+            x[1] isalpha()
+        }
+
         if (length != 26)
         {
             printf("Key must contain 26 characters.\n");

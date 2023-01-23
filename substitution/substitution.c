@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-string = encrypt(string plaintext);
+string encrypt(string plaintext);
 
 
 int main(int argc, string argv[])
@@ -41,12 +41,12 @@ int main(int argc, string argv[])
         else
         {
              string plaintext = get_string("plaintext: \n");
-             for (i = 0, j = strlen(argv[1]); i < j; i++)
+             for (int v = 0, j = strlen(argv[1]); v < j; v++)
              {
-                x[i] = tolower(x[i]);
+                x[v] = tolower(x[v]);
              }
              string p;
-             string p = encrypt(string plaintext);
+             p = encrypt(plaintext);
              printf("ciphertext:%s\n", p);
         }
     }
@@ -62,10 +62,11 @@ int main(int argc, string argv[])
 
 //Program to encrypt cipher
 
-string = encrypt(string plaintext)
+string encrypt(string plaintext)
 {
-    string p = plaintext
-    for (int l = 0, r = strlen(p); l < p; l++)
+    string p = plaintext;
+    string x = argv[1];
+    for (int l = 0, r = strlen(p); l < r ; l++)
     {
         if (isupper(p[l]))
         {

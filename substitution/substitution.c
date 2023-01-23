@@ -59,7 +59,9 @@ int main(int argc, string argv[])
                 }
                 else if (islower(p[l]))
                 {
-                    p[l] = x[((p[l])-96)];
+                    int test = ( (p[l]) - 96 );
+                    printf("test is %i\n", test);
+                    p[l] = x[test];
                 }
                 printf("after %i\n",p[l]);
             }

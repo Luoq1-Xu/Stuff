@@ -36,7 +36,7 @@ int main(int argc, string argv[])
         {
             for (int o = 0; o < j; o++)
             {
-                if (x[w] == x[o])
+                if (x[w] == x[o+1])
                 {
                    b++;
                 }

@@ -51,5 +51,6 @@ int main(int argc, string argv[])
 
 
 
-//Program to change cipher
+//Program to encrypt cipher
+
 

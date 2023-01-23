@@ -16,17 +16,20 @@ int main(int argc, string argv[])
     {
         int length = strlen (argv[1]);
 
-        string x = argv[1]
+        string x = argv[1];
+
+        int y;
 
         do
         {
-        for (int i = 0, j = strlen(argv[1]); i < j; i++)
-        {
-             int y = isalpha(x[i]);
+             for (int i = 0, j = strlen(argv[1]); i < j; i++)
+             {
+                 y = isalpha(x[i]);
+             }
         }
-        }
+        while (y != 0);
 
-        if (length != 26)
+        if (length != 26 || y == 0)
         {
             printf("Key must contain 26 characters.\n");
             return 1;

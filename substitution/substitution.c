@@ -49,7 +49,7 @@ int main(int argc, string argv[])
              string p = plaintext;
              for (int l = 0, r = strlen(p); l < r ; l++)
             {
-                
+                printf("before %i ",p[l]);
                 if (isupper(p[l]))
                 {
                       p[l] = tolower(p[l]);
@@ -60,7 +60,7 @@ int main(int argc, string argv[])
                 {
                     p[l] = x[(p[l]-64)];
                 }
-                printf("%i\n",p[l]);
+                printf("after %i\n",p[l]);
             }
                  printf("ciphertext: %s\n",p);
     }

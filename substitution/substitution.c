@@ -38,7 +38,7 @@ int main(int argc, string argv[])
             b += x[w];
         }
 
-        for (int m = 0; m < 25, m++)
+        for (int m = 0; m < 25; m++)
         {
             a += (a+1);
         }

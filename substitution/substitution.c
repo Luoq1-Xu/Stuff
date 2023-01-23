@@ -45,25 +45,20 @@ int main(int argc, string argv[])
              {
                 x[v] = tolower(x[v]);
              }
-             printf("%s\n",x);
 
              string p = plaintext;
              for (int l = 0, r = strlen(p); l < r ; l++)
             {
-                printf("before %i ",p[l]);
                 if (isupper(p[l]))
                 {
                       p[l] = tolower(p[l]);
-                      p[l] = x[((p[l])-96)];
+                      p[l] = x[((p[l]) - 97)];
                       p[l] = toupper(p[l]);
                 }
                 else if (islower(p[l]))
                 {
-                    int test = ( (p[l]) - 96 );
-                    printf("test is %i\n", test);
-                    p[l] = x[test];
+                    p[l] = x[((p[l]) - 97)];
                 }
-                printf("after %i\n",p[l]);
             }
                  printf("ciphertext: %s\n",p);
     }

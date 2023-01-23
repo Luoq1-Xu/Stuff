@@ -6,6 +6,7 @@
 int main(int argc, string argv[])
 {
    string plaintext = get_string("plaintext: \n");
+   
 
 }
 
@@ -13,3 +14,7 @@ int main(int argc, string argv[])
 
 
 //Program to read the input
+string convert_cipher(string plaintext)
+{
+
+}

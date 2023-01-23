@@ -18,7 +18,9 @@ int main(void)
    int sentences = count_sentences(text);
 
 
-   int index = 0.0588*()
+   int index = 0.0588*((letters/words)*100) - 0.296*((sentences/words)*100) - 15.8
+
+   
 
 
 

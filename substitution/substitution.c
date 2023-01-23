@@ -36,8 +36,8 @@ int main(int argc, string argv[])
         {
             for (int o = 0; o < j; o++)
             {
-                printf("%i\n",x[w]);
-                printf("%i\n",x[o+1]);
+                printf("this is xw%i\n",x[w]);
+                printf("this is xo+1%i\n",x[o+1]);
                 if (x[w] == x[o+1])
                 {
                    b++;

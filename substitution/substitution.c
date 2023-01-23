@@ -32,23 +32,7 @@ int main(int argc, string argv[])
             }
         }
 
-        for (int w = 0 ; w < j; w++)
-        {
-            for (int o = 0; o < j ; o++)
-            {
-                printf("this is xw%i\n",x[w]);
-                printf("this is xo+1%i\n",x[o+1]);
-
-                if (x[w] == x[o+1])
-                {
-                   b++;
-                }
-                printf("%i\n",b);
-            }
-        }
-        printf("%i\n",b);
-
-
+        
 
 
         if (length != 26 || k != 0 || b != 0)

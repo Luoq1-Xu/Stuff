@@ -45,6 +45,8 @@ int main(int argc, string argv[])
         }
         printf("%i\n",b);
 
+        
+
 
         if (length != 26 || k != 0 || b != 2847)
         {

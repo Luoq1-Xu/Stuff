@@ -12,7 +12,7 @@ int main(int argc, string argv[])
          printf("Usage: ./substitution key\n");
         return 1;
     }
-    
+
     else
     {
         int length = strlen (argv[1]);
@@ -20,17 +20,19 @@ int main(int argc, string argv[])
         string x = argv[1];
 
         int y;
+        int k=0;
 
-        do
+        for (int i = 0, j = strlen(argv[1]); i < j; i++)
         {
-             for (int i = 0, j = strlen(argv[1]); i < j; i++)
-             {
-                 y = isalpha(x[i]);
-             }
+            y = isalpha(x[i]);
+            if (y == 0)
+            {
+                k++;
+            }
         }
-        while (y != 0);
 
-        if (length != 26 || y == 0)
+
+        if (length != 26 || k != 0)
         {
             printf("Key must contain 26 characters.\n");
             return 1;

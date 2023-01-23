@@ -22,13 +22,22 @@ int main(int argc, string argv[])
 
         int y;
         int k = 0;
+        j = strlen(argv[1]);
 
-        for (int i = 0, j = strlen(argv[1]); i < j; i++)
+        for (int i = 0 ; i < j; i++)
         {
             y = isalpha(x[i]);
             if (y == 0)
             {
                 k++;
+            }
+        }
+
+        for (i = 0 ; i < j; i++)
+        {
+            for (int o = 0; o < j; o++)
+            {
+                if (x[o] == )
             }
         }
 

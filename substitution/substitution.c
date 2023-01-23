@@ -7,17 +7,21 @@
 int main(int argc, string argv[])
 {
 
-    int length = strlen (argv[1]);
-
     if (argc != 2)
     {
          printf("Usage: ./substitution key\n");
         return 1;
     }
-    else if ( length != 26)
+    else
     {
-         printf("Key must contain 26 characters.\n");
-        return 1;
+         int length = strlen (argv[1]);
+        if (length != 26)
+        {
+            printf("Key must contain 26 characters.\n");
+            return 1;
+        }
+
+
     }
 
     string plaintext = get_string("plaintext: \n");

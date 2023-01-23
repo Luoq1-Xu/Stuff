@@ -32,16 +32,6 @@ int main(int argc, string argv[])
             }
         }
 
-        int u = 0;
-
-        for (i = 0, j = strlen(argv[1]); i < j; i++)
-        {
-            if
-            {
-                k++;
-            }
-        }
-
 
 
 

@@ -42,6 +42,7 @@ int main(int argc, string argv[])
                 }
             }
         }
+        printf("%i\n",b);
 
 
 

@@ -17,8 +17,11 @@ int main(void)
 
    int sentences = count_sentences(text);
 
+   float L = ((letters/words)*100.0);
 
-   float result = (0.0588*((letters/words)*100.0)) - (0.296*((sentences/words)*100.0)) - 15.8;
+   float S = ((sentences/words)*100.0);
+
+   float result = 0.0588 * L - 0.296 * S - 15.8;
 
    printf("%f\n", result);
 

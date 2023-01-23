@@ -32,7 +32,13 @@ int main(int argc, string argv[])
             }
         }
 
-        
+        for (int w = 0; w < j; w++)
+        {
+            for(int z = 0; z < j; z++)
+            {
+                if( x[z] == x[w] )
+            }
+        }
 
 
         if (length != 26 || k != 0 || b != 0)

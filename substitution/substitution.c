@@ -18,9 +18,12 @@ int main(int argc, string argv[])
 
         string x = argv[1]
 
+        do
+        {
         for (int i = 0, j = strlen(argv[1]); i < j; i++)
         {
-            x[1] isalpha()
+             int y = isalpha(x[i]);
+        }
         }
 
         if (length != 26)

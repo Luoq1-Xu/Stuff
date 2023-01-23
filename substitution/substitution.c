@@ -40,7 +40,7 @@ int main(int argc, string argv[])
         }
 
 
-        if (length != 26 || k != 0 || b != a || b != c)
+        if (length != 26 || k != 0 || ((b != a) && (b != c)))
         {
             printf("Key must contain 26 characters.\n");
             return 1;

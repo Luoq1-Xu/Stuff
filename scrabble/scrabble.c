@@ -24,5 +24,5 @@ int main(void)
 int compute_score(string word)
 {
     // TODO: Compute and return score for string
-    
+    for (int i=0, j=strlen(word1); i<strlen(word1))
 }

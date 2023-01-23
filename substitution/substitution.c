@@ -20,7 +20,7 @@ int main(int argc, string argv[])
 
         int y;
         int k = 0;
-        int a = 65;
+        int a = 2015;
         int b = 0;
         int j = strlen(argv[1]);
 
@@ -37,15 +37,6 @@ int main(int argc, string argv[])
         {
             b += x[w];
         }
-
-        for (int m = 0; m < 25; m++)
-        {
-            a = a + (a+1);
-        }
-        printf("%i\n",a);
-        printf("%i\n",b);
-
-
 
 
         if (length != 26 || k != 0 || b != a)

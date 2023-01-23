@@ -32,6 +32,18 @@ int main(int argc, string argv[])
             }
         }
 
+        int u = 0;
+
+        for (i = 0, j = strlen(argv[1]); i < j; i++)
+        {
+            if
+            {
+                k++;
+            }
+        }
+
+
+
 
         if (length != 26 || k != 0)
         {
@@ -39,7 +51,7 @@ int main(int argc, string argv[])
             return 1;
         }
 
-        
+
         else
         {
              string plaintext = get_string("plaintext:  ");
@@ -65,11 +77,6 @@ int main(int argc, string argv[])
                  printf("ciphertext: %s\n",p);
                  return 0;
     }
-
-
-
-
-
 
     }
 

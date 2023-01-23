@@ -45,10 +45,21 @@ int main(int argc, string argv[])
              {
                 x[v] = tolower(x[v]);
              }
-             string p;
-             p = encrypt(plaintext);
-             printf("ciphertext:%s\n", p);
+
+             string p = plaintext;
+             for (int l = 0, r = strlen(p); l < r ; l++)
+            {
+                if (isupper(p[l]))
+                {
+                      p[l] = x[l];
+                      p[l] = toupper(p[l]);
+                }
+                else
+                {
+                    p[l] = x[l];
+                }
         }
+                 printf("ciphertext:%s\n",p);
     }
 
 
@@ -56,29 +67,7 @@ int main(int argc, string argv[])
 
 
 
-}
-
-
-
-//Program to encrypt cipher
-
-string encrypt(string plaintext)
-{
-    string p = plaintext;
-    string x = argv[1];
-    for (int l = 0, r = strlen(p); l < r ; l++)
-    {
-        if (isupper(p[l]))
-        {
-            p[l] = x[l];
-            p[l] = toupper(p[l]);
-        }
-        else
-        {
-            p[l] = x[l];
-        }
     }
-    return p;
 
 }
 

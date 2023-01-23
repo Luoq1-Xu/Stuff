@@ -10,38 +10,47 @@ int count_sentences(string text);
 
 int main(void)
 {
-   string text = get_string("Text: ");
 
-   int letters = count_letters(text);
+    // Asking user for string input
+    string text = get_string("Text: ");
 
-   int words = count_words(text);
+    //Calling each variable
 
-   int sentences = count_sentences(text);
+    int letters = count_letters(text);
 
-   float L = (( (float) letters/words)*100.0);
+    int words = count_words(text);
 
-   float S = (( (float) sentences/words)*100.0);
-
-   float result = 0.0588 * L - 0.296 * S - 15.8;
+    int sentences = count_sentences(text);
 
 
+    //Calculating the grade level using the Coleman-Liau formula.
 
-   int index = round (result);
+    float L = (((float) letters / words) * 100.0);
 
-   if (index > 16)
-   {
-    printf("Grade 16+\n");
-   }
+    float S = (((float) sentences / words) * 100.0);
 
-   else if (index >=1 && index <=16)
-   {
-    printf("Grade %i\n", index);
-   }
+    float result = 0.0588 * L - 0.296 * S - 15.8;
 
-   else if (index < 1)
-   {
-    printf("Before Grade 1\n");
-   }
+    //Rounding the result to the nearest integer
+
+    int index = round(result);
+
+    //Printing out the grade result
+
+    if (index > 16)
+    {
+        printf("Grade 16+\n");
+    }
+
+    else if (index >= 1 && index <= 16)
+    {
+        printf("Grade %i\n", index);
+    }
+
+    else if (index < 1)
+    {
+        printf("Before Grade 1\n");
+    }
 
 
 
@@ -53,16 +62,16 @@ int main(void)
 
 
 
-
+//Function to count letters by checking whether the ASCII number of each char in the string (which is an array itself) falls within the numbers that represent alphabets
 
 
 int count_letters(string text)
 {
-    int letters=0;
+    int letters = 0;
 
-    for (int i=0;text[i] != '\0'; i++)
+    for (int i = 0; text[i] != '\0'; i++)
     {
-        if (((text[i] >= 65) && (text[i] <= 90)) || ((text[i] >=97) && (text[i] <=122)))
+        if (((text[i] >= 65) && (text[i] <= 90)) || ((text[i] >= 97) && (text[i] <= 122)))
         {
             letters ++;
         }
@@ -71,13 +80,15 @@ int count_letters(string text)
 }
 
 
+// Function to count number of words by counting number of spaces (and adding 1 because total number of words is one more than number of spaces).
+
 int count_words(string text)
 {
     int words = 1;
 
-    for (int i=0;text[i] != '\0'; i++)
+    for (int i = 0; text[i] != '\0'; i++)
     {
-        if (text[i]==32)
+        if (text[i] == 32)
         {
             words ++;
         }
@@ -87,12 +98,13 @@ int count_words(string text)
 }
 
 
+// Function to count number of sentences by counting the number of periods, exclamation marks, question marks.
 
 int count_sentences(string text)
 {
     int sentences = 0;
 
-    for (int i=0;text[i] != '\0'; i++)
+    for (int i = 0; text[i] != '\0'; i++)
     {
         if ((text[i] == 46) || (text[i] == 33) || (text[i] == 63))
         {

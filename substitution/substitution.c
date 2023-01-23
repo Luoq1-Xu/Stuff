@@ -40,9 +40,10 @@ int main(int argc, string argv[])
 
         for (int m = 0; m < 25; m++)
         {
-            a += (a+1);
+            a = a + 1;
         }
-
+        printf("%i\n",a);
+        printf("%i\n",b);
 
 
 

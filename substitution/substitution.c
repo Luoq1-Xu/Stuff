@@ -53,4 +53,8 @@ int main(int argc, string argv[])
 
 //Program to encrypt cipher
 
+string = encrypt(string plaintext)
+{
+    
+}
 

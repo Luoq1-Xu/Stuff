@@ -36,7 +36,14 @@ int main(int argc, string argv[])
         {
             for(int z = 0; z < j; z++)
             {
-                if( x[z] == x[w] )
+                if( w == z+1 )
+                {
+                    w++;
+                }
+                else if ( x[z] == x [w+1])
+                {
+                    b++;
+                }
             }
         }
 

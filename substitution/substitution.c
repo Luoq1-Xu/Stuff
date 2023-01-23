@@ -61,6 +61,7 @@ int main(int argc, string argv[])
                 }
             }
                  printf("ciphertext: %s\n",p);
+                 return 0;
     }
 
 

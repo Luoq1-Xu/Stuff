@@ -51,14 +51,15 @@ int main(int argc, string argv[])
             {
                 if (isupper(p[l]))
                 {
-                      p[l] = x[l];
+                      p[l] = tolower(p[l]);
+                      p[l] = x[(l-64)];
                       p[l] = toupper(p[l]);
                 }
-                else
+                else if (islower(p[l]))
                 {
                     p[l] = x[l];
                 }
-        }
+            }
                  printf("ciphertext:%s\n",p);
     }
 

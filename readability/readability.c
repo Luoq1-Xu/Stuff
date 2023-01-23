@@ -5,12 +5,18 @@ int count_letters(string text);
 
 int main(void)
 {
-   string text = get_string("Text: \n");
+   string text = get_string("Text: ");
 
    int letters = count_letters(text);
 
    printf("%i letters\n",letters);
 }
+
+
+
+
+
+
 
 
 
@@ -28,3 +34,5 @@ int count_letters(string text)
     }
     return letters;
 }
+
+

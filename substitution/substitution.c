@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
+string = encrypt(string plaintext);
+
 
 int main(int argc, string argv[])
 {
@@ -43,6 +45,9 @@ int main(int argc, string argv[])
              {
                 x[i] = tolower(x[i]);
              }
+             string p;
+             string p = encrypt(string plaintext);
+             printf("ciphertext:%s\n", p);
         }
     }
 
@@ -59,7 +64,20 @@ int main(int argc, string argv[])
 
 string = encrypt(string plaintext)
 {
-    
+    string p = plaintext
+    for (int l = 0, r = strlen(p); l < p; l++)
+    {
+        if (isupper(p[l]))
+        {
+            p[l] = x[l];
+            p[l] = toupper(p[l]);
+        }
+        else
+        {
+            p[l] = x[l];
+        }
+    }
+    return p;
 
 }
 

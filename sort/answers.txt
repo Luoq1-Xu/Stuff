@@ -22,7 +22,7 @@ sort3 uses:selection sort
 How do you know?: TODO
 
 In the best case (sorted5000) and worst case (reversed5000), the time taken is almost (essentially) the same.
-This is a key characteristic
+This is a key characteristic of selection sort, as it needs to run through the entire list of numbers regardless.
 
 Random 5000 = 0.077s
 Random 10000 = 0.174s

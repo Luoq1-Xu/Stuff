@@ -1,11 +1,10 @@
 sort1 uses: bubble sort
 
 
-How do you know?: TODO
-
-Firstly, there is a noticeable difference in time taken for best case vs worst case scenario so this is unlikely to be selection sort.
+How do you know?: Firstly, there is a noticeable difference in time taken for best case vs worst case scenario so this is unlikely to be selection sort.
 Secondly, time taken as more numbers needs to be sorted increases greatly -> 5000 numbers to 10000 numbers is an increase to 2x but time taken increased  to ~3+ times the original time
 taken. This implies time taken to sort increases exponetially with size of array to be sorted hence this is most likely to be a bubble sort.
+
 
 Random 5000 = 0.093s
 Random 10000 = 0.324s
@@ -18,11 +17,11 @@ sorted5000 = 0.032s
 
 sort2 uses:merge sort
 
-How do you know?: TODO
-
-Consistently must faster than the other two -> a potential clue that this is merge sort, but not definitive
+How do you know?: Consistently must faster than the other two -> a potential clue that this is merge sort, but not definitive
 The key characteristic is that the time taken increases much less dramatically when size of array increases indicating the big O is likely a factor of Log
 hence this is most likely a merge sort.
+
+
 
 
 
@@ -39,10 +38,10 @@ sorted5000 = 0.033s
 
 sort3 uses:selection sort
 
-How do you know?: TODO
-
-In the best case (sorted5000) and worst case (reversed5000), the time taken is almost (essentially) the same.
+How do you know?: In the best case (sorted5000) and worst case (reversed5000), the time taken is almost (essentially) the same.
 This is a key characteristic of selection sort, as it needs to run through the entire list of numbers regardless.
+
+
 
 Random 5000 = 0.077s
 Random 10000 = 0.174s

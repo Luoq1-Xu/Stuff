@@ -17,9 +17,12 @@ random 10000 =0.052s
 reversed5000 = 0.026s
 sorted5000 = 0.033s
 
-sort3 uses: TODO
+sort3 uses:selection sort
 
 How do you know?: TODO
+
+In the best case (sorted5000) and worst case (reversed5000), the time taken is almost (essentially) the same.
+This is a key characteristic
 
 Random 5000 = 0.077s
 Random 10000 = 0.174s

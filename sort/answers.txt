@@ -1,12 +1,15 @@
 sort1 uses: TODO
 
-Random 
 
 How do you know?: TODO
+
+Random 5000 = 0.093s
 
 sort2 uses: TODO
 
 How do you know?: TODO
+
+random 5000 = 0.004s
 
 sort3 uses: TODO
 

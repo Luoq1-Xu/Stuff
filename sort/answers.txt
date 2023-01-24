@@ -4,6 +4,7 @@ sort1 uses: bubble sort
 How do you know?: TODO
 
 Random 5000 = 0.093s
+Random 10000 = 0.324s
 Reversed5000 = 0.088s
 sorted5000 = 0.051s
 
@@ -12,6 +13,7 @@ sort2 uses: TODO
 How do you know?: TODO
 
 random 5000 = 0.004s
+random 10000 =0.052s
 reversed5000 = 0.026s
 sorted5000 = 0.033s
 

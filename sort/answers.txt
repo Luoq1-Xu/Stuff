@@ -1,5 +1,7 @@
 sort1 uses: TODO
 
+Random 
+
 How do you know?: TODO
 
 sort2 uses: TODO

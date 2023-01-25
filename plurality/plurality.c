@@ -93,6 +93,7 @@ void print_winner(void)
             winner.name = candidates[l].name;
             winner.votes = candidates[l].votes;
             printf("%i\n",winner.votes);
+            printf("%s\n",winner.name);
         }
 
     }

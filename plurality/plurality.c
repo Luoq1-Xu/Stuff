@@ -74,7 +74,6 @@ bool vote(string name)
             candidates[m].votes++;
             return true;
         }
-
     }
     return false;
 }

@@ -93,7 +93,10 @@ void print_winner(void)
             winner.name = candidates[l].name;
             winner.votes = candidates[l].votes;
         }
-        else if (candidates[l].votes == winner.votes)
+        else if (candidates[l].votes == winner.votes && winner.votes != 0)
+        {
+            
+        }
 
     }
     printf("%s\n",winner.name);

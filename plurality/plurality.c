@@ -85,6 +85,7 @@ void print_winner(void)
     candidate winner;
     winner.name = "tie";
     winner.votes = 0;
+    int tiedwinners = 0;
     // TODO
     for (int l = 0; l < candidate_count; l++)
     {
@@ -95,10 +96,23 @@ void print_winner(void)
         }
         else if (candidates[l].votes == winner.votes && winner.votes != 0)
         {
-            
+            tiedwinners++;
         }
 
     }
-    printf("%s\n",winner.name);
+    if (tiedwinners != 0)
+    {
+        for (int p = 0; p < candidate_count; p++)
+        {
+            if(candidates[p].votes == winner.votes)
+            {
+                printf("%s\n",candidates[p].name);
+            }
+        }
+    }
+    else
+    {
+        printf("%s\n",winner.name);
+    }
     return;
 }

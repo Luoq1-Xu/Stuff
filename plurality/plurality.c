@@ -83,17 +83,15 @@ bool vote(string name)
 void print_winner(void)
 {
     candidate winner;
+    winner.name = "tie";
+    winner.votes = 0;
     // TODO
     for (int l = 0; l < candidate_count; l++)
     {
-        winner.name = "tie";
-        winner.votes = 0;
         if (candidates[l].votes > winner.votes)
         {
             winner.name = candidates[l].name;
             winner.votes = candidates[l].votes;
-            printf("%i\n",winner.votes);
-            printf("%s\n",winner.name);
         }
 
     }

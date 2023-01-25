@@ -97,6 +97,9 @@ int main(int argc, string argv[])
     return 0;
 }
 
+
+
+
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {

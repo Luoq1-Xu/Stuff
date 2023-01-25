@@ -83,6 +83,10 @@ bool vote(string name)
 void print_winner(void)
 {
     // TODO
-    
+    for (int l = 0; l < candidate_count; l++)
+    {
+        string winner = "tie"
+        
+    }
     return;
 }

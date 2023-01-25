@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 // Max number of candidates
 #define MAX 9
@@ -100,9 +101,12 @@ int main(int argc, string argv[])
 bool vote(int rank, string name, int ranks[])
 {
     // TODO
-    for (int j = 0; y < candidate_count; j++)
+    for (int y = 0; y < candidate_count; y++)
     {
-        
+        if (strcmp (name, candidates[y]) == 0)
+        {
+            
+        }
     }
     return false;
 }

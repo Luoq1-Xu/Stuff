@@ -85,8 +85,16 @@ void print_winner(void)
     // TODO
     for (int l = 0; l < candidate_count; l++)
     {
-        string winner = "tie"
-        
+        candidate winner;
+        winner.name = "tie";
+        winner.votes = 0;
+        if (candidates[l].votes > winner.votes)
+        {
+            winner.name = candidates[l].name;
+            winner.votes = candidates[l].votes;
+        }
+        printf("%s\n",winner.name);
+
     }
     return;
 }

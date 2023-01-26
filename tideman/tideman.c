@@ -229,6 +229,7 @@ void lock_pairs(void)
             //current pair's winner and if answer is yes then do not lock in this pair.
             else if (beaten == 0)
             {
+                
 
             }
         }

@@ -284,10 +284,8 @@ int checklosers(int currentloser, int currentwinner)
           {
                return 1;
           }
-    else if (checklosers(jacob, currentwinner) == 3)
-    {
-
-
+          else
+          {
             if (locked[jacob][j] == true)
             {
                 jacob = j;
@@ -295,13 +293,7 @@ int checklosers(int currentloser, int currentwinner)
                 return 3;
                 checklosers(jacob, currentwinner);
             }
-    
-        return 2;
-     else if (checklosers(jacob, currentwinner) == 2)
-     {
-
-     }
-    }
-    }
+          }
     return 0;
+}
 }

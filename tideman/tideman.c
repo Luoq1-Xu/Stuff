@@ -33,6 +33,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
+int checklosers(int currentloser, int currentwinner);
 
 
 int main(int argc, string argv[])
@@ -270,13 +271,13 @@ void print_winner(void)
 }
 
 
-int checklosers(int currentloser int currentwinner)
+int checklosers(int currentloser, int currentwinner)
 {
     int finalloser;
     int cycle;
     for (int j = 0; j < candidate_count; j++)
         {
-            if (locked[currentloser][j] == true;)
+            if (locked[currentloser][j] == true)
             {
                 currentloser = j;
                 checklosers(currentloser, currentwinner);

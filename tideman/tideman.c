@@ -189,11 +189,8 @@ void lock_pairs(void)
                         int unbeaten++
                         j++
                     }
-                    else
-                    {
-                        j++
-                    }
                 }
+                j++
             }
             while (j < candidate_count)
 

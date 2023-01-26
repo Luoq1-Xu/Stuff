@@ -198,7 +198,7 @@ void lock_pairs(void)
                     unbeaten++;
                     counter = 0;
                 }
-                if (counter == candidate_count && counter == 0)
+                if (counter == candidate_count && unbeaten == 0)
                 {
                     unbeaten++;
                     currentunbeaten = j;

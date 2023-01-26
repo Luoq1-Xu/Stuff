@@ -152,11 +152,13 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     // TODO
+    pair small;
+    pair big;
     for (int i = 0; i < pair_count; i++)
     {
         for (int j = 0; j < pair_count; j++)
         {
-            if ()
+            if (preferences[i][j
         }
     }
 

@@ -179,8 +179,10 @@ void lock_pairs(void)
     int unbeaten = 0;
     int counter = 0;
     int currentunbeaten = 0;
+    int beaten;
     for (int i = 0; i < pair_count; i++)
         {
+            beaten = 0;
             unbeaten = 0;
             currentunbeaten = 0;
             counter = 0;
@@ -210,12 +212,22 @@ void lock_pairs(void)
                     counter = 0;
                 }
              }
-
-            if (unbeaten > 1)
+            //checking if the current pair's loser has already been beaten
+            for (int y = 0; y < candidate_count ; y++)
+            {
+                if (locked[y][pairs[i].loser] == true)
+                {
+                    beaten++;
+                }
+            }
+            //If current pair's loser already beaten then proceed as normal
+            if (beaten > 0)
             {
                 locked[pairs[i].winner][pairs[i].loser] = true;
             }
-            else if (unbeaten == 1)
+            //If current pair's loser has not been beaten yet, must check if current pair's loser indirectly beats
+            //current pair's winner and if answer is yes then do not lock in this pair.
+            else if (beaten == 0)
             {
                 if (pairs[i].loser != currentunbeaten)
                 {

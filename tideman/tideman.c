@@ -277,7 +277,7 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
-    int ojas = 
+    int ojas;
     int jacob = currentloser;
     if (locked[jacob][currentwinner] == true)
     {
@@ -291,7 +291,7 @@ int checklosers(int currentloser, int currentwinner)
             {
                 jacob = j;
                 printf("this is the current loser%i\n",currentloser);
-                checklosers(jacob, currentwinner);
+                ojas = checklosers(jacob, currentwinner);
             }
         }
         return 0;

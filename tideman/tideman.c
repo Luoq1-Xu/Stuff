@@ -229,7 +229,13 @@ void lock_pairs(void)
             //current pair's winner and if answer is yes then do not lock in this pair.
             else if (beaten == 0)
             {
-                
+                for (int l = 0; l < candidate_count; l++)
+                {
+                    if (locked[pairs[i].loser][l] == true;)
+                    {
+                        for
+                    }
+                }
 
             }
         }

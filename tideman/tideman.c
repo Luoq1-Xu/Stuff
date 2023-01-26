@@ -215,13 +215,7 @@ void lock_pairs(void)
                     counter = 0;
                 }
             }
-            if (i == pair_count-1)
-            {
-            if (pairs[i].loser == currentunbeaten)
-            {
-                return;
-            }
-            }
+            
             //checking if the current pair's loser has already been beaten
             for (int y = 0; y < candidate_count ; y++)
             {

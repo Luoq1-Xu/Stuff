@@ -183,9 +183,10 @@ void lock_pairs(void)
             {
                 for ( int k = 0; k < candidate_count; k++)
                 {
-                    if (locked[j][k] == false)
+                    if (locked[k][j] == false)
                     {
                         int unbeaten++
+                        j++
                     }
                 }
             }

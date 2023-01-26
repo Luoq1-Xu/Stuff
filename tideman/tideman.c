@@ -139,7 +139,7 @@ void add_pairs(void)
         {
             if (preferences[i][j] > preferences[j][i])
             {
-                pairs[i].winner = i;
+                pairs[].winner = i;
                 pairs[i].loser = j;
                 pair_count++;
             }

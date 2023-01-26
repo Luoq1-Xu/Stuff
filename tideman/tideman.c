@@ -183,6 +183,8 @@ void lock_pairs(void)
     int beaten;
     for (int i = 0; i < pair_count; i++)
         {
+            printf("current pair winner : %s\n",candidates[pairs[i].winner]);
+            printf("current pair loser : %s\n",candidates[pairs[i].loser]);
             beaten = 0;
             unbeaten = 0;
             currentunbeaten = 0;

@@ -274,6 +274,7 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
+    printf("%i\n",currentloser);
     if (locked[currentloser][currentwinner] == true)
     {
         return 1;
@@ -285,6 +286,7 @@ int checklosers(int currentloser, int currentwinner)
             if (locked[currentloser][j] == true)
             {
                 currentloser = j;
+                printf("%i\n",currentloser);
                 checklosers(currentloser, currentwinner);
             }
         }

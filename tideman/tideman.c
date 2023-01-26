@@ -272,7 +272,7 @@ int checklosers(int currentloser)
             if (locked[currentloser][j] == true;)
             {
                 currentloser = j;
-                int finalloser = checklosers(x);
+                int finalloser = checklosers(currentloser);
             }
             else
             {

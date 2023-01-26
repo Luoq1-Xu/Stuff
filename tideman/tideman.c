@@ -33,7 +33,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-int checklosers(int currentloser, int currentwinner);
+bool checklosers(int currentloser, int currentwinner);
 
 
 int main(int argc, string argv[])
@@ -233,9 +233,7 @@ void lock_pairs(void)
             //current pair's winner and if answer is yes then do not lock in this pair.
             else if (beaten == 0)
             {
-                int cycletrue = checklosers(pairs[i].loser, pairs[i].winner);
-                printf("thisiscycletrue %i\n",cycletrue);
-                if (cycletrue != 1)
+                if (!(checklosers(pairs[i].loser, pairs[i].winner)))
                 {
                     locked[pairs[i].winner][pairs[i].loser] = true;
                 }
@@ -275,12 +273,8 @@ void print_winner(void)
 }
 
 
-int checklosers(int currentloser, int currentwinner)
+bool checklosers(int currentloser, int currentwinner)
 {
-    if (currentwinner == currentloser)
-    {
-        return 1;
-    }
     int jacob = currentloser;
     for (int j = 0; j < candidate_count; j++)
     {
@@ -288,17 +282,16 @@ int checklosers(int currentloser, int currentwinner)
         {
           if (locked[jacob][currentwinner] == true)
           {
-               return 1;
+               return true;
           }
           else
           {
-            jacob = j;
             if (checklosers(jacob,j) == 1)
             {
-                return 1;
+                return true;
             }
           }
         }
     }
-    return 0;
+    return false;
 }

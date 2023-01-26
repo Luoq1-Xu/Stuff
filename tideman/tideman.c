@@ -274,9 +274,5 @@ int checklosers(int currentloser)
                 currentloser = j;
                 int finalloser = checklosers(currentloser);
             }
-            else
-            {
-                return 0;
-            }
         }
 }

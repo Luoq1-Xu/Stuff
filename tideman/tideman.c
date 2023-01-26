@@ -177,9 +177,12 @@ void lock_pairs(void)
     // TODO
     int unbeaten = 0;
     int counter = 0;
+    int currentunbeaten = 0;
     for (i = 0; i < pair_count; i++)
         {
             unbeaten = 0;
+            currentunbeaten = 0;
+            counter = 0;
             //Checking for unbeaten candidates
             for (int j = 0; j < candidate_count; j++)
             {
@@ -195,17 +198,29 @@ void lock_pairs(void)
                     unbeaten++;
                     counter = 0;
                 }
+                if (counter == candidate_count && counter == 0)
+                {
+                    unbeaten++;
+                    currentunbeaten = j;
+                    counter = 0;
+                }
                 else
                 {
                     counter = 0;
                 }
              }
-            if (unbeaten >)
-
-            locked[pairs[i].winner][pairs[i].loser] = true;
+            if (unbeaten > 1)
+            {
+                locked[pairs[i].winner][pairs[i].loser] = true;
+            }
+            else if (unbeaten == 1)
+            {
+                if (pairs[i].loser != currentunbeaten)
+                {
+                    locked[pairs[i].winner][pairs[i].loser] = true;
+                }
+            }
         }
-
-
     return;
 }
 

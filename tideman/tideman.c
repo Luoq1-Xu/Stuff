@@ -215,7 +215,7 @@ void lock_pairs(void)
                     counter = 0;
                 }
             }
-            
+
             //checking if the current pair's loser has already been beaten
             for (int y = 0; y < candidate_count ; y++)
             {
@@ -277,6 +277,10 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
+    if (currentwinner == currentloser)
+    {
+        return 1;
+    }
     int jacob = currentloser;
     for (int j = 0; j < candidate_count; j++)
     {

@@ -178,7 +178,7 @@ void lock_pairs(void)
     int unbeaten = 0;
     int counter = 0;
     int currentunbeaten = 0;
-    for (i = 0; i < pair_count; i++)
+    for (int i = 0; i < pair_count; i++)
         {
             unbeaten = 0;
             currentunbeaten = 0;
@@ -190,7 +190,7 @@ void lock_pairs(void)
                 {
                     if (locked[k][j] == false)
                     {
-                        int counter++;
+                        counter++;
                     }
                 }
                 if (counter == candidate_count)
@@ -219,6 +219,10 @@ void lock_pairs(void)
                 {
                     locked[pairs[i].winner][pairs[i].loser] = true;
                 }
+                else
+                {
+                    i = pair_count;
+                }
             }
         }
     return;
@@ -228,5 +232,27 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
+    int counter = 0;
+    int winner = 0;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[j][i] == true)
+            {
+                counter++;
+            }
+        }
+        if (counter == 0)
+        {
+            winner = i;
+            i = candidate_count;
+        }
+        else
+        {
+            counter = 0;
+        }
+    }
+    printf("%s\n",candidates[winner]);
     return;
 }

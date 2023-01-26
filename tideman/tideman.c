@@ -175,6 +175,7 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
     // TODO
+    int unbeaten = candidate_count;
     do
     {
         for (i = 0; i < pair_count; i++)
@@ -183,9 +184,9 @@ void lock_pairs(void)
             {
                 for ( int k = 0; k < candidate_count; k++)
                 {
-                    if (locked[j][k] == false)
+                    if (locked[j][k] == true)
                     {
-                        int unbeaten++
+                        int unbeaten--
                     }
                 }
             }

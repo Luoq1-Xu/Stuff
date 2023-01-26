@@ -273,7 +273,6 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
-    int finalloser;
     int cycle;
     for (int j = 0; j < candidate_count; j++)
         {

@@ -160,8 +160,8 @@ void sort_pairs(void)
         {
             if ((preferences[pairs[i].winner][pairs[i].loser]) > (preferences[pairs[j].winner][pairs[j].loser]))
             {
-                pairs[i] = big;
-                pairs[j] = small;
+                big = pairs[i];
+                small = pairs[j];
                 pairs[i] = small;
                 pairs[j] = big;
             }

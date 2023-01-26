@@ -283,7 +283,7 @@ int checklosers(int currentloser, int currentwinner)
     {
         return 1;
     }
-    else if (ojas == 2)
+    else
     {
         for (int j = 0; j < candidate_count; j++)
         {
@@ -294,7 +294,7 @@ int checklosers(int currentloser, int currentwinner)
                 ojas = checklosers(jacob, currentwinner);
             }
         }
-        return 2;
+        
     }
     return 0;
 }

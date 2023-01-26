@@ -272,17 +272,22 @@ void print_winner(void)
 }
 
 
-int checklosers(int currentloser)
+int checklosers(int currentloser int currentwinner)
 {
     int finalloser;
+    int cycle;
     for (int j = 0; j < candidate_count; j++)
         {
             if (locked[currentloser][j] == true;)
             {
                 currentloser = j;
-                finalloser = checklosers(currentloser);
+                cycle = checklosers(currentloser);
+            }
+            else if (locked[currentloser][currentwinner] == 0)
+            {
+                printf("CYCLE DETECTED");
+                return 1;
             }
         }
-        finalloser = currentloser;
-        return finalloser;
+        return 0;
 }

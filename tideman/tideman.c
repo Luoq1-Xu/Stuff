@@ -267,8 +267,12 @@ void print_winner(void)
 
 int checklosers(int currentwinner, int currentloser)
 {
-    for (int i = 0; i < candidate_count; i++)
-    {
-        
-    }
+    int x = currentwinner
+    for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[x][j] == true;)
+            {
+                x = j
+            }
+        }
 }

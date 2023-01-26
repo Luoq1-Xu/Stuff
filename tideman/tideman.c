@@ -282,7 +282,7 @@ int checklosers(int currentloser, int currentwinner)
     {
         return 1;
     }
-    else if (checklosers(jacob, currentwinner) == 2)
+    else if (checklosers(jacob, currentwinner) == 3)
     {
         for (int j = 0; j < candidate_count; j++)
         {
@@ -291,9 +291,14 @@ int checklosers(int currentloser, int currentwinner)
                 jacob = j;
                 printf("this is the current loser%i\n",currentloser);
                 checklosers(jacob, currentwinner);
+                return 3;
             }
         }
         return 2;
+     else if (checklosers(jacob, currentwinner) == 2)
+     {
+        
+     }
     }
     return 0;
 }

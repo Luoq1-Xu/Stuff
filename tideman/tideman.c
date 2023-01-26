@@ -256,4 +256,7 @@ void print_winner(void)
 }
 
 
-int checkbase
+int checkbase(int currentloser)
+{
+    
+}

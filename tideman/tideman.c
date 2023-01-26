@@ -286,7 +286,7 @@ bool checklosers(int currentloser, int currentwinner)
           }
           else
           {
-            if (checklosers(currentwinner,j) == 1)
+            if (checklosers(j, currentwinner) == 1)
             {
                 return true;
             }

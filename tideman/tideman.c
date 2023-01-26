@@ -279,7 +279,7 @@ int checklosers(int currentloser int currentwinner)
             if (locked[currentloser][j] == true;)
             {
                 currentloser = j;
-                cycle = checklosers(currentloser);
+                cycle = checklosers(currentloser, currentwinner);
             }
             else if (locked[currentloser][currentwinner] == 0)
             {

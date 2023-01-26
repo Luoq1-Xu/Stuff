@@ -267,12 +267,15 @@ void print_winner(void)
 
 int checklosers(int currentloser)
 {
+    int finalloser;
     for (int j = 0; j < candidate_count; j++)
         {
             if (locked[currentloser][j] == true;)
             {
                 currentloser = j;
-                int finalloser = checklosers(currentloser);
+                finalloser = checklosers(currentloser);
             }
         }
+        finalloser = currentloser;
+        return finalloser;
 }

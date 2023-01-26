@@ -231,7 +231,7 @@ void lock_pairs(void)
             else if (beaten == 0)
             {
                 int cycletrue = checklosers(pairs[i].loser, pairs[i].winner);
-                printf("%i\n",cycletrue);
+                printf("thisiscycletrue %i\n",cycletrue);
                 if (cycletrue != 1)
                 {
                     locked[pairs[i].winner][pairs[i].loser] = true;
@@ -286,7 +286,7 @@ int checklosers(int currentloser, int currentwinner)
             if (locked[currentloser][j] == true)
             {
                 currentloser = j;
-                printf("%i\n",currentloser);
+                printf("this is the current loser%i\n",currentloser);
                 checklosers(currentloser, currentwinner);
             }
         }

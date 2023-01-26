@@ -277,6 +277,7 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
+    int ojas = 
     int jacob = currentloser;
     if (locked[jacob][currentwinner] == true)
     {

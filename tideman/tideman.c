@@ -229,10 +229,7 @@ void lock_pairs(void)
             //current pair's winner and if answer is yes then do not lock in this pair.
             else if (beaten == 0)
             {
-                if (pairs[i].loser != currentunbeaten)
-                {
-                    locked[pairs[i].winner][pairs[i].loser] = true;
-                }
+
             }
         }
     return;
@@ -265,4 +262,10 @@ void print_winner(void)
     }
     printf("%s\n",candidates[winner]);
     return;
+}
+
+
+int checklosers(int currentwinner, int currentloser)
+{
+    for (int i = 0; i < pai)
 }

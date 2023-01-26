@@ -258,5 +258,11 @@ void print_winner(void)
 
 int checkbase(int currentloser)
 {
-    
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            
+        }
+    }
 }

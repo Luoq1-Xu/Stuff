@@ -175,13 +175,15 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
     // TODO
-    for (int i = 0; i < pair_count; i++)
+    do
     {
-        if //doesnt create cycle
+        for (i = 0; i < pair_count; i++)
         {
+            for (j = 0; j < candidate_count)
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
+    while
 
     return;
 }

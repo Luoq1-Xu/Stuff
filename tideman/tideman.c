@@ -278,10 +278,12 @@ void print_winner(void)
 int checklosers(int currentloser, int currentwinner)
 {
     int jacob = currentloser;
-    if (locked[jacob][currentwinner] == true)
+    for (int j = 0; j< candidate_count; j++)
     {
-        return 1;
-    }
+          if (locked[jacob][currentwinner] == true)
+          {
+               return 1;
+          }
     else if (checklosers(jacob, currentwinner) == 3)
     {
         for (int j = 0; j < candidate_count; j++)
@@ -299,6 +301,7 @@ int checklosers(int currentloser, int currentwinner)
      {
 
      }
+    }
     }
     return 0;
 }

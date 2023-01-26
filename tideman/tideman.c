@@ -290,6 +290,7 @@ int checklosers(int currentloser, int currentwinner)
             {
                 jacob = j;
                 printf("this is the current loser%i\n",currentloser);
+                checklosers
             }
         }
         return 2;

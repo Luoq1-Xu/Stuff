@@ -178,6 +178,13 @@ void lock_pairs(void)
     for (int i = pair_count; i = 0; i--)
     {
         if (pairs[i].loser == pairs[0].winner)
+        {
+            i = 0;
+        }
+        else
+        {
+            
+        }
     }
 
     return;

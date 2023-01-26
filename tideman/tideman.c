@@ -176,6 +176,7 @@ void lock_pairs(void)
 {
     // TODO
     int unbeaten = 0;
+    int counter = 0;
     for (i = 0; i < pair_count; i++)
         {
             //Checking for unbeaten candidates
@@ -185,10 +186,20 @@ void lock_pairs(void)
                 {
                     if (locked[k][j] == false)
                     {
-                        int unbeaten++
+                        int counter++;
                     }
                 }
-            }
+                if (counter == candidate_count)
+                {
+                    unbeaten++;
+                    counter = 0;
+                }
+                else
+                {
+                    counter = 0;
+                }
+             }
+            if (unbeaten >)
 
             locked[pairs[i].winner][pairs[i].loser] = true;
         }

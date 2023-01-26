@@ -221,7 +221,7 @@ void lock_pairs(void)
                     beaten++;
                 }
             }
-            printf("%i\n",beaten);
+            printf("beaten : %i\n",beaten);
             //If current pair's loser already beaten then proceed as normal
             if (beaten > 0)
             {
@@ -275,7 +275,6 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
-    printf("%i\n",currentloser);
     if (locked[currentloser][currentwinner] == true)
     {
         return 1;

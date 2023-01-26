@@ -265,7 +265,7 @@ void print_winner(void)
 }
 
 
-int checklosers(int currentwinner, int currentloser)
+int checklosers(int currentloser)
 {
     int x = currentloser
     for (int j = 0; j < candidate_count; j++)

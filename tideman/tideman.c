@@ -277,7 +277,8 @@ void print_winner(void)
 
 int checklosers(int currentloser, int currentwinner)
 {
-    if (locked[currentloser][currentwinner] == true)
+    int jacob = currentloser;
+    if (locked[jacob][currentwinner] == true)
     {
         return 1;
     }
@@ -285,11 +286,11 @@ int checklosers(int currentloser, int currentwinner)
     {
         for (int j = 0; j < candidate_count; j++)
         {
-            if (locked[currentloser][j] == true)
+            if (locked[jacob][j] == true)
             {
-                currentloser = j;
+                jacob = j;
                 printf("this is the current loser%i\n",currentloser);
-                checklosers(currentloser, currentwinner);
+                checklosers(jacob, currentwinner);
             }
         }
         return 0;

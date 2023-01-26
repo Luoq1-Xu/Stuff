@@ -267,5 +267,8 @@ void print_winner(void)
 
 int checklosers(int currentwinner, int currentloser)
 {
-    for (int i = 0; i < pai)
+    for (int i = 0; i < candidate_count; i++)
+    {
+        
+    }
 }

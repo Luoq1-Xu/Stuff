@@ -219,7 +219,7 @@ void lock_pairs(void)
             {
             if (pairs[i].loser == currentunbeaten)
             {
-                i++;
+                return;
             }
             }
             //checking if the current pair's loser has already been beaten
@@ -230,7 +230,6 @@ void lock_pairs(void)
                     beaten++;
                 }
             }
-            printf("beaten : %i\n",beaten);
             //If current pair's loser already beaten then proceed as normal
             if (beaten > 0)
             {

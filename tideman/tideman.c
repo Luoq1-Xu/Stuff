@@ -209,7 +209,7 @@ void lock_pairs(void)
                     counter = 0;
                 }
              }
-             
+
             if (unbeaten > 1)
             {
                 locked[pairs[i].winner][pairs[i].loser] = true;

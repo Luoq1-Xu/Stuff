@@ -258,6 +258,7 @@ void print_winner(void)
 
 int checkbase(int currentwinner)
 {
+    for (int x = 0; x < pair_count ; x++)
     int counter = 0;
     for (int i = 0; i < candidate_count; i++)
     {

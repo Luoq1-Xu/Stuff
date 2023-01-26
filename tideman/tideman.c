@@ -256,7 +256,7 @@ void print_winner(void)
 }
 
 
-int checkbase(int currentloser)
+int checkbase(int currentwinner)
 {
     int counter = 0;
     for (int i = 0; i < candidate_count; i++)

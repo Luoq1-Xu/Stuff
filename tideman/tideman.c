@@ -179,6 +179,7 @@ void lock_pairs(void)
     int counter = 0;
     for (i = 0; i < pair_count; i++)
         {
+            unbeaten = 0;
             //Checking for unbeaten candidates
             for (int j = 0; j < candidate_count; j++)
             {

@@ -179,20 +179,16 @@ void lock_pairs(void)
     for (i = 0; i < pair_count; i++)
         {
             //Checking for unbeaten candidates
-            int j = 0;
-            do
+            for (int j = 0; j < candidate_count; j++)
             {
                 for (int k = 0; k < candidate_count; k++)
                 {
                     if (locked[k][j] == false)
                     {
                         int unbeaten++
-                        j++
                     }
                 }
-                j++
             }
-            while (j < candidate_count)
 
             locked[pairs[i].winner][pairs[i].loser] = true;
         }

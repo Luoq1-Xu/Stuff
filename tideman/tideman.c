@@ -288,6 +288,7 @@ int checklosers(int currentloser, int currentwinner)
           }
           else
           {
+            jacob = j;
             if (checklosers(jacob,j) == 1)
             {
                 return 1;

@@ -278,22 +278,22 @@ void print_winner(void)
 int checklosers(int currentloser, int currentwinner)
 {
     int jacob = currentloser;
-    for (int j = 0; j< candidate_count; j++)
+    for (int j = 0; j < candidate_count; j++)
     {
+        if (locked[jacob][j] == true)
+        {
           if (locked[jacob][currentwinner] == true)
           {
                return 1;
           }
           else
           {
-            if (locked[jacob][j] == true)
+            if (checklosers(jacob,j) == 1)
             {
-                jacob = j;
-                printf("this is the current loser%i\n",currentloser);
-                return 3;
-                checklosers(jacob, currentwinner);
+                return 1;
             }
           }
+        }
+    }
     return 0;
-}
 }

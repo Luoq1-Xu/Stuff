@@ -179,11 +179,11 @@ void lock_pairs(void)
     {
         if (pairs[i].loser == pairs[0].winner)
         {
-            i = 0;
+            
         }
         else
         {
-            
+
         }
     }
 

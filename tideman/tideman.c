@@ -273,6 +273,10 @@ int checklosers(int currentwinner, int currentloser)
             if (locked[x][j] == true;)
             {
                 x = j;
+                for (int m = 0; m < candidate_count ; m++)
+                {
+                    if ()
+                }
 
             }
         }

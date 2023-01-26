@@ -254,20 +254,3 @@ void print_winner(void)
     printf("%s\n",candidates[winner]);
     return;
 }
-
-
-int checkbase(int currentwinner)
-{
-    for (int x = 0; x < pair_count ; x++)
-    int counter = 0;
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[j][i] == false)
-            {
-                counter++
-            }
-        }
-    }
-}

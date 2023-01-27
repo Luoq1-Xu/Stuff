@@ -63,4 +63,13 @@ int main(void)
 void sort_cities(void)
 {
     // Add your code here
+    int big;
+    int small;
+    for (int i = 0; i < 9; i++)
+    {
+        if (temps[i+1] > temps[i])
+        {
+            
+        }
+    }
 }

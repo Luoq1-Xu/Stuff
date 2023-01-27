@@ -34,8 +34,9 @@ int convert(string input)
     }
     else
     {
-        output = input[strlen(input)];
-        
+        output = input[strlen(input)]*multiplier;
+        multipl
+
     }
     return output;
 }

@@ -25,7 +25,7 @@ int main(void)
 
 int convert(string input)
 {
-    int output;
+    int output = 0;
     for (int i = 0; i < strlen(input); i++)
     {
         if(strlen(input) == 0)

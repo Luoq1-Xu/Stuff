@@ -67,7 +67,7 @@ void sort_cities(void)
     avg_temp small;
     for (int i = 0; i < 9; i++)
     {
-        for (int j = 0; j < 9; j++)
+        for (int j = i + 1; j < 9; j++)
         {
             if (temps[j].temp > temps[i].temp)
             {
@@ -78,7 +78,5 @@ void sort_cities(void)
                 temps[j] = small;
             }
         }
-        printf("hottestcity?%s",temps[i].city);
-        printf("%i\n",i);
     }
 }

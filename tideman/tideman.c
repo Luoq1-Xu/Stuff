@@ -108,7 +108,7 @@ bool vote(int rank, string name, int ranks[])
     // TODO
     for (int y = 0; y < candidate_count; y++)
     {
-        if (strcmp (name, candidates[y]) == 0)
+        if (strcmp(name, candidates[y]) == 0)
         {
             ranks[rank] = y;
             return true;
@@ -124,7 +124,7 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-             preferences[ranks[i]][ranks[j]]++;
+            preferences[ranks[i]][ranks[j]]++;
         }
     }
     // TODO
@@ -181,19 +181,18 @@ void lock_pairs(void)
     int counter = 0;
     int currentunbeaten = 0;
     for (int i = 0; i < pair_count; i++)
+    {
+        printf("current pair winner : %s\n", candidates[pairs[i].winner]);
+        printf("current pair loser : %s\n", candidates[pairs[i].loser]);
+        for (int j = 0; j < candidate_count; j++)
         {
-            printf("current pair winner : %s\n",candidates[pairs[i].winner]);
-            printf("current pair loser : %s\n",candidates[pairs[i].loser]);
-            //Checking for unbeaten candidates
-            for (int j = 0; j < candidate_count; j++)
-            {
             //check if current pair's loser indirectly beats current pair's winner
             if (!(checklosers(pairs[i].loser, pairs[i].winner)))
-                {
-                    locked[pairs[i].winner][pairs[i].loser] = true;
-                }
+            {
+                locked[pairs[i].winner][pairs[i].loser] = true;
             }
         }
+    }
     return;
 }
 
@@ -222,7 +221,7 @@ void print_winner(void)
             counter = 0;
         }
     }
-    printf("%s\n",candidates[winner]);
+    printf("%s\n", candidates[winner]);
     return;
 }
 

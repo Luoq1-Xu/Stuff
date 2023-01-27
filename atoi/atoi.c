@@ -25,18 +25,16 @@ int main(void)
 
 int convert(string input)
 {
-    int multiplier = 1;
     int output;
-    const int maxlength = strlen(input);
-    // TODO
-    if (strlen(input) == 0)
+    for (int i = 0; i < strlen(input); i++)
     {
-        return 0;
+        if(strlen(input) == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            
+        }
     }
-    else
-    {
-        output = input[strlen(input)];
-        input[strlen(input)] = 0;
-    }
-    return output;
 }

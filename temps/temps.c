@@ -71,6 +71,7 @@ void sort_cities(void)
         {
             if (temps[j].temp > temps[i].temp)
             {
+                printf("%s\n",temps[j].city);
                 big = temps[j];
                 small = temps[i];
                 temps[i] = big;

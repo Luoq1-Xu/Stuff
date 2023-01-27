@@ -34,6 +34,11 @@ int convert(string input)
         }
         else
         {
+            int mutiplier = 1;
+            for (j = 0; j < strlen(input); j++)
+            {
+                multiplier *= 10;
+            }
             
         }
     }

@@ -33,6 +33,6 @@ int convert(string input)
     else
     {
         output = input[strlen(input)];
-        input
+        input[strlen(input)-1]
     }
 }

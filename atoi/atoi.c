@@ -28,18 +28,13 @@ int convert(string input)
     int multiplier = 1;
     int output;
     // TODO
-    for (int i = 0; i < strlen(input); i++)
     if (strlen(input) == 0)
     {
         return 0;
     }
     else
     {
-        for (int j = 0; j < i; j++)
-        {
-            int multiplier *= 10
-        }
-        output = input[strlen]*multiplier;
+        output = input[strlen]
     }
     return output;
 }

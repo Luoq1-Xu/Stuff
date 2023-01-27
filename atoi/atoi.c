@@ -40,6 +40,8 @@ int convert(string input)
                 multiplier *= 10;
             }
             output = input[strlen(input)]*multiplier;
+            return output;
         }
-    }
+     }
+     
 }

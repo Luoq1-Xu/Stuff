@@ -32,6 +32,6 @@ int convert(string input)
     }
     else
     {
-        
+        input[strlen]
     }
 }

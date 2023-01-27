@@ -69,12 +69,12 @@ void sort_cities(void)
     {
         for (int j = 0; j < 9; j++)
         {
-            if (temps[j] > temps[i])
+            if (temps[j].temp > temps[i].temp)
             {
-                big = temps[j];
-                small = temps[i];
-                temps[i] = big;
-                temps[j] = small;
+                big = temps[j].temp;
+                small = temps[i].temp;
+                temps[i].temp = big;
+                temps[j].temp = small;
             }
         }
     }

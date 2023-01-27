@@ -26,12 +26,13 @@ int main(void)
 int convert(string input)
 {
     int multiplier = 1;
-    int output = 0;
+    int output;
     // TODO
     if (strlen(input) == 0)
     {
         return 0;
     }
+    if else (strlen(input))
     else
     {
         output += input[strlen(input)]*multiplier;

@@ -31,7 +31,7 @@ int convert(string input)
     {
         return 0;
     }
-    else
+    else if ()
     {
         output = input[strlen]
     }

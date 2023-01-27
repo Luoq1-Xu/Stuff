@@ -32,7 +32,9 @@ int convert(string input)
     }
     else
     {
-        output = input[strlen(input)];
-        input[strlen(input)-1]
+        output = input[strlen(input)-1];
+        input[strlen(input)-1] = '\0';
+        printf("%i\n",output);
+        return output = output + convert(input);
     }
 }

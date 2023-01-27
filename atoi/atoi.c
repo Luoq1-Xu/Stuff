@@ -26,5 +26,12 @@ int main(void)
 int convert(string input)
 {
     // TODO
-    if ()
+    if (strlen(input) == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        
+    }
 }

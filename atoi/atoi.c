@@ -35,6 +35,6 @@ int convert(string input)
         output = input[strlen(input)-1]-48;
         input[strlen(input)-1] = '\0';
         printf("%i\n",output);
-        return output = 10*(output + convert(input));
+        return output = output + 10*convert(input);
     }
 }

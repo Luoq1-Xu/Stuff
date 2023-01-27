@@ -25,13 +25,14 @@ int main(void)
 
 int convert(string input)
 {
+    int output;
     // TODO
     if (strlen(input) == 0)
     {
-        return 1;
+        return 0;
     }
     else
     {
-        input[strlen]
+        output =
     }
 }

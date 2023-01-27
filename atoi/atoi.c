@@ -26,7 +26,7 @@ int main(void)
 int convert(string input)
 {
     int multiplier = 1;
-    int output;
+    int output = 0;
     // TODO
     if (strlen(input) == 0)
     {
@@ -34,7 +34,7 @@ int convert(string input)
     }
     else
     {
-        output = input[strlen(input)]*multiplier;
+        output += input[strlen(input)]*multiplier;
         multiplier *=10;
         input[strlen(input)-1] = 0;
         convert (input);

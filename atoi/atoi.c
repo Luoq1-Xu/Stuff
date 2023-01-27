@@ -35,7 +35,8 @@ int convert(string input)
     else
     {
         output = input[strlen(input)]*multiplier;
-        multipl
+        multiplier *=10
+        input = 
 
     }
     return output;

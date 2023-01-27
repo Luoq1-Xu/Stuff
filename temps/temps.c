@@ -78,5 +78,7 @@ void sort_cities(void)
                 temps[j] = small;
             }
         }
+        printf("hottestcity?%s",temps[i].city);
+        printf("%i\n",i);
     }
 }

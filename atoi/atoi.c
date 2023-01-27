@@ -32,7 +32,7 @@ int convert(string input)
     {
         return 0;
     }
-    if else (strlen(input))
+    if else ()
     else
     {
         output += input[strlen(input)]*multiplier;

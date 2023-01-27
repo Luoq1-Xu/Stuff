@@ -34,8 +34,16 @@ int convert(string input)
     }
     else
     {
-        output = input[strlen]
-        
+        for (int i = 0; i < strlen(input) ; i++)
+        {
+            multiplier *= 10;
+        }
+        output = input[strlen(input)]*multiplier;
+        input = string[strlen-1]
+        if (convert(input) == 0);
+        {
+            return 0;
+        }
     }
     return output;
 }

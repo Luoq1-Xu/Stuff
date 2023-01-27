@@ -33,7 +33,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-bool checklosers(int currentloser, int currentwinner);
+bool checklink(int currentloser, int currentwinner);
 
 
 int main(int argc, string argv[])
@@ -187,7 +187,7 @@ void lock_pairs(void)
         for (int j = 0; j < candidate_count; j++)
         {
             //check if current pair's loser indirectly beats current pair's winner
-            if (!(checklosers(pairs[i].loser, pairs[i].winner)))
+            if (!(checklink(pairs[i].loser, pairs[i].winner)))
             {
                 locked[pairs[i].winner][pairs[i].loser] = true;
             }
@@ -225,26 +225,36 @@ void print_winner(void)
     return;
 }
 
-
-bool checklosers(int currentloser, int currentwinner)
+//Function to check if current loser is linked to current winner - i.e. checking if current loser "indirectly"
+//beats current winner. If there is a valid link, return true, else return false.
+bool checklink(int currentloser, int currentwinner)
 {
     int jacob = currentloser;
+    //Going through the full array of candidates to find out all the "branches"
+    //Meaning who does "currentloser" beat
     for (int j = 0; j < candidate_count; j++)
     {
+        // If currentloser beats j ("start of a branch")
         if (locked[jacob][j] == true)
         {
-          if (locked[jacob][currentwinner] == true)
-          {
-               return true;
-          }
-          else
-          {
-            if (checklosers(j, currentwinner) == 1)
+            //If current branch returns a true hit for "currentwinner" being a loser in the branch
+            //originating from "currentloser", therefore "currentloser" indirectly beats "currentwinner"
+            if (locked[jacob][currentwinner] == true)
             {
                 return true;
             }
-          }
+            //Otherwise, keep searching down this particular branch, only stopping if a true hit is gotten
+            else
+            {
+                if (checklink(j, currentwinner) == 1)
+                {
+                    return true;
+                }
+            }
         }
     }
+    //If this branch is fully searched and no true hits, the loop ends and function returns false
+    //Therefore return and continue to go down the array of candidates finding more "branches"
+    //originating from "currentloser" if any.
     return false;
 }

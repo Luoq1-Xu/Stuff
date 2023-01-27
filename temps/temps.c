@@ -67,9 +67,13 @@ void sort_cities(void)
     int small;
     for (int i = 0; i < 9; i++)
     {
-        if (temps[i+1] > temps[i])
+        for (int j = 0; j < 9; j++)
         {
-            
+            if (temps[j] > temps[i])
+            {
+                big = temps[j];
+                small = temps
+            }
         }
     }
 }

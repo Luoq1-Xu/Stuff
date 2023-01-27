@@ -27,18 +27,12 @@ int convert(string input)
 {
     int multiplier = 1;
     int output;
-    int maxlength = strlen(input);
+    const int maxlength = strlen(input);
     // TODO
+
     if (strlen(input) == 0)
     {
         return 0;
-    }
-    if else (i == 0)
-    {
-        output += input[strlen(input)]*multiplier;
-        multiplier *=10;
-        input[strlen(input)-1] = 0;
-        convert (input);
     }
     return output;
 }

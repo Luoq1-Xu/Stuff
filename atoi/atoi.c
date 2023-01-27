@@ -29,10 +29,15 @@ int convert(string input)
     int output;
     const int maxlength = strlen(input);
     // TODO
-
     if (strlen(input) == 0)
     {
         return 0;
+    }
+    else
+    {
+        output = input[strlen(input)];
+        input[strlen(input)] = 0;
+        
     }
     return output;
 }

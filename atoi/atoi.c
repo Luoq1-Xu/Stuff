@@ -38,7 +38,6 @@ int convert(string input)
         {
             multiplier *= 10;
         }
-        output = input[strlen(input)]*multiplier;
         input = string[strlen-1]
         if (convert(input) == 0);
         {

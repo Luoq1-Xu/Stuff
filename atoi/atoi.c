@@ -27,6 +27,7 @@ int convert(string input)
 {
     int output;
     // TODO
+    for (int i = 0; i < strlen(input); i++)
     if (strlen(input) == 0)
     {
         return 0;

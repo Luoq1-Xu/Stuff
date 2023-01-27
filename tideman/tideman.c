@@ -215,30 +215,12 @@ void lock_pairs(void)
                     counter = 0;
                 }
             }
-
-            //checking if the current pair's loser has already been beaten
-            for (int y = 0; y < candidate_count ; y++)
-            {
-                if (locked[y][pairs[i].loser] == true)
-                {
-                    beaten++;
-                }
-            }
-            //If current pair's loser already beaten then proceed as normal
-            if (beaten > 0)
-            {
-                locked[pairs[i].winner][pairs[i].loser] = true;
-            }
-            //If current pair's loser has not been beaten yet, must check if current pair's loser indirectly beats
-            //current pair's winner and if answer is yes then do not lock in this pair.
-            else if (beaten == 0)
-            {
-                if (!(checklosers(pairs[i].loser, pairs[i].winner)))
+            //check if current pair's loser indirectly beats current pair's winner
+            if (!(checklosers(pairs[i].loser, pairs[i].winner)))
                 {
                     locked[pairs[i].winner][pairs[i].loser] = true;
                 }
 
-            }
         }
     return;
 }

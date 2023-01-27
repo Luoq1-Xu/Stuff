@@ -34,7 +34,7 @@ int convert(string input)
     }
     else
     {
-        
+        output = 
     }
     return output;
 }

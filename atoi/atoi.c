@@ -39,6 +39,7 @@ int convert(string input)
         {
             int multiplier *= 10
         }
-        output = input[strlen]*multiplier
+        output = input[strlen]*multiplier;
     }
+    return output;
 }

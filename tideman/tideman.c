@@ -190,36 +190,12 @@ void lock_pairs(void)
             //Checking for unbeaten candidates
             for (int j = 0; j < candidate_count; j++)
             {
-                for (int k = 0; k < candidate_count; k++)
-                {
-                    if (locked[k][j] == false)
-                    {
-                        counter++;
-                    }
-                }
-                if (counter == candidate_count)
-                {
-                    unbeaten++;
-                    counter = 0;
-                }
-                if (counter == candidate_count && unbeaten == 0)
-                {
-                    unbeaten++;
-                    currentunbeaten = j;
-                    counter = 0;
-                }
-                else
-                {
-                    counter = 0;
-                }
-            }
             //check if current pair's loser indirectly beats current pair's winner
             if (!(checklosers(pairs[i].loser, pairs[i].winner)))
                 {
                     locked[pairs[i].winner][pairs[i].loser] = true;
                 }
-
-        }
+            }
     return;
 }
 

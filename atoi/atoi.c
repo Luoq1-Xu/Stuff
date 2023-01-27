@@ -25,23 +25,14 @@ int main(void)
 
 int convert(string input)
 {
-    int output = 0;
-    for (int i = 0; i < strlen(input); i++)
+    int output;
+    if (strlen(input) == 0)
     {
-        if(strlen(input) == 0)
-        {
-            return 0;
-        }
-        else
-        {
-            int mutiplier = 1;
-            for (j = 0; j < strlen(input); j++)
-            {
-                multiplier *= 10;
-            }
-            output = input[strlen(input)]*multiplier;
-            return output;
-        }
-     }
-     
+        return 0;
+    }
+    else
+    {
+        output = input[strlen(input)];
+        input
+    }
 }

@@ -35,6 +35,7 @@ int convert(string input)
     else
     {
         output = input[strlen]
+        
     }
     return output;
 }

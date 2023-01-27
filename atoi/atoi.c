@@ -37,7 +37,6 @@ int convert(string input)
     {
         output = input[strlen(input)];
         input[strlen(input)] = 0;
-        output += *10
     }
     return output;
 }

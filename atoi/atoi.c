@@ -34,15 +34,7 @@ int convert(string input)
     }
     else
     {
-        for (int i = 0; i < strlen(input) ; i++)
-        {
-            multiplier *= 10;
-        }
-        input = string[strlen-1]
-        if (convert(input) == 0);
-        {
-            return 0;
-        }
+        
     }
     return output;
 }

@@ -39,7 +39,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = image[i][width-j].rgbtBlue;
             image[i][j].rgbtGreen = image[i][width-j].rgbtGreen;
             image[i][j].rgbtRed = image[i][width-j].rgbtRed;
-            
+
             image[i][width-j].rgbtBlue = tempblue;
             image[i][width-j].rgbtGreen = tempgreen;
             image[i][width-j].rgbtRed = tempred;
@@ -53,7 +53,8 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     //Create an array to store the values of the new pixel values.
-    array newpixel[];
+    int newpixel[height][width];
+    
 
 
     return;

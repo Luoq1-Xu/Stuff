@@ -69,7 +69,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
 
             }
-            
+            //Top row pixel but not top corners
+            else if ()
+            {
+
+            }
         }
     }
 

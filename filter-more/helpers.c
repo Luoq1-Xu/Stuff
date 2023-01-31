@@ -54,7 +54,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     //Create an array to store the values of the new pixel values.
     int newpixel[height][width];
-    
+
+    for (int i = 0; i < height; i++)
+    {
+        
+    }
 
 
     return;

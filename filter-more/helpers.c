@@ -157,5 +157,6 @@ void cornerpixel(int a, int b, int c, int d)
 //BLUR BOUNDARIES (6 PIXELS TO LOOK AT)
 void boundarypixel(int a, int b, int c, int d, int e)
 {
-    
+    int tempblue = round((image[a][b].rgbtBlue + image[]))
+
 }

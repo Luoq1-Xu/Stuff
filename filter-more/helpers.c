@@ -136,7 +136,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Bottom row pixel but not corner
             else if (i == height-1)
             {
-                int a = height-1;
+                int a = height - 1;
                 int b = j;
                 int c = j - 1;
                 int d = j + 1;

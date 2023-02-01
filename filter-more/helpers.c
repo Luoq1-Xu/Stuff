@@ -2,6 +2,7 @@
 #include <math.h>
 
 void cornerpixel(int a, int b, int c, int d, int e);
+void boundaryrowpixel(int a, int b, int c, int d, int e);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -87,7 +88,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = 1;
-                boundarypixel(a, b, c, d, e)
+                boundaryrowpixel(a, b, c, d, e)
             }
             //First column but not corners
             else if ()
@@ -118,7 +119,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int d = height-2;
                 cornerpixel (a,b,c,d)
 
-
             }
             //Bottom row pixel but not corner
             else if (i == height-1)
@@ -128,6 +128,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = height - 2;
+                boundaryrowpixel (a, b, c, d, e)
             }
             //Rest of pixels
             else
@@ -164,9 +165,19 @@ void cornerpixel(int a, int b, int c, int d)
 }
 
 //BLUR BOUNDARIES (6 PIXELS TO LOOK AT) - current pixle in question is represented by a,b
-void boundarypixel(int a, int b, int c, int d, int e)
+void boundaryrowpixel(int a, int b, int c, int d, int e)
 {
     int tempblue = round((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[a][d].rgbtBlue + image[e][b].rgbtBlue + image[e][c].rgbtBlue + image [e][d].rgbtBlue)/6.0);
+    newpixel[a][b].rgbtBlue = tempblue;
+    int tempgreen = round((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[a][d].rgbtGreen + image[e][b].rgbtGreen + image[e][c].rgbtGreen + image [e][d].rgbtGreen)/6.0);
+    newpixel[a][b].rgbtGreen = tempgreen;
+    int tempred = round((image[a][b].rgbtRed + image[a][c].rgbtRed + image[a][d].rgbtRed + image[e][b].rgbtRed + image[e][c].rgbtRed + image [e][d].rgbtRed)/6.0);
+    newpixel[a][b].rgbtRed = tempred;
+}
+
+void boundarycolumnpixel(int a, int b, int c, int d, int e)
+{
+    int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][].rgbtBlue + image[e][c].rgbtBlue + image [e][d].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;
     int tempgreen = round((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[a][d].rgbtGreen + image[e][b].rgbtGreen + image[e][c].rgbtGreen + image [e][d].rgbtGreen)/6.0);
     newpixel[a][b].rgbtGreen = tempgreen;

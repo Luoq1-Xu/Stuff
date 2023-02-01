@@ -1,9 +1,10 @@
 #include "helpers.h"
 #include <math.h>
 
-void cornerpixel(int a, int b, int c, int d, int e);
+void cornerpixel(int a, int b, int c, int d);
 void boundaryrowpixel(int a, int b, int c, int d, int e);
 void boundarycolumnpixel(int a, int b, int c, int d, int e);
+void allotherpixels(int a, int b);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])

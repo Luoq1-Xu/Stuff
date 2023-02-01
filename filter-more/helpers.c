@@ -149,7 +149,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
         }
     }
-    
+    for (int x = 0; x < height; x++)
+    {
+        for (int y = 0; y < width; y++)
+        {
+            image[x][y] = newpixel[x][y];
+        }
+    }
 
 
     return;

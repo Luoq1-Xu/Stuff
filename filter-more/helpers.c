@@ -99,7 +99,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = i - 1;
                 int d = i + 1;
                 int e = 1;
-                boundarycolumnpixel ()
+                boundarycolumnpixel (a, b, c, d, e,)
 
             }
             //Last column but not corners

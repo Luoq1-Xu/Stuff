@@ -199,7 +199,7 @@ void boundarycolumnpixel(int a, int b, int c, int d, int e)
 
 void allotherpixels(int a, int b, int c, int d, int e, int f)
 {
-    int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image [d][e].rgbtBlue)/6.0);
+    int tempblue = round((image[][].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image [d][e].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;
     int tempgreen = round((image[a][b].rgbtGreen + image[c][b].rgbtGreen + image[d][b].rgbtGreen + image[a][e].rgbtGreen + image[c][e].rgbtGreen + image [d][e].rgbtGreen)/6.0);
     newpixel[a][b].rgbtGreen = tempgreen;

@@ -141,23 +141,24 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 
 //BLUR CORNER PIXEL (4 PIXELS TO LOOK AT) - > let this corner pixle be represented by cp
-// a = cp height,  b = cp width,
+// a = cp y coordinate,  b = cp x coordinate,
 void cornerpixel(int a, int b, int c, int d)
 {
     int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[d][c].rgbtBlue)/4.0);
-    newpixel[0][0].rgbtBlue = tempblue;
+    newpixel[a][b].rgbtBlue = tempblue;
     int tempgreen = round ((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[d][b].rgbtGreen + image[d][c].rgbtGreen)/4.0);
-    newpixel[0][0].rgbtGreen = tempgreen;
+    newpixel[a][b].rgbtGreen = tempgreen;
     int tempred = round ((image[a][b].rgbtRed + image[a][c].rgbtRed + image[d][b].rgbtRed + image[d][c].rgbtRed)/4.0);
-    newpixel[0][0].rgbtRed = tempred;
+    newpixel[a][b].rgbtRed = tempred;
 
     return;
 }
 
-//BLUR BOUNDARIES (6 PIXELS TO LOOK AT)
+//BLUR BOUNDARIES (6 PIXELS TO LOOK AT) - current pixle in question is represented by a,b
 void boundarypixel(int a, int b, int c, int d, int e)
 {
-    int tempblue = round((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[a][d].rgbtBlue + image[e][b].rgbtBlue + image[e][c].rgbtBlue + image [e][d].rgbtBlue))
-    
-
+    int tempblue = round((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[a][d].rgbtBlue + image[e][b].rgbtBlue + image[e][c].rgbtBlue + image [e][d].rgbtBlue));
+    newpixel[a][b].rgbtBlue = tempblue;
+    int tempgreen = round((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[a][d].rgbtGreen + image[e][b].rgbtGreen + image[e][c].rgbtGreen + image [e][d].rgbtGreen));
+    newpixel[a][b].rgbtGreen = tempgreen;
 }

@@ -64,6 +64,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 int tempblue = round ((image[0][0].rgbtBlue + image[0][1].rgbtBlue + image[1][0].rgbtBlue + image[1][1].rgbtBlue)/4.0)
                 newpixel[0][0].rgbtBlue = tempblue;
+
+                int tempgreen = round ((image[0][0].rgbtGreen + image[0][1].rgbtGreen + image[1][0].rgbtGreen + image[1][1].rgbtGreen)/4.0)
+                newpixel[0][0].rgbtGreen = tempgreen;
+                
             }
             //Top right pixel
             else if ()

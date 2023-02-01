@@ -3,6 +3,7 @@
 
 void cornerpixel(int a, int b, int c, int d, int e);
 void boundaryrowpixel(int a, int b, int c, int d, int e);
+void boundarycolumnpixel(int a, int b, int c, int d, int e);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -91,8 +92,14 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 boundaryrowpixel(a, b, c, d, e)
             }
             //First column but not corners
-            else if ()
+            else if (j == 0)
             {
+                int a = i;
+                int b = 0;
+                int c = i - 1;
+                int d = i + 1;
+                int e = 1;
+                boundarycolumnpixel ()
 
             }
             //Last column but not corners

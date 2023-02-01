@@ -1,10 +1,10 @@
 #include "helpers.h"
 #include <math.h>
 
-void cornerpixel(int a, int b, int c, int d);
-void boundaryrowpixel(int a, int b, int c, int d, int e);
-void boundarycolumnpixel(int a, int b, int c, int d, int e);
-void allotherpixels(int a, int b);
+void cornerpixel(int a, int b, int c, int d, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void boundaryrowpixel(int a, int b, int c, int d, int e, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void boundarycolumnpixel(int a, int b, int c, int d, int e, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void allotherpixels(int a, int b, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -71,7 +71,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = 0;
                 int c = 1;
                 int d = 1;
-                cornerpixel (a, b, c, d, e);
+                cornerpixel (a, b, c, d, image[height][width], newpixel[height][width]);
             }
             //Top right pixel
             else if (i == 0 && j == width-1)
@@ -80,7 +80,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = width-1;
                 int c = width-2;
                 int d = 1;
-                cornerpixel (a, b, c, d);
+                cornerpixel (a, b, c, d, image[height][width], newpixel[height][width]);
             }
             //Top row pixel but not top corners
             else if (i == 0)
@@ -90,7 +90,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = 1;
-                boundaryrowpixel(a, b, c, d, e);
+                boundaryrowpixel(a, b, c, d, e, image[height][width], newpixel[height][width]);
             }
             //First column but not corners
             else if (j == 0)
@@ -100,7 +100,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = i - 1;
                 int d = i + 1;
                 int e = 1;
-                boundarycolumnpixel (a, b, c, d, e,);
+                boundarycolumnpixel (a, b, c, d, e, image[height][width], newpixel[height][width]);
 
             }
             //Last column but not corners
@@ -111,7 +111,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = i - 1;
                 int d = i + 1;
                 int e = width - 2;
-                boundarycolumnpixel (a, b, c, d, e);
+                boundarycolumnpixel (a, b, c, d, e, image[height][width], newpixel[height][width]);
             }
             //Bottom left pixel
             else if (i == height-1 && j == 0 )
@@ -120,7 +120,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = 0;
                 int c = 1;
                 int d = height-2;
-                cornerpixel (a,b,c,d);
+                cornerpixel (a,b,c,d, image[height][width], newpixel[height][width]);
 
             }
             //Bottom Right pixel
@@ -130,7 +130,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = width-1;
                 int c = width-2;
                 int d = height-2;
-                cornerpixel (a,b,c,d);
+                cornerpixel (a,b,c,d, image[height][width], newpixel[height][width]);
 
             }
             //Bottom row pixel but not corner
@@ -141,12 +141,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = height - 2;
-                boundaryrowpixel (a, b, c, d, e);
+                boundaryrowpixel (a, b, c, d, e, image[height][width], newpixel[height][width]);
             }
             //Rest of pixels
             else
             {
-                allotherpixels(i, j);
+                allotherpixels(i, j, image[height][width], newpixel[height][width]);
             }
         }
     }
@@ -172,7 +172,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 //BLUR CORNER PIXEL (4 PIXELS TO LOOK AT) - > let this corner pixle be represented by cp
 // a = cp y coordinate,  b = cp x coordinate,
-void cornerpixel(int a, int b, int c, int d)
+void cornerpixel(int a, int b, int c, int d, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[d][c].rgbtBlue)/4.0);
     newpixel[a][b].rgbtBlue = tempblue;
@@ -184,7 +184,7 @@ void cornerpixel(int a, int b, int c, int d)
 }
 
 //BLUR BOUNDARIES (6 PIXELS TO LOOK AT) - current pixle in question is represented by a,b
-void boundaryrowpixel(int a, int b, int c, int d, int e)
+void boundaryrowpixel(int a, int b, int c, int d, int e, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int tempblue = round((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[a][d].rgbtBlue + image[e][b].rgbtBlue + image[e][c].rgbtBlue + image [e][d].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;
@@ -195,7 +195,7 @@ void boundaryrowpixel(int a, int b, int c, int d, int e)
     return;
 }
 
-void boundarycolumnpixel(int a, int b, int c, int d, int e)
+void boundarycolumnpixel(int a, int b, int c, int d, int e, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image[d][e].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;
@@ -206,7 +206,7 @@ void boundarycolumnpixel(int a, int b, int c, int d, int e)
     return;
 }
 
-void allotherpixels(int a, int b)
+void allotherpixels(int a, int b, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int tempblue = round((image[a][b].rgbtBlue + image[a][b-1].rgbtBlue + image[a][b+1].rgbtBlue + image[a-1][b-1].rgbtBlue + image[a-1][b].rgbtBlue + image[a-1][b+1].rgbtBlue + image[a+1][b-1].rgbtBlue + image[a+1][b].rgbtBlue + image[a+1][b+1].rgbtBlue)/9.0);
     newpixel[a][b].rgbtBlue = tempblue;

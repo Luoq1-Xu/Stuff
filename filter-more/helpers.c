@@ -82,11 +82,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Top row pixel but not top corners
             else if (i == 0)
             {
-                int a = i;
+                int a = 0;
                 int b = j;
                 int c = j - 1;
                 int d = j + 1;
-                int e = i + 1;
+                int e = 1;
                 boundarypixel(a, b, c, d, e)
             }
             //First column but not corners
@@ -123,7 +123,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Bottom row pixel but not corner
             else if (i == height)
             {
-
+                int a = height;
+                int b = j;
+                int c 
             }
             //Rest of pixels
             else

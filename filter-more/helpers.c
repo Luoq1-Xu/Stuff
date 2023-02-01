@@ -105,7 +105,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             }
             //Bottom Right pixel
-            else if (i == height-1 )
+            else if (i == height-1 && j == width-1)
             {
                 int a = height-1;
                 int b = width-1;
@@ -140,7 +140,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 
 
-//BLUR CORNER PIXEL - > let this corner pixle be represented by cp
+//BLUR CORNER PIXEL (4 PIXELS TO LOOK AT) - > let this corner pixle be represented by cp
 // a = cp height,  b = cp width,
 void cornerpixel(int a, int b, int c, int d)
 {
@@ -153,3 +153,6 @@ void cornerpixel(int a, int b, int c, int d)
 
     return;
 }
+
+//BLUR BOUNDARIES (6 PIXELS TO LOOK AT)
+void boundarypixel(int a, int b, int c,)

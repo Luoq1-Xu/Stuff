@@ -84,7 +84,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 int a = i;
                 int b = j;
-                int c 
+                int c = 
 
             }
             //First column but not corners

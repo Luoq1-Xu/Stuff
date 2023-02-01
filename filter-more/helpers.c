@@ -53,7 +53,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     //Create an array to store the values of the new pixel values.
-    int newpixel[height][width];
+    RGBTRIPLE newpixel[height][width];
 
     for (int i = 0; i < height; i++)
     {
@@ -62,7 +62,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Top left pixel
             if (i == 0 && j ==0)
             {
-                 
+                int tempblue = round ()
             }
             //Top right pixel
             else if ()

@@ -1,6 +1,7 @@
 #include "helpers.h"
 #include <math.h>
 
+
 void cornerpixel(int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void boundaryrowpixel(int a, int b, int c, int d, int e, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void boundarycolumnpixel(int a, int b, int c, int d, int e, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);

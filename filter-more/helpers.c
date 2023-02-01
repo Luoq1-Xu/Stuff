@@ -68,7 +68,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = 0;
                 int c = 1;
                 int d = 1;
-                int e = 1;
                 cornerpixel ( a, b, c, d, e);
             }
             //Top right pixel
@@ -78,8 +77,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = width-1;
                 int c = width-2;
                 int d = 1;
-                int e = width 
-
             }
             //Top row pixel but not top corners
             else if ()
@@ -133,13 +130,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 //BLUR CORNER PIXEL - > let this corner pixle be represented by cp
 // a = cp height,  b = cp width,
-void cornerpixel(int a, int b, int c, int d, int e)
+void cornerpixel(int a, int b, int c, int d)
 {
-    int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[d][e].rgbtBlue)/4.0);
+    int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[d][c].rgbtBlue)/4.0);
     newpixel[0][0].rgbtBlue = tempblue;
-    int tempgreen = round ((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[d][b].rgbtGreen + image[d][e].rgbtGreen)/4.0);
+    int tempgreen = round ((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[d][b].rgbtGreen + image[d][c].rgbtGreen)/4.0);
     newpixel[0][0].rgbtGreen = tempgreen;
-    int tempred = round ((image[a][b].rgbtRed + image[a][c].rgbtRed + image[d][b].rgbtRed + image[d][e].rgbtRed)/4.0);
+    int tempred = round ((image[a][b].rgbtRed + image[a][c].rgbtRed + image[d][b].rgbtRed + image[d][c].rgbtRed)/4.0);
     newpixel[0][0].rgbtRed = tempred;
 
     return;

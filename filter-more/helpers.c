@@ -89,7 +89,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = 1;
-                boundaryrowpixel(a, b, c, d, e)
+                boundaryrowpixel(a, b, c, d, e);
             }
             //First column but not corners
             else if (j == 0)
@@ -99,16 +99,18 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = i - 1;
                 int d = i + 1;
                 int e = 1;
-                boundarycolumnpixel (a, b, c, d, e,)
+                boundarycolumnpixel (a, b, c, d, e,);
 
             }
             //Last column but not corners
             else if (j == width - 1)
             {
                 int a = i;
-                int b = 
-
-
+                int b = width - 1;
+                int c = i - 1;
+                int d = i + 1;
+                int e = width - 2;
+                boundarycolumnpixel (a, b, c, d, e);
             }
             //Bottom left pixel
             else if (i == height-1 && j == 0 )
@@ -186,6 +188,16 @@ void boundaryrowpixel(int a, int b, int c, int d, int e)
 }
 
 void boundarycolumnpixel(int a, int b, int c, int d, int e)
+{
+    int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image [d][e].rgbtBlue)/6.0);
+    newpixel[a][b].rgbtBlue = tempblue;
+    int tempgreen = round((image[a][b].rgbtGreen + image[c][b].rgbtGreen + image[d][b].rgbtGreen + image[a][e].rgbtGreen + image[c][e].rgbtGreen + image [d][e].rgbtGreen)/6.0);
+    newpixel[a][b].rgbtGreen = tempgreen;
+    int tempred = round((image[a][b].rgbtRed + image[c][b].rgbtRed + image[d][b].rgbtRed + image[a][e].rgbtRed + image[c][e].rgbtRed + image [d][e].rgbtRed)/6.0);
+    newpixel[a][b].rgbtRed = tempred;
+}
+
+void allotherpixels(int a, int b, int c, int d, int e, int f)
 {
     int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image [d][e].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;

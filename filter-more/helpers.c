@@ -62,12 +62,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Top left pixel
             if (i == 0 && j ==0)
             {
-                int tempblue = round ((image[0][0].rgbtBlue + image[0][1].rgbtBlue + image[1][0].rgbtBlue + image[1][1].rgbtBlue)/4.0)
-                newpixel[0][0].rgbtBlue = tempblue;
-
-                int tempgreen = round ((image[0][0].rgbtGreen + image[0][1].rgbtGreen + image[1][0].rgbtGreen + image[1][1].rgbtGreen)/4.0)
-                newpixel[0][0].rgbtGreen = tempgreen;
-
+                cornerpixel
             }
             //Top right pixel
             else if ()
@@ -124,7 +119,8 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 
 
-//BLUR CORNER PIXEL
+//BLUR CORNER PIXEL - > let this corner pixle be represented by cp
+// a = cp height,  b = cp width,   
 void cornerpixel(int a, int b, int c, int d, int e, int f)
 {
     int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[e][f].rgbtBlue)/4.0);

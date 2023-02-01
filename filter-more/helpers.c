@@ -118,8 +118,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             else if (i == height-1 && j == 0)
             {
                 int a = i;
-                int b = 0;
-                int c = 1;
+                int b = j;
+                int c = j+1;
                 int d = i-1;
                 cornerpixel (a,b,c,d, height, width, image, newpixel);
             }
@@ -127,8 +127,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             else if (i == height-1 && j == width-1)
             {
                 int a = i;
-                int b = width-1;
-                int c = width-2;
+                int b = j;
+                int c = j-1;
                 int d = i-1;
                 cornerpixel (a,b,c,d, height, width, image, newpixel);
             }

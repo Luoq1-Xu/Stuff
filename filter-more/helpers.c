@@ -120,7 +120,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int a = i;
                 int b = j;
                 int c = j+1;
-                int d = i+1;
+                int d = i-1;
                 cornerpixel (a,b,c,d, height, width, image, newpixel);
             }
             //Bottom Right pixel
@@ -129,7 +129,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int a = i;
                 int b = j;
                 int c = j-1;
-                int d = i+1;
+                int d = i-1;
                 cornerpixel (a,b,c,d, height, width, image, newpixel);
             }
             //Bottom row pixel but not corner

@@ -189,20 +189,20 @@ void boundaryrowpixel(int a, int b, int c, int d, int e)
 
 void boundarycolumnpixel(int a, int b, int c, int d, int e)
 {
-    int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image [d][e].rgbtBlue)/6.0);
+    int tempblue = round((image[a][b].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image[d][e].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;
-    int tempgreen = round((image[a][b].rgbtGreen + image[c][b].rgbtGreen + image[d][b].rgbtGreen + image[a][e].rgbtGreen + image[c][e].rgbtGreen + image [d][e].rgbtGreen)/6.0);
+    int tempgreen = round((image[a][b].rgbtGreen + image[c][b].rgbtGreen + image[d][b].rgbtGreen + image[a][e].rgbtGreen + image[c][e].rgbtGreen + image[d][e].rgbtGreen)/6.0);
     newpixel[a][b].rgbtGreen = tempgreen;
-    int tempred = round((image[a][b].rgbtRed + image[c][b].rgbtRed + image[d][b].rgbtRed + image[a][e].rgbtRed + image[c][e].rgbtRed + image [d][e].rgbtRed)/6.0);
+    int tempred = round((image[a][b].rgbtRed + image[c][b].rgbtRed + image[d][b].rgbtRed + image[a][e].rgbtRed + image[c][e].rgbtRed + image[d][e].rgbtRed)/6.0);
     newpixel[a][b].rgbtRed = tempred;
 }
 
-void allotherpixels(int a, int b, int c, int d, int e, int f)
+void allotherpixels(int a, int b)
 {
-    int tempblue = round((image[][].rgbtBlue + image[c][b].rgbtBlue + image[d][b].rgbtBlue + image[a][e].rgbtBlue + image[c][e].rgbtBlue + image [d][e].rgbtBlue)/6.0);
+    int tempblue = round((image[a][b].rgbtBlue + image[a][b-1].rgbtBlue + image[a][b+1].rgbtBlue + image[a-1][b-1].rgbtBlue + image[a-1][b].rgbtBlue + image[d][e].rgbtBlue)/6.0);
     newpixel[a][b].rgbtBlue = tempblue;
-    int tempgreen = round((image[a][b].rgbtGreen + image[c][b].rgbtGreen + image[d][b].rgbtGreen + image[a][e].rgbtGreen + image[c][e].rgbtGreen + image [d][e].rgbtGreen)/6.0);
+    int tempgreen = round((image[a][b].rgbtGreen + image[c][b].rgbtGreen + image[d][b].rgbtGreen + image[a][e].rgbtGreen + image[c][e].rgbtGreen + image[d][e].rgbtGreen)/6.0);
     newpixel[a][b].rgbtGreen = tempgreen;
-    int tempred = round((image[a][b].rgbtRed + image[c][b].rgbtRed + image[d][b].rgbtRed + image[a][e].rgbtRed + image[c][e].rgbtRed + image [d][e].rgbtRed)/6.0);
+    int tempred = round((image[a][b].rgbtRed + image[c][b].rgbtRed + image[d][b].rgbtRed + image[a][e].rgbtRed + image[c][e].rgbtRed + image[d][e].rgbtRed)/6.0);
     newpixel[a][b].rgbtRed = tempred;
 }

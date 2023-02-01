@@ -125,7 +125,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 
 //BLUR CORNER PIXEL
-int cornerpixel(int a, int b)
+int cornerpixel(int a, int b, int c, int d)
 {
     int tempblue = round ((image[a][a].rgbtBlue + image[a][b].rgbtBlue + image[b][a].rgbtBlue + image[][1].rgbtBlue)/4.0);
     newpixel[0][0].rgbtBlue = tempblue;

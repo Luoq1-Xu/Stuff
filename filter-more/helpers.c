@@ -71,7 +71,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = 0;
                 int c = 1;
                 int d = 1;
-                cornerpixel (a, b, c, d, height, width, image[height][width], newpixel[height][width]);
+                cornerpixel (a, b, c, d, height, width, image, newpixel);
             }
             //Top right pixel
             else if (i == 0 && j == width-1)
@@ -80,7 +80,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = width-1;
                 int c = width-2;
                 int d = 1;
-                cornerpixel (a, b, c, d, height, width, image[height][width], newpixel[height][width]);
+                cornerpixel (a, b, c, d, height, width, image, newpixel);
             }
             //Top row pixel but not top corners
             else if (i == 0)
@@ -90,7 +90,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = 1;
-                boundaryrowpixel(a, b, c, d, e, height, width, image[height][width], newpixel[height][width]);
+                boundaryrowpixel(a, b, c, d, e, height, width, image, newpixel);
             }
             //First column but not corners
             else if (j == 0)
@@ -100,7 +100,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = i - 1;
                 int d = i + 1;
                 int e = 1;
-                boundarycolumnpixel (a, b, c, d, e, height, width, image[height][width], newpixel[height][width]);
+                boundarycolumnpixel (a, b, c, d, e, height, width, image, newpixel);
 
             }
             //Last column but not corners
@@ -111,7 +111,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = i - 1;
                 int d = i + 1;
                 int e = width - 2;
-                boundarycolumnpixel (a, b, c, d, e, height, width, image[height][width], newpixel[height][width]);
+                boundarycolumnpixel (a, b, c, d, e, height, width, image, newpixel);
             }
             //Bottom left pixel
             else if (i == height-1 && j == 0 )
@@ -120,7 +120,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = 0;
                 int c = 1;
                 int d = height-2;
-                cornerpixel (a,b,c,d, height, width, image[height][width], newpixel[height][width]);
+                cornerpixel (a,b,c,d, height, width, image, newpixel);
 
             }
             //Bottom Right pixel
@@ -130,7 +130,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = width-1;
                 int c = width-2;
                 int d = height-2;
-                cornerpixel (a,b,c,d, height, width, image[height][width], newpixel[height][width]);
+                cornerpixel (a,b,c,d, height, width, image, newpixel);
 
             }
             //Bottom row pixel but not corner
@@ -141,12 +141,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int c = j - 1;
                 int d = j + 1;
                 int e = height - 2;
-                boundaryrowpixel (a, b, c, d, e, height, width, image[height][width], newpixel[height][width]);
+                boundaryrowpixel (a, b, c, d, e, height, width, image, newpixel);
             }
             //Rest of pixels
             else
             {
-                allotherpixels(i, j, height, width, image[height][width], newpixel[height][width]);
+                allotherpixels(i, j, height, width, image, newpixel);
             }
         }
     }

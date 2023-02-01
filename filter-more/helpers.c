@@ -1,6 +1,8 @@
 #include "helpers.h"
 #include <math.h>
 
+void cornerpixel(int a, int b, int c, int d, int e);
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -62,7 +64,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Top left pixel
             if (i == 0 && j ==0)
             {
-                cornerpixel ( 0, 0,  )
+                int a = 0;
+                int b = 0;
+                int c = 1;
+                int d = 1;
+                int e = 1;
+                cornerpixel ( a, b, c, d, e)
             }
             //Top right pixel
             else if ()

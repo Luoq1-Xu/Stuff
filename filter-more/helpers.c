@@ -62,7 +62,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Top left pixel
             if (i == 0 && j ==0)
             {
-
+                 
             }
             //Top right pixel
             else if ()
@@ -102,7 +102,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Rest of pixels
             else
             {
-                
+
             }
         }
     }

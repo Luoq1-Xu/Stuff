@@ -125,13 +125,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
 
 //BLUR CORNER PIXEL
-void cornerpixel(int a, int b, int c, int d)
+void cornerpixel(int a, int b, int c, int d, int e, int f)
 {
-    int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[][1].rgbtBlue)/4.0);
+    int tempblue = round ((image[a][b].rgbtBlue + image[a][c].rgbtBlue + image[d][b].rgbtBlue + image[e][f].rgbtBlue)/4.0);
     newpixel[0][0].rgbtBlue = tempblue;
-    int tempgreen = round ((image[0][0].rgbtGreen + image[0][1].rgbtGreen + image[1][0].rgbtGreen + image[1][1].rgbtGreen)/4.0);
+    int tempgreen = round ((image[a][b].rgbtGreen + image[a][c].rgbtGreen + image[d][b].rgbtGreen + image[e][f].rgbtGreen)/4.0);
     newpixel[0][0].rgbtGreen = tempgreen;
-    int tempred = round ((image[0][0].rgbtRed + image[0][1].rgbtRed + image[1][0].rgbtRed + image[1][1].rgbtRed)/4.0);
+    int tempred = round ((image[a][b].rgbtRed + image[a][c].rgbtRed + image[d][b].rgbtRed + image[e][f].rgbtRed)/4.0);
     newpixel[0][0].rgbtRed = tempred;
 
     return;

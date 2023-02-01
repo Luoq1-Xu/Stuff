@@ -80,7 +80,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = width-1;
                 int c = width-2;
                 int d = 1;
-                cornerpixel (a, b, c, d, height, width, image[height][width], newpixel[height][width];
+                cornerpixel (a, b, c, d, height, width, image[height][width], newpixel[height][width]);
             }
             //Top row pixel but not top corners
             else if (i == 0)

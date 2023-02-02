@@ -219,7 +219,7 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = round((image[a][b-1].rgbtBlue + image[a][b+1].rgbtBlue + (image[a-1][b-1].rgbtBlue)*(-1) + image[a-1][b+1].rgbtBlue + image[a+1][b-1].rgbtBlue + image[a+1][b+1].rgbtBlue));
+    int gxblue = round(((image[a][b-1].rgbtBlue)*(-2) + image[a][b+1].rgbtBlue + (image[a-1][b-1].rgbtBlue)*(-1) + image[a-1][b+1].rgbtBlue + (image[a+1][b-1].rgbtBlue)*(-1) + image[a+1][b+1].rgbtBlue));
 
     int gxblue = round((image[a][b].rgbtBlue + image[a][b-1].rgbtBlue + image[a][b+1].rgbtBlue + image[a-1][b-1].rgbtBlue + image[a-1][b].rgbtBlue + image[a-1][b+1].rgbtBlue + image[a+1][b-1].rgbtBlue + image[a+1][b].rgbtBlue + image[a+1][b+1].rgbtBlue));
 

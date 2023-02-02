@@ -320,9 +320,9 @@ void topleftcornertest (int a, int b, int c, int d, int height, int width, RGBTR
     }
 
 
-    int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gxgreen = (image[a][c].rgbtGreen)*(2) + image[d][c].rgbtGreen;
 
-    int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gygreen = (image[d][b].rgbtGreen)*(2) + image[d][c].rgbtGreen;
 
     int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
 
@@ -334,9 +334,9 @@ void topleftcornertest (int a, int b, int c, int d, int height, int width, RGBTR
 
 
 
-    int gxred = round(((image[a][b-1].rgbtRed)*(-2) + (image[a][b+1].rgbtRed)*(2) + (image[a-1][b-1].rgbtRed)*(-1) + image[a-1][b+1].rgbtRed + (image[a+1][b-1].rgbtRed)*(-1) + image[a+1][b+1].rgbtRed));
+    int gxred = (image[a][c].rgbtRed)*(2) + image[d][c].rgbtRed;
 
-    int gyred = round(((image[a-1][b-1].rgbtRed)*(-1) + (image[a-1][b].rgbtRed)*(-2) + (image[a-1][b+1].rgbtRed)*(-1) + image[a+1][b-1].rgbtRed + (image[a+1][b].rgbtRed)*(2) + image[a+1][b+1].rgbtRed));
+    int gyred = (image[d][b].rgbtRed)*(2) + image[d][c].rgbtRed;
 
     int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
 

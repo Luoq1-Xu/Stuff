@@ -10,8 +10,9 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 //Edge Functions
 void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
-void Bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 // Convert image to grayscale
@@ -181,10 +182,20 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         {
              if (i == 0 && j ==0)
              {
+                int a = 0;
+                int b = 0;
+                int c = 1;
+                int d = 1;
+                topleftcorneredge (a,b,c,d,height,width,image,newpixel);
 
              }
             else if (i == 0 && j == width-1)
             {
+                int a = 0;
+                int b = width-1;
+                int c = width-2;
+                int d = 1;
+                toprightcorneredge (a,b,c,d,height,width,image,newpixel);
 
             }
             else if (i == 0)
@@ -201,10 +212,20 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else if (i == height-1 && j == 0)
             {
+                int a = i;
+                int b = j;
+                int c = j+1;
+                int d = i-1;
+                bottomleftcorneredge (a,b,c,d, height, width, image, newpixel);
 
             }
             else if (i == height-1 && j == width-1)
             {
+                int a = i;
+                int b = j;
+                int c = j-1;
+                int d = i-1;
+                bottomrightcorneredge (a,b,c,d, height, width, image, newpixel);
 
             }
             else if (i == height-1)
@@ -363,7 +384,7 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
 
 
-void Bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
@@ -459,7 +480,7 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 }
 
 
-void Bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
 

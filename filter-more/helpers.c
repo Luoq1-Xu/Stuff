@@ -181,7 +181,33 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
 
             }
-            
+            else if (i == 0)
+            {
+
+            }
+            else if (j == 0 && i !=height-1)
+            {
+
+            }
+            else if (j == width - 1 && i !=height-1)
+            {
+
+            }
+            else if (i == height-1 && j == 0)
+            {
+
+            }
+            else if (i == height-1)
+            {
+
+            }
+            else
+            {
+                
+            }
+
+
+
 
             //non border, non corner pixels
 

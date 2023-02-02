@@ -1,13 +1,15 @@
 #include "helpers.h"
 #include <math.h>
 
-
+//Blur functions
 void cornerpixel(int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void boundaryrowpixel(int a, int b, int c, int d, int e, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void boundarycolumnpixel(int a, int b, int c, int d, int e, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 
+//Edge Functions
+void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 // Convert image to grayscale
@@ -306,7 +308,7 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 
 
-void topleftcornertest (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 

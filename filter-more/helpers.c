@@ -304,6 +304,81 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 
 
+
+
+void cornerpixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+{
+    int gxblue = round(( ((image[a][b-1].rgbtBlue)*(-2)) + ((image[a][b+1].rgbtBlue)*(2)) + ((image[a-1][b-1].rgbtBlue)*(-1)) + image[a-1][b+1].rgbtBlue + ((image[a+1][b-1].rgbtBlue)*(-1)) + image[a+1][b+1].rgbtBlue ));
+
+    int gyblue = round((  ((image[a-1][b-1].rgbtBlue)*(-1)) + ((image[a-1][b].rgbtBlue)*(-2)) + ((image[a-1][b+1].rgbtBlue)*(-1)) + image[a+1][b-1].rgbtBlue + ((image[a+1][b].rgbtBlue)*(2)) + image[a+1][b+1].rgbtBlue));
+
+    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+
+    if (finalblue > 255)
+    {
+        finalblue = 255;
+    }
+
+
+
+    int gxgreen = round(((image[a][b-1].rgbtGreen)*(-2) + (image[a][b+1].rgbtGreen)*(2) + (image[a-1][b-1].rgbtGreen)*(-1) + image[a-1][b+1].rgbtGreen + (image[a+1][b-1].rgbtGreen)*(-1) + image[a+1][b+1].rgbtGreen));
+
+    int gygreen = round(((image[a-1][b-1].rgbtGreen)*(-1) + (image[a-1][b].rgbtGreen)*(-2) + (image[a-1][b+1].rgbtGreen)*(-1) + image[a+1][b-1].rgbtGreen + (image[a+1][b].rgbtGreen)*(2) + image[a+1][b+1].rgbtGreen));
+
+    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+
+    if (finalgreen > 255)
+    {
+        finalgreen = 255;
+    }
+
+
+
+
+    int gxred = round(((image[a][b-1].rgbtRed)*(-2) + (image[a][b+1].rgbtRed)*(2) + (image[a-1][b-1].rgbtRed)*(-1) + image[a-1][b+1].rgbtRed + (image[a+1][b-1].rgbtRed)*(-1) + image[a+1][b+1].rgbtRed));
+
+    int gyred = round(((image[a-1][b-1].rgbtRed)*(-1) + (image[a-1][b].rgbtRed)*(-2) + (image[a-1][b+1].rgbtRed)*(-1) + image[a+1][b-1].rgbtRed + (image[a+1][b].rgbtRed)*(2) + image[a+1][b+1].rgbtRed));
+
+    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+
+    if (finalred > 255)
+    {
+        finalred = 255;
+    }
+
+    newpixel[a][b].rgbtBlue = finalblue;
+    newpixel[a][b].rgbtGreen = finalgreen;
+    newpixel[a][b].rgbtRed = finalred;
+
+    return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = round(( ((image[a][b-1].rgbtBlue)*(-2)) + ((image[a][b+1].rgbtBlue)*(2)) + ((image[a-1][b-1].rgbtBlue)*(-1)) + image[a-1][b+1].rgbtBlue + ((image[a+1][b-1].rgbtBlue)*(-1)) + image[a+1][b+1].rgbtBlue ));

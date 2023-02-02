@@ -306,11 +306,11 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 
 
-void edgetest (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void topleftcornertest (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = round( );
+    int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
-    int gyblue = round( (image[c][d].rgbtBlue)*(-1) + (image[c][b].rgbtBlue)*(-));
+    int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
     int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
 
@@ -320,10 +320,9 @@ void edgetest (int a, int b, int c, int d, int height, int width, RGBTRIPLE imag
     }
 
 
+    int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
-    int gxgreen = round(((image[a][b-1].rgbtGreen)*(-2) + (image[a][b+1].rgbtGreen)*(2) + (image[a-1][b-1].rgbtGreen)*(-1) + image[a-1][b+1].rgbtGreen + (image[a+1][b-1].rgbtGreen)*(-1) + image[a+1][b+1].rgbtGreen));
-
-    int gygreen = round(((image[a-1][b-1].rgbtGreen)*(-1) + (image[a-1][b].rgbtGreen)*(-2) + (image[a-1][b+1].rgbtGreen)*(-1) + image[a+1][b-1].rgbtGreen + (image[a+1][b].rgbtGreen)*(2) + image[a+1][b+1].rgbtGreen));
+    int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
     int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
 

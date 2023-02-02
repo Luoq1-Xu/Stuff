@@ -306,9 +306,9 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 
 
-void edgetest (int a, int b, int c, int d, int e, int f, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void edgetest (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = round( (image[c][d].rgbtBlue)*(-1) + (image[a][d].rgbtBlue)*(-2) + (image[f][d].rgbtBlue)*(-1) + (image[c][e].rgbtBlue) + (image[a][e].rgbtBlue)*(2) + image[f][e].rgbtBlue );
+    int gxblue = round( );
 
     int gyblue = round( (image[c][d].rgbtBlue)*(-1) + (image[c][b].rgbtBlue)*(-));
 

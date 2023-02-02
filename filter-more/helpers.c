@@ -203,7 +203,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else
             {
-                
+                centrepixeledge (i,j,)
             }
 
 

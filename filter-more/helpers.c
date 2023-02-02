@@ -223,9 +223,19 @@ void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height
 
     int gyblue = round(((image[a-1][b-1].rgbtBlue)*(-1) + (image[a-1][b].rgbtBlue)*(-2) + (image[a-1][b+1].rgbtBlue)*(-1) + image[a+1][b-1].rgbtBlue + (image[a+1][b].rgbtBlue)*(-2) + image[a+1][b+1].rgbtBlue));
 
+    int finalblue = round(sqrt((gxblue^2))+((gyblue^2)))
+
+
+
+
     int gxgreen = round(((image[a][b-1].rgbtGreen)*(-2) + (image[a][b+1].rgbtGreen)*(2) + (image[a-1][b-1].rgbtGreen)*(-1) + image[a-1][b+1].rgbtGreen + (image[a+1][b-1].rgbtGreen)*(-1) + image[a+1][b+1].rgbtGreen));
 
     int gygreen = round(((image[a-1][b-1].rgbtGreen)*(-1) + (image[a-1][b].rgbtGreen)*(-2) + (image[a-1][b+1].rgbtGreen)*(-1) + image[a+1][b-1].rgbtGreen + (image[a+1][b].rgbtGreen)*(-2) + image[a+1][b+1].rgbtGreen));
+
+    
+
+
+
 
     int gxred = round(((image[a][b-1].rgbtRed)*(-2) + (image[a][b+1].rgbtRed)*(2) + (image[a-1][b-1].rgbtRed)*(-1) + image[a-1][b+1].rgbtRed + (image[a+1][b-1].rgbtRed)*(-1) + image[a+1][b+1].rgbtRed));
 

@@ -8,7 +8,7 @@ void boundarycolumnpixel(int a, int b, int c, int d, int e, int height, int widt
 void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 
-void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -169,6 +169,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE newpixel[height][width];
+
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -203,7 +205,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else
             {
-                centrepixeledge (i,j,)
+                centrepixeledge (i,j,image,width,image,newpixel);
             }
 
 

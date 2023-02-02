@@ -201,7 +201,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else if (i == height-1 && j == width-1)
             {
-                
+
             }
             else if (i == height-1)
             {
@@ -301,11 +301,11 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = round(((image[a][b-1].rgbtBlue)*(-2) + (image[a][b+1].rgbtBlue)*(2) + (image[a-1][b-1].rgbtBlue)*(-1) + image[a-1][b+1].rgbtBlue + (image[a+1][b-1].rgbtBlue)*(-1) + image[a+1][b+1].rgbtBlue));
+    int gxblue = round(( ((image[a][b-1].rgbtBlue)*(-2)) + ((image[a][b+1].rgbtBlue)*(2)) + ((image[a-1][b-1].rgbtBlue)*(-1)) + image[a-1][b+1].rgbtBlue + ((image[a+1][b-1].rgbtBlue)*(-1)) + image[a+1][b+1].rgbtBlue ));
 
-    int gyblue = round(((image[a-1][b-1].rgbtBlue)*(-1) + (image[a-1][b].rgbtBlue)*(-2) + (image[a-1][b+1].rgbtBlue)*(-1) + image[a+1][b-1].rgbtBlue + (image[a+1][b].rgbtBlue)*(-2) + image[a+1][b+1].rgbtBlue));
+    int gyblue = round((  ((image[a-1][b-1].rgbtBlue)*(-1)) + ((image[a-1][b].rgbtBlue)*(-2)) + ((image[a-1][b+1].rgbtBlue)*(-1)) + image[a+1][b-1].rgbtBlue + ((image[a+1][b].rgbtBlue)*(-2)) + image[a+1][b+1].rgbtBlue));
 
-    int finalblue = round(sqrt((gxblue^2))+((gyblue^2)));
+    int finalblue = round(sqrt( (gxblue^2))+((gyblue^2) ));
 
     if (finalblue > 255)
     {

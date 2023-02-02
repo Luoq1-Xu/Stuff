@@ -211,7 +211,11 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 centrepixeledge (i,j,height,width,image,newpixel);
             }
+            //non border, non corner pixels
 
+        }
+    }
+    
     for (int x = 0; x < height; x++)
     {
         for (int y = 0; y < width; y++)
@@ -220,11 +224,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-
-            //non border, non corner pixels
-
-        }
-    }
     return;
 }
 

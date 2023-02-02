@@ -463,7 +463,7 @@ void Bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 {
     int gxblue = (image[a][c].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
 
-    int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
 
     int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
 
@@ -475,7 +475,7 @@ void Bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
     int gxgreen = (image[a][c].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
 
-    int gygreen = (image[d][b].rgbtGreen)*(2) + image[d][c].rgbtGreen;
+    int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
 
     int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
 
@@ -489,7 +489,7 @@ void Bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
     int gxred = (image[a][c].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1);
 
-    int gyred = (image[d][b].rgbtRed)*(2) + image[d][c].rgbtRed;
+    int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1);
 
     int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
 

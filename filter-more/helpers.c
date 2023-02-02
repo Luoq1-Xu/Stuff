@@ -306,11 +306,11 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 
 
-void boundarypixelsedge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void edgetest (int a, int b, int c, int d, int e, int f, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = round(( ((image[a][b-1].rgbtBlue)*(-2)) + ((image[a][b+1].rgbtBlue)*(2)) + ((image[a-1][b-1].rgbtBlue)*(-1)) + image[a-1][b+1].rgbtBlue + ((image[a+1][b-1].rgbtBlue)*(-1)) + image[a+1][b+1].rgbtBlue ));
+    int gxblue = round( (image[c][d].rgbtBlue)*(-1) + (image[a][d].rgbtBlue)*(-2) + (image[f][d].rgbtBlue)*(-1) + (image[c][e].rgbtBlue) + (image[a][e].rgbtBlue)*(2) + image[f][e].rgbtBlue );
 
-    int gyblue = round((  ((image[a-1][b-1].rgbtBlue)*(-1)) + ((image[a-1][b].rgbtBlue)*(-2)) + ((image[a-1][b+1].rgbtBlue)*(-1)) + image[a+1][b-1].rgbtBlue + ((image[a+1][b].rgbtBlue)*(2)) + image[a+1][b+1].rgbtBlue));
+    int gyblue = round( (image[c][d].rgbtBlue)*(-1) + (image[c][b].rgbtBlue)*(-));
 
     int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
 

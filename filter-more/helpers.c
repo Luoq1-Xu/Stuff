@@ -311,7 +311,7 @@ void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height
 
     int gyblue = round((  ((image[a-1][b-1].rgbtBlue)*(-1)) + ((image[a-1][b].rgbtBlue)*(-2)) + ((image[a-1][b+1].rgbtBlue)*(-1)) + image[a+1][b-1].rgbtBlue + ((image[a+1][b].rgbtBlue)*(-2)) + image[a+1][b+1].rgbtBlue));
 
-    int finalblue = round(sqrt( (gxblue^2))+((gyblue^2) ));
+    int finalblue = round(sqrt( (gxblue2))+((gyblue^2) ));
 
     if (finalblue > 255)
     {

@@ -215,9 +215,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int c = 1;
                 int d = i - 1;
                 int e = i + 1;
-                int multi1 = 1
-                int multi2 = 2
-                columnpixeledge (a,b,c,d,e,multi1,multi2,image,newpixel)
+                int multi1 = 1;
+                int multi2 = 2;
+                columnpixeledge (a,b,c,d,e,multi1,multi2,image,newpixel);
             }
             //Last column pixels but not corners
             else if (j == width - 1 && i !=height-1)
@@ -226,7 +226,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int b = width - 1;
                 int c = width - 2;
                 int d = i - 1;
-                int
+                int e = i + 1;
+                int multi1 = -1;
+                int multi2 = -2;
+                columnpixeledgec (a,b,c,d,e,multi1,multi2,image,newpixel);
 
             }
             else if (i == height-1 && j == 0)

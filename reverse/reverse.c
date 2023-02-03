@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
         printf("Input is not a WAV file.\n");
         return 2;
     }
-
     // Open input file for reading
     // TODO #2
+    
 
     // Read header into an array
     // TODO #3

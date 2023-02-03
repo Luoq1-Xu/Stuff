@@ -88,8 +88,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             else if (i == 0 && j == width-1)
             {
                 int a = 0;
-                int b = width-1;
-                int c = width-2;
+                int b = width - 1;
+                int c = width - 2;
                 int d = 1;
                 cornerpixel (a, b, c, d, height, width, image, newpixel);
             }
@@ -129,9 +129,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 int a = i;
                 int b = j;
-                int c = j+1;
-                int d = i-1;
-                cornerpixel (a,b,c,d, height, width, image, newpixel);
+                int c = j + 1;
+                int d = i - 1;
+                cornerpixel (a, b, c, d, height, width, image, newpixel);
             }
             //Bottom Right pixel
             else if (i == height-1 && j == width-1)
@@ -140,7 +140,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int b = j;
                 int c = j-1;
                 int d = i-1;
-                cornerpixel (a,b,c,d, height, width, image, newpixel);
+                cornerpixel (a, b, c, d, height, width, image, newpixel);
             }
             //Bottom row pixel but not corner
             else if (i == height-1)
@@ -155,7 +155,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //Rest of pixels
             else
             {
-                allotherpixels(i, j, height, width, image, newpixel);
+                allotherpixels (i, j, height, width, image, newpixel);
             }
         }
     }
@@ -166,8 +166,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[x][y] = newpixel[x][y];
         }
     }
-
-
     return;
 }
 
@@ -189,17 +187,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int b = 0;
                 int c = 1;
                 int d = 1;
-                topleftcorneredge (a,b,c,d,height,width,image,newpixel);
+                topleftcorneredge (a, b, c, d, height, width, image, newpixel);
 
             }
             //Top Right Pixel
             else if (i == 0 && j == width-1)
             {
                 int a = 0;
-                int b = width-1;
-                int c = width-2;
+                int b = width - 1;
+                int c = width - 2;
                 int d = 1;
-                toprightcorneredge (a,b,c,d,height,width,image,newpixel);
+                toprightcorneredge (a, b, c, d, height, width, image, newpixel);
 
             }
             //Top Row Pixel but not corners
@@ -212,8 +210,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int e = 1;
                 int multi1 = 1;
                 int multi2 = 2;
-                rowpixeledge (a,b,c,d,e,multi1,multi2,height,width,image,newpixel);
-
+                rowpixeledge (a, b, c, d, e, multi1, multi2, height, width, image, newpixel);
 
             }
             //First Column Pixels but not corners
@@ -226,7 +223,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int e = i + 1;
                 int multi1 = 1;
                 int multi2 = 2;
-                columnpixeledge (a,b,c,d,e,multi1,multi2,height,width,image,newpixel);
+                columnpixeledge (a, b, c, d, e, multi1, multi2, height, width, image, newpixel);
             }
             //Last column pixels but not corners
             else if (j == width - 1 && i !=height-1)
@@ -238,7 +235,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int e = i + 1;
                 int multi1 = -1;
                 int multi2 = -2;
-                columnpixeledge (a,b,c,d,e,multi1,multi2,height,width,image,newpixel);
+                columnpixeledge (a, b, c, d, e, multi1, multi2, height, width, image, newpixel);
 
             }
             //Bottom left corner pixel
@@ -246,9 +243,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 int a = i;
                 int b = j;
-                int c = j+1;
-                int d = i-1;
-                bottomleftcorneredge (a,b,c,d, height, width, image, newpixel);
+                int c = j + 1;
+                int d = i - 1;
+                bottomleftcorneredge (a, b, c, d, height, width, image, newpixel);
 
             }
             //Bottom right corner pixel
@@ -256,9 +253,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 int a = i;
                 int b = j;
-                int c = j-1;
-                int d = i-1;
-                bottomrightcorneredge (a,b,c,d, height, width, image, newpixel);
+                int c = j - 1;
+                int d = i - 1;
+                bottomrightcorneredge (a, b, c, d, height, width, image, newpixel);
 
             }
             //Bottom row pixel but not corners
@@ -271,13 +268,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int e = i - 1;
                 int multi1 = -1;
                 int multi2 = -2;
-                rowpixeledge (a,b,c,d,e,multi1,multi2,height,width,image,newpixel);
+                rowpixeledge (a, b, c, d, e, multi1, multi2, height, width, image, newpixel);
 
             }
             //All other pixels (non border, non corner)
             else
             {
-                centrepixeledge (i,j,height,width,image,newpixel);
+                centrepixeledge (i, j, height, width, image, newpixel);
             }
 
         }
@@ -375,9 +372,9 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gxblue = (image[a][c].rgbtBlue) * (2) + image[d][c].rgbtBlue;
 
-    int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gyblue = (image[d][b].rgbtBlue) * (2) + image[d][c].rgbtBlue;
 
     int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
@@ -387,9 +384,9 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
     }
 
 
-    int gxgreen = (image[a][c].rgbtGreen)*(2) + image[d][c].rgbtGreen;
+    int gxgreen = (image[a][c].rgbtGreen) * (2) + image[d][c].rgbtGreen;
 
-    int gygreen = (image[d][b].rgbtGreen)*(2) + image[d][c].rgbtGreen;
+    int gygreen = (image[d][b].rgbtGreen) * (2) + image[d][c].rgbtGreen;
 
     int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
@@ -401,9 +398,9 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
 
 
-    int gxred = (image[a][c].rgbtRed)*(2) + image[d][c].rgbtRed;
+    int gxred = (image[a][c].rgbtRed) * (2) + image[d][c].rgbtRed;
 
-    int gyred = (image[d][b].rgbtRed)*(2) + image[d][c].rgbtRed;
+    int gyred = (image[d][b].rgbtRed) * (2) + image[d][c].rgbtRed;
 
     int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
@@ -428,9 +425,9 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
 void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = (image[a][c].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gxblue = (image[a][c].rgbtBlue) * (2) + image[d][c].rgbtBlue;
 
-    int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
+    int gyblue = (image[d][b].rgbtBlue) * (-2) + (image[d][c].rgbtBlue) * (-1);
 
     int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
@@ -440,9 +437,9 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
     }
 
 
-    int gxgreen = (image[a][c].rgbtGreen)*(2) + image[d][c].rgbtGreen;
+    int gxgreen = (image[a][c].rgbtGreen) * (2) + image[d][c].rgbtGreen;
 
-    int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
+    int gygreen = (image[d][b].rgbtGreen) * (-2) + (image[d][c].rgbtGreen) * (-1);
 
     int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
@@ -454,9 +451,9 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 
 
 
-    int gxred = (image[a][c].rgbtRed)*(2) + image[d][c].rgbtRed;
+    int gxred = (image[a][c].rgbtRed) * (2) + image[d][c].rgbtRed;
 
-    int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1);
+    int gyred = (image[d][b].rgbtRed) * (-2) + (image[d][c].rgbtRed) * (-1);
 
     int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
@@ -477,9 +474,9 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 
 void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = (image[a][c].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
+    int gxblue = (image[a][c].rgbtBlue) * (-2) + (image[d][c].rgbtBlue) * (-1);
 
-    int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
+    int gyblue = (image[d][b].rgbtBlue) * (2) + image[d][c].rgbtBlue;
 
     int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
@@ -489,9 +486,9 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
     }
 
 
-    int gxgreen = (image[a][c].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
+    int gxgreen = (image[a][c].rgbtGreen) * (-2) + (image[d][c].rgbtGreen) * (-1);
 
-    int gygreen = (image[d][b].rgbtGreen)*(2) + image[d][c].rgbtGreen;
+    int gygreen = (image[d][b].rgbtGreen) * (2) + image[d][c].rgbtGreen;
 
     int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
@@ -503,9 +500,9 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 
 
 
-    int gxred = (image[a][c].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1);
+    int gxred = (image[a][c].rgbtRed) * (-2) + (image[d][c].rgbtRed) * (-1);
 
-    int gyred = (image[d][b].rgbtRed)*(2) + image[d][c].rgbtRed;
+    int gyred = (image[d][b].rgbtRed) * (2) + image[d][c].rgbtRed;
 
     int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
@@ -524,9 +521,9 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 
 void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = (image[a][c].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
+    int gxblue = (image[a][c].rgbtBlue) * (-2) + (image[d][c].rgbtBlue) * (-1);
 
-    int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
+    int gyblue = (image[d][b].rgbtBlue) * (-2) + (image[d][c].rgbtBlue) * (-1);
 
     int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
@@ -536,7 +533,7 @@ void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
     }
 
 
-    int gxgreen = (image[a][c].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
+    int gxgreen = (image[a][c].rgbtGreen) * (-2) + (image[d][c].rgbtGreen)*(-1);
 
     int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
 

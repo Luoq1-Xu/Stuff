@@ -212,7 +212,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 int e = 1;
                 int multi1 = 1;
                 int multi2 = 2;
-                rowpixeledge ()
+                rowpixeledge (a,b,c,d,e,height,width,image,newpixel);
 
 
             }
@@ -264,6 +264,14 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             //Bottom row pixel but not corners
             else if (i == height-1)
             {
+                int a = i;
+                int b = j;
+                int c = j + 1;
+                int d = j - 1;
+                int e = i - 1;
+                int multi1 = -1;
+                int multi2 = -2;
+                rowpixeledge (a,b,c,d,e,height,width,image,newpixel);
 
             }
             //All other pixels (non border, non corner)

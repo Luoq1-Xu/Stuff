@@ -51,7 +51,7 @@ int get_block_size(WAVHEADER header)
     return 0;
 }
 
-int checkwav(input[])
+int checkwav(char* input[])
 {
     int temp;
     int i = 0;
@@ -64,7 +64,7 @@ int checkwav(input[])
 
         i++;
     }
-    while ( input[i] != "\0")
+    while (input[i] != "\0")
 
     if (input[temp + 1] == 'w' && input[temp + 2] == 'a' && input[temp + 3] == 'v' && input [temp + 4] == "\0")
     {

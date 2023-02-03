@@ -552,9 +552,9 @@ void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
 void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = (image[d][c].rgbtBlue)*(multi1) + (image[a][c].rgbtBlue)*(multi2) + (image[e][c].rgbtBlue)*(multi1)
+    int gxblue = (image[d][c].rgbtBlue)*(multi1) + (image[a][c].rgbtBlue)*(multi2) + (image[e][c].rgbtBlue)*(multi1);
 
-    int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1) + (image[e][b].rgbtBlue)*(2) + (image[e][c].rgbtBlue)
+    int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1) + (image[e][b].rgbtBlue)*(2) + (image[e][c].rgbtBlue);
 
     int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
 
@@ -564,9 +564,9 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
     }
 
 
-    int gxgreen = (image[d][c].rgbtGreen)*(multi1) + (image[a][c].rgbtGreen)*(multi2) + (image[e][c].rgbtGreen)*(multi1)
+    int gxgreen = (image[d][c].rgbtGreen)*(multi1) + (image[a][c].rgbtGreen)*(multi2) + (image[e][c].rgbtGreen)*(multi1);
 
-    int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1) + (image[e][b].rgbtGreen)*(2) + (image[e][c].rgbtGreen)
+    int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1) + (image[e][b].rgbtGreen)*(2) + (image[e][c].rgbtGreen);
 
     int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
 
@@ -578,9 +578,9 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
 
 
 
-    int gxred = (image[d][c].rgbtRed)*(multi1) + (image[a][c].rgbtRed)*(multi2) + (image[e][c].rgbtRed)*(multi1)
+    int gxred = (image[d][c].rgbtRed)*(multi1) + (image[a][c].rgbtRed)*(multi2) + (image[e][c].rgbtRed)*(multi1);
 
-    int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1) + (image[e][b].rgbtRed)*(2) + (image[e][c].rgbtRed)
+    int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1) + (image[e][b].rgbtRed)*(2) + (image[e][c].rgbtRed);
 
     int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
 

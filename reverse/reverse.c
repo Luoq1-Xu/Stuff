@@ -50,3 +50,28 @@ int get_block_size(WAVHEADER header)
     // TODO #7
     return 0;
 }
+
+bool checkwav(input[])
+{
+    int temp;
+    int i = 0;
+    do
+    {
+        if (input[i] == '.')
+        {
+            temp = i;
+        }
+
+        i++;
+    }
+    while (input[i] != "\0")
+
+    if (input[temp + 1] == 'w' && input[temp + 2] == 'a' && input[temp + 3] == 'v' && input [temp + 4] == "\0")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

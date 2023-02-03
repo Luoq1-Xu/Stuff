@@ -27,7 +27,12 @@ int main(int argc, char *argv[])
     char *outfile = argv[2];
     // Open input file for reading
     // TODO #2
-    FILE *inptr = fopen()
+    FILE *inptr = fopen(infile, "r");
+    if (inptr == NULL)
+    {
+         printf("Could not open %s.\n", infile);
+         return 3;
+    }
 
     // Read header into an array
     // TODO #3

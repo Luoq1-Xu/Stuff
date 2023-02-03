@@ -205,7 +205,14 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             //Top Row Pixel but not corners
             else if (i == 0 && j != width-1)
             {
-                
+                int a = 0;
+                int b = j;
+                int c = j + 1;
+                int d = j - 1;
+                int e = 1;
+                int multi1 = 1;
+                int multi2 = 2;
+                rowpixeledge ()
 
 
             }

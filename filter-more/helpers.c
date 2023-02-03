@@ -370,7 +370,7 @@ void allotherpixels(int a, int b, int height, int width, RGBTRIPLE image[height]
 
 
 
-void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void topleftcorneredge(int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue) * (2) + image[d][c].rgbtBlue;
 
@@ -423,7 +423,7 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
 
 
-void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void bottomleftcorneredge(int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue) * (2) + image[d][c].rgbtBlue;
 
@@ -472,7 +472,7 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 
 
 
-void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void toprightcorneredge(int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue) * (-2) + (image[d][c].rgbtBlue) * (-1);
 
@@ -519,7 +519,7 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 }
 
 
-void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void bottomrightcorneredge(int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue) * (-2) + (image[d][c].rgbtBlue) * (-1);
 
@@ -567,7 +567,7 @@ void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
 
 
-void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void columnpixeledge(int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[d][c].rgbtBlue) * (multi1) + (image[a][c].rgbtBlue) * (multi2) + (image[e][c].rgbtBlue) * (multi1);
 
@@ -615,7 +615,7 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
 
 
 
-void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+void rowpixeledge(int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
     int gxblue = (image[a][c].rgbtBlue) * (2) + image[e][c].rgbtBlue + (image[a][d].rgbtBlue) * (-2) + (image[e][d].rgbtBlue) * (-1);
 
@@ -669,9 +669,9 @@ void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, in
 
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
 {
-    int gxblue = round(( ((image[a][b - 1].rgbtBlue) * (-2)) + ((image[a][b + 1].rgbtBlue) * (2)) + ((image[a - 1][b - 1].rgbtBlue) * (-1)) + image[a - 1][b + 1].rgbtBlue + ((image[a + 1][b - 1].rgbtBlue) * (-1)) + image[a + 1][b + 1].rgbtBlue ));
+    int gxblue = round((((image[a][b - 1].rgbtBlue) * (-2)) + ((image[a][b + 1].rgbtBlue) * (2)) + ((image[a - 1][b - 1].rgbtBlue) * (-1)) + image[a - 1][b + 1].rgbtBlue + ((image[a + 1][b - 1].rgbtBlue) * (-1)) + image[a + 1][b + 1].rgbtBlue ));
 
-    int gyblue = round((  ((image[a - 1][b - 1].rgbtBlue) * (-1)) + ((image[a - 1][b].rgbtBlue) * (-2)) + ((image[a - 1][b + 1].rgbtBlue) * (-1)) + image[a + 1][b - 1].rgbtBlue + ((image[a + 1][b].rgbtBlue) * (2)) + image[a + 1][b + 1].rgbtBlue));
+    int gyblue = round((((image[a - 1][b - 1].rgbtBlue) * (-1)) + ((image[a - 1][b].rgbtBlue) * (-2)) + ((image[a - 1][b + 1].rgbtBlue) * (-1)) + image[a + 1][b - 1].rgbtBlue + ((image[a + 1][b].rgbtBlue) * (2)) + image[a + 1][b + 1].rgbtBlue));
 
     int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 

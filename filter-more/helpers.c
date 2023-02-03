@@ -379,7 +379,7 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
     int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -391,7 +391,7 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
     int gygreen = (image[d][b].rgbtGreen)*(2) + image[d][c].rgbtGreen;
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -405,7 +405,7 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 
     int gyred = (image[d][b].rgbtRed)*(2) + image[d][c].rgbtRed;
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {
@@ -432,7 +432,7 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 
     int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -444,7 +444,7 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 
     int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -458,7 +458,7 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 
     int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1);
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {
@@ -481,7 +481,7 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 
     int gyblue = (image[d][b].rgbtBlue)*(2) + image[d][c].rgbtBlue;
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -493,7 +493,7 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 
     int gygreen = (image[d][b].rgbtGreen)*(2) + image[d][c].rgbtGreen;
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -507,7 +507,7 @@ void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBT
 
     int gyred = (image[d][b].rgbtRed)*(2) + image[d][c].rgbtRed;
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {
@@ -528,7 +528,7 @@ void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
     int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1);
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -540,7 +540,7 @@ void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
     int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1);
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -554,7 +554,7 @@ void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, R
 
     int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1);
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {
@@ -576,7 +576,7 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
 
     int gyblue = (image[d][b].rgbtBlue)*(-2) + (image[d][c].rgbtBlue)*(-1) + (image[e][b].rgbtBlue)*(2) + (image[e][c].rgbtBlue);
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -588,7 +588,7 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
 
     int gygreen = (image[d][b].rgbtGreen)*(-2) + (image[d][c].rgbtGreen)*(-1) + (image[e][b].rgbtGreen)*(2) + (image[e][c].rgbtGreen);
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -602,7 +602,7 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
 
     int gyred = (image[d][b].rgbtRed)*(-2) + (image[d][c].rgbtRed)*(-1) + (image[e][b].rgbtRed)*(2) + (image[e][c].rgbtRed);
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {
@@ -624,7 +624,7 @@ void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, in
 
     int gyblue = (image[e][d].rgbtBlue)*(multi1) + (image[e][b].rgbtBlue)*(multi2) + (image[e][c].rgbtBlue)*(multi1);
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -635,7 +635,7 @@ void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, in
 
     int gygreen = (image[e][d].rgbtGreen)*(multi1) + (image[e][b].rgbtGreen)*(multi2) + (image[e][c].rgbtGreen)*(multi1);
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -646,7 +646,7 @@ void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, in
 
     int gyred = (image[e][d].rgbtRed)*(multi1) + (image[e][b].rgbtRed)*(multi2) + (image[e][c].rgbtRed)*(multi1);
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {
@@ -676,7 +676,7 @@ void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height
 
     int gyblue = round((  ((image[a-1][b-1].rgbtBlue)*(-1)) + ((image[a-1][b].rgbtBlue)*(-2)) + ((image[a-1][b+1].rgbtBlue)*(-1)) + image[a+1][b-1].rgbtBlue + ((image[a+1][b].rgbtBlue)*(2)) + image[a+1][b+1].rgbtBlue));
 
-    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+    int finalblue = round(sqrt(pow(gxblue, 2) + pow(gyblue, 2)));
 
     if (finalblue > 255)
     {
@@ -689,7 +689,7 @@ void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height
 
     int gygreen = round(((image[a-1][b-1].rgbtGreen)*(-1) + (image[a-1][b].rgbtGreen)*(-2) + (image[a-1][b+1].rgbtGreen)*(-1) + image[a+1][b-1].rgbtGreen + (image[a+1][b].rgbtGreen)*(2) + image[a+1][b+1].rgbtGreen));
 
-    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+    int finalgreen = round(sqrt(pow(gxgreen, 2) + pow(gygreen, 2)));
 
     if (finalgreen > 255)
     {
@@ -703,7 +703,7 @@ void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height
 
     int gyred = round(((image[a-1][b-1].rgbtRed)*(-1) + (image[a-1][b].rgbtRed)*(-2) + (image[a-1][b+1].rgbtRed)*(-1) + image[a+1][b-1].rgbtRed + (image[a+1][b].rgbtRed)*(2) + image[a+1][b+1].rgbtRed));
 
-    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+    int finalred = round(sqrt(pow(gxred, 2) + pow(gyred, 2)));
 
     if (finalred > 255)
     {

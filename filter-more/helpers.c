@@ -14,6 +14,7 @@ void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RG
 void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 // Convert image to grayscale
@@ -204,6 +205,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             //Top Row Pixel but not corners
             else if (i == 0 && j != width-1)
             {
+                
 
 
             }
@@ -232,6 +234,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 columnpixeledge (a,b,c,d,e,multi1,multi2,height,width,image,newpixel);
 
             }
+            //Bottom left corner pixel
             else if (i == height-1 && j == 0)
             {
                 int a = i;
@@ -241,6 +244,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 bottomleftcorneredge (a,b,c,d, height, width, image, newpixel);
 
             }
+            //Bottom right corner pixel
             else if (i == height-1 && j == width-1)
             {
                 int a = i;
@@ -250,15 +254,16 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 bottomrightcorneredge (a,b,c,d, height, width, image, newpixel);
 
             }
+            //Bottom row pixel but not corners
             else if (i == height-1)
             {
 
             }
+            //All other pixels (non border, non corner)
             else
             {
                 centrepixeledge (i,j,height,width,image,newpixel);
             }
-            //non border, non corner pixels
 
         }
     }
@@ -598,7 +603,47 @@ void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2,
 
 
 
+void rowpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width])
+{
+    int gxblue = (image[a][c].rgbtBlue)*(2) + image[e][c].rgbtBlue + (image[a][d].rgbtBlue)*(-2) + (image[e][d].rgbtBlue)*(-1);
 
+    int gyblue = (image[e][d].rgbtBlue)*(multi1) + (image[e][b].rgbtBlue)*(multi2) + (image[e][c].rgbtBlue)*(multi1);
+
+    int finalblue = round(sqrt ( pow(gxblue,2)+pow(gyblue,2) ));
+
+    if (finalblue > 255)
+    {
+        finalblue = 255;
+    }
+
+    int gxgreen = (image[a][c].rgbtGreen)*(2) + image[e][c].rgbtGreen + (image[a][d].rgbtGreen)*(-2) + (image[e][d].rgbtGreen)*(-1);
+
+    int gygreen = (image[e][d].rgbtGreen)*(multi1) + (image[e][b].rgbtGreen)*(multi2) + (image[e][c].rgbtGreen)*(multi1);
+
+    int finalgreen = round(sqrt ( pow(gxgreen,2)+pow(gygreen,2) ));
+
+    if (finalgreen > 255)
+    {
+        finalgreen = 255;
+    }
+
+    int gxred = (image[a][c].rgbtRed)*(2) + image[e][c].rgbtRed + (image[a][d].rgbtRed)*(-2) + (image[e][d].rgbtRed)*(-1);
+
+    int gyred = (image[e][d].rgbtRed)*(multi1) + (image[e][b].rgbtRed)*(multi2) + (image[e][c].rgbtRed)*(multi1);
+
+    int finalred = round(sqrt ( pow(gxred,2)+pow(gyred,2) ));
+
+    if (finalred > 255)
+    {
+        finalred = 255;
+    }
+
+    newpixel[a][b].rgbtBlue = finalblue;
+    newpixel[a][b].rgbtGreen = finalgreen;
+    newpixel[a][b].rgbtRed = finalred;
+
+    return;
+}
 
 
 

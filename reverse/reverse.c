@@ -6,6 +6,7 @@
 
 int check_format(WAVHEADER header);
 int get_block_size(WAVHEADER header);
+int checkwav(char input[]);
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,11 @@ int main(int argc, char *argv[])
     {
         printf("Usage: ./reverse input.wav output.wav\n");
         return 1;
+    }
+    if ((checkwav(argv[1])) == 0)
+    {
+        printf("Input is not a WAV file.\n");
+        return 2;
     }
 
     // Open input file for reading
@@ -53,7 +59,7 @@ int get_block_size(WAVHEADER header)
 
 int checkwav(char input[])
 {
-    int temp;
+    int temp = 0;
     int i = 0;
     do
     {
@@ -64,7 +70,7 @@ int checkwav(char input[])
 
         i++;
     }
-    while (input[i] != '\0')
+    while (input[i] != '\0');
 
     if (input[temp + 1] == 'w' && input[temp + 2] == 'a' && input[temp + 3] == 'v' && input [temp + 4] == '\0')
     {

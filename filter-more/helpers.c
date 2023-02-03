@@ -13,6 +13,7 @@ void topleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTR
 void bottomleftcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void toprightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void bottomrightcorneredge (int a, int b, int c, int d, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
+void columnpixeledge (int a, int b, int c, int d, int e, int multi1, int multi2, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 void centrepixeledge(int a, int b, int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE newpixel[height][width]);
 
 // Convert image to grayscale
@@ -180,15 +181,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-             if (i == 0 && j ==0)
-             {
+            //Top Left Pixel
+            if (i == 0 && j ==0)
+            {
                 int a = 0;
                 int b = 0;
                 int c = 1;
                 int d = 1;
                 topleftcorneredge (a,b,c,d,height,width,image,newpixel);
 
-             }
+            }
+            //Top Right Pixel
             else if (i == 0 && j == width-1)
             {
                 int a = 0;
@@ -198,13 +201,23 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 toprightcorneredge (a,b,c,d,height,width,image,newpixel);
 
             }
-            else if (i == 0)
+            //Top Row Pixel but not corners
+            else if (i == 0 && j != width-1)
             {
+
 
             }
+            //First Column Pixels but not corners
             else if (j == 0 && i !=height-1)
             {
-
+                int a = i;
+                int b = 0;
+                int c = 1;
+                int d = i - 1;
+                int e = i + 1;
+                int multi1 = 1
+                int multi2 = 2
+                columnpixeledge ()
             }
             else if (j == width - 1 && i !=height-1)
             {

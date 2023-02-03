@@ -11,9 +11,7 @@ int main(int argc, char *argv[])
 {
     // Ensure proper usage
     // TODO #1
-    char *output;
-
-    output = getchar( )
+    
 
     // Open input file for reading
     // TODO #2

@@ -72,17 +72,33 @@ int main(int argc, char *argv[])
     int i = 1;
 
     //If monochannel
-    fseek(inptr, i * blocksize, SEEK_END);
-    do
+    if (header.numChannels == 1)
     {
-    fread(temp, blocksize, 1, inptr);
-    fwrite(temp, blocksize, 1, outptr);
-    i++;
-    fseek(temp, i * blocksize, 1, inptr);
+        fseek(inptr, i * blocksize, SEEK_END);
+        do
+        {
+            fread(temp, blocksize, 1, inptr);
+            fwrite(temp, blocksize, 1, outptr);
+            i++;
+            fseek(temp, i * blocksize, 1, inptr);
     }
-    while(ftell(inptr) > 44);
-    
+    while(ftell(inptr) > sizeof(WAVHEADER));
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 int check_format(WAVHEADER header)
 {

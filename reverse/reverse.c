@@ -70,40 +70,19 @@ int main(int argc, char *argv[])
     // TODO #8
     BYTE temp[blocksize];
     int i = 1;
-
-    //If monochannel
-    if (header.numChannels == 1)
+    //leng represents the current position of the pointer (e.g leng = 44 means you are currently looking at byte no. 44)
+    int leng;
+    fseek(inptr, -((i * blocksize)), SEEK_END);
+    do
     {
-        int leng;
+        fread(temp, blocksize, 1, inptr);
+        fwrite(temp, blocksize, 1, outptr);
+        i++;
+
         fseek(inptr, -((i * blocksize)), SEEK_END);
-        do
-        {
-            fread(temp, blocksize, 1, inptr);
-            fwrite(temp, blocksize, 1, outptr);
-            i++;
-
-            fseek(inptr, -((i * blocksize)), SEEK_END);
-            leng = ftell(inptr);
-        }
-        while (leng > 43);
-
-
+        leng = ftell(inptr);
     }
-    else if (header.numChannels == 2)
-    {
-        int leng;
-        fseek(inptr, -((i * blocksize)), SEEK_END);
-        do
-        {
-            fread(temp, blocksize, 1, inptr);
-            fwrite(temp, blocksize, 1, outptr);
-            i++;
-
-            fseek(inptr, -((i * blocksize)), SEEK_END);
-            leng = ftell(inptr);
-        }
-        while (leng > 43);
-    }
+    while (leng > 43);
 
 fclose(inptr);
 fclose(outptr);

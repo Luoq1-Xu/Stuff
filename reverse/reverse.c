@@ -83,7 +83,8 @@ int main(int argc, char *argv[])
             i++;
             fseek(inptr, i * blocksize, SEEK_END);
         }
-        printf()
+        int leng = ftell(inptr);
+        printf("%d\n",leng);
 
     }
     else if (header.numChannels == 2)
@@ -96,7 +97,8 @@ int main(int argc, char *argv[])
             i++;
             fseek(inptr, i * blocksize, SEEK_END);
         }
-
+        int leng = ftell(inptr);
+        printf("%d\n",leng);
 
     }
 

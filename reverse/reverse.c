@@ -64,11 +64,11 @@ int main(int argc, char *argv[])
 
     // Use get_block_size to calculate size of block
     // TODO #7
-    int blocksize = get_block_size(header)
+    int blocksize = get_block_size(header);
 
     // Write reversed audio to file
     // TODO #8
-    temp[blocksize];
+    BYTE temp[blocksize];
     int i = 1;
 
     //If monochannel
@@ -80,15 +80,28 @@ int main(int argc, char *argv[])
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
             i++;
-            fseek(temp, i * blocksize, 1, inptr);
-    }
-    while(ftell(inptr) > sizeof(WAVHEADER));
+            fseek(inptr, i * blocksize, SEEK_END);
+        }
+        while(ftell(inptr) > sizeof(WAVHEADER));
+
     }
     else if (header.numChannels == 2)
     {
-        f
+        fseek(inptr, 2 * i * blocksize, SEEK_END);
+        do
+        {
+            fread(temp, blocksize, 1, inptr);
+            fwrite(temp, blocksize, 1, outptr);
+            i++;
+            fseek(inptr, i * blocksize, SEEK_END);
+        }
+        while (ftell(inptr) > sizeof(WAVHEADER));
+
     }
 
+fclose(inptr);
+fclose(outptr);
+return 0;
 }
 
 
@@ -119,7 +132,7 @@ int check_format(WAVHEADER header)
 int get_block_size(WAVHEADER header)
 {
     // TODO #7
-    int blocksize = header.numChannels * (header.bitsPerSample/8)
+    int blocksize = header.numChannels * (header.bitsPerSample/8);
     return blocksize;
 }
 

@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     else if (header.numChannels == 2)
     {
         int leng;
-        fseek(inptr, -(2 * i * blocksize + (1)), SEEK_END);
+        fseek(inptr, -((2 * i * blocksize) + (1)), SEEK_END);
         do
         {
             fread(temp, blocksize, 1, inptr);
@@ -105,7 +105,8 @@ int main(int argc, char *argv[])
             printf("%i\n", leng);
         }
         while(leng > 44);
-
+        BYTE test[blocksize];
+        
 
     }
 

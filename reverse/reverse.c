@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
             i++;
             fseek(inptr, -((2 * i * blocksize) + 1), SEEK_END);
             leng = ftell(inptr);
-
+            printf("%i\n", leng);
         }
         while(leng > 44);
 

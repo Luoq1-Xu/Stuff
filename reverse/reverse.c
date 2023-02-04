@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
 
     // Write header to file
     // TODO #6
-
     
+
 
     // Use get_block_size to calculate size of block
     // TODO #7

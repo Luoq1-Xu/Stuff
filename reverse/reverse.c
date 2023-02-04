@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
             leng = ftell(inptr);
             printf("%i\n", leng);
         }
-        while (i < 1000);
+        while (leng > 42);
 
 
     }

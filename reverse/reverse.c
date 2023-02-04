@@ -69,11 +69,13 @@ int main(int argc, char *argv[])
     // Write reversed audio to file
     // TODO #8
     temp[blocksize];
+    int i = 0;
     do
     {
     fseek(*inptr, blocksize, SEEK_END);
     fread(temp, blocksize, 1, *inptr);
-    
+    fwrite(temp, blocksize, 1, *outptr);
+    i++;
     }
 
 }

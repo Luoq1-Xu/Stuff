@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     if (inptr == NULL)
     {
          printf("Could not open %s.\n", infile);
-         return 1;
+         return 3;
     }
 
     // Read header into an array
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     if (check_format(header) == 0)
     {
         printf("Invalid Format :(\n");
-        return 1;
+        return 4;
     }
 
     // Open output file for writing
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     if (outptr == NULL)
     {
         printf("Failed to create output file.\n");
-        return 1;
+        return 5;
     }
 
     // Write header to file

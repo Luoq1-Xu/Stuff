@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     temp[blocksize];
     fseek(*inptr, blocksize, SEEK_END);
     fread(temp, blocksize, 1, *inptr);
-
+    ftell
     while(ftell(*inptr) != )
 
 }

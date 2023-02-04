@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
     {
         fseek(inptr, i * blocksize, SEEK_END);
 
-
         {
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
@@ -89,7 +88,7 @@ int main(int argc, char *argv[])
     }
     else if (header.numChannels == 2)
     {
-        fseek(inptr, 2 * i * blocksize, SEEK_END);
+        fseek(inptr, -(2 * i * blocksize + (1)), SEEK_END);
 
         {
             fread(temp, blocksize, 1, inptr);

@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
     FILE *inptr = fopen(infile, "r");
     if (inptr == NULL)
     {
-         printf("Could not open %s.\n", infile);
-         return 3;
+        printf("Could not open %s.\n", infile);
+        return 3;
     }
 
     // Read header into an array
@@ -84,9 +84,9 @@ int main(int argc, char *argv[])
     }
     while (leng > 43);
 
-fclose(inptr);
-fclose(outptr);
-return 0;
+    fclose(inptr);
+    fclose(outptr);
+    return 0;
 
 }
 
@@ -108,7 +108,7 @@ return 0;
 int check_format(WAVHEADER header)
 {
     // TODO #4
-    if(header.format[0] == 'W' && header.format[1] == 'A' && header.format[2] == 'V' && header.format[3] == 'E')
+    if (header.format[0] == 'W' && header.format[1] == 'A' && header.format[2] == 'V' && header.format[3] == 'E')
     {
         return 0;
     }
@@ -121,7 +121,7 @@ int check_format(WAVHEADER header)
 int get_block_size(WAVHEADER header)
 {
     // TODO #7
-    int blocksize = header.numChannels * (header.bitsPerSample/8);
+    int blocksize = header.numChannels * (header.bitsPerSample / 8);
     return blocksize;
 }
 

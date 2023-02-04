@@ -74,35 +74,36 @@ int main(int argc, char *argv[])
     //If monochannel
     if (header.numChannels == 1)
     {
-        fseek(inptr, i * blocksize, SEEK_END);
-
-        {
-            fread(temp, blocksize, 1, inptr);
-            fwrite(temp, blocksize, 1, outptr);
-            i++;
-            fseek(inptr, i * blocksize, SEEK_END);
-        }
-        int leng = ftell(inptr);
-        printf("%d\n",leng);
-
-    }
-    else if (header.numChannels == 2)
-    {
         int leng;
-        fseek(inptr, -((i * blocksize) + (1)), SEEK_END);
+        fseek(inptr, -(i * blocksize), SEEK_END);
         do
         {
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
             i++;
 
-            fseek(inptr, -((i * blocksize) + 1), SEEK_END);
+            fseek(inptr, -(i * blocksize), SEEK_END);
             leng = ftell(inptr);
             printf("%i\n", leng);
         }
-        while (leng > 42);
+        while (leng > 43);
 
+    }
+    else if (header.numChannels == 2)
+    {
+        int leng;
+        fseek(inptr, -((i * blocksize)), SEEK_END);
+        do
+        {
+            fread(temp, blocksize, 1, inptr);
+            fwrite(temp, blocksize, 1, outptr);
+            i++;
 
+            fseek(inptr, -((i * blocksize)), SEEK_END);
+            leng = ftell(inptr);
+            printf("%i\n", leng);
+        }
+        while (leng > 43);
     }
 
 fclose(inptr);

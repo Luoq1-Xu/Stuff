@@ -104,9 +104,8 @@ int main(int argc, char *argv[])
             leng = ftell(inptr);
             printf("%i\n", leng);
         }
-        while(leng > 44);
-        BYTE test[blocksize];
-        
+        while(leng > 42);
+
 
     }
 

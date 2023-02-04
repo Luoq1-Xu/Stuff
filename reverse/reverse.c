@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
 
     // Read header into an array
     // TODO #3
-    WAVHEADER wav = fread(inptr, 44, )
+    WAVHEADER wavhead;
+    fread()
 
     // Use check_format to ensure WAV format
     // TODO #4

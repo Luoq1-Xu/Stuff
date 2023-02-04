@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     if (header.numChannels == 1)
     {
         int leng;
-        fseek(inptr, -(i * blocksize), SEEK_END);
+        fseek(inptr, -2, SEEK_END);
         do
         {
             fread(temp, blocksize, 1, inptr);

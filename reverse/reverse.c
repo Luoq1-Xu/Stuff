@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     // TODO #8
     temp[blocksize];
     fseek(*inptr, blocksize, SEEK_END);
-    fread(temp)
+    fread(temp, blocksize, 1, *inptr);
 
     while(ftell(*inptr) != )
 

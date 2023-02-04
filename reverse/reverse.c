@@ -39,8 +39,6 @@ int main(int argc, char *argv[])
     // TODO #3
     WAVHEADER header;
     fread(&header, sizeof(WAVHEADER), 1, inptr);
-    int ojas = ftell(inptr);
-    printf("%i\n",ojas);
 
     // Use check_format to ensure WAV format
     // TODO #4

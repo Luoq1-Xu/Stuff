@@ -31,11 +31,12 @@ int main(int argc, char *argv[])
     if (inptr == NULL)
     {
          printf("Could not open %s.\n", infile);
-         return 3;
+         return 1;
     }
 
     // Read header into an array
     // TODO #3
+    
 
     // Use check_format to ensure WAV format
     // TODO #4

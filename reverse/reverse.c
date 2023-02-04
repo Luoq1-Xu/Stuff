@@ -43,11 +43,13 @@ int main(int argc, char *argv[])
     // TODO #4
     if (check_formate(header) == 0)
     {
-        printf("Invalid)
+        printf("Invalid Format :(\n");
+        return 1;
     }
 
     // Open output file for writing
     // TODO #5
+    
 
     // Write header to file
     // TODO #6

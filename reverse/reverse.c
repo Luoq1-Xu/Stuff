@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
     // Use check_format to ensure WAV format
     // TODO #4
-    if (check_formate(header) == 0)
+    if (check_format(header) == 0)
     {
         printf("Invalid Format :(\n");
         return 1;
@@ -49,7 +49,12 @@ int main(int argc, char *argv[])
 
     // Open output file for writing
     // TODO #5
-    
+    FILE *outptr = fopen(outfile, "w");
+    if (outptr == NULL)
+    {
+        printf("Failed to create output file.\n");
+        return 1;
+    }
 
     // Write header to file
     // TODO #6

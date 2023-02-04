@@ -64,7 +64,7 @@ int check_format(WAVHEADER header)
     }
     else
     {
-        printf()
+        return 0;
     }
 }
 

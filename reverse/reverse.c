@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
     // TODO #8
     temp[blocksize];
     fseek(*inptr, 0, SEEK_END);
+    
     while(ftell(*inptr) != )
 
 }

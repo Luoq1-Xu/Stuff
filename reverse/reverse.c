@@ -75,27 +75,28 @@ int main(int argc, char *argv[])
     if (header.numChannels == 1)
     {
         fseek(inptr, i * blocksize, SEEK_END);
-        do
+
+
         {
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
             i++;
             fseek(inptr, i * blocksize, SEEK_END);
         }
-        while(ftell(inptr) > sizeof(WAVHEADER));
+        printf()
 
     }
     else if (header.numChannels == 2)
     {
         fseek(inptr, 2 * i * blocksize, SEEK_END);
-        do
+
         {
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
             i++;
             fseek(inptr, i * blocksize, SEEK_END);
         }
-        while (ftell(inptr) > sizeof(WAVHEADER));
+
 
     }
 

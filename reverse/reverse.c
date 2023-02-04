@@ -89,22 +89,22 @@ int main(int argc, char *argv[])
     else if (header.numChannels == 2)
     {
         int leng;
-        fseek(inptr, -((2 * i * blocksize) + (1)), SEEK_END);
+        fseek(inptr, -((i * blocksize) + (1)), SEEK_END);
         do
         {
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
 
-            fseek(inptr, -((i * blocksize) + 1), SEEK_END);
+            fseek(inptr, -((i * (blocksize/2)) + 1), SEEK_END);
 
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
             i++;
-            fseek(inptr, -((2 * i * blocksize) + 1), SEEK_END);
+            fseek(inptr, -((i * blocksize) + 1), SEEK_END);
             leng = ftell(inptr);
             printf("%i\n", leng);
         }
-        while(leng > 42);
+        while (i < 1000)
 
 
     }

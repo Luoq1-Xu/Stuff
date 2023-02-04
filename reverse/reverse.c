@@ -69,15 +69,19 @@ int main(int argc, char *argv[])
     // Write reversed audio to file
     // TODO #8
     temp[blocksize];
-    int i = 0;
+    int i = 1;
+
+    //If monochannel
+    fseek(inptr, i * blocksize, SEEK_END);
     do
     {
-    fseek(*inptr, blocksize, SEEK_END);
-    fread(temp, blocksize, 1, *inptr);
-    fwrite(temp, blocksize, 1, *outptr);
+    fread(temp, blocksize, 1, inptr);
+    fwrite(temp, blocksize, 1, outptr);
     i++;
+    fseek(temp, i * blocksize, 1, inptr);
     }
-
+    while(ftell(inptr) > 44);
+    
 }
 
 int check_format(WAVHEADER header)

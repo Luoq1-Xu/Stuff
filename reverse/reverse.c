@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     char *outfile = argv[2];
     // Open input file for reading
     // TODO #2
-    
+
     FILE *inptr = fopen(infile, "r");
     if (inptr == NULL)
     {
@@ -59,6 +59,8 @@ int main(int argc, char *argv[])
 
     // Write header to file
     // TODO #6
+
+    
 
     // Use get_block_size to calculate size of block
     // TODO #7

@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
     char *outfile = argv[2];
     // Open input file for reading
     // TODO #2
+    
     FILE *inptr = fopen(infile, "r");
     if (inptr == NULL)
     {

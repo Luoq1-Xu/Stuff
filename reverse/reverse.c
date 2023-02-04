@@ -84,7 +84,10 @@ int main(int argc, char *argv[])
     }
     while(ftell(inptr) > sizeof(WAVHEADER));
     }
-
+    else if (header.numChannels == 2)
+    {
+        f
+    }
 
 }
 

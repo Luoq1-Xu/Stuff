@@ -85,6 +85,7 @@ int check_format(WAVHEADER header)
 int get_block_size(WAVHEADER header)
 {
     // TODO #7
+    WORD block_size = 
     return 0;
 }
 

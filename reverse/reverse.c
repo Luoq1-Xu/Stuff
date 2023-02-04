@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 
           }
           while (leng > 43);
- }
+   }
 
 fclose(inptr);
 fclose(outptr);

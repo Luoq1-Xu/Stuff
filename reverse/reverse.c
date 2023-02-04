@@ -107,8 +107,8 @@ int main(int argc, char *argv[])
             leng = ftell(inptr);
 
           }
-        while (leng > 43);
-    }
+          while (leng > 43);
+ }
 
 fclose(inptr);
 fclose(outptr);

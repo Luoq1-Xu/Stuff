@@ -88,16 +88,23 @@ int main(int argc, char *argv[])
     }
     else if (header.numChannels == 2)
     {
+        int leng;
         fseek(inptr, -(2 * i * blocksize + (1)), SEEK_END);
-
         {
             fread(temp, blocksize, 1, inptr);
             fwrite(temp, blocksize, 1, outptr);
+
+            fseek(inptr, -((i * blocksize) + 1), SEEK_END);
+
+            fread(temp, blocksize, 1, inptr);
+            fwrite(temp, blocksize, 1, outptr);
             i++;
-            fseek(inptr, i * blocksize, SEEK_END);
+            fseek(inptr, -((2 * i * blocksize) + 1), SEEK_END);
+            leng = ftell(inptr);
+
         }
-        int leng = ftell(inptr);
-        printf("%d\n",leng);
+        while(leng > 44);
+
 
     }
 

@@ -75,23 +75,6 @@ int main(int argc, char *argv[])
     if (header.numChannels == 1)
     {
         int leng;
-        fseek(inptr, -2, SEEK_END);
-        do
-        {
-            fread(temp, blocksize, 1, inptr);
-            fwrite(temp, blocksize, 1, outptr);
-            i++;
-
-            fseek(inptr, -(i * blocksize), SEEK_END);
-            leng = ftell(inptr);
-            printf("%i\n", leng);
-        }
-        while (leng > 43);
-
-    }
-    else if (header.numChannels == 2)
-    {
-        int leng;
         fseek(inptr, -((i * blocksize)), SEEK_END);
         do
         {
@@ -104,6 +87,28 @@ int main(int argc, char *argv[])
             printf("%i\n", leng);
         }
         while (leng > 43);
+
+
+    }
+    else if (header.numChannels == 2)
+    {
+        int leng;
+        fseek(inptr, -2, SEEK_END);
+        do
+        {
+            fread(temp, sizeof(BYTE), 1, inptr);
+            fwrite(temp, sizeof(BYTE), 1, outptr);
+
+            fread(temp, sizeof(BYTE), 1, inptr);
+            fwrite(temp, sizeof(BYTE), 1, outptr);
+            i++;
+
+            fseek(inptr, -(i * 2), SEEK_END);
+
+            leng = ftell(inptr);
+
+          }
+        while (leng > 43);
     }
 
 fclose(inptr);
@@ -111,6 +116,9 @@ fclose(outptr);
 return 0;
 
 }
+
+
+
 
 
 

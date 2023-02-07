@@ -44,7 +44,7 @@ person *create_family(int generations)
     if (p == NULL)
     {
         printf("Ran out of Memory!\n");
-        return 1;
+        return NULL;
     }
     // If there are still generations left to create
     if (generations > 1)

@@ -30,10 +30,21 @@ bool check(const char *word)
     // TODO
     if (trav->next == NULL)
     {
+        if (!stringcompare(word, trav->word))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else if
+    {
         
     }
 
-    return false;
+
 }
 
 // Hashes word to a number

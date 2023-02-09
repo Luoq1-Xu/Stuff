@@ -24,7 +24,8 @@ bool check(const char *word)
 {
     // TODO
     node *trav;
-    trav = 
+    trav = table[hash(word)];
+    if trav->
     return false;
 }
 

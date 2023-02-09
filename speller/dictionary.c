@@ -23,6 +23,8 @@ node *table[N];
 bool check(const char *word)
 {
     // TODO
+    node *trav;
+    
     return false;
 }
 

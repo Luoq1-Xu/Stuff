@@ -96,7 +96,7 @@ bool load(const char *dictionary)
             {
                 point = point->next;
             }
-            if point->word[]
+            if (point->word[0])
 
 
         }

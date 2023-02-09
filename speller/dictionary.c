@@ -67,9 +67,10 @@ bool load(const char *dictionary)
     // TODO
     FILE *inptr = fopen(dictionary, "r");
     char c;
+    char word[LENGTH + 1];
     while (fread(&c, sizeof(char), 1, inptr))
     {
-    
+
     }
     return false;
 }

@@ -41,7 +41,14 @@ bool check(const char *word)
     }
     else if
     {
-        
+        if(!stringcompare(word, trav->word))
+        {
+            check(word);
+        }
+        else
+        {
+            return true;
+        }
     }
 
 

@@ -66,10 +66,19 @@ bool load(const char *dictionary)
 {
     // TODO
     FILE *inptr = fopen(dictionary, "r");
+    if (inptr == NULL)
+    {
+        return false;
+    }
+
     char c;
     char tempword[LENGTH + 1];
     int counter = 0;
     int key = NULL;
+    node *point;
+
+
+
     while (fread(&c, sizeof(char), 1, inptr))
     {
         if (c != '\n')
@@ -81,6 +90,7 @@ bool load(const char *dictionary)
         {
             tempword[counter + 1] = '\0'
             key = hash(word);
+
 
         }
 

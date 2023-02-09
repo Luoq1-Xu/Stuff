@@ -142,3 +142,4 @@ bool stringcompare(char *primaryword, char *string2)
         return true;
     }
 }
+

@@ -68,8 +68,13 @@ bool load(const char *dictionary)
     FILE *inptr = fopen(dictionary, "r");
     char c;
     char word[LENGTH + 1];
+    int counter = 0;
     while (fread(&c, sizeof(char), 1, inptr))
     {
+        if (c != '\n')
+        {
+        word[counter] = c;
+        counter++;
 
     }
     return false;

@@ -92,13 +92,18 @@ bool load(const char *dictionary)
             tempword[counter + 1] = '\0'
             key = hash(word);
             point = table[key];
+
             while (point->next != NULL)
             {
                 point = point->next;
             }
-            if (point->word[0] == 0)
+
+            if (point->word[0] < 97 || point->word[0] > 122)
             {
-                for(i)
+                for(int i =0; i < counter + 2; i++)
+                {
+                    point->word[i] = tempword[i];
+                }
             }
 
 

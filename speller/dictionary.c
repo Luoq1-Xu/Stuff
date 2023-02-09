@@ -75,8 +75,12 @@ bool load(const char *dictionary)
         {
         word[counter] = c;
         counter++;
+        }
+        else if (c == '\n')
+        {
+            
+        }
 
-    }
     return false;
 }
 

@@ -113,7 +113,7 @@ bool load(const char *dictionary)
                 {
                     return false;
                 }
-                
+                temp->next 
             }
 
 

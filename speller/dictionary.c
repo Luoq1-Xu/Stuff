@@ -5,6 +5,8 @@
 
 #include "dictionary.h"
 
+bool stringcompare(char *primaryword, char *string2);
+
 // Represents a node in a hash table
 typedef struct node
 {
@@ -25,7 +27,8 @@ bool check(const char *word)
     // TODO
     node *trav;
     trav = table[hash(word)];
-    if trav->
+    if (!stringcompare(word, trav->word))
+    
     return false;
 }
 
@@ -64,14 +67,24 @@ bool unload(void)
 
 
 
-bool stringcompare(char *wordtobecompared, char *string2)
+bool stringcompare(char *primaryword, char *string2)
 {
-    for(int i = 0; wordtobecompared[i] == '\0'; i++)
+    int i = 0;
+    do
     {
-        if (wordtobecompared[i] != string2[i])
+        if(primaryword[i]!= string2[i])
         {
             return false;
         }
+        i++
     }
-    
+    while (primaryword[i] != '\0');
+    if (string2[i] != '\0')
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

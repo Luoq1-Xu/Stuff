@@ -65,7 +65,7 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO
-    FILE *inptr = fopen()
+    FILE *inptr = fopen(dictionary, "r");
     return false;
 }
 

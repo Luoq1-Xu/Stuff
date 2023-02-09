@@ -24,7 +24,6 @@ bool check(const char *word)
 {
     // TODO
     node *trav;
-    trav = table[word[0]-]
     return false;
 }
 

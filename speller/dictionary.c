@@ -56,3 +56,22 @@ bool unload(void)
     // TODO
     return false;
 }
+
+
+
+
+
+
+
+
+bool stringcompare(char *wordtobecompared, char *string2)
+{
+    for(int i = 0; wordtobecompared[i] == '\0'; i++)
+    {
+        if (wordtobecompared[i] != string2[i])
+        {
+            return false;
+        }
+    }
+    
+}

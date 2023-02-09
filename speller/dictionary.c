@@ -24,6 +24,7 @@ bool check(const char *word)
 {
     // TODO
     node *trav;
+    trav = 
     return false;
 }
 

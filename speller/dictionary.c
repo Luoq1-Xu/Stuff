@@ -76,6 +76,7 @@ bool load(const char *dictionary)
     int counter = 0;
     int key = NULL;
     node *point;
+    point = table;
 
 
 
@@ -90,6 +91,7 @@ bool load(const char *dictionary)
         {
             tempword[counter + 1] = '\0'
             key = hash(word);
+            if ()
 
 
         }

@@ -91,7 +91,12 @@ bool load(const char *dictionary)
         {
             tempword[counter + 1] = '\0'
             key = hash(word);
-            if ()
+            point = table[key];
+            while (point->next != NULL)
+            {
+                point = point->next;
+            }
+            tab
 
 
         }

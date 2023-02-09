@@ -66,6 +66,7 @@ bool load(const char *dictionary)
 {
     // TODO
     FILE *inptr = fopen(dictionary, "r");
+    
     return false;
 }
 

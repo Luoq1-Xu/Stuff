@@ -73,11 +73,12 @@ bool load(const char *dictionary)
     {
         if (c != '\n')
         {
-        word[counter] = c;
-        counter++;
+            word[counter] = c;
+            counter++;
         }
         else if (c == '\n')
         {
+            word[counter + 1] = '\0'
             
         }
 
@@ -117,6 +118,7 @@ bool stringcompare(char *primaryword, char *string2)
         i++
     }
     while (primaryword[i] != '\0');
+
     if (string2[i] != '\0')
     {
         return false;

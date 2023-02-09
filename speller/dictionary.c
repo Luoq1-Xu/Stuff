@@ -108,6 +108,11 @@ bool load(const char *dictionary)
             }
             else
             {
+                node *temp = malloc(sizeof(node));
+                if (temp == NULL)
+                {
+                    return false;
+                }
                 
             }
 

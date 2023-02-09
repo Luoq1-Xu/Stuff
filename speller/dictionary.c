@@ -104,6 +104,10 @@ bool load(const char *dictionary)
                 {
                     point->word[i] = tempword[i];
                 }
+                counter = 0;
+            }
+            else
+            {
                 
             }
 

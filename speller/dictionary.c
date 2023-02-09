@@ -66,7 +66,11 @@ bool load(const char *dictionary)
 {
     // TODO
     FILE *inptr = fopen(dictionary, "r");
-    for ()
+    char c;
+    while (fread(&c, sizeof(char), 1, inptr))
+    {
+    
+    }
     return false;
 }
 

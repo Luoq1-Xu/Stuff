@@ -21,14 +21,18 @@ const unsigned int N = 26;
 // Hash table
 node *table[N];
 
+// Traversing pointer
+node *trav;
+
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
     // TODO
-    node *trav;
-    trav = table[hash(word)];
-    if (!stringcompare(word, trav->word))
-    
+    if (trav->next == NULL)
+    {
+        
+    }
+
     return false;
 }
 

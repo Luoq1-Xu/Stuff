@@ -93,7 +93,7 @@ bool load(const char *dictionary)
 
             if (table[key]->word[0] < 97 || table[key]->word[0] > 122)
             {
-                for (int i =0; i < counter; i++)
+                for (int i = 0; i < counter; i++)
                 {
                     point->word[i] = tempword[i];
                 }
@@ -109,7 +109,7 @@ bool load(const char *dictionary)
                 temp->next = table[key];
                 table[key] = temp;
 
-                for (int i =0; i < counter; i++)
+                for (int i = 0; i < counter; i++)
                 {
                     temp->word[i] = tempword[i];
                 }

@@ -114,8 +114,7 @@ bool load(const char *dictionary)
             counter = 0;
         }
 
-    return false;
-}
+    }
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded

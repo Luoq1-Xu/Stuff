@@ -89,8 +89,7 @@ bool load(const char *dictionary)
         }
         else if (c == '\n')
         {
-            tempword[counter + 1] = '\0';
-            key = hash(word);
+            key = hash(tempword);
 
             if (table[key]->word[0] < 97 || table[key]->word[0] > 122)
             {
@@ -110,7 +109,7 @@ bool load(const char *dictionary)
                 temp->next = table[key];
                 table[key] = temp;
 
-                
+
             }
             counter = 0;
         }

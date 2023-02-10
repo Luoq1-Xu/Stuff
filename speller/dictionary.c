@@ -115,9 +115,7 @@ bool load(const char *dictionary)
                 }
                 counter = 0;
 
-
             }
-            counter = 0;
         }
 
     }

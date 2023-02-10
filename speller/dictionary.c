@@ -91,9 +91,8 @@ bool load(const char *dictionary)
         {
             tempword[counter + 1] = '\0';
             key = hash(word);
-            point = table[key];
 
-            if (point->word[0] < 97 || point->word[0] > 122)
+            if (table[key]->word[0] < 97 || table[key]->word[0] > 122)
             {
                 for(int i =0; i < counter + 2; i++)
                 {
@@ -108,8 +107,10 @@ bool load(const char *dictionary)
                 {
                     return false;
                 }
-                temp->next = point->next;
-                point = temp;
+                temp->next = table[key];
+                table[key] = temp;
+
+                
             }
             counter = 0;
         }

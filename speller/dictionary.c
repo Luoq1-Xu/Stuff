@@ -116,8 +116,7 @@ bool load(const char *dictionary)
                 temp->next = point;
                 point = temp;
             }
-
-
+            
         }
 
     return false;

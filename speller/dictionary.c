@@ -77,8 +77,6 @@ bool load(const char *dictionary)
     char tempword[LENGTH + 1];
     int counter = 0;
     int key = 0;
-    node *point;
-
 
 
     while (fread(&c, sizeof(char), 1, inptr))
@@ -93,31 +91,20 @@ bool load(const char *dictionary)
             key = hash(tempword);
             point = table[key];
 
-            if (isalpha(table[key]->word[0]) == 0)
-            {
-                for (int i = 0; i < counter; i++)
-                {
-                    point->word[i] = tempword[i];
-                }
-                counter = 0;
-            }
-            else
-            {
-                node *temp = malloc(sizeof(node));
-                if (temp == NULL)
-                {
-                    return false;
-                }
-                temp->next = table[key];
-                table[key] = temp;
 
-                for (int i = 0; i < counter; i++)
-                {
-                    temp->word[i] = tempword[i];
-                }
-                counter = 0;
-
+            node *temp = malloc(sizeof(node));
+            if (temp == NULL)
+            {
+                return false;
             }
+            temp->next = table[key];
+            table[key] = temp;
+
+            for (int i = 0; i < counter; i++)
+            {
+                temp->word[i] = tempword[i];
+            }
+            counter = 0;
         }
 
     }

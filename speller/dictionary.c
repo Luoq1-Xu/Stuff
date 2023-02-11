@@ -199,8 +199,9 @@ void destroy(node *list)
     }
 }
 
-bool searchlist()
-if (trav->next == NULL)
+bool searchlist(char *word, int key)
+{
+    if (trav->next == NULL)
     {
         if (!stringcompare(word, trav->word))
         {
@@ -222,3 +223,4 @@ if (trav->next == NULL)
             return true;
         }
     }
+}

@@ -128,7 +128,7 @@ unsigned int size(void)
     // TODO
     for (int i = 0; i < N; i++ )
     {
-        
+
     }
     return 0;
 }
@@ -137,6 +137,7 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
+
     return false;
 }
 
@@ -169,4 +170,7 @@ bool stringcompare(char *primaryword, char *string2)
         return true;
     }
 }
+
+
+
 

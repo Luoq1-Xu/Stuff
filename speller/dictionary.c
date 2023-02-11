@@ -198,14 +198,21 @@ bool unload(void)
 
 void destroy(node *list)
 {
-    if(list->next == NULL)
+    if (list == NULL)
     {
-        free(list);
         return;
     }
     else
     {
-        destroy(list->next);
+        if(list->next == NULL)
+        {
+            free(list);
+            return;
+        }
+        else
+        {
+            destroy(list->next);
+        }
     }
 }
 

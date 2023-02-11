@@ -183,11 +183,6 @@ bool unload(void)
     {
         destroy(table[i]);
     }
-    for (int j = 0; j < N; j++)
-    {
-        if (table[j] != NULL)
-        return false;
-    }
     return true;
 }
 

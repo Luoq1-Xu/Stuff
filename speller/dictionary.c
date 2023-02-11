@@ -69,7 +69,6 @@ bool load(const char *dictionary)
     int counter = 0;
     int key = NULL;
     node *point;
-    point = table;
 
 
 
@@ -83,6 +82,7 @@ bool load(const char *dictionary)
         else if (c == '\n')
         {
             key = hash(tempword);
+            point = table[key];
 
             if (isalpha(table[key]->word[0]) == 0)
             {
@@ -123,7 +123,7 @@ unsigned int size(void)
     int words = 0;
     node *point;
 
-    if loadfinish = false
+    if (loadfinish == false)
     {
         return 0;
     }

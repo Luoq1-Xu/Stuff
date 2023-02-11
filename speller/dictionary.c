@@ -18,6 +18,8 @@ typedef struct node
 }
 node;
 
+void destroy(node *list);
+
 // TODO: Choose number of buckets in hash table
 const unsigned int N = 26;
 

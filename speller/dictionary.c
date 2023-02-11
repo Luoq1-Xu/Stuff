@@ -38,6 +38,7 @@ bool check(const char *word)
 
     int key = hash(word);
 
+    
     if (trav->next == NULL)
     {
         if (!stringcompare(word, trav->word))

@@ -123,6 +123,7 @@ bool load(const char *dictionary)
     }
     fclose(inptr);
     loadfinish = true;
+    return true;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded

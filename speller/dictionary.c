@@ -124,6 +124,8 @@ bool load(const char *dictionary)
                counter = 0;
             }
 
+        }
+
     }
     fclose(inptr);
     loadfinish = true;

@@ -35,6 +35,12 @@ bool check(const char *word)
     // TODO
     int key = hash(word);
     trav = table[key];
+    if (trav = NULL)
+    {
+        return false;
+    }
+    else
+    {
     while (trav->next != NULL)
     {
         if (strcasecmp(word, trav->word) == 0)
@@ -53,6 +59,7 @@ bool check(const char *word)
     else
     {
         return false;
+    }
     }
 }
 

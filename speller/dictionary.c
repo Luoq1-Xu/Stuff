@@ -84,7 +84,7 @@ bool load(const char *dictionary)
         {
             key = hash(tempword);
 
-            if (table[key]->word[0] < 97 || table[key]->word[0] > 122)
+            if (isalpha(table[key]->word[0]) == 0)
             {
                 for (int i = 0; i < counter; i++)
                 {

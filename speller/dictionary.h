@@ -15,5 +15,7 @@ unsigned int hash(const char *word);
 bool load(const char *dictionary);
 unsigned int size(void);
 bool unload(void);
+void destroy(node *list);
+bool searchlist(char *word, node *trav);
 
 #endif // DICTIONARY_H

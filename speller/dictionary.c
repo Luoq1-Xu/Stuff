@@ -137,7 +137,10 @@ unsigned int size(void)
                 counter++;
                 point = point->next;
             }
-           if ()
+            if (isalpha(point->word[0]) != 0)
+            {
+
+            }
         }
         return 1;
     }

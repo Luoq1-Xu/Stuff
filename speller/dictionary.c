@@ -120,7 +120,7 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-
+    int words = 0;
 
     if loadfinish = false
     {
@@ -130,7 +130,7 @@ unsigned int size(void)
     {
         for (int i = 0; i < N; i++ )
         {
-
+           while ()
         }
         return 1;
     }

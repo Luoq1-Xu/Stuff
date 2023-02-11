@@ -172,5 +172,11 @@ bool stringcompare(char *primaryword, char *string2)
 }
 
 
-
+void destroy(node *list)
+{
+    if(list->next == NULL)
+    {
+        free
+    }
+}
 

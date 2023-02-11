@@ -176,7 +176,12 @@ void destroy(node *list)
 {
     if(list->next == NULL)
     {
-        free
+        free(list);
+        return;
+    }
+    else
+    {
+        destroy(list->next);
     }
 }
 

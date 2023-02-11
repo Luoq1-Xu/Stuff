@@ -37,7 +37,7 @@ bool check(const char *word)
     trav = table[key];
     while (trav->next != NULL)
     {
-        if (strcmp(word, trav->word) == 0)
+        if (strcasecmp(word, trav->word) == 0)
         {
             return true;
         }
@@ -46,7 +46,7 @@ bool check(const char *word)
             trav = trav->next;
         }
     }
-    if (strcmp(word, trav->word) == 0)
+    if (strcasecmp(word, trav->word) == 0)
     {
         return true;
     }

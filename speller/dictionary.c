@@ -44,10 +44,14 @@ bool check(const char *word)
             trav = trav->next;
         }
     }
-    if tra
-
-
-
+    if (strcmp(word, trav->word) == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // Hashes word to a number

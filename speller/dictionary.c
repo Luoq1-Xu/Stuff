@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stlib.h>
+#include <string.h>
 
 #include "dictionary.h"
 
@@ -35,13 +36,6 @@ node *trav;
 bool check(const char *word)
 {
     // TODO
-    int j = 0;
-    while (word[j] != '\0')
-    {
-        word[j] = tolower(word[j]);
-        j++;
-    }
-
     int key = hash(word);
 
     return (searchlist(word, table[key]));
@@ -171,29 +165,6 @@ bool unload(void)
 
 
 
-bool stringcompare(char *primaryword, char *string2)
-{
-    int i = 0;
-    do
-    {
-        if(primaryword[i]!= string2[i])
-        {
-            return false;
-        }
-        i++
-    }
-    while (primaryword[i] != '\0');
-
-    if (string2[i] != '\0')
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-}
-
 
 void destroy(node *list)
 {
@@ -212,7 +183,7 @@ bool searchlist(char *word, node *trav)
 {
     if (trav->next == NULL)
     {
-        if (!stringcompare(word, trav->word))
+        if (!strcmp(word, trav->word))
         {
             return false;
         }

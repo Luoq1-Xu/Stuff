@@ -158,6 +158,8 @@ unsigned int size(void)
         for (int i = 0; i < N; i++ )
         {
             point = table[i];
+            if (point != NULL)
+            {
             while (point->next != NULL)
             {
                 words++;
@@ -166,6 +168,7 @@ unsigned int size(void)
             if (isalpha(point->word[0]) != 0)
             {
                 words++;
+            }
             }
         }
         return words;

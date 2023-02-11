@@ -121,6 +121,7 @@ unsigned int size(void)
 {
     // TODO
     int words = 0;
+    node *point;
 
     if loadfinish = false
     {
@@ -130,7 +131,11 @@ unsigned int size(void)
     {
         for (int i = 0; i < N; i++ )
         {
-           while (table[i]->next != NULL)
+            point = table[i];
+            while (point->next != NULL)
+           {
+              
+           }
         }
         return 1;
     }

@@ -192,28 +192,3 @@ void destroy(node *list)
     }
 }
 
-bool searchlist(char *word, node *trav)
-{
-    if (trav->next == NULL)
-    {
-        if (strcmp(word, trav->word) != 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    else
-    {
-        if(strcmp(word, trav->word) != 0)
-        {
-            searchlist(word, trav->next);
-        }
-        else
-        {
-            return true;
-        }
-    }
-}

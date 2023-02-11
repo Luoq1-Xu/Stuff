@@ -213,6 +213,8 @@ void destroy(node *list)
     else
     {
         destroy(list->next);
+        free(list);
+        return;
     }
 }
 

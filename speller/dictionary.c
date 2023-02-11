@@ -212,11 +212,11 @@ bool searchlist(char *word, node *trav)
             return true;
         }
     }
-    else 
+    else
     {
         if(!stringcompare(word, trav->word))
         {
-            check(word);
+            check(word, trav->next);
         }
         else
         {

@@ -10,7 +10,7 @@ void destroy(node *list);
 bool searchlist(char *word, node *trav);
 
 
-bool checkedfinish = false;
+bool loadfinish = false;
 
 // Represents a node in a hash table
 typedef struct node
@@ -112,19 +112,28 @@ bool load(const char *dictionary)
         }
 
     }
-    
+    fclose(inptr);
+    loadfinish = true;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-    int words = 0;
     // TODO
-    for (int i = 0; i < N; i++ )
-    {
 
+
+    if loadfinish = false
+    {
+        return 0;
     }
-    return 0;
+    else
+    {
+        for (int i = 0; i < N; i++ )
+        {
+
+        }
+        return 1;
+    }
 }
 
 // Unloads dictionary from memory, returning true if successful, else false

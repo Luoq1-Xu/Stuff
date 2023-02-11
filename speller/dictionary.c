@@ -133,9 +133,11 @@ unsigned int size(void)
         {
             point = table[i];
             while (point->next != NULL)
-           {
-              
-           }
+            {
+                counter++;
+                point = point->next;
+            }
+           if ()
         }
         return 1;
     }

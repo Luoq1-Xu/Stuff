@@ -63,7 +63,7 @@ bool load(const char *dictionary)
     char c;
     char tempword[LENGTH + 1];
     int counter = 0;
-    int key = NULL;
+    int key = 0;
     node *point;
 
 

@@ -38,7 +38,7 @@ bool check(const char *word)
 
     int key = hash(word);
 
-    
+
     if (trav->next == NULL)
     {
         if (!stringcompare(word, trav->word))
@@ -199,3 +199,26 @@ void destroy(node *list)
     }
 }
 
+bool searchlist()
+if (trav->next == NULL)
+    {
+        if (!stringcompare(word, trav->word))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else if
+    {
+        if(!stringcompare(word, trav->word))
+        {
+            check(word);
+        }
+        else
+        {
+            return true;
+        }
+    }

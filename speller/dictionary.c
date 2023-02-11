@@ -91,20 +91,38 @@ bool load(const char *dictionary)
         {
             key = hash(tempword);
 
-            node *temp = malloc(sizeof(node));
-            if (temp == NULL)
+            if (table[key] == NULL)
             {
+                node *temp = malloc(sizeof(node));
+                if (temp == NULL)
+                {
                 return false;
-            }
-            temp->next = table[key];
-            table[key] = temp;
+                }
+                temp->next = NULL;
+                table[key] = temp;
 
-            for (int i = 0; i < counter; i++)
-            {
+                for (int i = 0; i < counter; i++)
+                {
                 temp->word[i] = tempword[i];
+                }
+                counter = 0;
+             }
+             else
+             {
+                node *temp = malloc(sizeof(node));
+                if (temp == NULL)
+                {
+                    return false;
+                }
+                temp->next = table[key];
+                table[key] = temp;
+
+                for (int i = 0; i < counter; i++)
+               {
+                   temp->word[i] = tempword[i];
+               }
+               counter = 0;
             }
-            counter = 0;
-        }
 
     }
     fclose(inptr);

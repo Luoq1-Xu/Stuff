@@ -118,7 +118,7 @@ unsigned int size(void)
     // TODO
     for (int i = 0; i < N; i++ )
     {
-
+        
     }
     return 0;
 }
@@ -127,7 +127,7 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < N + 1; i++)
     {
         destroy(table[i]);
     }

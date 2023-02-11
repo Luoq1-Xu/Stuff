@@ -97,7 +97,7 @@ bool load(const char *dictionary)
         }
         else if (c == '\n')
         {
-            tempword[3] = '\0';
+            tempword[counter] = '\0';
             key = hash(tempword);
 
             if (table[key] == NULL)

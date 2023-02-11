@@ -35,7 +35,7 @@ bool check(const char *word)
     // TODO
     int key = hash(word);
     trav = table[key];
-    
+
     if (trav == NULL)
     {
         return false;
@@ -97,6 +97,7 @@ bool load(const char *dictionary)
         }
         else if (c == '\n')
         {
+            tempword[3] = '\0';
             key = hash(tempword);
 
             if (table[key] == NULL)

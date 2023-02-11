@@ -136,6 +136,7 @@ bool load(const char *dictionary)
     }
     fclose(inptr);
     loadfinish = true;
+    printf("DICTIONARY LOADED\n");
     return true;
 }
 

@@ -179,11 +179,11 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
-    for (int i = 0; i < N + 1; i++)
+    for (int i = 0; i < N; i++)
     {
         destroy(table[i]);
     }
-    for (int j = 0; j < N + 1; j++)
+    for (int j = 0; j < N; j++)
     {
         if (table[j] != NULL)
         return false;

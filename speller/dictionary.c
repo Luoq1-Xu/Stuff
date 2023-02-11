@@ -130,7 +130,7 @@ unsigned int size(void)
     {
         for (int i = 0; i < N; i++ )
         {
-           while ()
+           while (table[i]->next != NULL)
         }
         return 1;
     }

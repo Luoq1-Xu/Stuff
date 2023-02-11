@@ -35,6 +35,7 @@ bool check(const char *word)
     // TODO
     int key = hash(word);
     trav = table[key];
+    
     if (trav == NULL)
     {
         return false;

@@ -142,7 +142,7 @@ unsigned int size(void)
                 words++;
             }
         }
-        return 1;
+        return words;
     }
 }
 

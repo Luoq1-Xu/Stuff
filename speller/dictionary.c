@@ -199,7 +199,7 @@ void destroy(node *list)
     }
 }
 
-bool searchlist(char *word, int key)
+bool searchlist(char *word, node *trav)
 {
     if (trav->next == NULL)
     {
@@ -212,7 +212,7 @@ bool searchlist(char *word, int key)
             return true;
         }
     }
-    else if
+    else 
     {
         if(!stringcompare(word, trav->word))
         {

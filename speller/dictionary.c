@@ -77,7 +77,7 @@ bool load(const char *dictionary)
     char tempword[LENGTH + 1];
     int counter = 0;
     int key = 0;
-    node *point = NULL;
+
 
 
     while (fread(&c, sizeof(char), 1, inptr))
@@ -90,8 +90,6 @@ bool load(const char *dictionary)
         else if (c == '\n')
         {
             key = hash(tempword);
-            point = table[key];
-
 
             node *temp = malloc(sizeof(node));
             if (temp == NULL)

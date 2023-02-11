@@ -35,9 +35,17 @@ bool check(const char *word)
     trav = table[key];
     while (trav->next != NULL)
     {
-        
+        if (strcmp(word, trav->word) == 0)
+        {
+            return true;
+        }
+        else
+        {
+            trav = trav->next;
+        }
     }
-    return ();
+    if tra
+
 
 
 }

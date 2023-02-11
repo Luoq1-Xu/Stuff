@@ -183,7 +183,7 @@ bool searchlist(char *word, node *trav)
 {
     if (trav->next == NULL)
     {
-        if (!strcmp(word, trav->word))
+        if (strcmp(word, trav->word) != 0)
         {
             return false;
         }
@@ -194,9 +194,9 @@ bool searchlist(char *word, node *trav)
     }
     else
     {
-        if(!stringcompare(word, trav->word))
+        if(strcmp(word, trav->word) != 0)
         {
-            check(word, trav->next);
+            searchlist(word, trav->next);
         }
         else
         {

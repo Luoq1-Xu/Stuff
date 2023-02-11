@@ -29,6 +29,15 @@ node *trav;
 bool check(const char *word)
 {
     // TODO
+    int j = 0;
+    while (word[j] != '\0')
+    {
+        word[j] = tolower(word[j]);
+        j++;
+    }
+
+    int key = hash(word);
+
     if (trav->next == NULL)
     {
         if (!stringcompare(word, trav->word))

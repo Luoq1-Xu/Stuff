@@ -8,11 +8,6 @@
 
 #include "dictionary.h"
 
-bool stringcompare(char *primaryword, char *string2);
-void destroy(node *list);
-bool searchlist(char *word, node *trav);
-
-
 bool loadfinish = false;
 
 // Represents a node in a hash table
@@ -22,6 +17,9 @@ typedef struct node
     struct node *next;
 }
 node;
+
+void destroy(node *list);
+bool searchlist(char *word, node *trav);
 
 // TODO: Choose number of buckets in hash table
 const unsigned int N = 26;

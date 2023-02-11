@@ -7,6 +7,7 @@
 
 bool stringcompare(char *primaryword, char *string2);
 void destroy(node *list);
+bool searchlist(char *word, node *trav);
 
 // Represents a node in a hash table
 typedef struct node
@@ -38,29 +39,7 @@ bool check(const char *word)
 
     int key = hash(word);
 
-
-    if (trav->next == NULL)
-    {
-        if (!stringcompare(word, trav->word))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    else if
-    {
-        if(!stringcompare(word, trav->word))
-        {
-            check(word);
-        }
-        else
-        {
-            return true;
-        }
-    }
+    return (searchlist(word, table[key]));
 
 
 }

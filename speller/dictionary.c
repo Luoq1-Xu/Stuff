@@ -134,12 +134,12 @@ unsigned int size(void)
             point = table[i];
             while (point->next != NULL)
             {
-                counter++;
+                words++;
                 point = point->next;
             }
             if (isalpha(point->word[0]) != 0)
             {
-
+                words++;
             }
         }
         return 1;

@@ -6,6 +6,7 @@
 #include "dictionary.h"
 
 bool stringcompare(char *primaryword, char *string2);
+void destroy(node *list);
 
 // Represents a node in a hash table
 typedef struct node
@@ -128,7 +129,7 @@ unsigned int size(void)
     // TODO
     for (int i = 0; i < N; i++ )
     {
-        
+
     }
     return 0;
 }

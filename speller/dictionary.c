@@ -32,7 +32,29 @@ bool check(const char *word)
 {
     // TODO
     int key = hash(word);
-
+    trav = table[key];
+    if (trav->next == NULL)
+    {
+        if (strcmp(word, trav->word) != 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else
+    {
+        if(strcmp(word, trav->word) != 0)
+        {
+            searchlist(word, trav->next);
+        }
+        else
+        {
+            return true;
+        }
+    }
     return (searchlist(word, table[key]));
 
 

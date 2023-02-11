@@ -205,17 +205,14 @@ void destroy(node *list)
     {
         return;
     }
+    else if(list->next == NULL)
+    {
+        free(list);
+        return;
+    }
     else
     {
-        if(list->next == NULL)
-        {
-            free(list);
-            return;
-        }
-        else
-        {
-            destroy(list->next);
-        }
+        destroy(list->next);
     }
 }
 

@@ -103,7 +103,7 @@ bool load(const char *dictionary)
     int counter = 0;
     int key = 0;
 
-    //Read character by character
+    //Read character by character, the file onto an array (temporary storage for the current word)
     while (fread(&c, sizeof(char), 1, inptr))
     {
         if (c != '\n')
@@ -111,11 +111,13 @@ bool load(const char *dictionary)
             tempword[counter] = c;
             counter++;
         }
+        //Once hit end of the line, stop reading and terminate current word. tempword is now the current word in entirety
         else if (c == '\n')
         {
             tempword[counter] = '\0';
             key = hash(tempword);
 
+            //Check if the current root of the table is already occupied or not
             if (table[key] == NULL)
             {
                 node *temp = malloc(sizeof(node));
@@ -133,6 +135,7 @@ bool load(const char *dictionary)
                 words++;
                 counter = 0;
             }
+            //If current root of table is already occupied, just add on a new node storing the current word, to become the new root
             else
             {
                 node *temp = malloc(sizeof(node));

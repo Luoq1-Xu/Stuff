@@ -73,8 +73,8 @@ unsigned int hash(const char *word)
     {
         counter += word[i];
     }
-    unsigned int key = round()
-    return toupper(word[0]) - 'A';
+    unsigned int key = round(((counter/strlen(word)) * 26) % 100);
+    return key;
 }
 
 // Loads dictionary into memory, returning true if successful, else false

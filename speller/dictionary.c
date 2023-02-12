@@ -194,7 +194,7 @@ bool unload(void)
 
 
 
-
+//Recursive function to destroy the linked list.
 void destroy(node *list)
 {
     if (list == NULL)

@@ -73,7 +73,7 @@ unsigned int hash(const char *word)
     int counter = 0;
     for (int i = 0, j = strlen(word); i < j; i ++)
     {
-        if (word[i] % 2 = 0)
+        if (i % 2 = 0)
         {
             counter *= word[i];
         }

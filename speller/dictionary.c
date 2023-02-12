@@ -122,7 +122,7 @@ bool load(const char *dictionary)
                 table[key] = temp;
                 table[key]->next = NULL;
 
-                for (int i = 0; i < counter; i++)
+                for (int i = 0; i < counter + 1; i++)
                 {
                 temp->word[i] = tempword[i];
                 }
@@ -139,7 +139,7 @@ bool load(const char *dictionary)
                 temp->next = table[key];
                 table[key] = temp;
 
-                for (int i = 0; i < counter; i++)
+                for (int i = 0; i < counter + 1; i++)
                {
                    temp->word[i] = tempword[i];
                }

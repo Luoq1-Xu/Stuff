@@ -11,6 +11,7 @@
 #include "dictionary.h"
 
 bool loadfinish = false;
+int words = 0;
 
 // Represents a node in a hash table
 typedef struct node
@@ -125,6 +126,7 @@ bool load(const char *dictionary)
                 {
                 temp->word[i] = tempword[i];
                 }
+                words++;
                 counter = 0;
              }
              else
@@ -142,6 +144,7 @@ bool load(const char *dictionary)
                    temp->word[i] = tempword[i];
                }
                counter = 0;
+               words++;
             }
 
         }
@@ -156,31 +159,12 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    int words = 0;
-    node *point;
-
     if (loadfinish == false)
     {
         return 0;
     }
     else
     {
-        for (int i = 0; i < N; i++ )
-        {
-            point = table[i];
-            if (point != NULL)
-            {
-            while (point->next != NULL)
-            {
-                words++;
-                point = point->next;
-            }
-            if (isalpha(point->word[0]) != 0)
-            {
-                words++;
-            }
-            }
-        }
         return words;
     }
 }

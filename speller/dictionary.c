@@ -24,7 +24,7 @@ node;
 void destroy(node *list);
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 577;
+const unsigned int N = 7393;
 
 // Hash table
 node *table[N];
@@ -78,7 +78,7 @@ unsigned int hash(const char *word)
             counter += tolower(word[i]) * tolower(word[i]) * 83;
         }
     }
-    unsigned int key = round(((counter * strlen(word))) % );
+    unsigned int key = round(((counter * strlen(word))) % 7393);
     return key;
 
 }

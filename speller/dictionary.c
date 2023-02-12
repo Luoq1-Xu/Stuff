@@ -73,7 +73,7 @@ unsigned int hash(const char *word)
     {
         counter += word[i];
     }
-    
+    unsigned int key = round()
     return toupper(word[0]) - 'A';
 }
 

@@ -39,23 +39,28 @@ bool check(const char *word)
     int key = hash(word);
     trav = table[key];
 
+    //If no word at the root of the table at all, means no words there, thus no hit,
     if (trav == NULL)
     {
         return false;
     }
     else
     {
+        //For pointer to keep travelling along the linked list
         while (trav->next != NULL)
         {
+            //If a match is found immediately end search
             if (strcasecmp(word, trav->word) == 0)
             {
                 return true;
             }
+            //If current node no hit, go to the next node and keep searching
             else
             {
                 trav = trav->next;
             }
         }
+        //End of the list, here is the last node (where trav->next == NULL)
         if (strcasecmp(word, trav->word) == 0)
         {
             return true;
@@ -70,7 +75,7 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    // TODO: Improve this hash function
+    //Hash function
     int counter = 0;
     for (int i = 0, j = strlen(word); i < j; i ++)
     {
@@ -80,13 +85,13 @@ unsigned int hash(const char *word)
     }
     unsigned int key = round(((counter * strlen(word))) % 7393);
     return key;
-
 }
+
 
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    // TODO
+    //Open dictionary for reading
     FILE *inptr = fopen(dictionary, "r");
     if (inptr == NULL)
     {
@@ -98,8 +103,7 @@ bool load(const char *dictionary)
     int counter = 0;
     int key = 0;
 
-
-
+    //Read character by character
     while (fread(&c, sizeof(char), 1, inptr))
     {
         if (c != '\n')

@@ -45,17 +45,17 @@ bool check(const char *word)
     }
     else
     {
-    while (trav->next != NULL)
-    {
-        if (strcasecmp(word, trav->word) == 0)
+        while (trav->next != NULL)
         {
-            return true;
+            if (strcasecmp(word, trav->word) == 0)
+            {
+                return true;
+            }
+            else
+            {
+                trav = trav->next;
+            }
         }
-        else
-        {
-            trav = trav->next;
-        }
-    }
     if (strcasecmp(word, trav->word) == 0)
     {
         return true;

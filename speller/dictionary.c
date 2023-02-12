@@ -56,14 +56,14 @@ bool check(const char *word)
                 trav = trav->next;
             }
         }
-    if (strcasecmp(word, trav->word) == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+        if (strcasecmp(word, trav->word) == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
@@ -117,20 +117,20 @@ bool load(const char *dictionary)
                 node *temp = malloc(sizeof(node));
                 if (temp == NULL)
                 {
-                return false;
+                    return false;
                 }
                 table[key] = temp;
                 table[key]->next = NULL;
 
                 for (int i = 0; i < counter + 1; i++)
                 {
-                temp->word[i] = tempword[i];
+                    temp->word[i] = tempword[i];
                 }
                 words++;
                 counter = 0;
-             }
-             else
-             {
+            }
+            else
+            {
                 node *temp = malloc(sizeof(node));
                 if (temp == NULL)
                 {
@@ -140,11 +140,11 @@ bool load(const char *dictionary)
                 table[key] = temp;
 
                 for (int i = 0; i < counter + 1; i++)
-               {
-                   temp->word[i] = tempword[i];
-               }
-               counter = 0;
-               words++;
+                {
+                    temp->word[i] = tempword[i];
+                }
+                counter = 0;
+                words++;
             }
 
         }
@@ -194,7 +194,7 @@ void destroy(node *list)
     {
         return;
     }
-    else if(list->next == NULL)
+    else if (list->next == NULL)
     {
         free(list);
         return;

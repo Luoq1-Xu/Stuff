@@ -119,8 +119,8 @@ bool load(const char *dictionary)
                 {
                 return false;
                 }
-                temp->next = NULL;
                 table[key] = temp;
+                table[key]->next = NULL;
 
                 for (int i = 0; i < counter; i++)
                 {

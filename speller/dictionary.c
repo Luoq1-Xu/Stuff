@@ -82,8 +82,9 @@ unsigned int hash(const char *word)
             counter += word[i] * i * 83;
         }
     }
-    unsigned int key = round(((counter * strlen(word))) % 197);
+    unsigned int key = round(((counter * strlen(word))) % 739);
     return key;
+    
 }
 
 // Loads dictionary into memory, returning true if successful, else false

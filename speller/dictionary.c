@@ -77,7 +77,7 @@ unsigned int hash(const char *word)
         {
             counter *= word[i]
         }
-        
+        else if ()
         else
         {
             counter += word[i];

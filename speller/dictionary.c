@@ -102,7 +102,7 @@ bool load(const char *dictionary)
 
     while (fread(&c, sizeof(char), 1, inptr))
     {
-        if (c != '\n')
+        if (c != '\0')
         {
             tempword[counter] = c;
             counter++;

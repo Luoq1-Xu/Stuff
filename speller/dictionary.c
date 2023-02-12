@@ -23,7 +23,7 @@ node;
 void destroy(node *list);
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 97;
+const unsigned int N = 197;
 
 // Hash table
 node *table[N];

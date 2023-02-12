@@ -82,7 +82,7 @@ unsigned int hash(const char *word)
             counter += word[i] * i * 83;
         }
     }
-    unsigned int key = round(((counter * strlen(word))) % 257);
+    unsigned int key = round(((counter * strlen(word))) % 197);
     return key;
 
 }

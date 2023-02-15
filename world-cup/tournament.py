@@ -19,7 +19,7 @@ def main():
 
     with open("{sys.argv[1]}","r") as csvfile
     dict = csv.DictReader(csvfile)
-    
+    dict[team]
     teams.append()
 
 

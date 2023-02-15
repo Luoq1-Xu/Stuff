@@ -19,9 +19,9 @@ def main():
 
     with open(sys.argv[1],"r") as csvfile:
         for row in csvfile:
-            dict = csv.DictReader(csvfile)
-            dict["rating"] = int(dict["rating"])
-            teams.append(dict)
+            reader = csv.DictReader(csvfile)
+            reader["rating"] = int(reader["rating"])
+            teams.append(reader)
 
 
     counts = {}

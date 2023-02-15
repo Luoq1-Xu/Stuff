@@ -70,7 +70,7 @@ def simulate_tournament(teams):
         return teams
     else:
         newteams = simulate_round(teams)
-        simulate_tournament(newteams)
+        return simulate_tournament(newteams)
 
 
 

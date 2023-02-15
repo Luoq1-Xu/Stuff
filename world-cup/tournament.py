@@ -17,7 +17,7 @@ def main():
     teams = []
     # TODO: Read teams into memory from file
     file = open("{argv[1]}","r")
-    teams.append = 
+    teams.append()
 
 
     counts = {}

@@ -20,8 +20,8 @@ def main():
     with open(sys.argv[1],"r") as csvfile:
         for row in csvfile:
             dict = csv.DictReader(csvfile)
-            for teams in dict:
-                teams = int(teams)
+            for teams,ranking in dict.items():
+                ranking = int(ranking)
             teams.append(dict)
 
 

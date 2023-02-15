@@ -17,7 +17,7 @@ def main():
     teams = []
     # TODO: Read teams into memory from file
 
-    with open({argv[1]},"r") as csvfile:
+    with open(sys.argv[1],"r") as csvfile:
         for row in csvfile:
             dict = csv.DictReader(csvfile)
             dict[team] = int(dict[team])

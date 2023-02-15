@@ -19,7 +19,7 @@ def main():
 
     with open(sys.argv[1],"r") as csvfile:
         reader = csv.DictReader(csvfile)
-        for row in 
+        for row in reader:
             reader["rating"] = int(reader["rating"])
             teams.append(reader)
 

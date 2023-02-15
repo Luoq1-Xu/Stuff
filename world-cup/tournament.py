@@ -30,9 +30,9 @@ def main():
         winner = simulate_tournament(teams)
         teamwinner = winner[0]['team']
         if teamwinner in counts:
-            counts['teamwinner'] += 1
+            counts[teamwinner] += 1
         else:
-            counts['teamwinner'] = 1
+            counts[teamwinner] = 1
 
 
 

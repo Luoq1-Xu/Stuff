@@ -1,6 +1,7 @@
 # TODO
 
 from cs50 import get_string
+from math import trunc
 
 input = get_string("Number: ")
 
@@ -16,7 +17,8 @@ product = 0
 for i in range(len(temp), 0, -2):
     r = temp[i] * 2
     product += r % 10
-    product += r / 10
+    product += trunc(r / 10)
+    
 
 
 

@@ -8,5 +8,10 @@ temp = []
 for c in input:
     temp.append(c)
 
-if len(temp) != (13,15,16):
-    print()
+if len(temp) != 13 and 15 and 16 :
+    print("INVALID\n")
+    quit()
+
+else:
+    print("YAY")
+    quit()

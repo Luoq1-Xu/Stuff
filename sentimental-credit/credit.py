@@ -7,7 +7,7 @@ input = get_string("Number: ")
 
 temp = []
 for c in input:
-    temp.append(c)
+    temp.append(int(c))
 
 if len(temp) != 13 and len(temp) != 15 and len(temp) != 16 :
     print("INVALID\n")

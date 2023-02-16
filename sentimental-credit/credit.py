@@ -40,5 +40,5 @@ elif legit == 1 and (y == 13 or y == 16) and temp[0] == 4:
 else:
     print("INVALID\n")
 
-
+quit()
 

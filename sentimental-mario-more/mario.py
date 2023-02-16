@@ -7,7 +7,7 @@ while True:
         break
 
 for counter in range(rows + 1):
-    print((" " * (rows - 1 - counter)) + ("#" * counter) + "  " + ("#" * counter))
+    print((" " * (rows - counter)) + ("#" * counter) + "  " + ("#" * counter))
 
 print()
 

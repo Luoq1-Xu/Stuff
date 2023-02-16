@@ -7,5 +7,5 @@ input = get_string("Number: ")
 temp = []
 for c in input:
     temp.append(c)
-   
 
+if len()

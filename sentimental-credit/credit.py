@@ -22,8 +22,11 @@ for i in range(len(temp) - 2, 0, -2):
 for i in range(len(temp) - 1, 0, -2):
     product += temp[i]
 
-if (product % 10) == 0 and :
-
+if (product % 10) == 0:
+    legit = 1
+else:
+    print("INVALID\n")
+    quit()
 
 
 

@@ -33,7 +33,12 @@ x = (temp[0] * 10) + temp[1]
 
 if legit == 1 and y == 15 and (x == 34 or x == 37):
     print("AMEX\n")
-elif legit == 1 and 
+elif legit == 1 and y == 16 and (x > 50 and x < 56):
+    print("MASTERCARD\n")
+elif legit == 1 and (y == 13 or y == 16) and temp[0] == 4:
+    print("VISA\n")
+else:
+    print("INVALID\n")
 
 
 

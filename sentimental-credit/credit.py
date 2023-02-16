@@ -20,7 +20,7 @@ for i in range(y - 2, 0, -2):
     product += r % 10
     product += trunc(r / 10)
 
-for i in range(y - 1, 0, -2):
+for i in range(y - 1, -1, -2):
     product += temp[i]
 
 if (product % 10) == 0:

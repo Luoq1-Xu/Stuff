@@ -15,7 +15,7 @@ if y != 13 and y != 15 and y != 16 :
     quit()
 
 product = 0
-for i in range(y - 2, 0, -2):
+for i in range(y - 2, -1, -2):
     r = temp[i] * 2
     product += r % 10
     product += trunc(r / 10)

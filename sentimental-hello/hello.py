@@ -1,2 +1,7 @@
 # TODO
-import cs50.h
+import cs50
+
+name = getstring("What is your name? ")
+print("Hello", name)
+
+quit()

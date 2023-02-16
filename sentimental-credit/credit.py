@@ -8,4 +8,5 @@ temp = []
 for c in input:
     temp.append(c)
 
-if len()
+if len(temp) != (13,15,16):
+    print()

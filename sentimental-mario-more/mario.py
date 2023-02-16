@@ -6,7 +6,7 @@ while True:
     if rows > 0 and rows < 9:
         break
 
-for counter in range(rows + 1):
+for counter in range(1, rows + 1):
     print((" " * (rows - counter)) + ("#" * counter) + "  " + ("#" * counter))
 
 print()

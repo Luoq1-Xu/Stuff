@@ -15,4 +15,5 @@ With a Small number of simulations, teams like France, Croatia and even Colombia
 and this pattern did not hold as the number of simulations increase, as the "strong" teams such as Belgium will filter to the top.
 
 Suppose you're charged a fee for each second of compute time your program uses.
-After how many simulations would you call the predictions "good enough"?:
+After how many simulations would you call the predictions "good enough"?: I would stop the simulations at 10000, as beyond this point there is no
+significant shift in rankings

@@ -16,4 +16,5 @@ and this pattern did not hold as the number of simulations increase, as the "str
 
 Suppose you're charged a fee for each second of compute time your program uses.
 After how many simulations would you call the predictions "good enough"?: I would stop the simulations at 10000, as beyond this point there is no
-significant shift in rankings
+significant shift in rankings, the first five teams remain fixed in position. The time taken in simlumating however, increases exponentially
+as the next jump to 100000 increases the time taken by almost 8 times.

@@ -9,6 +9,5 @@ while True:
 for counter in range(1, rows + 1):
     print((" " * (rows - counter)) + ("#" * counter) + "  " + ("#" * counter))
 
-print()
 
 quit()

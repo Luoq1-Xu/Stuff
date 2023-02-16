@@ -12,5 +12,9 @@ if len(temp) != 13 and len(temp) != 15 and len(temp) != 16 :
     print("INVALID\n")
     quit()
 
-for i in range(0, len(temp), 2):
+product = 0
+for i in range(len(temp), 0, -2):
+    product += temp[i] * 2
     
+
+

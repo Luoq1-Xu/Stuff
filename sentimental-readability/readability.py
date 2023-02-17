@@ -2,7 +2,7 @@
 
 from cs50 import get_string
 
-
+# Read input into a list, char by char. Example: ['H', 'I', ' ', 'M', 'A', 'R', 'K', '.']
 storage =[]
 input = get_string("Text: ")
 for c in input:
@@ -13,6 +13,7 @@ letters = 0
 words = 0
 sentences = 0
 
+# Iterating over the list, increasing the respective counters
 for counter in range(length):
     if storage[counter].isalpha():
         letters += 1
@@ -31,3 +32,5 @@ elif index < 1:
     print("Before Grade 1")
 else:
     print("Grade", index)
+
+quit()

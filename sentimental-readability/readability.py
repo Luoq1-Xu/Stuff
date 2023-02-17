@@ -18,4 +18,9 @@ for counter in range(length):
         letters += 1
     elif storage[counter] == ' ':
         words += 1
-    elif storage[counter] == '
+    elif storage[counter] == '.' or storage[counter] == '!' or storage[counter] == '?':
+        sentences += 1
+
+words += 1
+
+index = 0.0588 * ()

@@ -23,5 +23,11 @@ for counter in range(length):
 
 words += 1
 
-index = 0.0588 * ((letters/words) * 100) - 0.296 * ((sentences/words) * 100) - 15.8
+index = round(0.0588 * ((letters/words) * 100) - 0.296 * ((sentences/words) * 100) - 15.8)
 
+if index >= 16:
+    print("Grade 16+")
+elif index < 1:
+    print("Before Grade 1")
+else:
+    print("Grade", index)

@@ -8,8 +8,12 @@ def main():
     if len(sys.argv) != 3:
         print('Bruh.')
         sys.exit(1)
-    
+
     # TODO: Read database file into a variable
+    with open(sys.argv[1], 'r') as csvfile:
+        reader = csv.dictreader(csvfile)
+        
+
 
     # TODO: Read DNA sequence file into a variable
 

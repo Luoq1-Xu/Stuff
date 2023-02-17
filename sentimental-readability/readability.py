@@ -14,4 +14,8 @@ words = 0
 sentences = 0
 
 for counter in range(length):
-
+    if storage[counter].isalpha():
+        letters += 1
+    elif storage[counter] == ' ':
+        words += 1
+    elif storage[counter] == '

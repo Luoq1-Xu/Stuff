@@ -3,7 +3,7 @@
 from cs50 import get_string
 
 # Read input into a list, char by char. Example: ['H', 'I', ' ', 'M', 'A', 'R', 'K', '.']
-storage =[]
+storage = []
 input = get_string("Text: ")
 for c in input:
     storage.append(c)
@@ -24,8 +24,10 @@ for counter in range(length):
 
 words += 1
 
+# Calc Coleman-Liau Index
 index = round(0.0588 * ((letters/words) * 100) - 0.296 * ((sentences/words) * 100) - 15.8)
 
+# Print result
 if index >= 16:
     print("Grade 16+")
 elif index < 1:

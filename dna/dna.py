@@ -4,28 +4,51 @@ import sys
 
 def main():
 
-    # TODO: Check for command-line usage
+    # Check for command-line usage
     if len(sys.argv) != 3:
         print('Bruh.')
         sys.exit(1)
 
-    # TODO: Read database file into a variable
+    # Read database file into a variable
     database = []
     with open(sys.argv[1], 'r') as csvfile:
-        reader = csv.dictreader(csvfile)
+        reader = csv.DictReader(csvfile)
         for row in reader:
             database.append(row)
 
-
-    # TODO: Read DNA sequence file into a variable
+    # Read DNA sequence file into a variable
     with open(sys.argv[2], 'r') as file:
         dna = file.read()
 
-
     # TODO: Find longest match of each STR in DNA sequence
-    
+    strs = []
+    temp = database[0]
+    for pie in temp:
+        strs.append(pie)
 
-    # TODO: Check database for matching profiles
+    dnaprofile = {}
+    for i in range(1, len(strs), 1):
+        dnaprofile[strs[i]] = longest_match(dna, strs[i])
+
+    # Check database for matching profiles
+    check = 0
+    found = 0
+    for j in range(len(database)):
+        for pie in dnaprofile:
+            if dnaprofile[pie] == int(database[j][pie]):
+                check += 1
+        if check == len(dnaprofile):
+            name = database[j]['name']
+            found = 1
+            break
+        else:
+            check = 0
+
+    # Print outcome
+    if found == 1:
+        print(name)
+    else:
+        print('No Match')
 
     return
 

@@ -3,4 +3,8 @@ and a high danceability of about 0.7, despite the valence being relatively lower
 
 
 This way of calculating might not be very representative of the listener because it assumes every song in the list to have equal weighing. In reality,
-the Listener likely has listened to some songs more than others, and 
+the Listener likely has listened to some songs more than others, and spent more time listening to those songs compared to others in the list. Therefore,
+this way of calculating may give some songs a disproportionate impact on the final average. For example, if a song that the listener listened to 5 times
+has an energy of 0.1, compared to a song the listener has listened to 100 times which has 0.7 energy, the average energy of the 2 songs would be 0.4,
+despite one song obviously having been listened to way more than the other. A better way of calculating the aura could be by weighing the results by
+including the number of times listened to or the time spent listening to a song to give a more accurate representation of the listener's aura.

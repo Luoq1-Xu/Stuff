@@ -1,2 +1,6 @@
 Based on songs.db, it seems that this listener's aura could be Purple Or Orange, as the songs in songs.db have a high average energy of about 0.65
-and a high danceability of about 0.7. While Valence is relatively lower at about 0.48, 
+and a high danceability of about 0.7, despite the valence being relatively lower at 0.48.
+
+
+This way of calculating might not be very representative of the listener because it assumes every song in the list to have equal weighing. In reality,
+the Listener likely has listened to some songs more than others, and 

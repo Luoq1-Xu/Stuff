@@ -166,3 +166,5 @@ AND name IN (SELECT name
                    AND month = 7
                    AND day = 29
                  ORDER BY hour,minute LIMIT 1)));
+
+-- Aha! Bruce is the thief! Now we know this, we can work back to determine his accomplice and 

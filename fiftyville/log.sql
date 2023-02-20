@@ -198,4 +198,4 @@ SELECT name
            AND day = 28
            AND duration < 60);
 
--- So, now we finally know that the Thief is Bruce, his accomplice is Robin, and the city he 
+-- So, now we finally know that the Thief is Bruce, his accomplice is Robin, and the city he escaped to is New York City. Yay!

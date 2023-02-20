@@ -13,7 +13,8 @@ SELECT name, transcript FROM interviews WHERE year =2021 AND month = 7 AND day =
 
 -- Ruth, Eugene and Raymond provide useful information relating to the theft.
 
---
+-- Let's Follow Eugene's Lead
+
 
 
 

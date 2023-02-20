@@ -114,4 +114,7 @@ SELECT name
                  ORDER BY hour,minute LIMIT 1));
 
 -- Now let's try to see if there are overlaps between 1, 2, 3 and 4 which would give us the thief.
-
+SELECT name
+  FROM people
+ WHERE name IN
+       ()

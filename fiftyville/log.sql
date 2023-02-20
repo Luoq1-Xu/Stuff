@@ -6,19 +6,6 @@ SELECT description
  WHERE description
   LIKE '%duck%';
 
--- Gathering info on the pertinent crime scene report
-SELECT id,
-       year,month,day,
-       street
-  FROM crime_scene_reports
- WHERE description IN
-       (SELECT description
-          FROM crime_scene_reports
-         WHERE description
-          LIKE '%duck%');
-
--- Now we know the crime occured in 2021 , 7th month, 28 day on Humphrey Street
-
 -- Getting all interviews on the date of the theft
 SELECT name,
        transcript
@@ -40,7 +27,7 @@ SELECT account_number, amount , transaction_type
    AND atm_location = 'Leggett Street'
    AND transaction_type = 'withdraw';
 
--- Get a list of possible suspects based on Eugene's lead
+-- 1 : Get a list of possible suspects based on Eugene's lead
 SELECT name
   FROM people
  WHERE id IN
@@ -57,7 +44,7 @@ SELECT name
 
 -- Now let's try Raymond's Lead
 
--- List of possible suspects based on Raymond's Lead
+-- 2 : List of possible suspects based on Raymond's Lead
 SELECT name
   FROM people
  WHERE phone_number IN
@@ -72,18 +59,49 @@ SELECT name
 
 -- Possible license plates of cars that fit the bill
 SELECT license_plate
-  FROM bakery_security_logs WHERE year = 2021 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25 AND  activity = 'exit';
+  FROM bakery_security_logs
+ WHERE year = 2021
+   AND month = 7
+   AND day = 28
+   AND hour = 10
+   AND minute BETWEEN 15 AND 25
+   AND activity = 'exit';
 
--- Names of the owners of the possible vehicles
-SELECT name FROM people WHERE license_plate IN (SELECT license_plate FROM bakery_security_logs WHERE year = 2021 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25 AND  activity = 'exit');
+-- 3 : Names of the owners of the possible vehicles
+SELECT name
+  FROM people
+ WHERE license_plate IN
+       (SELECT license_plate
+          FROM bakery_security_logs
+         WHERE year = 2021
+           AND month = 7
+           AND day = 28
+           AND hour = 10
+           AND minute BETWEEN 15 AND 25
+           AND activity = 'exit');
 
 
 -- Let's go back to Raymond's clue about the flight
 
 -- Earliest Possible Flight out of fiftyville on 29-7-2021
-SELECT id FROM flights WHERE origin_airport_id IN (SELECT id FROM airports WHERE city = 'Fiftyville') AND year = 2021 AND month = 7 AND day = 29 ORDER BY hour,minute LIMIT 1;
+SELECT id
+ FROM flights
+WHERE origin_airport_id IN
+      (SELECT id
+         FROM airports
+        WHERE city = 'Fiftyville')
+  AND year = 2021
+  AND month = 7
+  AND day = 29
+ORDER BY hour,minute LIMIT 1;
 
--- Passengers on that flight
-SELECT name FROM people WHERE passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE origin_airport_id IN (SELECT id FROM airports WHERE city = 'Fiftyville') AND year = 2021 AND month = 7 AND day = 29 ORDER BY hour,minute LIMIT 1));
+-- 4 : Passengers on that flight
+SELECT name
+  FROM people
+ WHERE passport_number IN
+       (SELECT passport_number
+          FROM passengers
+         WHERE flight_id IN (SELECT id FROM flights WHERE origin_airport_id IN (SELECT id FROM airports WHERE city = 'Fiftyville') AND year = 2021 AND month = 7 AND day = 29 ORDER BY hour,minute LIMIT 1));
 
+-- Now let's try to see if there are overlaps between 1, 2, 3 and 4 which would give us the thief.
 

@@ -101,7 +101,17 @@ SELECT name
  WHERE passport_number IN
        (SELECT passport_number
           FROM passengers
-         WHERE flight_id IN (SELECT id FROM flights WHERE origin_airport_id IN (SELECT id FROM airports WHERE city = 'Fiftyville') AND year = 2021 AND month = 7 AND day = 29 ORDER BY hour,minute LIMIT 1));
+         WHERE flight_id IN
+               (SELECT id
+                  FROM flights
+                 WHERE origin_airport_id IN
+                       (SELECT id
+                          FROM airports
+                         WHERE city = 'Fiftyville')
+                   AND year = 2021
+                   AND month = 7
+                   AND day = 29
+                 ORDER BY hour,minute LIMIT 1));
 
 -- Now let's try to see if there are overlaps between 1, 2, 3 and 4 which would give us the thief.
 

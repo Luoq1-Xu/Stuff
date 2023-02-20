@@ -15,10 +15,11 @@ SELECT name, transcript FROM interviews WHERE year =2021 AND month = 7 AND day =
 
 -- Let's Follow Eugene's Lead
 
--- Check for all transactions on that day at Leggett Street for any suspicious activity
+-- Check for all transactions on that day at Leggett Street for any suspicious activity (No suspicious activity found)
 SELECT account_number, amount , transaction_type FROM atm_transactions WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = 'Leggett Street';
 
-
+-- Get a list of possible suspects based on Eugene's lead
+SELECT name FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = 'Leggett Street'));
 
 
 

@@ -180,3 +180,7 @@ SELECT city FROM airports WHERE id IN (SELECT destination_airport_id FROM flight
  AND month = 7
  AND day = 29
 ORDER BY hour,minute LIMIT 1));
+
+-- Tada! The thief escaped to New York City.
+
+-- Now, the Accomplice.

@@ -170,3 +170,13 @@ SELECT name
 -- Aha! Bruce is the thief! Now we know this, we can work back to determine his accomplice and the city he escaped to.
 
 -- Let's find the city he escaped to first.
+SELECT city FROM airports WHERE id IN (SELECT destination_airport_id FROM flights WHERE id IN (SELECT id
+  FROM flights
+  WHERE origin_airport_id IN
+     (SELECT id
+        FROM airports
+       WHERE city = 'Fiftyville')
+ AND year = 2021
+ AND month = 7
+ AND day = 29
+ORDER BY hour,minute LIMIT 1));

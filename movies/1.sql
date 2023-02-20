@@ -1,3 +1,3 @@
 SELECT title
-  FROM CT movies
+  FROM movies
  WHERE year = '2008';

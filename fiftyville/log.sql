@@ -130,7 +130,7 @@ SELECT name
                    AND day = 28
                    AND atm_location = 'Leggett Street'
                    AND transaction_type = 'withdraw')))
-  AND  (SELECT name
+  AND IN (SELECT name
   FROM people
  WHERE phone_number IN
        (SELECT caller
@@ -139,7 +139,7 @@ SELECT name
            AND month = 7
            AND day = 28
            AND duration < 60 ))
-AND (SELECT name
+AND IN (SELECT name
   FROM people
  WHERE license_plate IN
        (SELECT license_plate
@@ -150,7 +150,7 @@ AND (SELECT name
            AND hour = 10
            AND minute BETWEEN 15 AND 25
            AND activity = 'exit'))
-AND (SELECT name
+AND IN (SELECT name
   FROM people
  WHERE passport_number IN
        (SELECT passport_number

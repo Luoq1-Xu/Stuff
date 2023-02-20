@@ -41,3 +41,6 @@ SELECT name FROM people WHERE license_plate IN (SELECT license_plate FROM bakery
 SELECT id FROM flights WHERE origin_airport_id IN (SELECT id FROM airports WHERE city = 'Fiftyville') AND year = 2021 AND month = 7 AND day = 29 ORDER BY hour,minute LIMIT 1;
 
 -- Passengers on that flight
+SELECT name FROM people WHERE passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE origin_airport_id IN (SELECT id FROM airports WHERE city = 'Fiftyville') AND year = 2021 AND month = 7 AND day = 29 ORDER BY hour,minute LIMIT 1));
+
+

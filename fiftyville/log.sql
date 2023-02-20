@@ -139,4 +139,30 @@ SELECT name
            AND month = 7
            AND day = 28
            AND duration < 60 ))
-AND 
+AND (SELECT name
+  FROM people
+ WHERE license_plate IN
+       (SELECT license_plate
+          FROM bakery_security_logs
+         WHERE year = 2021
+           AND month = 7
+           AND day = 28
+           AND hour = 10
+           AND minute BETWEEN 15 AND 25
+           AND activity = 'exit');)
+AND (SELECT name
+  FROM people
+ WHERE passport_number IN
+       (SELECT passport_number
+          FROM passengers
+         WHERE flight_id IN
+               (SELECT id
+                  FROM flights
+                 WHERE origin_airport_id IN
+                       (SELECT id
+                          FROM airports
+                         WHERE city = 'Fiftyville')
+                   AND year = 2021
+                   AND month = 7
+                   AND day = 29
+                 ORDER BY hour,minute LIMIT 1)))

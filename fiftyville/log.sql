@@ -184,3 +184,18 @@ ORDER BY hour,minute LIMIT 1));
 -- Tada! The thief escaped to New York City.
 
 -- Now, the Accomplice.
+SELECT name
+  FROM people
+ WHERE phone_number IN
+       (SELECT receiver
+          FROM phone_calls
+         WHERE caller IN
+               (SELECT phone_number
+                  FROM people
+                 WHERE name = 'Bruce')
+           AND year = 2021
+           AND month = 7
+           AND day = 28
+           AND duration < 60);
+
+-- So, now we finally know that the Thief is Bruce, his accomplice is Robin, and the city he 

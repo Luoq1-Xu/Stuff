@@ -149,7 +149,7 @@ AND (SELECT name
            AND day = 28
            AND hour = 10
            AND minute BETWEEN 15 AND 25
-           AND activity = 'exit');)
+           AND activity = 'exit'))
 AND (SELECT name
   FROM people
  WHERE passport_number IN
@@ -165,4 +165,4 @@ AND (SELECT name
                    AND year = 2021
                    AND month = 7
                    AND day = 29
-                 ORDER BY hour,minute LIMIT 1)))
+                 ORDER BY hour,minute LIMIT 1)));

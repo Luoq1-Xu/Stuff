@@ -10,13 +10,15 @@
             document.addEventListener("DOMContentLoaded",function() {
 
             const ojas = document.querySelector(".wrong");
-            document.addEventListener("click",function() {
+            ojas.addEventListener("click",function() {
                 ojas.style.backgroundColor = "red";
+                document.getElementById("demo").innerHTML = "Incorrect.";
             });
 
             const surana = document.querySelector(".right");
-            document.addEventListener("click",function(){
+            surana.addEventListener("click",function(){
                 surana.style.backgroundColor = "green";
+                document.getElementById("demo").innerHTML = "Correct!";
             })
 
             });
@@ -36,7 +38,7 @@
                 </h3>
                 <br>
                 <div id = "answers">
-                    <button type="button" class="wrong" onclick ="check(event)">Houston Astros</button>
+                    <button type="button" class="wrong" ">Houston Astros</button>
                     <button type="button" class="right" >St. Louis Cardinals</button>
                     <button type="button" class="wrong" >Los Angeles Dodgers</button>
                 </div>

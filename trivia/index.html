@@ -10,7 +10,14 @@
             document.addEventListener('DomContentLoaded', function() {
                 function check()
                 {
-                    document.getElementByID("answers").onclick = check;
+                    document.getElementByID("answers").onclick = test;
+                }
+                function test(e)
+                {
+                    if (e.target.TagName == 'BUTTON')
+                    {
+                        
+                    }
                 }
 
             });

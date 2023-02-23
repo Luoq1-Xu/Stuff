@@ -10,9 +10,9 @@
             document.addEventListener("DOMContentLoaded",function() {
 
             const ojas = document.querySelectorAll(".wrong");
-            for (let x in ojas)
-            ojas.addEventListener("click",function() {
-                ojas.style.backgroundColor = "red";
+            for (let x of ojas)
+            x.addEventListener("click",function() {
+                x.style.backgroundColor = "red";
                 document.getElementById("demo").innerHTML = "Incorrect.";
             });
 

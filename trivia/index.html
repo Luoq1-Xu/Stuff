@@ -8,7 +8,10 @@
         <script>
             // TODO: Add code to check answers to questions
             document.addEventListener("DOMContentLoaded",function() {
-            document.addEventListener("click",check(event));
+            const ojas = document.querySelector("1");
+            document.addEventListener("click",function() {
+                ojas.style.backgroundColor = "red";
+            })
 
             });
         </script>
@@ -27,9 +30,9 @@
                 </h3>
                 <br>
                 <div id = "answers">
-                    <button type="button" id="1" onclick ="check(event)">Houston Astros</button>
-                    <button type="button" id="2" >St. Louis Cardinals</button>
-                    <button type="button" id="3" >Los Angeles Dodgers</button>
+                    <button type="button" class="0" onclick ="check(event)">Houston Astros</button>
+                    <button type="button" class="1" >St. Louis Cardinals</button>
+                    <button type="button" class="0" >Los Angeles Dodgers</button>
                 </div>
             </div>
             <script>

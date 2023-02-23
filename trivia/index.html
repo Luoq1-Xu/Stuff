@@ -12,6 +12,7 @@
             const ojas = document.querySelectorAll(".wrong");
             for (let x of ojas)
             x.addEventListener("click",function() {
+                x.style.transition = "background 1s";
                 x.style.backgroundColor = "red";
                 document.getElementById("demo").innerHTML = "Incorrect.";
             });

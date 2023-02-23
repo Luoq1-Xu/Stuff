@@ -8,17 +8,7 @@
         <script>
             // TODO: Add code to check answers to questions
             document.addEventListener('DOMContentLoaded', function() {
-                function check(event) {
-                    var trigger = event.srcElement;
-                    if (trigger.id == '2')
-                    {
-                        trigger.backgroundColor = "green";
-                    }
-                    else
-                    {
-                        trigger.backgroundColor = "red";
-                    }
-                }
+
 
             });
         </script>
@@ -42,6 +32,19 @@
                     <button type="button" id="3" onclick ="check(event)">Los Angeles Dodgers</button>
                 </div>
             </div>
+            <script>
+                function check(event) {
+                    var trigger = event.srcElement;
+                    if (trigger.id == '2')
+                    {
+                        trigger.backgroundColor = "green";
+                    }
+                    else
+                    {
+                        trigger.backgroundColor = "red";
+                    }
+                }
+            </script>
 
             <div class="section">
                 <h2>Part 2: Free Response</h2>

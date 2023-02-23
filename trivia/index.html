@@ -8,11 +8,9 @@
         <script>
             // TODO: Add code to check answers to questions
             document.addEventListener('DomContentLoaded', function() {
-                function check()
+                function check(event)
                 {
-                    document.addEventListener("click", function() {
-                        
-                    })
+                    let buttonid = event.target.id
                 }
 
 
@@ -33,9 +31,9 @@
                 </p>
                 <br>
                 <div id = "answers">
-                    <button type="button" id="1" onclick="check">Houston Astros</button>
-                    <button type="button" id="2" onclick="check">St. Louis Cardinals</button>
-                    <button type="button" id= "3" onclick ="check">Los Angeles Dodgers</button>
+                    <button type="button" id="1" onclick="check(event)">Houston Astros</button>
+                    <button type="button" id="2" onclick="check(event)">St. Louis Cardinals</button>
+                    <button type="button" id= "3" onclick ="check(event)">Los Angeles Dodgers</button>
                 </div>
                 <!-- TODO: Add multiple choice question here -->
             </div>

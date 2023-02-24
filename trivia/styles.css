@@ -72,11 +72,11 @@ input[type="text"]:hover {
     text-align: center;
     border-radius: 12px;
     vertical-align: middle;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 4px #999;
 }
 
 .button1:active{
-    
-    box-shadow: 0 5px #999;
-    transform: translateY(4px);
+
+    box-shadow: 0 2px #999;
+    transform: translateY(2px);
 }

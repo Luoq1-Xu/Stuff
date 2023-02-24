@@ -23,7 +23,7 @@
                 document.getElementById("demo").innerHTML = "Correct!";
             })
 
-            let rofl = document.querySelector(".lol");
+            let rofl = document.querySelector("#lol");
             rofl.addEventListener("click",function(){
                 let haha = document.querySelector(".hello");
                 if (haha.value.toLowerCase() == 'sandy alcantara')
@@ -72,7 +72,7 @@
                 <hr>
                 <h3>Who won the National League Cy Young Award in 2022?</h3>
                 <!-- TODO: Add free response question here -->
-                <input type="text" class="hello"> <button type="submit" class ="lol">Submit</button>
+                <input type="text" class="hello"> <button type="submit" id="lol" class ="button1">Submit</button>
                 <h3 id ="check"></h3>
             </div>
         </div>

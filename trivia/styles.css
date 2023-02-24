@@ -73,8 +73,10 @@ input[type="text"]:hover {
     border-radius: 12px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     vertical-align: middle;
+    box-shadow: 0 9px #999;
 }
 
 .button1:active{
+    box-shadow: 0 5px #999;
     transform: translateY(4px);
 }

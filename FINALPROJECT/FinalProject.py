@@ -72,6 +72,13 @@ leftyslider = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 50), (2
                                         text= 'leftyslider',
                                         manager=manager)
 
+leftychangeup = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 100), (200,50,)),
+                                        text= 'leftychangeup',
+                                        manager=manager)
+
+salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 500), (200,50,)),
+                                        text= 'salepitch',
+                                        manager=manager)
 
 def drawbat():
 
@@ -149,7 +156,7 @@ def simulateadvanced(yes, ball_pos, horizontalspeed,
 
             homeplate()
             batter(x,y)
-            
+
             if strikezonedrawn == True:
                 pygame.draw.rect(screen, "white", strikezone, 1)
 
@@ -174,7 +181,7 @@ def simulateadvanced(yes, ball_pos, horizontalspeed,
 
             homeplate()
             batter(x,y)
-            
+
             if strikezonedrawn == True:
                 pygame.draw.rect(screen, "white", strikezone, 1)
 
@@ -233,7 +240,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             homeplate()
             batter(x,y)
-            
+
             if strikezonedrawn == True:
                 pygame.draw.rect(screen, "white", strikezone, 1)
 
@@ -257,7 +264,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             homeplate()
             batter(x,y)
-            
+
             if strikezonedrawn == True:
                 pygame.draw.rect(screen, "white", strikezone, 1)
 
@@ -283,7 +290,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             homeplate()
             batter(x,y)
-            
+
             if strikezonedrawn == True:
                 pygame.draw.rect(screen, "white", strikezone, 1)
 
@@ -299,7 +306,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             global pitchertype
             pitchertype = 2
             yes = False
-        
+
     return 1
 
 
@@ -344,7 +351,7 @@ while running:
                 elif strikezonedrawn == False:
                     strikezonedrawn = True
 
-            
+
             # sinker
             # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
             # simulateadvanced(True, ball_pos, 1.2, -0.01, 3.5, 0.2, 5, 475, 1.3, -0.35, 200)
@@ -379,7 +386,7 @@ while running:
             # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
             # simulateadvanced(True, ball_pos, 0.7, 0.05, 0.3, 0.65, 5, 450, 1.8, 0.037, 300)
 
-            
+
 
 
             if event.ui_element == randompitch:
@@ -471,7 +478,32 @@ while running:
                 xoffset = random.uniform(-0.5, 3)
                 yoffset = random.uniform(0, 2)
                 ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)  
+                simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)
+
+
+            if event.ui_element == leftychangeup:
+                xoffset = random.uniform(-4, 1)
+                yoffset = random.uniform(-1, 2)
+                ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
+
+            if event.ui_element == salepitch:
+                leftypitch = random.randint(1,3)
+                if leftypitch == 1:
+                    xoffset = random.uniform(-1, 5)
+                    yoffset = random.uniform(-3, 3)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                    simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
+                elif leftypitch == 2:
+                    xoffset = random.uniform(-0.5, 3)
+                    yoffset = random.uniform(0, 2)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                    simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)
+                elif leftypitch == 3:
+                    xoffset = random.uniform(-4, 1)
+                    yoffset = random.uniform(-1, 2)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                    simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
 
         manager.process_events(event)
 
@@ -490,7 +522,7 @@ while running:
     homeplate()
 
 
-    
+
     batter(x,y)
     drawbat()
 

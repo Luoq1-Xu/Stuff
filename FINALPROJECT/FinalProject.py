@@ -16,10 +16,12 @@ manager = pygame_gui.UIManager((1280, 720))
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 ball_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 3)
-strikezone = pygame.Rect((565, 390), (130, 170))
+strikezone = pygame.Rect((565, 400), (130, 165))
 yes = True
 fourseamballsize = 11
 strikezonedrawn = True
+
+
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 batterimg = pygame.image.load('better.png')
@@ -39,44 +41,45 @@ righty6 = pygame.image.load('righty6.png')
 righty7 = pygame.image.load('righty7.png')
 
 
+inatbat = False
 
 
 
 
-
-
-strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080,0), (200,50)),
-                                      text = 'strikezonetoggle',
-                                      manager=manager)
-
-
+strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540,0), (200,50)),
+                                        text = 'strikezonetoggle',
+                                        manager=manager)
 leftyfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,50,)),
-                                        text= 'leftyfastball',
-                                        manager=manager)
-
+                                            text= 'leftyfastball',
+                                            manager=manager)
 leftyslider = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 50), (200,50,)),
-                                        text= 'leftyslider',
-                                        manager=manager)
-
+                                            text= 'leftyslider',
+                                            manager=manager)
 leftychangeup = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 100), (200,50,)),
-                                        text= 'leftychangeup',
-                                        manager=manager)
-
+                                            text= 'leftychangeup',
+                                            manager=manager)
 salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 500), (200,50,)),
-                                        text= 'salepitch',
-                                        manager=manager)
-
-rightyfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 100), (200,50,)),
-                                        text= 'rightyfastball',
-                                        manager=manager)
-
+                                            text= 'salepitch',
+                                            manager=manager)
+rightylowfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 100), (200,50,)),
+                                            text= 'rightylowfastball',
+                                            manager=manager)
 rightyhighfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 150), (200,50,)),
-                                        text= 'rightyhighfastball',
-                                        manager=manager)
-
+                                            text= 'rightyhighfastball',
+                                            manager=manager)
 rightyslider = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 200), (200,50,)),
-                                        text= 'rightyslider',
-                                        manager=manager)
+                                            text= 'rightyslider',
+                                            manager=manager)
+rightychangeup = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 250), (200,50,)),
+                                            text= 'rightychangeup',
+                                            manager=manager)
+degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 500), (200,50,)),
+                                            text= 'degrompitch',
+                                            manager=manager)
+
+
+swingtimer = pygame_gui.elements.UIProgressBar(relative_rect = pygame.Rect((540,80), (200,30)),
+                                               manager=manager)
 
 
 
@@ -247,6 +250,9 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                         ballsize, traveltime, verticalbreak,
                         horizontalbreak, breaktime):
 
+
+    inatbat = True
+
     soundplayed = 0
     starttime = pygame.time.get_ticks()
     while yes:
@@ -348,6 +354,8 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             pitchertype = 2
             yes = False
 
+            inatbat == False
+
     return 1
 
 
@@ -356,6 +364,12 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                         horizontalacceleration, verticalspeed, verticalacceleration,
                         ballsize, traveltime, verticalbreak,
                         horizontalbreak, breaktime):
+
+    global inatbat
+    inatbat = True
+
+    global swingtimer
+    swingtimer.percent_full = 0
 
     soundplayed = 0
     starttime = pygame.time.get_ticks()
@@ -436,6 +450,8 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             time_delta = clock.tick(60)/1000.0
             screen.fill("black")
 
+            swingtimer.percent_full += 0.3
+
             rightysix(c,d+10)
             pygame.draw.circle(screen, "white", ball_pos, ballsize)
             ball_pos.y += verticalspeed
@@ -512,6 +528,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             global pitchertype
             pitchertype = 2
             yes = False
+            inatbat = False
 
     return 1
 
@@ -554,39 +571,6 @@ while running:
                     strikezonedrawn = True
 
 
-            # sinker
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 1.2, -0.01, 3.5, 0.2, 5, 475, 1.3, -0.35, 200)
-
-            # curveball upper left
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 2.3, -0.05, -2, 0.3, 5, 520, 1.4, -0.07, 220)
-
-
-            # high fourseam
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 2, -0.01, -1.2, 0.35, 5, 450, 0.35, -0.02, 200)
-
-            # fourseam mid mid
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 1, 0.2, 0.3, 0.65, 5, 450, 1.0, 0.1, 240)
-
-            # changeup down mid
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 1.5, 0.15, -0.55, 0.8, 5, 495, 1.15, -0.075, 240)
-
-            # slider down away
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, -0.5, 0.2, 3, 0.5, 5, 480, 0.75, 1.3, 300)
-
-
-            # changeup down in
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 0.5, 0.05, 0.3, 0.65, 5, 495, 1.3, -0.4, 250)
-
-            # fourseam down in strike
-            # ball_pos = pygame.Vector2((screen.get_width() / 2) - 100, (screen.get_height() / 3) - 30 )
-            # simulateadvanced(True, ball_pos, 0.7, 0.05, 0.3, 0.65, 5, 450, 1.8, 0.037, 300)
 
 
 
@@ -611,39 +595,76 @@ while running:
 
             if event.ui_element == salepitch:
                 leftypitch = random.randint(1,3)
+                #fastball
                 if leftypitch == 1:
                     xoffset = random.uniform(-1, 5)
                     yoffset = random.uniform(-3, 3)
                     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
                     simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
+                #slider
                 elif leftypitch == 2:
                     xoffset = random.uniform(-0.5, 3)
                     yoffset = random.uniform(0, 2)
                     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
                     simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)
+                #changeup
                 elif leftypitch == 3:
                     xoffset = random.uniform(-4, 1)
                     yoffset = random.uniform(-1, 2)
                     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
                     simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
 
-            if event.ui_element == rightyfastball:
+            if event.ui_element == rightylowfastball:
                 xoffset = random.uniform(-0.5, 2)
                 yoffset = random.uniform(-1, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 20, (screen.get_height() / 3) + 80 )
-                simulateadvancedrighty(True, ball_pos, 1.5 + xoffset, -0.025, 6 + yoffset, 0.1, 4, 390, 0.1, -0.025, 200)
+                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                simulateadvancedrighty(True, ball_pos, 3 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.25, 150)
 
             if event.ui_element == rightyslider:
                 xoffset = random.uniform(-1, 1)
                 yoffset = random.uniform(-1, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 20, (screen.get_height() / 3) + 80 )
-                simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.025, 6 + yoffset, 0.1, 4, 410, 1.7, 0.8, 250)
+                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.2, 6 + yoffset, 0.1, 4, 410, 0.6, 0.45, 250)
 
             if event.ui_element == rightyhighfastball:
                 xoffset = random.uniform(-3, 3)
+                yoffset = random.uniform(-2, 1)
+                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150)
+
+            if event.ui_element == rightychangeup:
+                xoffset = random.uniform(-3, 3)
                 yoffset = random.uniform(-1, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 20, (screen.get_height() / 3) + 80 )
-                simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, 0, 250)
+                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                simulateadvancedrighty(True, ball_pos, 1 + xoffset, -0.01, 5 + yoffset, 0.2, 4, 450, 0.5, -0.3, 170)
+
+
+            if event.ui_element == degrompitch:
+                rightypitch = random.randint(1,10)
+                #low fastball
+                if rightypitch == 1 or rightypitch == 2:
+                    xoffset = random.uniform(-0.5, 2)
+                    yoffset = random.uniform(-1, 1)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                    simulateadvancedrighty(True, ball_pos, 3 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.25, 150)
+                #high fastball
+                elif rightypitch >= 3 and rightypitch <=5:
+                    xoffset = random.uniform(-3, 3)
+                    yoffset = random.uniform(-2, 1)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                    simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150)
+                #slider low
+                elif rightypitch >=6 and rightypitch <=8:
+                    xoffset = random.uniform(-1, 1)
+                    yoffset = random.uniform(-1, 1)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                    simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.2, 6 + yoffset, 0.1, 4, 410, 0.6, 0.45, 250)
+                #changeup low
+                else:
+                    xoffset = random.uniform(-3, 3)
+                    yoffset = random.uniform(-1, 1)
+                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+                    simulateadvancedrighty(True, ball_pos, 1 + xoffset, -0.01, 5 + yoffset, 0.2, 4, 450, 0.5, -0.3, 170)
 
         manager.process_events(event)
 

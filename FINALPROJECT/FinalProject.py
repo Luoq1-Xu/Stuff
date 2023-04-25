@@ -2,7 +2,7 @@
 import pygame
 import pygame_gui
 import random
-
+import math
 
 # pygame setup
 pygame.init()
@@ -15,8 +15,8 @@ manager = pygame_gui.UIManager((1280, 720))
 
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
-ball_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 3)
 strikezone = pygame.Rect((565, 400), (130, 165))
+ball_pos = (0,0)
 yes = True
 fourseamballsize = 11
 strikezonedrawn = True
@@ -24,6 +24,11 @@ strikezonedrawn = True
 
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
+strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
+ballcall = pygame.mixer.Sound("OUTSIDE.mp3")
+
+
+
 batterimg = pygame.image.load('better.png')
 pitcherimg = pygame.image.load('small.png')
 leftypitcher = pygame.image.load('lefty.png')
@@ -42,7 +47,7 @@ righty7 = pygame.image.load('righty7.png')
 
 
 inatbat = False
-
+isstrike = 0
 
 
 
@@ -78,9 +83,9 @@ degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 500)
                                             manager=manager)
 
 
-swingtimer = pygame_gui.elements.UIProgressBar(relative_rect = pygame.Rect((540,80), (200,30)),
-                                               manager=manager)
-
+swing = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540, 80), (200,50,)),
+                                            text= 'swing',
+                                            manager=manager)
 
 
 
@@ -160,8 +165,6 @@ def rightysix(x,y):
 
 def rightyseven(x,y):
     screen.blit(righty7, (x,y))
-
-
 
 
 
@@ -368,9 +371,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     global inatbat
     inatbat = True
 
-    global swingtimer
-    swingtimer.percent_full = 0
-
+    swing.show()
     soundplayed = 0
     starttime = pygame.time.get_ticks()
     while yes:
@@ -447,10 +448,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
         if current_time > starttime + 1100 and current_time < starttime + 1150:
 
+
             time_delta = clock.tick(60)/1000.0
             screen.fill("black")
 
-            swingtimer.percent_full += 0.3
 
             rightysix(c,d+10)
             pygame.draw.circle(screen, "white", ball_pos, ballsize)
@@ -472,6 +473,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             pygame.display.flip()
 
         if current_time > starttime + 1150 and current_time < starttime + breaktime + 1150:
+
 
             time_delta = clock.tick(60)/1000.0
             screen.fill("black")
@@ -501,6 +503,9 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             time_delta = clock.tick(60)/1000.0
             screen.fill("black")
 
+            if current_time > starttime + traveltime + 1000:
+                swing.hide()
+
 
             rightyseven(c,d+10)
             pygame.draw.circle(screen, "white", ball_pos, ballsize)
@@ -529,6 +534,8 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             pitchertype = 2
             yes = False
             inatbat = False
+            if collision(ball_pos.x, ball_pos.y, 11, 630, 482.5, 130, 165):
+                strikecall.play()
 
     return 1
 
@@ -538,9 +545,25 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
 
 
+# CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
+def collision(circlex, circley, radius, rectmiddlex, rectmiddley, rectwidth, rectheight):
+    circleDistancex = abs(circlex - rectmiddlex)
+    circleDistancey = abs(circley - rectmiddley)
 
+    if (circleDistancex > (rectwidth/2 + radius)):
+        return False
 
+    if (circleDistancey > (rectheight/2 + radius)):
+        return False
 
+    if (circleDistancex <= (rectwidth/2)):
+        return True
+    if (circleDistancey <= (rectheight/2)):
+        return True
+
+    cornerDistance_sq = ((circleDistancex - rectwidth/2)**2) + ((circleDistancey - rectheight/2)**2)
+
+    return (cornerDistance_sq <= ((radius)**2))
 
 
 
@@ -677,6 +700,7 @@ while running:
 
     if strikezonedrawn == True:
         pygame.draw.rect(screen, "white", strikezone, 1)
+
 
 
     pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)

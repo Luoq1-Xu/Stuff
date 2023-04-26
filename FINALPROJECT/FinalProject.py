@@ -22,10 +22,13 @@ fourseamballsize = 11
 strikezonedrawn = True
 
 
+pitchnumber = 0
+currentballs = 0
+currentstrikes = 0
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
-ballcall = pygame.mixer.Sound("OUTSIDE.mp3")
+ballcall = pygame.mixer.Sound("BALLCALL.mp3")
 
 
 
@@ -51,34 +54,16 @@ isstrike = 0
 
 
 
+
 strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540,0), (200,50)),
                                         text = 'strikezonetoggle',
                                         manager=manager)
-leftyfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,50,)),
-                                            text= 'leftyfastball',
-                                            manager=manager)
-leftyslider = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 50), (200,50,)),
-                                            text= 'leftyslider',
-                                            manager=manager)
-leftychangeup = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 100), (200,50,)),
-                                            text= 'leftychangeup',
-                                            manager=manager)
-salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 500), (200,50,)),
+
+salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,50,)),
                                             text= 'salepitch',
                                             manager=manager)
-rightylowfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 100), (200,50,)),
-                                            text= 'rightylowfastball',
-                                            manager=manager)
-rightyhighfastball = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 150), (200,50,)),
-                                            text= 'rightyhighfastball',
-                                            manager=manager)
-rightyslider = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 200), (200,50,)),
-                                            text= 'rightyslider',
-                                            manager=manager)
-rightychangeup = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 250), (200,50,)),
-                                            text= 'rightychangeup',
-                                            manager=manager)
-degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 500), (200,50,)),
+
+degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 0), (200,50,)),
                                             text= 'degrompitch',
                                             manager=manager)
 
@@ -86,6 +71,14 @@ degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 500)
 swing = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540, 80), (200,50,)),
                                             text= 'swing',
                                             manager=manager)
+
+
+
+
+
+def pitchresult(input):
+    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 400), (200,100,)),
+                                        manager=manager)
 
 
 
@@ -172,80 +165,6 @@ def rightyseven(x,y):
 
 
 
-
-
-
-
-
-
-
-def simulateadvanced(yes, ball_pos, horizontalspeed,
-                        horizontalacceleration, verticalspeed, verticalacceleration,
-                        ballsize, traveltime, verticalbreak,
-                        horizontalbreak, breaktime):
-
-    soundplayed = 0
-    starttime = pygame.time.get_ticks()
-    while yes:
-        current_time = pygame.time.get_ticks()
-        if current_time < starttime + breaktime:
-
-            time_delta = clock.tick(60)/1000.0
-            screen.fill("black")
-
-            pitcher(j,k)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalacceleration
-            verticalspeed += verticalacceleration
-            ballsize = ballsize * 1.030
-
-            homeplate()
-            batter(x,y)
-
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-        elif current_time > starttime + breaktime and current_time < starttime + traveltime:
-
-            time_delta = clock.tick(60)/1000.0
-            screen.fill("black")
-
-
-            pitcher(j,k)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalbreak
-            verticalspeed += verticalbreak
-            ballsize = ballsize * 1.030
-
-            homeplate()
-            batter(x,y)
-
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-            if current_time > ((starttime + traveltime) - 125) and current_time < starttime + traveltime and soundplayed == 0:
-                popsfx.play()
-                soundplayed += 1
-
-        elif current_time > starttime + traveltime:
-            global pitchertype
-            pitchertype = 1
-            yes = False
-
-    return 1
 
 
 def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
@@ -370,6 +289,11 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
     global inatbat
     inatbat = True
+    global currentballs
+    global pitchnumber
+    global currentstrikes
+    global string
+
 
     swing.show()
     soundplayed = 0
@@ -533,9 +457,41 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             global pitchertype
             pitchertype = 2
             yes = False
-            inatbat = False
+            global isstrike
+            isstrike = 1
             if collision(ball_pos.x, ball_pos.y, 11, 630, 482.5, 130, 165):
                 strikecall.play()
+
+                pitchnumber += 1
+                currentstrikes += 1
+                if currentstrikes == 3:
+                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                    pitchnumber = 0
+                    currentstrikes = 0
+                    currentballs = 0
+                else:
+                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            else:
+                ballcall.play()
+                currentballs += 1
+                pitchnumber += 1
+                if currentballs == 4:
+                    string = "PITCH {} : BALL<br>COUNT IS {} - {}<br><b>WALK</b>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                    pitchnumber = 0
+                    currentstrikes = 0
+                    currentballs = 0
+                else:
+                    string = "PITCH {} : BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+
+
 
     return 1
 
@@ -597,24 +553,7 @@ while running:
 
 
 
-            if event.ui_element == leftyfastball:
-                xoffset = random.uniform(-1, 5)
-                yoffset = random.uniform(-3, 3)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
 
-            if event.ui_element == leftyslider:
-                xoffset = random.uniform(-0.5, 3)
-                yoffset = random.uniform(0, 2)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)
-
-
-            if event.ui_element == leftychangeup:
-                xoffset = random.uniform(-4, 1)
-                yoffset = random.uniform(-1, 2)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
 
             if event.ui_element == salepitch:
                 leftypitch = random.randint(1,3)
@@ -637,29 +576,7 @@ while running:
                     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
                     simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
 
-            if event.ui_element == rightylowfastball:
-                xoffset = random.uniform(-0.5, 2)
-                yoffset = random.uniform(-1, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                simulateadvancedrighty(True, ball_pos, 3 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.25, 150)
 
-            if event.ui_element == rightyslider:
-                xoffset = random.uniform(-1, 1)
-                yoffset = random.uniform(-1, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.2, 6 + yoffset, 0.1, 4, 410, 0.6, 0.45, 250)
-
-            if event.ui_element == rightyhighfastball:
-                xoffset = random.uniform(-3, 3)
-                yoffset = random.uniform(-2, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150)
-
-            if event.ui_element == rightychangeup:
-                xoffset = random.uniform(-3, 3)
-                yoffset = random.uniform(-1, 1)
-                ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                simulateadvancedrighty(True, ball_pos, 1 + xoffset, -0.01, 5 + yoffset, 0.2, 4, 450, 0.5, -0.3, 170)
 
 
             if event.ui_element == degrompitch:
@@ -695,6 +612,7 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
+
 
 
 

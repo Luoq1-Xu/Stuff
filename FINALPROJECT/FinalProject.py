@@ -26,6 +26,11 @@ pitchnumber = 0
 currentballs = 0
 currentstrikes = 0
 
+currentouts = 0
+currentstrikeouts = 0
+currentwalks = 0
+
+
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
 ballcall = pygame.mixer.Sound("BALLCALL.mp3")
@@ -80,6 +85,10 @@ def pitchresult(input):
     return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 400), (200,100,)),
                                         manager=manager)
 
+
+def drawscoreboard(results):
+    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 200), (200,100,)),
+                                        manager=manager)
 
 
 def drawbat():
@@ -293,6 +302,9 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     global pitchnumber
     global currentstrikes
     global string
+    global currentouts
+    global currentstrikeouts
+    global currentwalks
 
 
     swing.show()
@@ -468,6 +480,11 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                    currentstrikeouts += 1
+                    currentouts +=1
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}".format(currentouts, currentstrikeouts, currentwalks)
+                    scoreboard = drawscoreboard(result)
+                    scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
                     currentstrikes = 0
                     currentballs = 0
@@ -483,6 +500,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     string = "PITCH {} : BALL<br>COUNT IS {} - {}<br><b>WALK</b>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                    currentwalks += 1
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}".format(currentouts, currentstrikeouts, currentwalks)
+                    scoreboard = drawscoreboard(result)
+                    scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
                     currentstrikes = 0
                     currentballs = 0
@@ -497,7 +518,97 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
 
 
+def pitch_decision_maker():
+    global currentballs
+    global currentstrikes
+    rando = random.uniform(1,10)
+    if ((currentballs == 0 and currentstrikes == 0) or
+        (currentballs == 4) or
+        (currentstrikes == 3) or
+        (currentballs == 1 and currentstrikes ==1) or
+        (currentballs == 3 and currentstrikes == 2)
+        ):
+        if rando >= 1 and rando <=3:
+            lowfastball()
+        elif rando > 3 and rando <=5:
+            highfastball()
+        elif rando > 5 and rando <=8:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
+        if rando >=1 and rando <=4:
+            lowfastball()
+        elif rando > 4 and rando <= 5.5:
+            highfastball()
+        elif rando > 5.5 and rando <= 8.5:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
+        if rando >= 1 and rando <= 2:
+            lowfastball()
+        elif rando > 2 and rando <=5:
+            highfastball()
+        elif rando > 5 and rando <= 7:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
+        if rando >=1 and rando <=6:
+            lowfastball()
+        elif rando > 6 and rando <=7:
+            highfastball()
+        elif rando > 7 and rando <= 9:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
+        if rando >=1 and rando <=2:
+            lowfastball()
+        elif rando > 2 and rando <=5:
+            highfastball()
+        elif rando > 5 and rando <=7:
+            lowslider()
+        else:
+            lowchangeup()
 
+
+
+
+
+#DEGROM PITCH TYPES
+def lowfastball():
+    xoffset = random.uniform(-0.5, 2)
+    yoffset = random.uniform(-1, 1)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    simulateadvancedrighty(True, ball_pos, 3 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.25, 150)
+    return
+
+def highfastball():
+    xoffset = random.uniform(-3, 3)
+    yoffset = random.uniform(-2, 1)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150)
+    return
+
+def lowslider():
+    xoffset = random.uniform(-1, 1)
+    yoffset = random.uniform(-1, 1)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.2, 6 + yoffset, 0.1, 4, 410, 0.6, 0.45, 250)
+    return
+
+def lowchangeup():
+    xoffset = random.uniform(-3, 3)
+    yoffset = random.uniform(-1, 1)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    simulateadvancedrighty(True, ball_pos, 1 + xoffset, -0.01, 5 + yoffset, 0.2, 4, 450, 0.5, -0.3, 170)
+    return
 
 
 
@@ -580,31 +691,7 @@ while running:
 
 
             if event.ui_element == degrompitch:
-                rightypitch = random.randint(1,10)
-                #low fastball
-                if rightypitch == 1 or rightypitch == 2:
-                    xoffset = random.uniform(-0.5, 2)
-                    yoffset = random.uniform(-1, 1)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                    simulateadvancedrighty(True, ball_pos, 3 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.25, 150)
-                #high fastball
-                elif rightypitch >= 3 and rightypitch <=5:
-                    xoffset = random.uniform(-3, 3)
-                    yoffset = random.uniform(-2, 1)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                    simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150)
-                #slider low
-                elif rightypitch >=6 and rightypitch <=8:
-                    xoffset = random.uniform(-1, 1)
-                    yoffset = random.uniform(-1, 1)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                    simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.2, 6 + yoffset, 0.1, 4, 410, 0.6, 0.45, 250)
-                #changeup low
-                else:
-                    xoffset = random.uniform(-3, 3)
-                    yoffset = random.uniform(-1, 1)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
-                    simulateadvancedrighty(True, ball_pos, 1 + xoffset, -0.01, 5 + yoffset, 0.2, 4, 450, 0.5, -0.3, 170)
+                pitch_decision_maker()
 
         manager.process_events(event)
 

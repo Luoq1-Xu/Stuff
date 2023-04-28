@@ -2,7 +2,7 @@
 import pygame
 import pygame_gui
 import random
-import math
+
 
 # pygame setup
 pygame.init()
@@ -12,7 +12,6 @@ running = True
 dt = 0
 
 manager = pygame_gui.UIManager((1280, 720))
-
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 strikezone = pygame.Rect((565, 400), (130, 165))
@@ -30,6 +29,7 @@ currentouts = 0
 currentstrikeouts = 0
 currentwalks = 0
 
+runners = 0
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
@@ -54,7 +54,6 @@ righty6 = pygame.image.load('righty6.png')
 righty7 = pygame.image.load('righty7.png')
 
 
-inatbat = False
 isstrike = 0
 
 
@@ -89,6 +88,48 @@ def pitchresult(input):
 def drawscoreboard(results):
     return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 200), (200,100,)),
                                         manager=manager)
+
+
+def basesempty_graphic():
+    pygame.draw.polygon(screen, "white", ((1000, 550), (1025, 575), (1000,600), (975,575)), 3)
+    pygame.draw.polygon(screen, "white", ((1035, 585), (1060, 610), (1035,635), (1010,610)), 3)
+    pygame.draw.polygon(screen, "white", ((965, 585), (990, 610), (965,635), (940,610)), 3)
+    return
+
+def runnerfirst_graphic():
+    pygame.draw.polygon(screen, "white", ((1000, 550), (1025, 575), (1000,600), (975,575)), 3)
+    pygame.draw.polygon(screen, "yellow", ((1035, 585), (1060, 610), (1035,635), (1010,610)),)
+    pygame.draw.polygon(screen, "white", ((965, 585), (990, 610), (965,635), (940,610)), 3)
+    return
+
+def runnerfirstsecond_graphic():
+    pygame.draw.polygon(screen, "yellow", ((1000, 550), (1025, 575), (1000,600), (975,575)),)
+    pygame.draw.polygon(screen, "yellow", ((1035, 585), (1060, 610), (1035,635), (1010,610)),)
+    pygame.draw.polygon(screen, "white", ((965, 585), (990, 610), (965,635), (940,610)), 3)
+    return
+
+def basesloaded_graphic():
+    pygame.draw.polygon(screen, "yellow", ((1000, 550), (1025, 575), (1000,600), (975,575)),)
+    pygame.draw.polygon(screen, "yellow", ((1035, 585), (1060, 610), (1035,635), (1010,610)),)
+    pygame.draw.polygon(screen, "yellow", ((965, 585), (990, 610), (965,635), (940,610)),)
+    return
+
+def draw_static():
+    global strikezonedrawn
+    global runners
+    if strikezonedrawn == True:
+                pygame.draw.rect(screen, "white", strikezone, 1)
+    if runners == 0:
+        basesempty_graphic()
+    elif runners == 1:
+        runnerfirst_graphic()
+    elif runners == 2:
+        runnerfirstsecond_graphic()
+    elif runners == 3:
+        basesloaded_graphic()
+    homeplate()
+    batter(x,y)
+    return
 
 
 def drawbat():
@@ -296,8 +337,6 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                         ballsize, traveltime, verticalbreak,
                         horizontalbreak, breaktime):
 
-    global inatbat
-    inatbat = True
     global currentballs
     global pitchnumber
     global currentstrikes
@@ -305,6 +344,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     global currentouts
     global currentstrikeouts
     global currentwalks
+    global runners
 
 
     swing.show()
@@ -317,11 +357,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             screen.fill("black")
 
             rightyone(c,d)
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-            homeplate()
-            batter(x,y)
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -331,11 +367,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             screen.fill("black")
 
             rightytwo(c,d)
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-            homeplate()
-            batter(x,y)
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -345,11 +377,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             screen.fill("black")
 
             rightythree(c,d)
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-            homeplate()
-            batter(x,y)
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -359,11 +387,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             screen.fill("black")
 
             rightyfour(c,d)
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-            homeplate()
-            batter(x,y)
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -373,11 +397,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             screen.fill("black")
 
             rightyfive(c,d+10)
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
-            homeplate()
-            batter(x,y)
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -397,12 +417,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             verticalspeed += verticalacceleration
             ballsize = ballsize * 1.030
 
-            homeplate()
-            batter(x,y)
-
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-
+            draw_static()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
@@ -422,11 +437,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             verticalspeed += verticalacceleration
             ballsize = ballsize * 1.030
 
-            homeplate()
-            batter(x,y)
-
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
+            draw_static()
 
 
             manager.update(time_delta)
@@ -451,11 +462,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             verticalspeed += verticalbreak
             ballsize = ballsize * 1.030
 
-            homeplate()
-            batter(x,y)
-
-            if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
+            draw_static()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
@@ -476,6 +483,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
                 pitchnumber += 1
                 currentstrikes += 1
+                #STRIKEOUT OCCURS
                 if currentstrikes == 3:
                     string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
@@ -496,6 +504,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 ballcall.play()
                 currentballs += 1
                 pitchnumber += 1
+                #WALK OCCURS
                 if currentballs == 4:
                     string = "PITCH {} : BALL<br>COUNT IS {} - {}<br><b>WALK</b>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
@@ -507,6 +516,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     pitchnumber = 0
                     currentstrikes = 0
                     currentballs = 0
+                    runners += 1
                 else:
                     string = "PITCH {} : BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
@@ -701,20 +711,8 @@ while running:
     screen.fill("black")
 
 
-
-
-    if strikezonedrawn == True:
-        pygame.draw.rect(screen, "white", strikezone, 1)
-
-
-
     pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-    homeplate()
-
-
-
-    batter(x,y)
-    drawbat()
+    draw_static()
 
     manager.draw_ui(screen)
 

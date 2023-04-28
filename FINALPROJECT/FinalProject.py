@@ -20,6 +20,7 @@ yes = True
 fourseamballsize = 11
 strikezonedrawn = True
 
+menu_state = 0
 
 pitchnumber = 0
 currentballs = 0
@@ -77,7 +78,16 @@ swing = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540, 80), (200,5
                                             manager=manager)
 
 
+def check_menu():
+    global currentouts
+    global menu_state
+    if currentouts == 3:
+        menu_state = 1
+    return
 
+def inning_summary(summary):
+    return pygame_gui.elements.UITextBox(summary,relative_rect=pygame.Rect((440, 160), (400,400,)),
+                                        manager=manager)
 
 
 def pitchresult(input):
@@ -346,6 +356,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     global currentwalks
     global runners
 
+    salepitch.hide()
+    strikezonetoggle.hide()
+    degrompitch.hide()
+
 
     swing.show()
     soundplayed = 0
@@ -522,9 +536,11 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
+            salepitch.show()
+            strikezonetoggle.show()
+            degrompitch.show()
 
-
-    return 1
+    return
 
 
 
@@ -653,78 +669,102 @@ while running:
 
     time_delta = clock.tick(60)/1000.0
 
+    check_menu()
 
 
+    if menu_state == 1:
+        # poll for events
+        # pygame.QUIT event means the user clicked X to close your window
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+            if event.type == pygame_gui.UI_BUTTON_PRESSED:
 
-        if event.type == pygame_gui.UI_BUTTON_PRESSED:
-
-            if event.ui_element == strikezonetoggle:
-                if strikezonedrawn == True:
-                    strikezonedrawn = False
-                elif strikezonedrawn == False:
-                    strikezonedrawn = True
-
-
-
-
-
-
-
-            if event.ui_element == salepitch:
-                leftypitch = random.randint(1,3)
-                #fastball
-                if leftypitch == 1:
-                    xoffset = random.uniform(-1, 5)
-                    yoffset = random.uniform(-3, 3)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                    simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
-                #slider
-                elif leftypitch == 2:
-                    xoffset = random.uniform(-0.5, 3)
-                    yoffset = random.uniform(0, 2)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                    simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)
-                #changeup
-                elif leftypitch == 3:
-                    xoffset = random.uniform(-4, 1)
-                    yoffset = random.uniform(-1, 2)
-                    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-                    simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
+                if event.ui_element == strikezonetoggle:
+                    if strikezonedrawn == True:
+                        strikezonedrawn = False
+                    elif strikezonedrawn == False:
+                        strikezonedrawn = True
 
 
 
 
-            if event.ui_element == degrompitch:
-                pitch_decision_maker()
-
-        manager.process_events(event)
-
-    manager.update(time_delta)
-
-    # fill the screen with a color to wipe away anything from last frame
-    screen.fill("black")
-
-
-    pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-    draw_static()
-
-    manager.draw_ui(screen)
-
-
-    # flip() the display to put your work on screen
-    pygame.display.flip()
 
 
 
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
+                if event.ui_element == salepitch:
+                    leftypitch = random.randint(1,3)
+                    #fastball
+                    if leftypitch == 1:
+                        xoffset = random.uniform(-1, 5)
+                        yoffset = random.uniform(-3, 3)
+                        ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                        simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
+                    #slider
+                    elif leftypitch == 2:
+                        xoffset = random.uniform(-0.5, 3)
+                        yoffset = random.uniform(0, 2)
+                        ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                        simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)
+                    #changeup
+                    elif leftypitch == 3:
+                        xoffset = random.uniform(-4, 1)
+                        yoffset = random.uniform(-1, 2)
+                        ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+                        simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
+
+
+
+
+                if event.ui_element == degrompitch:
+                    pitch_decision_maker()
+
+            manager.process_events(event)
+
+        manager.update(time_delta)
+
+        # fill the screen with a color to wipe away anything from last frame
+        screen.fill("black")
+        pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
+        draw_static()
+        manager.draw_ui(screen)
+        # flip() the display to put your work on screen
+        pygame.display.flip()
+
+    elif menu_state == 0:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame_gui.UI_TEXT_EFFECT_FINISHED:
+                print("whatthefuck")
+
+            manager.process_events(event)
+
+
+        screen.fill("black")
+        okay = True
+        while okay == True:
+            summary = "INNING OVER<br>INNING SUMMARY :<br>RUNS SCORED : <br>STRIKEOUTS : {}<br>WALKS : {}<br>TOTAL PITCHES : ".format(currentstrikeouts, currentwalks)
+            inningstats = inning_summary(summary)
+            inningstats.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            okay = False
+        salepitch.hide()
+        strikezonetoggle.hide()
+        degrompitch.hide()
+        swing.hide()
+        manager.update(time_delta)
+        manager.draw_ui(screen)
+        pygame.display.flip()
+
+
+
+
+
+
+
+
 
 
 pygame.quit()

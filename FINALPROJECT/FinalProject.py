@@ -1,8 +1,8 @@
-# Example file showing a circle moving on screen
+# BasedBall : A baseball at-bat simulator
 import pygame
 import pygame_gui
 import random
-
+import button
 
 # pygame setup
 pygame.init()
@@ -10,6 +10,11 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 dt = 0
+font = pygame.font.Font('8bitoperator_jve.ttf', 30)
+snip = font.render('', True, 'white')
+counter = 0
+speed = 3
+
 
 manager = pygame_gui.UIManager((1280, 720))
 
@@ -21,6 +26,7 @@ fourseamballsize = 11
 strikezonedrawn = True
 
 menu_state = 0
+just_refreshed = 0
 
 pitchnumber = 0
 currentballs = 0
@@ -29,12 +35,17 @@ currentstrikes = 0
 currentouts = 0
 currentstrikeouts = 0
 currentwalks = 0
-
 runners = 0
+runs_scored = 0
+swing_started = 0
+
+
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
 ballcall = pygame.mixer.Sound("BALLCALL.mp3")
+foulball = pygame.mixer.Sound("FOULBALL.mp3")
+hit = pygame.mixer.Sound("HIT.mp3")
 
 
 
@@ -55,8 +66,19 @@ righty6 = pygame.image.load('righty6.png')
 righty7 = pygame.image.load('righty7.png')
 
 
-isstrike = 0
+trout1 = pygame.image.load('1trout.png')
+troutlegraise =pygame.image.load('1.5trout.png')
+trout2 = pygame.image.load('2trout.png')
+trout3 = pygame.image.load('3trout.png')
+trout4 = pygame.image.load('4trout.png')
+trout5 = pygame.image.load('5trout.png')
+trout6 = pygame.image.load('6trout.png')
+trout7 = pygame.image.load('7trout.png')
 
+buttonimage = pygame.image.load('button.png')
+
+
+restart_button = button.Button(550, 500, buttonimage, 0.8)
 
 
 
@@ -73,21 +95,97 @@ degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1080, 0), 
                                             manager=manager)
 
 
-swing = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540, 80), (200,50,)),
-                                            text= 'swing',
-                                            manager=manager)
-
 
 def check_menu():
     global currentouts
     global menu_state
     if currentouts == 3:
+        pygame.time.delay(500)
         menu_state = 1
     return
 
-def inning_summary(summary):
-    return pygame_gui.elements.UITextBox(summary,relative_rect=pygame.Rect((440, 160), (400,400,)),
-                                        manager=manager)
+
+def draw_inning_summary():
+    global running
+    global currentstrikeouts
+    global currentwalks
+    global currentouts
+    global pitchnumber
+    global currentballs
+    global currentstrikes
+    global menu_state
+    global runs_scored
+    global runners
+    global just_refreshed
+
+    done = False
+    counter = 0
+    textoffset = 0
+    messages_finished = 0
+
+    messages = ["INNING OVER",
+               "STRIKEOUTS : {}".format(currentstrikeouts),
+               "WALKS: {}".format(currentwalks),
+               "RUNS SCORED : {}".format(runs_scored)]
+
+    active_message = 0
+    message = messages[active_message]
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        full_message = 0
+        screen.fill("black")
+        if restart_button.draw(screen):
+            menu_state = 0
+            just_refreshed = 1
+            currentballs = 0
+            currentstrikes = 0
+            pitchnumber = 0
+            currentstrikeouts = 0
+            currentwalks = 0
+            currentouts = 0
+            runs_scored = 0
+            runners = 0
+            return
+        clock.tick(60)/1000.0
+        pygame.draw.rect(screen, 'white', [(440, 160), (400,300,)], 3)
+        if counter < speed *len(message):
+            counter += 1
+        elif counter >= speed*len(message):
+            done = True
+
+        if (active_message < len(messages) - 1 ) and done:
+            pygame.time.delay(500)
+            active_message += 1
+            done = False
+            message = messages[active_message]
+            textoffset += 50
+            counter = 0
+            messages_finished += 1
+
+        if messages_finished > 0:
+            offset = 0
+            while full_message < messages_finished:
+                oldmessage =font.render(messages[full_message], True, 'white')
+                screen.blit(oldmessage, (450, 170 + offset))
+                offset += 50
+                full_message += 1
+
+        snip = font.render(message[0:counter//speed], True, 'white')
+        screen.blit(snip, (450, 170 + textoffset))
+        pygame.display.flip()
+
+    return
+
+
+
+
+
+
+
+
 
 
 def pitchresult(input):
@@ -96,7 +194,7 @@ def pitchresult(input):
 
 
 def drawscoreboard(results):
-    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 200), (200,100,)),
+    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 200), (200,150,)),
                                         manager=manager)
 
 
@@ -138,7 +236,24 @@ def draw_static():
     elif runners == 3:
         basesloaded_graphic()
     homeplate()
-    batter(x,y)
+    troutone(x,y)
+    return
+
+
+def draw_static1():
+    global strikezonedrawn
+    global runners
+    if strikezonedrawn == True:
+                pygame.draw.rect(screen, "white", strikezone, 1)
+    if runners == 0:
+        basesempty_graphic()
+    elif runners == 1:
+        runnerfirst_graphic()
+    elif runners == 2:
+        runnerfirstsecond_graphic()
+    elif runners == 3:
+        basesloaded_graphic()
+    homeplate()
     return
 
 
@@ -165,7 +280,7 @@ d = (screen.get_height() / 3) + 50
 
 
 
-x = 330
+x = 360
 y = 190
 
 j = (screen.get_width() / 2) - 105
@@ -220,11 +335,29 @@ def rightyseven(x,y):
     screen.blit(righty7, (x,y))
 
 
+def troutone(x,y):
+    screen.blit(trout1, (x,y))
 
+def troutraiseleg(x,y):
+    screen.blit(troutlegraise, (x,y))
 
+def trouttwo(x,y):
+    screen.blit(trout2, (x,y))
 
+def troutthree(x,y):
+    screen.blit(trout3, (x,y))
 
+def troutfour(x,y):
+    screen.blit(trout4, (x,y))
 
+def troutfive(x,y):
+    screen.blit(trout5, (x,y))
+
+def troutsix(x,y):
+    screen.blit(trout6, (x,y))
+
+def troutseven(x,y):
+    screen.blit(trout7, (x,y))
 
 
 def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
@@ -342,6 +475,32 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                         horizontalacceleration, verticalspeed, verticalacceleration,
                         ballsize, traveltime, verticalbreak,
@@ -355,75 +514,52 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     global currentstrikeouts
     global currentwalks
     global runners
+    global runs_scored
+    global swing_started
+    swing_started = 0
+
 
     salepitch.hide()
     strikezonetoggle.hide()
     degrompitch.hide()
 
 
-    swing.show()
     soundplayed = 0
+    on_time = 0
+    made_contact = 0
+    contact_time = 0
+    pitch_results_done = False
+
+
+
     starttime = pygame.time.get_ticks()
+    current_time = starttime
     while yes:
-        current_time = pygame.time.get_ticks()
-        if current_time < starttime + 300:
-            time_delta = clock.tick(60)/1000.0
+        time_delta = clock.tick(60)/1000.0
+        current_time += (time_delta*1000)
+        if current_time <= starttime + 1100:
             screen.fill("black")
+            if current_time <= starttime + 300:
+                rightyone(c,d)
+            elif current_time > starttime + 300 and current_time <= starttime + 500:
+                rightytwo(c,d)
+            elif current_time > starttime + 500 and current_time <= starttime + 800:
+                rightythree(c,d)
+            elif current_time > starttime + 800 and current_time <= starttime + 1000:
+                rightyfour(c,d)
+            elif current_time > starttime + 1000 and current_time <= starttime + 1100:
+                rightyfive(c,d+20)
 
-            rightyone(c,d)
-            draw_static()
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
+            leg_kick(current_time, starttime + 650)
 
-        if current_time > starttime + 300 and current_time < starttime + 500:
-            time_delta = clock.tick(60)/1000.0
-            screen.fill("black")
-
-            rightytwo(c,d)
-            draw_static()
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-        if current_time > starttime + 500 and current_time < starttime + 800:
-            time_delta = clock.tick(60)/1000.0
-            screen.fill("black")
-
-            rightythree(c,d)
-            draw_static()
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-        if current_time > starttime + 800 and current_time < starttime + 1000:
-            time_delta = clock.tick(60)/1000.0
-            screen.fill("black")
-
-            rightyfour(c,d)
-            draw_static()
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-        if current_time > starttime + 1000 and current_time < starttime + 1100:
-            time_delta = clock.tick(60)/1000.0
-            screen.fill("black")
-
-            rightyfive(c,d+10)
-            draw_static()
+            draw_static1()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
 
         if current_time > starttime + 1100 and current_time < starttime + 1150:
-
-
-            time_delta = clock.tick(60)/1000.0
             screen.fill("black")
-
-
-            rightysix(c,d+10)
+            rightysix(c,d+20)
             pygame.draw.circle(screen, "white", ball_pos, ballsize)
             ball_pos.y += verticalspeed
             ball_pos.x += horizontalspeed
@@ -431,19 +567,33 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             verticalspeed += verticalacceleration
             ballsize = ballsize * 1.030
 
-            draw_static()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w and swing_started <= 1:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started += 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+
+            if swing_started > 0:
+                timenow = current_time
+                swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+
+            draw_static1()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
 
-        if current_time > starttime + 1150 and current_time < starttime + breaktime + 1150:
-
-
-            time_delta = clock.tick(60)/1000.0
+        if current_time > starttime + 1150 and current_time < starttime + breaktime + 1150 and on_time == 0:
             screen.fill("black")
-
-            rightyseven(c,d+10)
+            rightyseven(c,d+20)
             pygame.draw.circle(screen, "white", ball_pos, ballsize)
             ball_pos.y += verticalspeed
             ball_pos.x += horizontalspeed
@@ -451,7 +601,25 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             verticalspeed += verticalacceleration
             ballsize = ballsize * 1.030
 
-            draw_static()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w and swing_started <= 1:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started += 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+
+            if swing_started > 0:
+                timenow = current_time
+                swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+
+            draw_static1()
 
 
             manager.update(time_delta)
@@ -459,16 +627,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             pygame.display.flip()
 
 
-        elif current_time > starttime + breaktime + 1150 and current_time < starttime + traveltime + 1150:
 
-            time_delta = clock.tick(60)/1000.0
+        elif (current_time > starttime + breaktime + 1150 and current_time < starttime + traveltime + 1150 and (on_time == 0 or (on_time > 0 and made_contact == 1))) or (on_time > 0 and current_time <= contact_time and made_contact == 0):
             screen.fill("black")
-
-            if current_time > starttime + traveltime + 1000:
-                swing.hide()
-
-
-            rightyseven(c,d+10)
+            rightyseven(c,d+20)
             pygame.draw.circle(screen, "white", ball_pos, ballsize)
             ball_pos.y += verticalspeed
             ball_pos.x += horizontalspeed
@@ -476,45 +638,101 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             verticalspeed += verticalbreak
             ballsize = ballsize * 1.030
 
-            draw_static()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w and swing_started <= 1:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started += 1
+                        if abs((swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 75:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs((swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+
+
+            if swing_started > 0:
+                timenow = current_time
+                swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+
+            draw_static1()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
 
-            if current_time > ((starttime + traveltime + 1150) - 125) and current_time < starttime + traveltime + 1250 and soundplayed == 0:
+            if (current_time > (starttime + traveltime + 1050) and soundplayed == 0 and on_time == 0) or (current_time > contact_time and soundplayed == 0 and (on_time > 0 and made_contact == 1)):
                 popsfx.play()
                 soundplayed += 1
 
-        elif current_time > starttime + traveltime + 1150:
-            global pitchertype
-            pitchertype = 2
-            yes = False
-            global isstrike
-            isstrike = 1
-            if collision(ball_pos.x, ball_pos.y, 11, 630, 482.5, 130, 165):
-                strikecall.play()
 
-                pitchnumber += 1
-                currentstrikes += 1
-                #STRIKEOUT OCCURS
-                if currentstrikes == 3:
-                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b>".format(pitchnumber, currentballs, currentstrikes)
-                    textbox = pitchresult(string)
-                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                    currentstrikeouts += 1
-                    currentouts +=1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}".format(currentouts, currentstrikeouts, currentwalks)
-                    scoreboard = drawscoreboard(result)
-                    scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                    pitchnumber = 0
-                    currentstrikes = 0
-                    currentballs = 0
-                else:
-                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
-                    textbox = pitchresult(string)
-                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+        elif on_time == 1 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
+            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576):
+                #SWUNG AND ON TIME BUT MISSED
+                made_contact = 1
             else:
+                made_contact = 2
+                pitch_results_done = True
+                pitchnumber += 1
+                if currentstrikes == 2:
+                    string = "PITCH {} : FOUL BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                else:
+                    currentstrikes += 1
+                    string = "PITCH {} : FOUL BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+
+        elif on_time == 2 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
+            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576):
+                #SWUNG AND ON TIME BUT MISSED
+                made_contact = 1
+            else:
+                made_contact = 2
+                pitch_results_done = True
+                pitchnumber += 1
+                if runners == 3:
+                    runs_scored += 1
+                else:
+                    runners += 1
+                string = "PITCH {} : HIT - SINGLE<br>".format(pitchnumber)
+                textbox = pitchresult(string)
+                textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+                scoreboard = drawscoreboard(result)
+                scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                pitchnumber = 0
+                currentstrikes = 0
+                currentballs = 0
+
+
+        elif on_time > 0 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == True and made_contact == 2:
+            screen.fill("black")
+            if swing_started > 0:
+                timenow = current_time
+                swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+            pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
+            draw_static1()
+            manager.update(time_delta)
+            manager.draw_ui(screen)
+            pygame.display.flip()
+            if soundplayed == 0 and on_time == 1:
+                foulball.play()
+                soundplayed += 1
+            elif soundplayed == 0 and on_time == 2:
+                hit.play()
+                soundplayed += 1
+
+
+
+        elif (current_time > starttime + traveltime + 1150 and pitch_results_done == False and (on_time == 0 or (on_time > 0 and made_contact == 1))):
+            pitch_results_done = True
+            if  (not collision(ball_pos.x, ball_pos.y, 11, 630, 482.5, 130, 165)) and swing_started == 0:
                 ballcall.play()
                 currentballs += 1
                 pitchnumber += 1
@@ -524,23 +742,81 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentwalks += 1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}".format(currentouts, currentstrikeouts, currentwalks)
+                    pitchnumber = 0
+                    currentstrikes = 0
+                    currentballs = 0
+                    if runners == 3:
+                        runs_scored += 1
+                    else:
+                        runners += 1
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+                    scoreboard = drawscoreboard(result)
+                    scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+
+                else:
+                    string = "PITCH {} : BALL<br>COUNT IS {} - {}".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            else:
+                if swing_started == 0:
+                    strikecall.play()
+                pitchnumber += 1
+                currentstrikes += 1
+                #STRIKEOUT OCCURS
+                if currentstrikes == 3:
+                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b>".format(pitchnumber, currentballs, currentstrikes)
+                    textbox = pitchresult(string)
+                    textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+                    currentstrikeouts += 1
+                    currentouts +=1
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
                     currentstrikes = 0
                     currentballs = 0
-                    runners += 1
                 else:
-                    string = "PITCH {} : BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
+
+        elif current_time > starttime + traveltime + 1150 and pitch_results_done == True and current_time <= starttime + traveltime + 1800 and (on_time == 0 or (on_time > 0 and made_contact == 1)):
+            screen.fill("black")
+            if (current_time > contact_time and soundplayed == 0 and (on_time > 0 and made_contact == 1)):
+                popsfx.play()
+                soundplayed += 1
+            if swing_started > 0:
+                timenow = current_time
+                swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+            pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
+            draw_static1()
+            manager.update(time_delta)
+            manager.draw_ui(screen)
+            pygame.display.flip()
+
+        elif current_time > starttime + traveltime + 1800:
+            yes = False
             salepitch.show()
             strikezonetoggle.show()
             degrompitch.show()
 
+
+
+
     return
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -598,6 +874,7 @@ def pitch_decision_maker():
             lowslider()
         else:
             lowchangeup()
+    return
 
 
 
@@ -608,7 +885,7 @@ def lowfastball():
     xoffset = random.uniform(-0.5, 2)
     yoffset = random.uniform(-1, 1)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
     simulateadvancedrighty(True, ball_pos, 3 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.25, 150)
     return
 
@@ -616,7 +893,7 @@ def highfastball():
     xoffset = random.uniform(-3, 3)
     yoffset = random.uniform(-2, 1)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
     simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150)
     return
 
@@ -624,7 +901,7 @@ def lowslider():
     xoffset = random.uniform(-1, 1)
     yoffset = random.uniform(-1, 1)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
     simulateadvancedrighty(True, ball_pos, 0.3 + xoffset, 0.2, 6 + yoffset, 0.1, 4, 410, 0.6, 0.45, 250)
     return
 
@@ -632,7 +909,7 @@ def lowchangeup():
     xoffset = random.uniform(-3, 3)
     yoffset = random.uniform(-1, 1)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 83 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
     simulateadvancedrighty(True, ball_pos, 1 + xoffset, -0.01, 5 + yoffset, 0.2, 4, 450, 0.5, -0.3, 170)
     return
 
@@ -645,10 +922,8 @@ def collision(circlex, circley, radius, rectmiddlex, rectmiddley, rectwidth, rec
 
     if (circleDistancex > (rectwidth/2 + radius)):
         return False
-
     if (circleDistancey > (rectheight/2 + radius)):
         return False
-
     if (circleDistancex <= (rectwidth/2)):
         return True
     if (circleDistancey <= (rectheight/2)):
@@ -664,6 +939,46 @@ def collision(circlex, circley, radius, rectmiddlex, rectmiddley, rectwidth, rec
 
 
 
+def swing_start(timenow, swing_startime):
+    if timenow <= swing_startime + 100:
+        troutthree(x, y + 40)
+    elif timenow > swing_startime + 100 and timenow <= swing_startime + 150:
+        troutfour(x,y + 90)
+    elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
+        troutfive(x,y + 90)
+    elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
+        troutsix(x,y)
+    elif timenow > swing_startime + 250:
+        troutseven(x,y - 20)
+    return
+
+def leg_kick(currenttime, start_time):
+    if currenttime <= start_time + 50:
+        troutone(x,y)
+    elif currenttime > start_time + 50 and currenttime <= start_time + 200:
+        troutraiseleg(x,y)
+    elif currenttime > start_time + 200 and currenttime <= start_time + 500:
+        trouttwo(x,y)
+    elif currenttime > start_time + 500:
+        troutthree(x, y + 40)
+    return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 while running:
 
@@ -672,25 +987,20 @@ while running:
     check_menu()
 
 
-    if menu_state == 1:
+    if menu_state == 0:
         # poll for events
         # pygame.QUIT event means the user clicked X to close your window
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
             if event.type == pygame_gui.UI_BUTTON_PRESSED:
-
                 if event.ui_element == strikezonetoggle:
                     if strikezonedrawn == True:
                         strikezonedrawn = False
                     elif strikezonedrawn == False:
                         strikezonedrawn = True
-
-
-
-
-
 
 
                 if event.ui_element == salepitch:
@@ -715,8 +1025,6 @@ while running:
                         simulateadvancedlefty(True, ball_pos, -3 + xoffset, 0.15, 0.2 + yoffset, 0.5, 4, 460, 0.7, 0.3, 300)
 
 
-
-
                 if event.ui_element == degrompitch:
                     pitch_decision_maker()
 
@@ -727,41 +1035,23 @@ while running:
         # fill the screen with a color to wipe away anything from last frame
         screen.fill("black")
         pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
+
+        if just_refreshed == 1:
+            result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+            scoreboard = drawscoreboard(result)
+            scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            string = "<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+            textbox = pitchresult(string)
+            textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            just_refreshed = 0
+
         draw_static()
         manager.draw_ui(screen)
         # flip() the display to put your work on screen
         pygame.display.flip()
 
-    elif menu_state == 0:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-            if event.type == pygame_gui.UI_TEXT_EFFECT_FINISHED:
-                print("whatthefuck")
-
-            manager.process_events(event)
-
-
-        screen.fill("black")
-        okay = True
-        while okay == True:
-            summary = "INNING OVER<br>INNING SUMMARY :<br>RUNS SCORED : <br>STRIKEOUTS : {}<br>WALKS : {}<br>TOTAL PITCHES : ".format(currentstrikeouts, currentwalks)
-            inningstats = inning_summary(summary)
-            inningstats.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-            okay = False
-        salepitch.hide()
-        strikezonetoggle.hide()
-        degrompitch.hide()
-        swing.hide()
-        manager.update(time_delta)
-        manager.draw_ui(screen)
-        pygame.display.flip()
-
-
-
-
-
+    elif menu_state == 1:
+        draw_inning_summary()
 
 
 

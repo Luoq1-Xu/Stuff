@@ -40,13 +40,14 @@ runners = 0
 runs_scored = 0
 swing_started = 0
 hits = 0
-
+hit_type = 0
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
 ballcall = pygame.mixer.Sound("BALLCALL.mp3")
 foulball = pygame.mixer.Sound("FOULBALL.mp3")
 hit = pygame.mixer.Sound("HIT.mp3")
+homer = pygame.mixer.Sound("HOMERUN.mp3")
 called_strike_3 = pygame.mixer.Sound("CALLEDSTRIKE3.mp3")
 
 
@@ -78,6 +79,11 @@ trout4 = pygame.image.load('4trout.png').convert_alpha()
 trout5 = pygame.image.load('5trout.png').convert_alpha()
 trout6 = pygame.image.load('6trout.png').convert_alpha()
 trout7 = pygame.image.load('7trout.png').convert_alpha()
+
+
+trout4high = pygame.image.load('4TROUTHIGH.png').convert_alpha()
+trout5high = pygame.image.load('5TROUTHIGH.png').convert_alpha()
+trout6high = pygame.image.load('bruh.png').convert_alpha()
 
 buttonimage = pygame.image.load('button.png').convert_alpha()
 
@@ -380,6 +386,15 @@ def troutseven(x,y):
     screen.blit(trout7, (x,y))
 
 
+def troutfourhigh(x,y):
+    screen.blit(trout4high, (x,y))
+
+def troutfivehigh(x,y):
+    screen.blit(trout5high, (x,y))
+
+def troutsixhigh(x,y):
+    screen.blit(trout6high, (x,y))
+
 
 
 def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
@@ -398,6 +413,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
     global runs_scored
     global swing_started
     global hits
+    global hit_type
     swing_started = 0
 
 
@@ -453,9 +469,18 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w and swing_started <= 1:
+                    if event.key == pygame.K_w and swing_started == 0:
                         swing_starttime = pygame.time.get_ticks()
-                        swing_started += 1
+                        swing_started = 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started = 2
                         if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
                             on_time = 1
                             contact_time = swing_starttime + 150
@@ -463,9 +488,13 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                             on_time = 2
                             contact_time = swing_starttime + 150
 
+
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
@@ -490,9 +519,18 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w and swing_started <= 1:
+                    if event.key == pygame.K_w and swing_started == 0:
                         swing_starttime = pygame.time.get_ticks()
-                        swing_started += 1
+                        swing_started = 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started = 2
                         if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
                             on_time = 1
                             contact_time = swing_starttime + 150
@@ -502,7 +540,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
@@ -527,22 +568,35 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w and swing_started <= 1:
+                    # LOW SWING
+                    if event.key == pygame.K_w and swing_started == 0:
                         swing_starttime = pygame.time.get_ticks()
-                        swing_started += 1
-                        if abs((swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 75:
+                        swing_started = 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
                             on_time = 1
                             contact_time = swing_starttime + 150
-                        elif abs((swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started = 2
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
                             on_time = 2
                             contact_time = swing_starttime + 150
 
-
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
+
 
             draw_static1()
 
@@ -556,8 +610,9 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
 
         elif on_time == 1 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
-            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576):
-                #SWUNG AND ON TIME BUT MISSED
+            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
+                made_contact = 1
+            elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
                 made_contact = 1
             else:
                 made_contact = 2
@@ -574,18 +629,16 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
         elif on_time == 2 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
-            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576):
-                #SWUNG AND ON TIME BUT MISSED
+            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
+                made_contact = 1
+            elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
                 made_contact = 1
             else:
                 made_contact = 2
                 pitch_results_done = True
                 pitchnumber += 1
-                if runners == 3:
-                    runs_scored += 1
-                else:
-                    runners += 1
-                string = "PITCH {} : HIT - SINGLE<br>".format(pitchnumber)
+                hit_string = hit_outcome()
+                string = "PITCH {} : HIT - {}<br>".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
@@ -601,7 +654,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             screen.fill("black")
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
@@ -613,7 +669,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 foulball.play()
                 soundplayed += 1
             elif soundplayed == 0 and on_time == 2:
-                hit.play()
+                if hit_type == 1:
+                    hit.play()
+                elif hit_type == 2:
+                    homer.play()
                 soundplayed += 1
 
 
@@ -678,7 +737,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 soundplayed += 1
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
@@ -772,9 +834,18 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w and swing_started <= 1:
+                    if event.key == pygame.K_w and swing_started == 0:
                         swing_starttime = pygame.time.get_ticks()
-                        swing_started += 1
+                        swing_started = 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started = 2
                         if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
                             on_time = 1
                             contact_time = swing_starttime + 150
@@ -784,7 +855,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
@@ -806,9 +880,18 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w and swing_started <= 1:
+                    if event.key == pygame.K_w and swing_started == 0:
                         swing_starttime = pygame.time.get_ticks()
-                        swing_started += 1
+                        swing_started = 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started = 2
                         if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
                             on_time = 1
                             contact_time = swing_starttime + 150
@@ -818,7 +901,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
@@ -843,20 +929,32 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w and swing_started <= 1:
+                    if event.key == pygame.K_w and swing_started == 0:
                         swing_starttime = pygame.time.get_ticks()
-                        swing_started += 1
-                        if abs((swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 75:
+                        swing_started = 1
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
                             on_time = 1
                             contact_time = swing_starttime + 150
-                        elif abs((swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                            on_time = 2
+                            contact_time = swing_starttime + 150
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_starttime = pygame.time.get_ticks()
+                        swing_started = 2
+                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                            on_time = 1
+                            contact_time = swing_starttime + 150
+                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
                             on_time = 2
                             contact_time = swing_starttime + 150
 
 
             if swing_started > 0:
                 timenow = current_time
-                swing_start(timenow, swing_starttime)
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
@@ -872,8 +970,9 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
 
         elif on_time == 1 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
-            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576):
-                #SWUNG AND ON TIME BUT MISSED
+            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
+                made_contact = 1
+            elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
                 made_contact = 1
             else:
                 made_contact = 2
@@ -890,8 +989,9 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
         elif on_time == 2 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
-            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576):
-                #SWUNG AND ON TIME BUT MISSED
+            if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
+                made_contact = 1
+            elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
                 made_contact = 1
             else:
                 made_contact = 2
@@ -1015,6 +1115,27 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
 
 
+
+
+
+def hit_outcome():
+    global runners
+    global runs_scored
+    global hit_type
+    rand = random.uniform(0,10)
+    if rand > 0 and rand <= 5:
+        if runners == 3:
+            runs_scored += 1
+        else:
+            runners += 1
+        hit_type = 1
+        return "SINGLE"
+    elif rand > 5 and rand <= 10:
+        current_runners_on = runners
+        runs_scored += (current_runners_on + 1)
+        runners = 0
+        hit_type = 2
+        return "HOME RUN"
 
 
 
@@ -1253,7 +1374,18 @@ def leg_kick(currenttime, start_time):
         troutthree(x, y + 40)
     return
 
-
+def high_swing_start(timenow, swing_startime):
+    if timenow <= swing_startime + 100:
+        troutthree(x, y + 40)
+    elif timenow > swing_startime + 100 and timenow <= swing_startime + 150:
+        troutfourhigh(x,y + 80)
+    elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
+        troutfivehigh(x,y + 90)
+    elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
+        troutsixhigh(x - 40,y)
+    elif timenow > swing_startime + 250:
+        troutseven(x - 10,y - 20)
+    return
 
 
 

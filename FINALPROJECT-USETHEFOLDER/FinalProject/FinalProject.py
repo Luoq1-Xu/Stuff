@@ -227,12 +227,12 @@ def draw_bases(base1, base2, base3):
     return
 
 
-def draw_static1():
+def draw_static():
     global strikezonedrawn
     global runners
     if strikezonedrawn == True:
                 pygame.draw.rect(screen, "white", strikezone, 1)
-    if runners == 0:
+    if runners == 0.000:
         draw_bases("white", "white", "white")
     elif runners == 1:
         draw_bases("yellow","white","white")
@@ -240,6 +240,28 @@ def draw_static1():
         draw_bases("yellow", "yellow", "white")
     elif runners == 3:
         draw_bases("yellow", "yellow", "yellow")
+    #RUNNER ON FIRST
+    elif runners == 0.100:
+        draw_bases("yellow","white","white")
+    #RUNNER ON FIRST, SECOND
+    elif runners == 0.110:
+        draw_bases("yellow", "yellow", "white")
+    #RUNNER ON FIRST, SECOND, THIRD (BASES LOADED)
+    elif runners == 0.111:
+        draw_bases("yellow", "yellow", "yellow")
+    #RUNNER ON SECOND
+    elif runners == 0.010:
+        draw_bases("white","yellow","white")
+    #RUNNERS ON FIRST, THIRD (RUNNERS AT THE CORNERS)
+    elif runners == 0.101:
+        draw_bases("yellow","white","yellow")
+    #RUNNERS ON SECOND, THIRD
+    elif runners == 0.011:
+        draw_bases("white","yellow","yellow")
+    #RUNNER ON THIRD
+    elif runners == 0.001:
+        draw_bases("white", "white", "yellow")
+
     homeplate()
     return
 
@@ -426,7 +448,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -474,7 +496,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
@@ -525,7 +547,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
 
 
             manager.update(time_delta)
@@ -577,7 +599,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 leg_kick(current_time, starttime + 650)
 
 
-            draw_static1()
+            draw_static()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
@@ -620,7 +642,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 string = "PITCH {} :<br>HIT - {}<br>".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                 scoreboard = drawscoreboard(result)
                 scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 hits += 1
@@ -640,7 +662,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-            draw_static1()
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -648,9 +670,9 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 foulball.play()
                 soundplayed += 1
             elif soundplayed == 0 and on_time == 2:
-                if hit_type == 1:
+                if hit_type in (1,2,3):
                     hit.play()
-                elif hit_type == 2:
+                elif hit_type == 4:
                     homer.play()
                 soundplayed += 1
 
@@ -671,11 +693,17 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     pitchnumber = 0
                     currentstrikes = 0
                     currentballs = 0
-                    if runners == 3:
+                    if runners == 0.000:
+                        runners = 0.100
+                    elif runners == 0.100 or runners == 0.010:
+                        runners = 0.110
+                    elif runners == 0.001:
+                        runners = 0.101
+                    elif runners == 0.110 or runners == 0.011 or runners == 0.101:
+                        runners == 0.111
+                    elif runners == 0.111:
                         runs_scored += 1
-                    else:
-                        runners += 1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
@@ -697,7 +725,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentstrikeouts += 1
                     currentouts +=1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored, runners)
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
@@ -723,7 +751,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-            draw_static1()
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -796,7 +824,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -841,7 +869,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
@@ -887,7 +915,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
 
 
             manager.update(time_delta)
@@ -937,7 +965,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
 
-            draw_static1()
+            draw_static()
 
             manager.update(time_delta)
             manager.draw_ui(screen)
@@ -1000,7 +1028,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-            draw_static1()
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -1075,7 +1103,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-            draw_static1()
+            draw_static()
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -1102,21 +1130,93 @@ def hit_outcome():
     global runs_scored
     global hit_type
     rand = random.uniform(0,10)
-    if rand > 0 and rand <= 5:
-        if runners == 3:
-            runs_scored += 1
-        else:
-            runners += 1
+    if rand > 0 and rand <= 4:
         hit_type = 1
+        update_runners_and_score(1)
         return "SINGLE"
-    elif rand > 5 and rand <= 10:
-        current_runners_on = runners
-        runs_scored += (current_runners_on + 1)
-        runners = 0
+    elif rand > 4 and rand <= 7:
         hit_type = 2
+        update_runners_and_score(2)
+        return "DOUBLE"
+    elif rand > 7 and rand <= 8:
+        hit_type = 3
+        update_runners_and_score(3)
+        return "TRIPLE"
+    elif rand > 8 and rand <= 10:
+        hit_type = 4
+        update_runners_and_score(4)
         return "HOME RUN"
 
-
+def update_runners_and_score(hit_type):
+    global runners
+    global runs_scored
+    if hit_type == 1:
+        if runners == 0.000:
+            runners = 0.100
+        elif runners == 0.100:
+            runners = 0.110
+        elif runners == 0.010:
+            runners = 0.101
+        elif runners == 0.001:
+            runners = 0.100
+            runs_scored += 1
+        elif runners == 0.110:
+            runners == 0.111
+        elif runners == 0.011:
+            runners = 0.101
+            runs_scored += 1
+        elif runners == 0.111:
+            runs_scored += 1
+        elif runners == 0.101:
+            runners = 0.110
+            runs_scored += 1
+    elif hit_type == 2:
+        if runners == 0.000:
+            runners = 0.010
+        elif runners == 0.100:
+            runners = 0.101
+        elif runners == 0.010:
+            runs_scored += 1
+        elif runners == 0.001:
+            runners = 0.010
+            runs_scored += 1
+        elif runners == 0.110:
+            runners = 0.011
+            runs_scored += 1
+        elif runners == 0.011:
+            runners = 0.010
+            runs_scored += 2
+        elif runners == 0.111:
+            runners = 0.011
+            runs_scored += 2
+        elif runners == 0.101:
+            runners = 0.011
+            runs_scored += 1
+    elif hit_type == 3:
+        if runners == 0.000:
+            runners = 0.001
+        elif runners == 0.100 or runners == 0.010 or runners == 0.001:
+            runners = 0.001
+            runs_scored += 1
+        elif runners == 0.110 or runners == 0.011 or runners == 0.101:
+            runners = 0.001
+            runs_scored += 2
+        elif runners == 0.111:
+            runners = 0.001
+            runs_scored += 3
+    elif hit_type == 4:
+        if runners == 0.000:
+            runs_scored += 1
+        elif runners == 0.100 or runners == 0.010 or runners == 0.001:
+            runners = 0.000
+            runs_scored += 2
+        elif runners == 0.110 or runners == 0.011 or runners == 0.101:
+            runners = 0.000
+            runs_scored += 3
+        elif runners == 0.111:
+            runners = 0.000
+            runs_scored += 4
+    return
 
 
 
@@ -1428,6 +1528,7 @@ while running:
             just_refreshed = 0
 
         draw_static()
+        troutone(x,y)
         manager.draw_ui(screen)
         # flip() the display to put your work on screen
         pygame.display.flip()

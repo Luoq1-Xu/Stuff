@@ -422,6 +422,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
     on_time = 0
     made_contact = 0
     contact_time = 0
+    swing_type = 0
     pitch_results_done = False
 
 
@@ -465,7 +466,31 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
                     if event.key == pygame.K_w and swing_started == 0:
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_type = 2
                         mousepos = pygame.mouse.get_pos()
                         if mousepos[1] > 480:
                             swing_starttime = pygame.time.get_ticks()
@@ -517,7 +542,31 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
                     if event.key == pygame.K_w and swing_started == 0:
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_type = 2
                         mousepos = pygame.mouse.get_pos()
                         if mousepos[1] > 480:
                             swing_starttime = pygame.time.get_ticks()
@@ -568,7 +617,31 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
                     if event.key == pygame.K_w and swing_started == 0:
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_type = 2
                         mousepos = pygame.mouse.get_pos()
                         if mousepos[1] > 480:
                             swing_starttime = pygame.time.get_ticks()
@@ -638,7 +711,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 made_contact = 2
                 pitch_results_done = True
                 pitchnumber += 1
-                hit_string = hit_outcome()
+                if swing_type == 1:
+                    hit_string = contact_hit_outcome()
+                elif swing_type == 2:
+                    hit_string = power_hit_outcome()
                 string = "PITCH {} :<br>HIT - {}<br>".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
@@ -841,24 +917,50 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
                     if event.key == pygame.K_w and swing_started == 0:
-                        swing_starttime = pygame.time.get_ticks()
-                        swing_started = 1
-                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                            on_time = 1
-                            contact_time = swing_starttime + 150
-                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                            on_time = 2
-                            contact_time = swing_starttime + 150
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
                     elif event.key == pygame.K_e and swing_started == 0:
-                        swing_starttime = pygame.time.get_ticks()
-                        swing_started = 2
-                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                            on_time = 1
-                            contact_time = swing_starttime + 150
-                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                            on_time = 2
-                            contact_time = swing_starttime + 150
+                        swing_type = 2
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
 
             if swing_started > 0:
                 timenow = current_time
@@ -887,24 +989,50 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
                     if event.key == pygame.K_w and swing_started == 0:
-                        swing_starttime = pygame.time.get_ticks()
-                        swing_started = 1
-                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                            on_time = 1
-                            contact_time = swing_starttime + 150
-                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                            on_time = 2
-                            contact_time = swing_starttime + 150
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
                     elif event.key == pygame.K_e and swing_started == 0:
-                        swing_starttime = pygame.time.get_ticks()
-                        swing_started = 2
-                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                            on_time = 1
-                            contact_time = swing_starttime + 150
-                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                            on_time = 2
-                            contact_time = swing_starttime + 150
+                        swing_type = 2
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
 
             if swing_started > 0:
                 timenow = current_time
@@ -936,24 +1064,50 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
                     if event.key == pygame.K_w and swing_started == 0:
-                        swing_starttime = pygame.time.get_ticks()
-                        swing_started = 1
-                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                            on_time = 1
-                            contact_time = swing_starttime + 150
-                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                            on_time = 2
-                            contact_time = swing_starttime + 150
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
                     elif event.key == pygame.K_e and swing_started == 0:
-                        swing_starttime = pygame.time.get_ticks()
-                        swing_started = 2
-                        if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                            on_time = 1
-                            contact_time = swing_starttime + 150
-                        elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                            on_time = 2
-                            contact_time = swing_starttime + 150
+                        swing_type = 2
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
 
 
             if swing_started > 0:
@@ -1004,14 +1158,14 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 made_contact = 2
                 pitch_results_done = True
                 pitchnumber += 1
-                if runners == 3:
-                    runs_scored += 1
-                else:
-                    runners += 1
-                string = "PITCH {} : HIT - SINGLE<br>".format(pitchnumber)
+                if swing_type == 1:
+                    hit_string = contact_hit_outcome()
+                elif swing_type == 2:
+                    hit_string = power_hit_outcome()
+                string = "PITCH {} : <br>HIT - {}".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                 scoreboard = drawscoreboard(result)
                 scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 hits += 1
@@ -1036,7 +1190,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 foulball.play()
                 soundplayed += 1
             elif soundplayed == 0 and on_time == 2:
-                hit.play()
+                if hit_type in (1,2,3):
+                    hit.play()
+                elif hit_type == 4:
+                    homer.play()
                 soundplayed += 1
 
 
@@ -1060,7 +1217,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                         runs_scored += 1
                     else:
                         runners += 1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
@@ -1080,7 +1237,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentstrikeouts += 1
                     currentouts +=1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored, runners)
+                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
@@ -1125,27 +1282,50 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
 
 
-def hit_outcome():
+def contact_hit_outcome():
     global runners
     global runs_scored
     global hit_type
     rand = random.uniform(0,10)
-    if rand > 0 and rand <= 4:
+    if rand > 0 and rand <= 6.5:
         hit_type = 1
         update_runners_and_score(1)
         return "SINGLE"
-    elif rand > 4 and rand <= 7:
+    elif rand > 6.5 and rand <= 8.5:
         hit_type = 2
         update_runners_and_score(2)
         return "DOUBLE"
-    elif rand > 7 and rand <= 8:
+    elif rand > 8.5 and rand <= 9:
         hit_type = 3
         update_runners_and_score(3)
         return "TRIPLE"
-    elif rand > 8 and rand <= 10:
+    elif rand > 9 and rand <= 10:
         hit_type = 4
         update_runners_and_score(4)
         return "HOME RUN"
+
+def power_hit_outcome():
+    global runners
+    global runs_scored
+    global hit_type
+    rand = random.uniform(0,10)
+    if rand > 0 and rand <= 3:
+        hit_type = 1
+        update_runners_and_score(1)
+        return "SINGLE"
+    elif rand > 3 and rand <= 6.5:
+        hit_type = 2
+        update_runners_and_score(2)
+        return "DOUBLE"
+    elif rand > 6.5 and rand <= 7.5:
+        hit_type = 3
+        update_runners_and_score(3)
+        return "TRIPLE"
+    elif rand > 7.5 and rand <= 10:
+        hit_type = 4
+        update_runners_and_score(4)
+        return "HOME RUN"
+
 
 def update_runners_and_score(hit_type):
     global runners
@@ -1161,7 +1341,7 @@ def update_runners_and_score(hit_type):
             runners = 0.100
             runs_scored += 1
         elif runners == 0.110:
-            runners == 0.111
+            runners = 0.111
         elif runners == 0.011:
             runners = 0.101
             runs_scored += 1
@@ -1461,7 +1641,7 @@ def high_swing_start(timenow, swing_startime):
     elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
         troutfivehigh(x,y + 90)
     elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
-        troutsixhigh(x - 40,y)
+        troutsixhigh(x - 60,y)
     elif timenow > swing_startime + 250:
         troutseven(x - 10,y - 20)
     return

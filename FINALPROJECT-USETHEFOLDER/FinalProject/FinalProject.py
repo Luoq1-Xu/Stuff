@@ -12,13 +12,13 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 font = pygame.font.Font('8bitoperator_jve.ttf', 30)
+bigfont = pygame.font.Font('8bitoperator_jve.ttf', 50)
 snip = font.render('', True, 'white')
 counter = 0
 speed = 3
 
 
 manager = pygame_gui.UIManager((1280, 720))
-
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 strikezone = pygame.Rect((565, 400), (130, 165))
 ball_pos = (0,0)
@@ -32,7 +32,6 @@ just_refreshed = 0
 pitchnumber = 0
 currentballs = 0
 currentstrikes = 0
-
 currentouts = 0
 currentstrikeouts = 0
 currentwalks = 0
@@ -41,17 +40,18 @@ runs_scored = 0
 swing_started = 0
 hits = 0
 hit_type = 0
+first_pitch_thrown = False
 
 popsfx = pygame.mixer.Sound("popsfx.mp3")
 strikecall = pygame.mixer.Sound("STRIKECALL.mp3")
 ballcall = pygame.mixer.Sound("BALLCALL.mp3")
 foulball = pygame.mixer.Sound("FOULBALL.mp3")
-hit = pygame.mixer.Sound("HIT.mp3")
+single = pygame.mixer.Sound("SINGLE.mp3")
+double = pygame.mixer.Sound("DOUBLE.mp3")
+triple = pygame.mixer.Sound("TRIPLE.mp3")
 homer = pygame.mixer.Sound("HOMERUN.mp3")
 called_strike_3 = pygame.mixer.Sound("CALLEDSTRIKE3.mp3")
 
-
-batterimg = pygame.image.load('better.png').convert_alpha()
 lefty1 = pygame.image.load('LEFTY1.png').convert_alpha()
 lefty2 = pygame.image.load('LEFTY2.png').convert_alpha()
 lefty3 = pygame.image.load('LEFTY3.png').convert_alpha()
@@ -86,17 +86,20 @@ trout5high = pygame.image.load('5TROUTHIGH.png').convert_alpha()
 trout6high = pygame.image.load('bruh.png').convert_alpha()
 
 buttonimage = pygame.image.load('button.png').convert_alpha()
-
+salebutton = pygame.image.load('salebutton.png').convert_alpha()
+degrombutton = pygame.image.load('degrombutton.png').convert_alpha()
+menu = pygame.image.load('MAINMENU.png').convert_alpha()
 
 restart_button = button.Button(550, 500, buttonimage, 0.8)
-
-
+faceoffsale = button.Button(500,500, salebutton, 0.5)
+faceoffdegrom = button.Button(500,600, degrombutton, 0.5)
+mainmenubutton = button.Button(540, 500, menu, 0.6)
 
 strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((540,0), (200,50)),
                                         text = 'strikezonetoggle',
                                         manager=manager)
 
-salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,50,)),
+salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100,)),
                                             text= 'salepitch',
                                             manager=manager)
 
@@ -111,7 +114,7 @@ def check_menu():
     global menu_state
     if currentouts == 3:
         pygame.time.delay(500)
-        menu_state = 1
+        menu_state = 3
     return
 
 
@@ -128,6 +131,7 @@ def draw_inning_summary():
     global runners
     global just_refreshed
     global hits
+    global first_pitch_thrown
 
     done = False
     counter = 0
@@ -149,8 +153,9 @@ def draw_inning_summary():
                 running = False
         full_message = 0
         screen.fill("black")
-        if restart_button.draw(screen):
+        if mainmenubutton.draw(screen):
             menu_state = 0
+            first_pitch_thrown = False
             just_refreshed = 1
             currentballs = 0
             currentstrikes = 0
@@ -193,21 +198,104 @@ def draw_inning_summary():
     return
 
 
+def main_menu():
+    global running
+    global currentstrikeouts
+    global currentwalks
+    global currentouts
+    global pitchnumber
+    global currentballs
+    global currentstrikes
+    global menu_state
+    global runs_scored
+    global runners
+    global just_refreshed
+    global hits
+    global first_pitch_thrown
 
+    done = False
+    counter = 0
+    textoffset = 0
+    messages_finished = 0
 
+    messages = ["BASED BALL","A Baseball At-Bat Simulator"]
 
+    active_message = 0
+    message = messages[active_message]
 
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        full_message = 0
+        screen.fill("black")
+        if faceoffsale.draw(screen):
+            menu_state = 1
+            first_pitch_thrown = False
+            just_refreshed = 1
+            currentballs = 0
+            currentstrikes = 0
+            pitchnumber = 0
+            currentstrikeouts = 0
+            currentwalks = 0
+            currentouts = 0
+            runs_scored = 0
+            runners = 0
+            hits = 0
+            return
+        elif faceoffdegrom.draw(screen):
+            menu_state = 2
+            first_pitch_thrown = False
+            just_refreshed = 1
+            currentballs = 0
+            currentstrikes = 0
+            pitchnumber = 0
+            currentstrikeouts = 0
+            currentwalks = 0
+            currentouts = 0
+            runs_scored = 0
+            runners = 0
+            hits = 0
+            return
+        clock.tick(60)/1000.0
+        if counter < speed *len(message):
+            counter += 1
+        elif counter >= speed*len(message):
+            done = True
+
+        if (active_message < len(messages) - 1 ) and done:
+            pygame.time.delay(500)
+            active_message += 1
+            done = False
+            message = messages[active_message]
+            textoffset += 70
+            counter = 0
+            messages_finished += 1
+
+        if messages_finished > 0:
+            offset = 0
+            while full_message < messages_finished:
+                oldmessage = bigfont.render(messages[full_message], True, 'white')
+                screen.blit(oldmessage, (450, 170 + offset))
+                offset += 70
+                full_message += 1
+
+        snip = bigfont.render(message[0:counter//speed], True, 'white')
+        screen.blit(snip, (450, 170 + textoffset))
+        pygame.display.flip()
+
+    return
 
 
 
 
 def pitchresult(input):
-    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 400), (200,100,)),
+    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 400), (200,100)),
                                         manager=manager)
 
 
 def drawscoreboard(results):
-    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 200), (200,150,)),
+    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 200), (200,150)),
                                         manager=manager)
 
 
@@ -221,9 +309,9 @@ def draw_bases(base1, base2, base3):
         elif basepeople[x]== "yellow":
             coloured.append(0)
         x += 1
-    pygame.draw.polygon(screen, base1, ((1035, 585), (1060, 610), (1035,635), (1010,610)),coloured[0])
-    pygame.draw.polygon(screen, base2, ((1000, 550), (1025, 575), (1000,600), (975,575)),coloured[1])
-    pygame.draw.polygon(screen, base3, ((965, 585), (990, 610), (965,635), (940,610)),coloured[2])
+    pygame.draw.polygon(screen, base1, ((1115, 585), (1140, 610), (1115,635), (1090,610)),coloured[0])
+    pygame.draw.polygon(screen, base2, ((1080, 550), (1105, 575), (1080,600), (1055,575)),coloured[1])
+    pygame.draw.polygon(screen, base3, ((1045, 585), (1070, 610), (1045,635), (1020,610)),coloured[2])
     return
 
 
@@ -288,7 +376,7 @@ c = (screen.get_width() / 2) - 40
 d = (screen.get_height() / 3) + 50
 
 
-
+#POSITION FOR BATTER
 x = 360
 y = 190
 
@@ -298,9 +386,6 @@ k = (screen.get_height() / 3) - 40
 a = (screen.get_width() / 2) - 20
 b = (screen.get_height() / 3) + 35
 
-
-def batter(x,y):
-    screen.blit(batterimg, (x,y))
 
 def leftyone(a,b):
     screen.blit(lefty1, (a,b))
@@ -410,6 +495,8 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
     global swing_started
     global hits
     global hit_type
+    global first_pitch_thrown
+    first_pitch_thrown = True
     swing_started = 0
 
 
@@ -454,15 +541,35 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             manager.draw_ui(screen)
             pygame.display.flip()
 
-        if current_time > starttime + 1100 and current_time < starttime + 1150:
+        if (current_time > starttime + 1100 and current_time < starttime + traveltime + 1150 and (on_time == 0 or (on_time > 0 and made_contact == 1))) or (on_time > 0 and current_time <= contact_time and made_contact == 0):
             screen.fill("black")
-            leftyseven(a - 20,b + 25)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalacceleration
-            verticalspeed += verticalacceleration
-            ballsize = ballsize * 1.030
+            if current_time > starttime + 1100 and current_time <= starttime + 1150:
+                leftyseven(a - 20,b + 25)
+                pygame.draw.circle(screen, "white", ball_pos, ballsize)
+                ball_pos.y += verticalspeed
+                ball_pos.x += horizontalspeed
+                horizontalspeed += horizontalacceleration
+                verticalspeed += verticalacceleration
+                ballsize = ballsize * 1.030
+            elif current_time > starttime + 1150 and current_time <= starttime + breaktime + 1150 and on_time == 0:
+                if current_time > starttime + 1150 and current_time <= starttime + 1200:
+                    leftyeight(a - 50,b + 30)
+                else:
+                    leftynine(a, b + 30)
+                pygame.draw.circle(screen, "white", ball_pos, ballsize)
+                ball_pos.y += verticalspeed
+                ball_pos.x += horizontalspeed
+                horizontalspeed += horizontalacceleration
+                verticalspeed += verticalacceleration
+                ballsize = ballsize * 1.030
+            elif (current_time > starttime + breaktime + 1150 and current_time <= starttime + traveltime + 1150 and (on_time == 0 or (on_time > 0 and made_contact == 1))) or (on_time > 0 and current_time <= contact_time and made_contact == 0):
+                leftynine(a,b + 30)
+                pygame.draw.circle(screen, "white", ball_pos, ballsize)
+                ball_pos.y += verticalspeed
+                ball_pos.x += horizontalspeed
+                horizontalspeed += horizontalbreak
+                verticalspeed += verticalbreak
+                ballsize = ballsize * 1.030
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
@@ -520,160 +627,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     high_swing_start(timenow, swing_starttime)
             elif swing_started == 0:
                 leg_kick(current_time, starttime + 650)
-
             draw_static()
-
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-        if current_time > starttime + 1150 and current_time < starttime + breaktime + 1150 and on_time == 0:
-            screen.fill("black")
-            if current_time > starttime + 1150 and current_time < starttime + 1200:
-                leftyeight(a - 50,b + 30)
-            else:
-                leftynine(a, b + 30)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalacceleration
-            verticalspeed += verticalacceleration
-            ballsize = ballsize * 1.030
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    #CONTACT SWING
-                    if event.key == pygame.K_w and swing_started == 0:
-                        swing_type = 1
-                        mousepos = pygame.mouse.get_pos()
-                        if mousepos[1] > 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 1
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                        elif mousepos[1] < 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 2
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                    #POWER SWING
-                    elif event.key == pygame.K_e and swing_started == 0:
-                        swing_type = 2
-                        mousepos = pygame.mouse.get_pos()
-                        if mousepos[1] > 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 1
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                        elif mousepos[1] < 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 2
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-
-            if swing_started > 0:
-                timenow = current_time
-                if swing_started == 1:
-                    swing_start(timenow, swing_starttime)
-                else:
-                    high_swing_start(timenow, swing_starttime)
-            elif swing_started == 0:
-                leg_kick(current_time, starttime + 650)
-
-            draw_static()
-
-
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-
-
-        elif (current_time > starttime + breaktime + 1150 and current_time < starttime + traveltime + 1150 and (on_time == 0 or (on_time > 0 and made_contact == 1))) or (on_time > 0 and current_time <= contact_time and made_contact == 0):
-            screen.fill("black")
-            leftynine(a,b + 30)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalbreak
-            verticalspeed += verticalbreak
-            ballsize = ballsize * 1.030
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    #CONTACT SWING
-                    if event.key == pygame.K_w and swing_started == 0:
-                        swing_type = 1
-                        mousepos = pygame.mouse.get_pos()
-                        if mousepos[1] > 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 1
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                        elif mousepos[1] < 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 2
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                    #POWER SWING
-                    elif event.key == pygame.K_e and swing_started == 0:
-                        swing_type = 2
-                        mousepos = pygame.mouse.get_pos()
-                        if mousepos[1] > 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 1
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                        elif mousepos[1] < 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 2
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-
-            if swing_started > 0:
-                timenow = current_time
-                if swing_started == 1:
-                    swing_start(timenow, swing_starttime)
-                else:
-                    high_swing_start(timenow, swing_starttime)
-            elif swing_started == 0:
-                leg_kick(current_time, starttime + 650)
-
-
-            draw_static()
-
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
@@ -682,12 +636,15 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 popsfx.play()
                 soundplayed += 1
 
-
+        #FOUL BALL TIMING
         elif on_time == 1 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
+            leftynine(a, b + 30)
+            #TIMING ON BUT SWING PATH OFF (SWING OVER OR UNDER BALL)
             if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
                 made_contact = 1
             elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
                 made_contact = 1
+            #TIMING ON AND PATH ON - FOUL BALL
             else:
                 made_contact = 2
                 pitch_results_done = True
@@ -702,7 +659,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
+        #PERFECT TIMING
         elif on_time == 2 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == False and made_contact == 0:
+            leftynine(a, b + 30)
+            #PERFECT TIMING BUT SWING PATH OFF
             if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
                 made_contact = 1
             elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
@@ -729,14 +689,13 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
 
         elif on_time > 0 and current_time > contact_time and current_time <= starttime + traveltime + 1800 and pitch_results_done == True and made_contact == 2:
             screen.fill("black")
+            leftynine(a, b + 30)
             if swing_started > 0:
                 timenow = current_time
                 if swing_started == 1:
                     swing_start(timenow, swing_starttime)
                 else:
                     high_swing_start(timenow, swing_starttime)
-            elif swing_started == 0:
-                leg_kick(current_time, starttime + 650)
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
             draw_static()
             manager.update(time_delta)
@@ -746,15 +705,19 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 foulball.play()
                 soundplayed += 1
             elif soundplayed == 0 and on_time == 2:
-                if hit_type in (1,2,3):
-                    hit.play()
+                if hit_type == 1:
+                    single.play()
+                elif hit_type == 2:
+                    double.play()
+                elif hit_type == 3:
+                    triple.play()
                 elif hit_type == 4:
                     homer.play()
                 soundplayed += 1
 
-
-
+        #UPDATE RESULTS IF NO CONTACT MADE AT ALL - SWINGING STRIKE OR CALLED STRIKE OR BALL
         elif (current_time > starttime + traveltime + 1150 and pitch_results_done == False and (on_time == 0 or (on_time > 0 and made_contact == 1))):
+            leftynine(a, b + 30)
             pitch_results_done = True
             if  (not collision(ball_pos.x, ball_pos.y, 11, 630, 482.5, 130, 165)) and swing_started == 0:
                 ballcall.play()
@@ -782,7 +745,6 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-
                 else:
                     string = "PITCH {} : BALL<br>COUNT IS {} - {}".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
@@ -812,9 +774,10 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
-
+        #FOLLOW THROUGH (IF SWUNG)
         elif current_time > starttime + traveltime + 1150 and pitch_results_done == True and current_time <= starttime + traveltime + 1800 and (on_time == 0 or (on_time > 0 and made_contact == 1)):
             screen.fill("black")
+            leftynine(a, b + 30)
             if (current_time > contact_time and soundplayed == 0 and (on_time > 0 and made_contact == 1)):
                 popsfx.play()
                 soundplayed += 1
@@ -832,14 +795,12 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             manager.draw_ui(screen)
             pygame.display.flip()
 
+        #END LOOP (END OF PITCH)
         elif current_time > starttime + traveltime + 1800:
             yes = False
             salepitch.show()
             strikezonetoggle.show()
             degrompitch.show()
-
-
-
 
     return
 
@@ -864,6 +825,8 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     global runs_scored
     global swing_started
     global hits
+    global first_pitch_thrown
+    first_pitch_thrown = True
     swing_started = 0
 
 
@@ -905,15 +868,24 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             manager.draw_ui(screen)
             pygame.display.flip()
 
-        if current_time > starttime + 1100 and current_time < starttime + 1150:
+        if current_time > starttime + 1100 and current_time < starttime + breaktime + 1150 and on_time == 0:
             screen.fill("black")
-            rightysix(c,d+20)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalacceleration
-            verticalspeed += verticalacceleration
-            ballsize = ballsize * 1.030
+            if current_time > starttime + 1100 and current_time < starttime + 1150:
+                rightysix(c,d+20)
+                pygame.draw.circle(screen, "white", ball_pos, ballsize)
+                ball_pos.y += verticalspeed
+                ball_pos.x += horizontalspeed
+                horizontalspeed += horizontalacceleration
+                verticalspeed += verticalacceleration
+                ballsize = ballsize * 1.030
+            elif current_time > starttime + 1150 and current_time < starttime + breaktime + 1150 and on_time == 0:
+                rightyseven(c,d+20)
+                pygame.draw.circle(screen, "white", ball_pos, ballsize)
+                ball_pos.y += verticalspeed
+                ball_pos.x += horizontalspeed
+                horizontalspeed += horizontalacceleration
+                verticalspeed += verticalacceleration
+                ballsize = ballsize * 1.030
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
@@ -976,81 +948,6 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
-
-        if current_time > starttime + 1150 and current_time < starttime + breaktime + 1150 and on_time == 0:
-            screen.fill("black")
-            rightyseven(c,d+20)
-            pygame.draw.circle(screen, "white", ball_pos, ballsize)
-            ball_pos.y += verticalspeed
-            ball_pos.x += horizontalspeed
-            horizontalspeed += horizontalacceleration
-            verticalspeed += verticalacceleration
-            ballsize = ballsize * 1.030
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    #CONTACT SWING
-                    if event.key == pygame.K_w and swing_started == 0:
-                        swing_type = 1
-                        mousepos = pygame.mouse.get_pos()
-                        if mousepos[1] > 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 1
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                        elif mousepos[1] < 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 2
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                    #POWER SWING
-                    elif event.key == pygame.K_e and swing_started == 0:
-                        swing_type = 2
-                        mousepos = pygame.mouse.get_pos()
-                        if mousepos[1] > 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 1
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-                        elif mousepos[1] < 480:
-                            swing_starttime = pygame.time.get_ticks()
-                            swing_started = 2
-                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
-
-            if swing_started > 0:
-                timenow = current_time
-                if swing_started == 1:
-                    swing_start(timenow, swing_starttime)
-                else:
-                    high_swing_start(timenow, swing_starttime)
-            elif swing_started == 0:
-                leg_kick(current_time, starttime + 650)
-
-            draw_static()
-
-
-            manager.update(time_delta)
-            manager.draw_ui(screen)
-            pygame.display.flip()
-
-
 
         elif (current_time > starttime + breaktime + 1150 and current_time < starttime + traveltime + 1150 and (on_time == 0 or (on_time > 0 and made_contact == 1))) or (on_time > 0 and current_time <= contact_time and made_contact == 0):
             screen.fill("black")
@@ -1190,8 +1087,12 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 foulball.play()
                 soundplayed += 1
             elif soundplayed == 0 and on_time == 2:
-                if hit_type in (1,2,3):
-                    hit.play()
+                if hit_type == 1:
+                    single.play()
+                elif hit_type == 2:
+                    double.play()
+                elif hit_type == 3:
+                    triple.play()
                 elif hit_type == 4:
                     homer.play()
                 soundplayed += 1
@@ -1267,7 +1168,6 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
 
         elif current_time > starttime + traveltime + 1800:
             yes = False
-            salepitch.show()
             strikezonetoggle.show()
             degrompitch.show()
 
@@ -1287,19 +1187,19 @@ def contact_hit_outcome():
     global runs_scored
     global hit_type
     rand = random.uniform(0,10)
-    if rand > 0 and rand <= 6.5:
+    if rand > 0 and rand <= 8:
         hit_type = 1
         update_runners_and_score(1)
         return "SINGLE"
-    elif rand > 6.5 and rand <= 8.5:
+    elif rand > 8 and rand <= 9:
         hit_type = 2
         update_runners_and_score(2)
         return "DOUBLE"
-    elif rand > 8.5 and rand <= 9:
+    elif rand > 9 and rand <= 9.3:
         hit_type = 3
         update_runners_and_score(3)
         return "TRIPLE"
-    elif rand > 9 and rand <= 10:
+    elif rand > 9.3 and rand <= 10:
         hit_type = 4
         update_runners_and_score(4)
         return "HOME RUN"
@@ -1326,7 +1226,7 @@ def power_hit_outcome():
         update_runners_and_score(4)
         return "HOME RUN"
 
-
+#LOGIC FOR UPDATING BASERUNNERS AFTER A HIT
 def update_runners_and_score(hit_type):
     global runners
     global runs_scored
@@ -1403,7 +1303,7 @@ def update_runners_and_score(hit_type):
 
 
 
-
+#DEGROM PITCHING AI
 def pitch_decision_maker():
     global currentballs
     global currentstrikes
@@ -1461,7 +1361,7 @@ def pitch_decision_maker():
     return
 
 
-
+#SALE PITCHING AI
 def lefty_pitch_decision_maker():
     global currentballs
     global currentstrikes
@@ -1558,11 +1458,11 @@ def lowchangeup():
 
 #SALE PITCH TYPES
 def leftyfastball():
-    xoffset = random.uniform(-1, 5)
-    yoffset = random.uniform(-3, 3)
+    xoffset = random.uniform(-2, 3)
+    yoffset = random.uniform(-1, 5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-    simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
+    simulateadvancedlefty(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.20, 4, 400, 0.15, 0.1, 240)
     return
 
 def leftyslider():
@@ -1660,18 +1560,19 @@ def high_swing_start(timenow, swing_startime):
 
 
 
-
+#Main Game Loop
 while running:
 
     time_delta = clock.tick(60)/1000.0
-
     check_menu()
 
-
     if menu_state == 0:
+        main_menu()
+    elif menu_state == 1:
+        degrompitch.hide()
+        salepitch.show()
         # poll for events
         # pygame.QUIT event means the user clicked X to close your window
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -1682,38 +1583,72 @@ while running:
                         strikezonedrawn = False
                     elif strikezonedrawn == False:
                         strikezonedrawn = True
-
-
                 if event.ui_element == salepitch:
                     lefty_pitch_decision_maker()
-
                 if event.ui_element == degrompitch:
                     pitch_decision_maker()
-
             manager.process_events(event)
-
         manager.update(time_delta)
-
         # fill the screen with a color to wipe away anything from last frame
         screen.fill("black")
-        pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-
+        if first_pitch_thrown:
+            pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
         if just_refreshed == 1:
-            result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}<br>RUNNERS : {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored,runners)
+            result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
             scoreboard = drawscoreboard(result)
             scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
             string = "<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
             textbox = pitchresult(string)
             textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
             just_refreshed = 0
-
+        leftyone(a,b)
         draw_static()
         troutone(x,y)
         manager.draw_ui(screen)
         # flip() the display to put your work on screen
         pygame.display.flip()
 
-    elif menu_state == 1:
+    elif menu_state == 2:
+        salepitch.hide()
+        degrompitch.show()
+        # poll for events
+        # pygame.QUIT event means the user clicked X to close your window
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                if event.ui_element == strikezonetoggle:
+                    if strikezonedrawn == True:
+                        strikezonedrawn = False
+                    elif strikezonedrawn == False:
+                        strikezonedrawn = True
+                if event.ui_element == salepitch:
+                    lefty_pitch_decision_maker()
+                if event.ui_element == degrompitch:
+                    pitch_decision_maker()
+            manager.process_events(event)
+
+        manager.update(time_delta)
+        # fill the screen with a color to wipe away anything from last frame
+        screen.fill("black")
+        if first_pitch_thrown:
+            pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
+        if just_refreshed == 1:
+            result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+            scoreboard = drawscoreboard(result)
+            scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            string = "<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+            textbox = pitchresult(string)
+            textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
+            just_refreshed = 0
+        rightyone(c,d)
+        draw_static()
+        troutone(x,y)
+        manager.draw_ui(screen)
+        # flip() the display to put your work on screen
+        pygame.display.flip()
+
+    elif menu_state == 3:
         draw_inning_summary()
 
 

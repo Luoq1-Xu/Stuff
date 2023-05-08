@@ -866,3 +866,256 @@ if (ball_pos.x < 554 or ball_pos.x > 576) or (ball_pos.y < 510 or ball_pos.y > 5
                 made_contact = 10
             else:
                 made_contact = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+if current_time > starttime + 1100 and current_time < starttime + 1150:
+            screen.fill("black")
+            rightysix(c,d+20)
+            pygame.draw.circle(screen, "white", ball_pos, ballsize)
+            ball_pos.y += verticalspeed
+            ball_pos.x += horizontalspeed
+            horizontalspeed += horizontalacceleration
+            verticalspeed += verticalacceleration
+            ballsize = ballsize * 1.030
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
+                    if event.key == pygame.K_w and swing_started == 0:
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_type = 2
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+
+            if swing_started > 0:
+                timenow = current_time
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+
+            draw_static()
+
+            manager.update(time_delta)
+            manager.draw_ui(screen)
+            pygame.display.flip()
+
+        if current_time > starttime + 1150 and current_time < starttime + breaktime + 1150 and on_time == 0:
+            screen.fill("black")
+            rightyseven(c,d+20)
+            pygame.draw.circle(screen, "white", ball_pos, ballsize)
+            ball_pos.y += verticalspeed
+            ball_pos.x += horizontalspeed
+            horizontalspeed += horizontalacceleration
+            verticalspeed += verticalacceleration
+            ballsize = ballsize * 1.030
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
+                    if event.key == pygame.K_w and swing_started == 0:
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_type = 2
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+
+            if swing_started > 0:
+                timenow = current_time
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+
+            draw_static()
+
+
+            manager.update(time_delta)
+            manager.draw_ui(screen)
+            pygame.display.flip()
+
+
+
+
+        elif (current_time > starttime + breaktime + 1150 and current_time < starttime + traveltime + 1150 and (on_time == 0 or (on_time > 0 and made_contact == 1))) or (on_time > 0 and current_time <= contact_time and made_contact == 0):
+            screen.fill("black")
+            leftynine(a,b + 30)
+            pygame.draw.circle(screen, "white", ball_pos, ballsize)
+            ball_pos.y += verticalspeed
+            ball_pos.x += horizontalspeed
+            horizontalspeed += horizontalbreak
+            verticalspeed += verticalbreak
+            ballsize = ballsize * 1.030
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    #CONTACT SWING
+                    if event.key == pygame.K_w and swing_started == 0:
+                        swing_type = 1
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                    #POWER SWING
+                    elif event.key == pygame.K_e and swing_started == 0:
+                        swing_type = 2
+                        mousepos = pygame.mouse.get_pos()
+                        if mousepos[1] > 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 1
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+                        elif mousepos[1] < 480:
+                            swing_starttime = pygame.time.get_ticks()
+                            swing_started = 2
+                            if abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) > 25 and abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) < 50:
+                                on_time = 1
+                                contact_time = swing_starttime + 150
+                            elif abs( (swing_starttime + 150) - (starttime + traveltime + 1150) ) <= 25:
+                                on_time = 2
+                                contact_time = swing_starttime + 150
+
+            if swing_started > 0:
+                timenow = current_time
+                if swing_started == 1:
+                    swing_start(timenow, swing_starttime)
+                else:
+                    high_swing_start(timenow, swing_starttime)
+            elif swing_started == 0:
+                leg_kick(current_time, starttime + 650)
+
+
+            draw_static()
+
+            manager.update(time_delta)
+            manager.draw_ui(screen)
+            pygame.display.flip()
+
+            if (current_time > (starttime + traveltime + 1050) and soundplayed == 0 and on_time == 0) or (current_time > contact_time and soundplayed == 0 and (on_time > 0 and made_contact == 1)):
+                popsfx.play()
+                soundplayed += 1
+
+
+
+def leftyfastball():
+    xoffset = random.uniform(-1, 5)
+    yoffset = random.uniform(-3, 3)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    simulateadvancedlefty(True, ball_pos, -5 + xoffset, -0.2, 0.2 + yoffset, 0.50, 4, 400, 0.65, -0.15, 240)
+    return
+
+
+
+pygame.draw.polygon(screen, base1, ((1035, 585), (1060, 610), (1035,635), (1010,610)),coloured[0])
+pygame.draw.polygon(screen, base2, ((1000, 550), (1025, 575), (1000,600), (975,575)),coloured[1])
+pygame.draw.polygon(screen, base3, ((965, 585), (990, 610), (965,635), (940,610)),coloured[2])

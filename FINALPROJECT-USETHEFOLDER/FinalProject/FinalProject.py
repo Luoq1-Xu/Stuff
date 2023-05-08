@@ -11,14 +11,14 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 dt = 0
-font = pygame.font.Font('8bitoperator_jve.ttf', 30)
+font = pygame.font.Font('8bitoperator_jve.ttf', 40)
 bigfont = pygame.font.Font('8bitoperator_jve.ttf', 70)
 snip = font.render('', True, 'white')
 counter = 0
 speed = 3
 
 
-manager = pygame_gui.UIManager((1280, 720))
+manager = pygame_gui.UIManager((1280, 720), 'theme.json')
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 strikezone = pygame.Rect((565, 400), (130, 165))
 ball_pos = (0,0)
@@ -96,22 +96,22 @@ menu = pygame.image.load('MAINMENU.png').convert_alpha()
 restart_button = button.Button(550, 500, buttonimage, 0.8)
 faceoffsale = button.Button(500,500, salebutton, 0.5)
 faceoffdegrom = button.Button(500,600, degrombutton, 0.5)
-mainmenubutton = button.Button(540, 500, menu, 0.6)
+mainmenubutton = button.Button(540, 530, menu, 0.6)
 
 strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0,100), (200,100)),
-                                        text = 'strikezonetoggle',
+                                        text = 'STRIKEZONE',
                                         manager=manager)
 
 salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100,)),
-                                            text= 'salepitch',
+                                            text= 'PITCH',
                                             manager=manager)
 
 degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100,)),
-                                            text= 'degrompitch',
+                                            text= 'PITCH',
                                             manager=manager)
 
 backtomainmenu = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 620), (200,100,)),
-                                            text= 'Main Menu',
+                                            text= 'MAIN MENU',
                                             manager=manager)
 
 
@@ -274,7 +274,7 @@ def main_menu():
             active_message += 1
             done = False
             message = messages[active_message]
-            textoffset += 70
+            textoffset += 100
             counter = 0
             messages_finished += 1
 
@@ -283,7 +283,7 @@ def main_menu():
             while full_message < messages_finished:
                 oldmessage = bigfont.render(messages[full_message], True, 'white')
                 screen.blit(oldmessage, (300, 170 + offset))
-                offset += 70
+                offset += 100
                 full_message += 1
 
         snip = bigfont.render(message[0:counter//speed], True, 'white')
@@ -1147,7 +1147,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     currentstrikes = 0
                     currentballs = 0
                 else:
-                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
@@ -1467,7 +1467,7 @@ def leftyfastball():
 
 def leftyslider():
     xoffset = random.uniform(-0.5, 4)
-    yoffset = random.uniform(0, 2)
+    yoffset = random.uniform(-1, 2)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
     simulateadvancedlefty(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300)

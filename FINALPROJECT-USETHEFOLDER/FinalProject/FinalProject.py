@@ -17,7 +17,6 @@ snip = font.render('', True, 'white')
 counter = 0
 speed = 3
 
-
 manager = pygame_gui.UIManager((1280, 720), 'theme.json')
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 strikezone = pygame.Rect((565, 400), (130, 165))
@@ -486,6 +485,8 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                         ballsize, traveltime, verticalbreak,
                         horizontalbreak, breaktime):
 
+    pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_CROSSHAIR))
+
     global currentballs
     global pitchnumber
     global currentstrikes
@@ -681,11 +682,11 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     hit_string = power_hit_outcome()
                 string = "PITCH {} :<br>HIT - {}<br>".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
+                hits += 1
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+                result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
                 scoreboard = drawscoreboard(result)
                 scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                hits += 1
                 pitchnumber = 0
                 currentstrikes = 0
                 currentballs = 0
@@ -747,7 +748,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                         runners == 0.111
                     elif runners == 0.111:
                         runs_scored += 1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+                    result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 else:
@@ -769,7 +770,7 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentstrikeouts += 1
                     currentouts +=1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+                    result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
@@ -808,7 +809,23 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
             strikezonetoggle.show()
             backtomainmenu.show()
 
+    pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW))
     return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -819,6 +836,8 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                         horizontalacceleration, verticalspeed, verticalacceleration,
                         ballsize, traveltime, verticalbreak,
                         horizontalbreak, breaktime):
+
+    pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_CROSSHAIR))
 
     global currentballs
     global pitchnumber
@@ -835,20 +854,16 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
     first_pitch_thrown = True
     swing_started = 0
 
-
     salepitch.hide()
     strikezonetoggle.hide()
     degrompitch.hide()
     backtomainmenu.hide()
-
 
     soundplayed = 0
     on_time = 0
     made_contact = 0
     contact_time = 0
     pitch_results_done = False
-
-
 
     starttime = pygame.time.get_ticks()
     current_time = starttime
@@ -1067,10 +1082,10 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 string = "PITCH {} : <br>HIT - {}".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+                hits += 1
+                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
                 scoreboard = drawscoreboard(result)
                 scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-                hits += 1
                 pitchnumber = 0
                 currentstrikes = 0
                 currentballs = 0
@@ -1173,6 +1188,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
             degrompitch.show()
             backtomainmenu.show()
 
+    pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW))
     return
 
 
@@ -1459,7 +1475,7 @@ def lowchangeup():
 #SALE PITCH TYPES
 def leftyfastball():
     xoffset = random.uniform(-2, 3)
-    yoffset = random.uniform(-1, 5)
+    yoffset = random.uniform(-0.5, 5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
     simulateadvancedlefty(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.20, 4, 400, 0.15, 0.1, 240)
@@ -1499,8 +1515,6 @@ def collision(circlex, circley, radius, rectmiddlex, rectmiddley, rectwidth, rec
         return True
     cornerDistance_sq = ((circleDistancex - rectwidth/2)**2) + ((circleDistancey - rectheight/2)**2)
     return (cornerDistance_sq <= ((radius)**2))
-
-
 
 
 
@@ -1590,10 +1604,10 @@ while running:
         if first_pitch_thrown:
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
         if just_refreshed == 1:
-            result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+            result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
             scoreboard = drawscoreboard(result)
             scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-            string = "<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+            string = "<font size=5>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
             textbox = pitchresult(string)
             textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
             just_refreshed = 0

@@ -30,4 +30,4 @@ A few sounds were implemented: The glove pop sound (for when the ball hits the c
 
 The glove pop sound plays whenever the ball ends up in the catcher's mitt - basically any outcome other than the batter making contact with the ball.
 
-The bat contact sounds include - Single, Double, Triple, Homerun. Each corresponds to the 
+The bat contact sounds include - Single, Double, Triple, Homerun. Each corresponds to the equivalent outcome and will play accordingly. I got these sounds from the videogame MLB the Show (

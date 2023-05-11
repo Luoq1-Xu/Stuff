@@ -1119,3 +1119,21 @@ def leftyfastball():
 pygame.draw.polygon(screen, base1, ((1035, 585), (1060, 610), (1035,635), (1010,610)),coloured[0])
 pygame.draw.polygon(screen, base2, ((1000, 550), (1025, 575), (1000,600), (975,575)),coloured[1])
 pygame.draw.polygon(screen, base3, ((965, 585), (990, 610), (965,635), (940,610)),coloured[2])
+
+
+
+def drawbat():
+
+    mousepos = pygame.mouse.get_pos()
+    player_pos.x = mousepos[0]
+    player_pos.y = mousepos[1]
+    x = player_pos.x
+    y = player_pos.y
+
+    pygame.draw.polygon(screen, "white", ((x, y + 3 ), (x + 5, y + 3), (x + 12, y + 6), (x + 40, y + 6),
+                                            (x + 150, y), (x + 200, y), (x + 200, y + 20),
+                                            (x + 150, y + 20), (x + 40, y + 14),
+                                            (x + 12, y + 14), (x + 5, y + 17),
+                                            (x, y + 17)), 2)
+
+    return

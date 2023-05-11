@@ -5,4 +5,4 @@
 #### some good pitching. I set out a few areas of focus preliminarily :
 - How to simulate the flight path of the ball visually?
 - How to check for the bat path, both timing and location?
-- 
+-

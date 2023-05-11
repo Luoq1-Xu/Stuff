@@ -641,12 +641,12 @@ def simulateadvancedlefty(yes, ball_pos, horizontalspeed,
                 pitch_results_done = True
                 pitchnumber += 1
                 if currentstrikes == 2:
-                    string = "<font size=5>PITCH {} : FOUL BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: FOUL BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 else:
                     currentstrikes += 1
-                    string = "<font size=5>PITCH {} : FOUL BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: FOUL BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
@@ -1031,12 +1031,12 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 pitch_results_done = True
                 pitchnumber += 1
                 if currentstrikes == 2:
-                    string = "PITCH {} : FOUL BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {} : FOUL BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 else:
                     currentstrikes += 1
-                    string = "PITCH {} : FOUL BALL<br>COUNT IS {} - {}<br>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {} : FOUL BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
@@ -1053,11 +1053,11 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                     hit_string = contact_hit_outcome()
                 elif swing_type == 2:
                     hit_string = power_hit_outcome()
-                string = "PITCH {} : <br>HIT - {}".format(pitchnumber, hit_string)
+                string = "<font size=5>PITCH {} : <br>HIT - {}</font>".format(pitchnumber, hit_string)
                 textbox = pitchresult(string)
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 hits += 1
-                result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
+                result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
                 scoreboard = drawscoreboard(result)
                 scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                 pitchnumber = 0
@@ -1099,7 +1099,7 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 pitchnumber += 1
                 #WALK OCCURS
                 if currentballs == 4:
-                    string = "PITCH {} : BALL<br>COUNT IS {} - {}<br><b>WALK</b>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {} : BALL<br>COUNT IS {} - {}<br><b>WALK</b></font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentwalks += 1
@@ -1110,12 +1110,12 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                         runs_scored += 1
                     else:
                         runners += 1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+                    result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
                 else:
-                    string = "PITCH {} : BALL<br>COUNT IS {} - {}".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {} : BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
             else:
@@ -1125,19 +1125,19 @@ def simulateadvancedrighty(yes, ball_pos, horizontalspeed,
                 currentstrikes += 1
                 #STRIKEOUT OCCURS
                 if currentstrikes == 3:
-                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b></font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentstrikeouts += 1
                     currentouts +=1
-                    result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+                    result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
                     scoreboard = drawscoreboard(result)
                     scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     pitchnumber = 0
                     currentstrikes = 0
                     currentballs = 0
                 else:
-                    string = "PITCH {} : STRIKE<br>COUNT IS {} - {}".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {} : STRIKE<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
 
@@ -1620,10 +1620,10 @@ while running:
         if first_pitch_thrown:
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
         if just_refreshed == 1:
-            result = "CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
+            result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, runs_scored)
             scoreboard = drawscoreboard(result)
             scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
-            string = "<font size=4.0><br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+            string = "<font size=5><br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
             textbox = pitchresult(string)
             textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
             just_refreshed = 0

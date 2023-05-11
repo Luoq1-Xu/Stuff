@@ -11,8 +11,7 @@ some good pitching. I had a few preliminary thoughts:
 - How will the Graphical User Interface be set up?
 - and many many more....
 
-
-### Meet them all
+## Meet them all
 The game consists of a few main assets:
 * Sounds
 * Graphics (Images)
@@ -21,4 +20,4 @@ The game consists of a few main assets:
 * button.py supplementary button class file
 
 
-
+### W

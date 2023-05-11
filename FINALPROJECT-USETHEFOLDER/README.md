@@ -12,11 +12,16 @@ some good pitching. I had a few preliminary thoughts:
 - and many many more....
 
 ## Meet them all
-The game consists of a few main assets:
-* Sounds
-* Graphics (Images)
+The game consists of a few main assets
+
 * Main Finalproject.py file
+
+* Sounds
+
+* Graphics (Images)
+
 * theme.json file
+
 * button.py supplementary button class file
 
 
@@ -25,4 +30,4 @@ A few sounds were implemented: The glove pop sound (for when the ball hits the c
 
 The glove pop sound plays whenever the ball ends up in the catcher's mitt - basically any outcome other than the batter making contact with the ball.
 
-T
+The bat contact sounds include - Single, Double, Triple, Homerun. Each corresponds to the 

@@ -21,4 +21,8 @@ The game consists of a few main assets:
 
 
 ### Sounds
-A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt), the sounds when the bat makes contact with the ball, and the umpire call sounds
+A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt), the sounds when the bat makes contact with the ball, and the umpire call sounds. Let's dive a bit deeper.
+
+The glove pop sound plays whenever the ball ends up in the catcher's mitt - basically any outcome other than the batter making contact with the ball.
+
+T

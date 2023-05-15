@@ -45,7 +45,7 @@ multiple frames to depict the spinning motion of the ball. Further complicating 
 so I would need separate sets of frames for different pitch types. I find that the simple solid circle would be sufficient to allow the player to appreciate the essence of a baseball at-bat, without over-emphasising the realism aspect.
 
 When the ball reaches the strikezone or a batter swings and makes contact with a ball, a "ghost" of the ball is left behind at the location where the impact
-occurred. Using a circle outline mirrors how it is depicted on television in the real world as well. This impact point allows the player to know where the ball ended up. This allows you to appreciate really good strikes that juuust clipped the zone 
+occurred. Using a circle outline mirrors how it is depicted on television in the real world as well. This impact point allows the player to know where the ball ended up. This allows you to appreciate really good (and nasty!) strikes that juuust clipped the zone while also knowing where exactly you made contact with the ball.
 
 For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play
 as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and

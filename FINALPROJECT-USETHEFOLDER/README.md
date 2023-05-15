@@ -33,3 +33,10 @@ The glove pop sound plays whenever the ball ends up in the catcher's mitt - basi
 The bat contact sounds include - Single, Double, Triple, Homerun. Each corresponds to the equivalent outcome and will play accordingly. I got these sounds from the videogame MLB the Show. Very crisp and nice sounds to give maximum satisfaction!
 
 The umpire call sounds will play once the ball arrives in the zone without a swing. If you do not swing and the ball clips the zone, the called strike sound will play. If the above happens and it is the third strike, the third strike sound plays. In Major League Baseball, usually umpires will have a more emphatic call when it is the called third strike. On the flip side, if you do not swing and the ball lands outside the zone, the ball call sound plays.
+
+###Graphics
+To keep simple, I used coloured images for the hitter and the batter, while everything else is basically rendered in black and white.
+
+For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play
+as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and
+the swinging motion of the batter. The result is a series of images that play to give the impression of the actual motion of a batter and pitcher.

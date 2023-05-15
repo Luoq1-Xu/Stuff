@@ -37,7 +37,7 @@ The umpire call sounds will play once the ball arrives in the zone without a swi
 ### Graphics
 To keep simple, I used coloured images for the hitter and the batter, while everything else is basically rendered in black and white.
 
-The strikezone and home plate are rendered simply using the built in pygame draw function. The strikezone is a simple Rect and the homeplate is a polygon.
+The strikezone and home plate are rendered simply using the built in pygame draw function. The strikezone is a simple Rect and the homeplate is a polygon. The strikezone is also toggleable, for the player's preference. Generally, having the strikezone on makes it easier to determine whether a ball will be a ball or a strike.
 
 For the ball, I used the pygame draw function to draw a circle that increases in size as time passes and it "approaches" the plate to give the illusion
 that it is getting closer. I thought about bliting an actual image of the baseball onto the screen but found it very difficult because I would need to have

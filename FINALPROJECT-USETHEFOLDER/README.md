@@ -34,13 +34,18 @@ The bat contact sounds include - Single, Double, Triple, Homerun. Each correspon
 
 The umpire call sounds will play once the ball arrives in the zone without a swing. If you do not swing and the ball clips the zone, the called strike sound will play. If the above happens and it is the third strike, the third strike sound plays. In Major League Baseball, usually umpires will have a more emphatic call when it is the called third strike. On the flip side, if you do not swing and the ball lands outside the zone, the ball call sound plays.
 
-###Graphics
+### Graphics
 To keep simple, I used coloured images for the hitter and the batter, while everything else is basically rendered in black and white.
 
 The strikezone and home plate are rendered simply using the built in pygame draw function. The strikezone is a simple Rect and the homeplate is a polygon.
 
 For the ball, I used the pygame draw function to draw a circle that increases in size as time passes and it "approaches" the plate to give the illusion
-that it is getting closer. I thought about using actual baseball images 
+that it is getting closer. I thought about bliting an actual image of the baseball onto the screen but found it very difficult because I would need to have
+multiple frames to depict the spinning motion of the ball. Further complicating things is the fact that different pitch types have the ball spin differently,
+so I would need separate sets of frames for different pitch types. I find that the simple solid circle would be sufficient to allow the player to appreciate the essence of a baseball at-bat, without over-emphasising the realism aspect.
+
+When the ball reaches the strikezone or a batter swings and makes contact with a ball, a "ghost" of the ball is left behind at the location where the impact
+occurred. Using a circle outline mirrors how it is depicted on television in the real world as well. This impact point allows the player to know where the ball ended up. This allows you to appreciate really good strikes that juuust clipped the zone 
 
 For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play
 as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and

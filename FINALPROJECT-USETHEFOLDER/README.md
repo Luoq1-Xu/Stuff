@@ -43,6 +43,8 @@ As this is the first python program I have written in full, please pardon the re
 
 
 
+
+
 ### Sounds
 A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt), the sounds when the bat makes contact with the ball, and the umpire call sounds. Let's dive a bit deeper.
 

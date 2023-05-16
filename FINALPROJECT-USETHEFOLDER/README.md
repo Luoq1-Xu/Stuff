@@ -30,7 +30,8 @@ As this is the first python program I have written in full, please pardon the re
 
 I utilised pygame_gui for most of the Graphical User Interface in the game, as I intended the GUI to be very simple and straightforward. Pygame_gui seemed to be relatively easy to implement, while retaining the ability to customise appearance through a theme file.
 
-The first section of the code initialises and sets up the game. This includes the pygame setup of the screen, clock and mixer(for sound)
+The first section of the code initialises and sets up the game. This includes the pygame setup of the screen, clock and mixer(for sound). Pygame_gui setup is also done here, such as initialising the manager and setting up the buttons and textboxes. Loading in of the graphic and audio resources is also done here.
+The global game variables are also initalised here, like currentouts, currentstrikes, and others. These variables will be constantly changing with multiple functions making use of them.
 
 
 

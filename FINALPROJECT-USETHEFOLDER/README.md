@@ -28,7 +28,9 @@ The game consists of a few main assets
 ### Finalproject.py(Main python file)
 As this is the first python program I have written in full, please pardon the relatively poor standard of the code. I apologise in advance for the atrocious infractions that I may have committed in the process of writing this program... With that being said, the main file contains a large selection of functions, and I will explain them in further detail below.
 
-I utilised pygame_gui for most of the Graphical User Interface in the game, as I intended the GUI to be very simple and straightforward. Pygame_gui seemed to be relatively easy to implement, while retaining the ability to customise appearance through a theme file. 
+I utilised pygame_gui for most of the Graphical User Interface in the game, as I intended the GUI to be very simple and straightforward. Pygame_gui seemed to be relatively easy to implement, while retaining the ability to customise appearance through a theme file.
+
+The first section of the code initialises and sets up the game. This includes the pygame setup of the screen, clock and mixer(for sound)
 
 
 

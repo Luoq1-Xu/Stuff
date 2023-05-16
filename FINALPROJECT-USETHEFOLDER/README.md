@@ -25,6 +25,24 @@ The game consists of a few main assets
 * button.py supplementary button class file
 
 
+### Finalproject.py(Main python file)
+As this is the first python program I have written in full, please pardon the relatively poor standard of the code. I apologise in advance for the atrocious infractions that I may have committed in the process of writing this program... With that being said, the main file contains a large selection of functions, and I will explain them in further detail below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Sounds
 A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt), the sounds when the bat makes contact with the ball, and the umpire call sounds. Let's dive a bit deeper.
 

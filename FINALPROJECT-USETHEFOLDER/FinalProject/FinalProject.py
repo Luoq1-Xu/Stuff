@@ -1238,8 +1238,6 @@ def high_swing_start(timenow, swing_startime):
 
 
 
-
-
 #Main Game Loop
 while running:
 

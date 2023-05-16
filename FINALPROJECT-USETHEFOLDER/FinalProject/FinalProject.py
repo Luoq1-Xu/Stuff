@@ -118,13 +118,158 @@ container = pygame_gui.core.UIContainer(relative_rect=pygame.Rect((0, 0), (1280,
 banner = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((440, 0), (400,100)), manager=manager, text="")
 banner.hide()
 
+def pitchresult(input):
+    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 350), (200,150)),
+                                        manager=manager)
 
+
+def drawscoreboard(results):
+    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 150), (200,200)),
+                                        manager=manager)
+
+
+def draw_bases(base1, base2, base3):
+    basepeople = [base1, base2, base3]
+    coloured = []
+    x = 0
+    while x < 3:
+        if basepeople[x] == "white":
+            coloured.append(3)
+        elif basepeople[x]== "yellow":
+            coloured.append(0)
+        x += 1
+    pygame.draw.polygon(screen, base1, ((1115, 585), (1140, 610), (1115,635), (1090,610)),coloured[0])
+    pygame.draw.polygon(screen, base2, ((1080, 550), (1105, 575), (1080,600), (1055,575)),coloured[1])
+    pygame.draw.polygon(screen, base3, ((1045, 585), (1070, 610), (1045,635), (1020,610)),coloured[2])
+    return
+
+def homeplate():
+    pygame.draw.polygon(screen, "white", ((565, 650), (695, 650), (695, 670), (630, 700), (565, 670)), 3)
+
+def draw_static():
+    global strikezonedrawn
+    global runners
+    if strikezonedrawn == True:
+                pygame.draw.rect(screen, "white", strikezone, 1)
+    if runners == 0.000:
+        draw_bases("white", "white", "white")
+    elif runners == 1:
+        draw_bases("yellow","white","white")
+    elif runners == 2:
+        draw_bases("yellow", "yellow", "white")
+    elif runners == 3:
+        draw_bases("yellow", "yellow", "yellow")
+    #RUNNER ON FIRST
+    elif runners == 0.100:
+        draw_bases("yellow","white","white")
+    #RUNNER ON FIRST, SECOND
+    elif runners == 0.110:
+        draw_bases("yellow", "yellow", "white")
+    #RUNNER ON FIRST, SECOND, THIRD (BASES LOADED)
+    elif runners == 0.111:
+        draw_bases("yellow", "yellow", "yellow")
+    #RUNNER ON SECOND
+    elif runners == 0.010:
+        draw_bases("white","yellow","white")
+    #RUNNERS ON FIRST, THIRD (RUNNERS AT THE CORNERS)
+    elif runners == 0.101:
+        draw_bases("yellow","white","yellow")
+    #RUNNERS ON SECOND, THIRD
+    elif runners == 0.011:
+        draw_bases("white","yellow","yellow")
+    #RUNNER ON THIRD
+    elif runners == 0.001:
+        draw_bases("white", "white", "yellow")
+
+    homeplate()
+    return
+
+#righty starting x pos
+c = (screen.get_width() / 2) - 20
+d = (screen.get_height() / 3) + 50
+
+
+#POSITION FOR BATTER
+x = 370
+y = 190
+
+j = (screen.get_width() / 2) - 105
+k = (screen.get_height() / 3) - 40
+
+a = (screen.get_width() / 2) - 20
+b = (screen.get_height() / 3) + 35
+
+
+def leftyone(a,b):
+    screen.blit(lefty1, (a,b))
+def leftytwo(a,b):
+    screen.blit(lefty2, (a,b))
+def leftythree(a,b):
+    screen.blit(lefty3, (a,b))
+def leftyfour(a,b):
+    screen.blit(lefty4, (a,b))
+def leftyfive(a,b):
+    screen.blit(lefty5, (a,b))
+def leftysix(a,b):
+    screen.blit(lefty6, (a,b))
+def leftyseven(a,b):
+    screen.blit(lefty7, (a,b))
+def leftyeight(a,b):
+    screen.blit(lefty8, (a,b))
+def leftynine(a,b):
+    screen.blit(lefty9, (a,b))
+
+
+def rightyone(x,y):
+    screen.blit(righty1, (x,y))
+def rightytwo(x,y):
+    screen.blit(righty2, (x,y))
+def rightythree(x,y):
+    screen.blit(righty3, (x,y))
+def rightyfour(x,y):
+    screen.blit(righty4, (x,y))
+def rightyfive(x,y):
+    screen.blit(righty5, (x,y))
+def rightysix(x,y):
+    screen.blit(righty6, (x,y))
+def rightyseven(x,y):
+    screen.blit(righty7, (x,y))
+def rightyeight(x,y):
+    screen.blit(righty8,(x,y))
+def rightynine(x,y):
+    screen.blit(righty9,(x,y))
+
+def troutone(x,y):
+    screen.blit(trout1, (x,y))
+def troutraiseleg(x,y):
+    screen.blit(troutlegraise, (x,y))
+def trouttwo(x,y):
+    screen.blit(trout2, (x,y))
+def troutthree(x,y):
+    screen.blit(trout3, (x,y))
+def troutfour(x,y):
+    screen.blit(trout4, (x,y))
+def troutfive(x,y):
+    screen.blit(trout5, (x,y))
+def troutsix(x,y):
+    screen.blit(trout6, (x,y))
+def troutseven(x,y):
+    screen.blit(trout7, (x,y))
+
+
+def troutfourhigh(x,y):
+    screen.blit(trout4high, (x,y))
+def troutfivehigh(x,y):
+    screen.blit(trout5high, (x,y))
+def troutsixhigh(x,y):
+    screen.blit(trout6high, (x,y))
+
+#Container to house the scoreboard and textbox - to allow for previous instances to be deleted when new ones are created
 def containerupdate(textbox, scoreboard):
     global container
     container.add_element(textbox)
     container.add_element(scoreboard)
     return
-
 
 def check_menu():
     global currentouts
@@ -134,7 +279,7 @@ def check_menu():
         menu_state = 3
     return
 
-
+#GAME LOOP FOR END/SUMMARY SCREEN
 def draw_inning_summary():
     global running
     global currentstrikeouts
@@ -221,7 +366,7 @@ def draw_inning_summary():
 
     return
 
-
+#GAME LOOP FOR MAIN MENU
 def main_menu():
     global running
     global currentstrikeouts
@@ -325,167 +470,7 @@ def main_menu():
 
 
 
-
-def pitchresult(input):
-    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 350), (200,150)),
-                                        manager=manager)
-
-
-def drawscoreboard(results):
-    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 150), (200,200)),
-                                        manager=manager)
-
-
-def draw_bases(base1, base2, base3):
-    basepeople = [base1, base2, base3]
-    coloured = []
-    x = 0
-    while x < 3:
-        if basepeople[x] == "white":
-            coloured.append(3)
-        elif basepeople[x]== "yellow":
-            coloured.append(0)
-        x += 1
-    pygame.draw.polygon(screen, base1, ((1115, 585), (1140, 610), (1115,635), (1090,610)),coloured[0])
-    pygame.draw.polygon(screen, base2, ((1080, 550), (1105, 575), (1080,600), (1055,575)),coloured[1])
-    pygame.draw.polygon(screen, base3, ((1045, 585), (1070, 610), (1045,635), (1020,610)),coloured[2])
-    return
-
-def homeplate():
-    pygame.draw.polygon(screen, "white", ((565, 650), (695, 650), (695, 670), (630, 700), (565, 670)), 3)
-
-def draw_static():
-    global strikezonedrawn
-    global runners
-    if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
-    if runners == 0.000:
-        draw_bases("white", "white", "white")
-    elif runners == 1:
-        draw_bases("yellow","white","white")
-    elif runners == 2:
-        draw_bases("yellow", "yellow", "white")
-    elif runners == 3:
-        draw_bases("yellow", "yellow", "yellow")
-    #RUNNER ON FIRST
-    elif runners == 0.100:
-        draw_bases("yellow","white","white")
-    #RUNNER ON FIRST, SECOND
-    elif runners == 0.110:
-        draw_bases("yellow", "yellow", "white")
-    #RUNNER ON FIRST, SECOND, THIRD (BASES LOADED)
-    elif runners == 0.111:
-        draw_bases("yellow", "yellow", "yellow")
-    #RUNNER ON SECOND
-    elif runners == 0.010:
-        draw_bases("white","yellow","white")
-    #RUNNERS ON FIRST, THIRD (RUNNERS AT THE CORNERS)
-    elif runners == 0.101:
-        draw_bases("yellow","white","yellow")
-    #RUNNERS ON SECOND, THIRD
-    elif runners == 0.011:
-        draw_bases("white","yellow","yellow")
-    #RUNNER ON THIRD
-    elif runners == 0.001:
-        draw_bases("white", "white", "yellow")
-
-    homeplate()
-    return
-
-
-
-
-
-#righty starting x pos
-c = (screen.get_width() / 2) - 20
-d = (screen.get_height() / 3) + 50
-
-
-#POSITION FOR BATTER
-x = 370
-y = 190
-
-j = (screen.get_width() / 2) - 105
-k = (screen.get_height() / 3) - 40
-
-a = (screen.get_width() / 2) - 20
-b = (screen.get_height() / 3) + 35
-
-
-def leftyone(a,b):
-    screen.blit(lefty1, (a,b))
-
-def leftytwo(a,b):
-    screen.blit(lefty2, (a,b))
-
-def leftythree(a,b):
-    screen.blit(lefty3, (a,b))
-
-def leftyfour(a,b):
-    screen.blit(lefty4, (a,b))
-
-def leftyfive(a,b):
-    screen.blit(lefty5, (a,b))
-
-def leftysix(a,b):
-    screen.blit(lefty6, (a,b))
-
-def leftyseven(a,b):
-    screen.blit(lefty7, (a,b))
-
-def leftyeight(a,b):
-    screen.blit(lefty8, (a,b))
-
-def leftynine(a,b):
-    screen.blit(lefty9, (a,b))
-
-
-def rightyone(x,y):
-    screen.blit(righty1, (x,y))
-def rightytwo(x,y):
-    screen.blit(righty2, (x,y))
-def rightythree(x,y):
-    screen.blit(righty3, (x,y))
-def rightyfour(x,y):
-    screen.blit(righty4, (x,y))
-def rightyfive(x,y):
-    screen.blit(righty5, (x,y))
-def rightysix(x,y):
-    screen.blit(righty6, (x,y))
-def rightyseven(x,y):
-    screen.blit(righty7, (x,y))
-def rightyeight(x,y):
-    screen.blit(righty8,(x,y))
-def rightynine(x,y):
-    screen.blit(righty9,(x,y))
-
-def troutone(x,y):
-    screen.blit(trout1, (x,y))
-def troutraiseleg(x,y):
-    screen.blit(troutlegraise, (x,y))
-def trouttwo(x,y):
-    screen.blit(trout2, (x,y))
-def troutthree(x,y):
-    screen.blit(trout3, (x,y))
-def troutfour(x,y):
-    screen.blit(trout4, (x,y))
-def troutfive(x,y):
-    screen.blit(trout5, (x,y))
-def troutsix(x,y):
-    screen.blit(trout6, (x,y))
-def troutseven(x,y):
-    screen.blit(trout7, (x,y))
-
-
-def troutfourhigh(x,y):
-    screen.blit(trout4high, (x,y))
-def troutfivehigh(x,y):
-    screen.blit(trout5high, (x,y))
-def troutsixhigh(x,y):
-    screen.blit(trout6high, (x,y))
-
-
-
+#GAME LOOP FOR AT-BAT
 def simulate(yes, ball_pos, horizontalspeed,
             horizontalacceleration, verticalspeed, verticalacceleration,
             ballsize, traveltime, verticalbreak,
@@ -1154,7 +1139,7 @@ def lowslider():
     yoffset = random.uniform(-1, 1)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
-    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 5 + yoffset, 0.2, 4, 420, 0.3, 0.325, 250, 'jacobdegrom')
+    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 5 + yoffset, 0.25, 4, 420, 0.3, 0.325, 250, 'jacobdegrom')
     return
 
 def lowchangeup():
@@ -1255,11 +1240,6 @@ def high_swing_start(timenow, swing_startime):
 
 
 
-
-
-
-
-
 #Main Game Loop
 while running:
 
@@ -1299,7 +1279,7 @@ while running:
             result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
             scoreboard = drawscoreboard(result)
             scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR, {'time_per_letter': 0.0075})
-            string = "<font size=5>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+            string = "<font size=5><br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
             textbox = pitchresult(string)
             textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR, {'time_per_letter': 0.0075})
             containerupdate(textbox, scoreboard)
@@ -1329,7 +1309,7 @@ while running:
                         strikezonedrawn = False
                     elif strikezonedrawn == False:
                         strikezonedrawn = True
-                elif event.ui_element == salepitch:
+                elif event.ui_element == degrompitch:
                     pitch_decision_maker()
                 elif event.ui_element == backtomainmenu:
                     menu_state = 0
@@ -1344,7 +1324,7 @@ while running:
             result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
             scoreboard = drawscoreboard(result)
             scoreboard.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR, {'time_per_letter': 0.0075})
-            string = "<font size=5>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+            string = "<font size=5><br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
             textbox = pitchresult(string)
             textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR, {'time_per_letter': 0.0075})
             containerupdate(textbox, scoreboard)

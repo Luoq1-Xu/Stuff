@@ -35,7 +35,7 @@ The global game variables are also initalised here, like currentouts, currentstr
 
 Next, we have some supplementary functions that assist the main game loop functions.
 
-draw_bases, homeplate and draw_static are pretty self-explanatory - they manage the display of the static elements that do not move during or in between at-bats. draw_bases is where the actual drawing of the base graphic occurs, while draw_static 
+draw_bases, homeplate and draw_static are pretty self-explanatory - they manage the display of the static elements that do not move during or in between at-bats. draw_bases is where the actual drawing of the base graphic occurs, while draw_static manages the actual logic that determines the correct graphic to be displayed depending on the value of "runners". Admittedly, the method used is very crude. The value of 
 
 
 

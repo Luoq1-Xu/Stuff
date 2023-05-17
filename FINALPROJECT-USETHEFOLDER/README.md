@@ -37,8 +37,7 @@ Next, we have some supplementary functions that assist the main game loop functi
 
 draw_bases, homeplate and draw_static are pretty self-explanatory - they manage the display of the static elements that do not move during or in between at-bats. draw_bases is where the actual drawing of the base graphic occurs, while draw_static manages the actual logic that determines the correct graphic to be displayed depending on the value of "runners". Admittedly, the method used is very crude but it works (for now). The value of runners is stored as a three decimal place float, and the runners on base are determined by whether each decimal place is 1 or 0. For example, runner on first only is denoted by "0.100", while bases loaded(runners on each of the three bases) is denoted by "0.111". The value of runners is then changed by other functions and then draw_static updates the bases graphic accordingly.
 
-
-
+Next, I put all the screen.blit instances for every image into conviniently named functions to make them easier to call instead of copy pasting screen.blit everytime.
 
 
 

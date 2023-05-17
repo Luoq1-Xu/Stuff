@@ -41,7 +41,13 @@ check_menu simply updates the menu_state if 3 outs have been made and the inning
 
 Next, I put all the screen.blit instances for every image into conviniently named functions to make them easier to call instead of copy pasting screen.blit everytime.
 
-Next is contact_hit_outcome and power_hit_outcome. These functions serve to randomly determine the result of a hit. These functions will be called after it is determined that the player successfully gets a hit (which in turn is determined by having perfect timing and location of swing). Choosing to swing with a contact swing (pressing the "w" key) and getting a successful hit will call the contact_hit_outcome function. A contact hit will mean a much higher chance of getting a single (so called "worst" possible outcome) while
+Next is contact_hit_outcome and power_hit_outcome. These functions serve to randomly determine the result of a hit. These functions will be called after it is determined that the player successfully gets a hit (which in turn is determined by having perfect timing and location of swing). Choosing to swing with a contact swing (pressing the "w" key) and getting a successful hit will call the contact_hit_outcome function. A contact hit will mean a much higher chance of getting a single (so called "worst" possible outcome) and much lower chance of the other outcomes happening. Conversely, getting a hit with the Power Swing(pressing the "e" key) calls the power_hit_outcome, which gives a higher chance of the other outcomes occuring. This difference is balanced by making the power swing less forgiving than the contact swing, that means your timing has to be more accurate and on time to get a hit using a power swing as compared to using the contact swing. The four possible outcomes in each of these two functions are "Single", "Double", "Triple" and "Home Run". These two functions will then call another function, update_runners_and_score, to do the actual updating of the runners and score ("runs").
+
+update_runners_and_score serves to do the actual updating of "runners" and "runs" depending on the input. The input is an integer that represents the result to be updated, 1 represents single, 2 represents double, 3 represents triple and 4 represents home run. To keep things simple, all runners move up by the number of bases represented by the outcome.
+
+For example, a single is represented by 1, all runners will move up by 1 base. If there is currently a runner on first base (runners = 0.100), a single would result in runners on first and second (runners = 0.110) -> The runner on first moves to second, and the batter (guy that swung the bat) moves to first.
+
+Another example, if there is currently a runner on second (runners = 0.010), and the batter hits a double (2), the result will be a runner on second (0.010).The origin
 
 
 

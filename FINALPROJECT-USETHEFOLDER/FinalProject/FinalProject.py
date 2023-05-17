@@ -10,6 +10,8 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
+
+#Stuff for the typing effect in main menu and summary screen
 dt = 0
 font = pygame.font.Font('8bitoperator_jve.ttf', 40)
 bigfont = pygame.font.Font('8bitoperator_jve.ttf', 70)
@@ -17,6 +19,7 @@ snip = font.render('', True, 'white')
 counter = 0
 speed = 3
 
+#Some more setup
 manager = pygame_gui.UIManager((1280, 720), 'theme.json')
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 strikezone = pygame.Rect((565, 400), (130, 165))
@@ -84,7 +87,6 @@ trout5 = pygame.image.load('5trout.png').convert_alpha()
 trout6 = pygame.image.load('6trout.png').convert_alpha()
 trout7 = pygame.image.load('7trout.png').convert_alpha()
 
-
 trout4high = pygame.image.load('4TROUTHIGH.png').convert_alpha()
 trout5high = pygame.image.load('5TROUTHIGH.png').convert_alpha()
 trout6high = pygame.image.load('6TROUTHIGH.png').convert_alpha()
@@ -97,37 +99,31 @@ faceoffsale = button.Button(500,500, salebutton, 0.5)
 faceoffdegrom = button.Button(500,600, degrombutton, 0.5)
 mainmenubutton = button.Button(540, 530, menu, 0.6)
 
+
+#Pygame_gui elements (Buttons, textboxes)
 strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0,100), (200,100)),
                                         text = 'STRIKEZONE',
                                         manager=manager)
-
 salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100)),
                                             text= 'PITCH',
                                             manager=manager)
-
 degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100)),
                                             text= 'PITCH',
                                             manager=manager)
-
 backtomainmenu = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 620), (200,100)),
                                             text= 'MAIN MENU',
                                             manager=manager)
-
 container = pygame_gui.core.UIContainer(relative_rect=pygame.Rect((0, 0), (1280,720)),manager=manager, is_window_root_container=False)
-
 banner = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((440, 0), (400,100)), manager=manager, text="")
 banner.hide()
-
 def pitchresult(input):
     return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 350), (200,150)),
                                         manager=manager)
-
-
 def drawscoreboard(results):
     return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 150), (200,200)),
                                         manager=manager)
 
-
+#Function to draw bases graphic
 def draw_bases(base1, base2, base3):
     basepeople = [base1, base2, base3]
     coloured = []
@@ -150,15 +146,10 @@ def draw_static():
     global strikezonedrawn
     global runners
     if strikezonedrawn == True:
-                pygame.draw.rect(screen, "white", strikezone, 1)
+        pygame.draw.rect(screen, "white", strikezone, 1)
+    #BASES EMPTY
     if runners == 0.000:
         draw_bases("white", "white", "white")
-    elif runners == 1:
-        draw_bases("yellow","white","white")
-    elif runners == 2:
-        draw_bases("yellow", "yellow", "white")
-    elif runners == 3:
-        draw_bases("yellow", "yellow", "yellow")
     #RUNNER ON FIRST
     elif runners == 0.100:
         draw_bases("yellow","white","white")
@@ -180,11 +171,10 @@ def draw_static():
     #RUNNER ON THIRD
     elif runners == 0.001:
         draw_bases("white", "white", "yellow")
-
     homeplate()
     return
 
-#righty starting x pos
+#righty pitcher position
 c = (screen.get_width() / 2) - 20
 d = (screen.get_height() / 3) + 50
 
@@ -196,6 +186,7 @@ y = 190
 j = (screen.get_width() / 2) - 105
 k = (screen.get_height() / 3) - 40
 
+#Lefty pitcher position
 a = (screen.get_width() / 2) - 20
 b = (screen.get_height() / 3) + 35
 
@@ -299,13 +290,11 @@ def draw_inning_summary():
     counter = 0
     textoffset = 0
     messages_finished = 0
-
     messages = ["INNING OVER",
                 "HITS : {}".format(hits),
                 "WALKS: {}".format(currentwalks),
                 "STRIKEOUTS : {}".format(currentstrikeouts),
                 "RUNS SCORED : {}".format(runs_scored)]
-
     active_message = 0
     message = messages[active_message]
 
@@ -313,13 +302,11 @@ def draw_inning_summary():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
         mousepos = pygame.mouse.get_pos()
         if pygame.Rect((540,530), (192,29)).collidepoint(mousepos):
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
-
         full_message = 0
         screen.fill("black")
         if mainmenubutton.draw(screen):
@@ -342,7 +329,6 @@ def draw_inning_summary():
             counter += 1
         elif counter >= speed*len(message):
             done = True
-
         if (active_message < len(messages) - 1 ) and done:
             pygame.time.delay(500)
             active_message += 1
@@ -351,7 +337,6 @@ def draw_inning_summary():
             textoffset += 50
             counter = 0
             messages_finished += 1
-
         if messages_finished > 0:
             offset = 0
             while full_message < messages_finished:
@@ -359,7 +344,6 @@ def draw_inning_summary():
                 screen.blit(oldmessage, (450, 170 + offset))
                 offset += 50
                 full_message += 1
-
         snip = font.render(message[0:counter//speed], True, 'white')
         screen.blit(snip, (450, 170 + textoffset))
         pygame.display.flip()
@@ -396,13 +380,11 @@ def main_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
         mousepos = pygame.mouse.get_pos()
         if pygame.Rect((500,500), (174,24)).collidepoint(mousepos) or pygame.Rect((500,600), (112, 24)).collidepoint(mousepos):
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
-
         full_message = 0
         screen.fill("black")
         if faceoffsale.draw(screen):
@@ -439,13 +421,11 @@ def main_menu():
             hits = 0
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
             return
-
         clock.tick(60)/1000.0
         if counter < speed *len(message):
             counter += 1
         elif counter >= speed*len(message):
             done = True
-
         if (active_message < len(messages) - 1 ) and done:
             pygame.time.delay(500)
             active_message += 1
@@ -454,7 +434,6 @@ def main_menu():
             textoffset += 100
             counter = 0
             messages_finished += 1
-
         if messages_finished > 0:
             offset = 0
             while full_message < messages_finished:
@@ -462,7 +441,6 @@ def main_menu():
                 screen.blit(oldmessage, (300, 170 + offset))
                 offset += 100
                 full_message += 1
-
         snip = bigfont.render(message[0:counter//speed], True, 'white')
         screen.blit(snip, (300, 170 + textoffset))
         pygame.display.flip()
@@ -477,7 +455,6 @@ def simulate(yes, ball_pos, horizontalspeed,
             horizontalbreak, breaktime, pitchername):
 
     pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_CROSSHAIR))
-
     global currentballs
     global pitchnumber
     global currentstrikes
@@ -493,7 +470,6 @@ def simulate(yes, ball_pos, horizontalspeed,
     global first_pitch_thrown
     first_pitch_thrown = True
     swing_started = 0
-
 
     salepitch.hide()
     strikezonetoggle.hide()
@@ -840,7 +816,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     scoreboard = drawscoreboard(result)
                     containerupdate(textbox,scoreboard)
 
-        #FOLLOW THROUGH IF SWUNG AND MISSED OR DID NOT SWING
+        #FOLLOW THROUGH IF SWUNG AND MISSED and ball has already reached the plate (For late swings)
         elif current_time > starttime + traveltime + 1150 and pitch_results_done == True and current_time <= starttime + traveltime + 1800 and (on_time == 0 or (on_time > 0 and made_contact == 1)):
             screen.fill("black")
             if pitchername == 'chrissale':
@@ -1136,10 +1112,10 @@ def highfastball():
 
 def lowslider():
     xoffset = random.uniform(-1.5, 1)
-    yoffset = random.uniform(-1, 1)
+    yoffset = random.uniform(0, 3)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
-    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 5 + yoffset, 0.25, 4, 420, 0.3, 0.325, 250, 'jacobdegrom')
+    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 1.5 + yoffset, 0.4, 4, 420, 0.3, 0.5, 250, 'jacobdegrom')
     return
 
 def lowchangeup():
@@ -1158,12 +1134,12 @@ def leftyfastball():
     yoffset = random.uniform(0, 5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.10, 4, 400, 0.10, 0.05, 240, 'chrissale')
+    simulate(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.10, 4, 400, 0.10, 0.05, 200, 'chrissale')
     return
 
 def leftyslider():
     xoffset = random.uniform(-0.5, 4)
-    yoffset = random.uniform(-1, 2)
+    yoffset = random.uniform(0, 2)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
     simulate(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300, 'chrissale')

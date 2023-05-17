@@ -41,7 +41,7 @@ check_menu simply updates the menu_state if 3 outs have been made and the inning
 
 Next, I put all the screen.blit instances for every image into conviniently named functions to make them easier to call instead of copy pasting screen.blit everytime.
 
-
+Next is contact_hit_outcome and power_hit_outcome. These functions serve to randomly determine the result of a hit. These functions will be called after it is determined that the player successfully gets a hit (which in turn is determined by having perfect timing and location of swing). Choosing to swing with a contact swing (pressing the "w" key) and getting a successful hit will call the contact_hit_outcome function. A contact hit will mean a much higher chance of getting a single (so called "worst" possible outcome) while
 
 
 

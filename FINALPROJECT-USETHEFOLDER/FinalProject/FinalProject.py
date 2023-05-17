@@ -123,6 +123,13 @@ def drawscoreboard(results):
     return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 150), (200,200)),
                                         manager=manager)
 
+#Container to house the scoreboard and textbox - to allow for previous instances to be deleted when new ones are created
+def containerupdate(textbox, scoreboard):
+    global container
+    container.add_element(textbox)
+    container.add_element(scoreboard)
+    return
+
 #Function to draw bases graphic
 def draw_bases(base1, base2, base3):
     basepeople = [base1, base2, base3]
@@ -174,10 +181,18 @@ def draw_static():
     homeplate()
     return
 
+#Simple function to check menu_state and update the display accordingly.
+def check_menu():
+    global currentouts
+    global menu_state
+    if currentouts == 3:
+        pygame.time.delay(500)
+        menu_state = 3
+    return
+
 #righty pitcher position
 c = (screen.get_width() / 2) - 20
 d = (screen.get_height() / 3) + 50
-
 
 #POSITION FOR BATTER
 x = 370
@@ -189,7 +204,6 @@ k = (screen.get_height() / 3) - 40
 #Lefty pitcher position
 a = (screen.get_width() / 2) - 20
 b = (screen.get_height() / 3) + 35
-
 
 def leftyone(a,b):
     screen.blit(lefty1, (a,b))
@@ -209,7 +223,6 @@ def leftyeight(a,b):
     screen.blit(lefty8, (a,b))
 def leftynine(a,b):
     screen.blit(lefty9, (a,b))
-
 
 def rightyone(x,y):
     screen.blit(righty1, (x,y))
@@ -247,7 +260,6 @@ def troutsix(x,y):
 def troutseven(x,y):
     screen.blit(trout7, (x,y))
 
-
 def troutfourhigh(x,y):
     screen.blit(trout4high, (x,y))
 def troutfivehigh(x,y):
@@ -255,20 +267,343 @@ def troutfivehigh(x,y):
 def troutsixhigh(x,y):
     screen.blit(trout6high, (x,y))
 
-#Container to house the scoreboard and textbox - to allow for previous instances to be deleted when new ones are created
-def containerupdate(textbox, scoreboard):
-    global container
-    container.add_element(textbox)
-    container.add_element(scoreboard)
+#Outcomes for a successful contact hit
+def contact_hit_outcome():
+    global runners
+    global runs_scored
+    global hit_type
+    rand = random.uniform(0,10)
+    if rand > 0 and rand <= 8:
+        hit_type = 1
+        update_runners_and_score(1)
+        return "SINGLE"
+    elif rand > 8 and rand <= 9:
+        hit_type = 2
+        update_runners_and_score(2)
+        return "DOUBLE"
+    elif rand > 9 and rand <= 9.3:
+        hit_type = 3
+        update_runners_and_score(3)
+        return "TRIPLE"
+    elif rand > 9.3 and rand <= 10:
+        hit_type = 4
+        update_runners_and_score(4)
+        return "HOME RUN"
+
+#Outcomes for a successful power hit
+def power_hit_outcome():
+    global runners
+    global runs_scored
+    global hit_type
+    rand = random.uniform(0,10)
+    if rand > 0 and rand <= 3:
+        hit_type = 1
+        update_runners_and_score(1)
+        return "SINGLE"
+    elif rand > 3 and rand <= 6.5:
+        hit_type = 2
+        update_runners_and_score(2)
+        return "DOUBLE"
+    elif rand > 6.5 and rand <= 7.5:
+        hit_type = 3
+        update_runners_and_score(3)
+        return "TRIPLE"
+    elif rand > 7.5 and rand <= 10:
+        hit_type = 4
+        update_runners_and_score(4)
+        return "HOME RUN"
+
+#LOGIC FOR UPDATING BASERUNNERS AFTER A HIT
+def update_runners_and_score(hit_type):
+    global runners
+    global runs_scored
+    if hit_type == 1:
+        if runners == 0.000:
+            runners = 0.100
+        elif runners == 0.100:
+            runners = 0.110
+        elif runners == 0.010:
+            runners = 0.101
+        elif runners == 0.001:
+            runners = 0.100
+            runs_scored += 1
+        elif runners == 0.110:
+            runners = 0.111
+        elif runners == 0.011:
+            runners = 0.101
+            runs_scored += 1
+        elif runners == 0.111:
+            runs_scored += 1
+        elif runners == 0.101:
+            runners = 0.110
+            runs_scored += 1
+    elif hit_type == 2:
+        if runners == 0.000:
+            runners = 0.010
+        elif runners == 0.100:
+            runners = 0.101
+        elif runners == 0.010:
+            runs_scored += 1
+        elif runners == 0.001:
+            runners = 0.010
+            runs_scored += 1
+        elif runners == 0.110:
+            runners = 0.011
+            runs_scored += 1
+        elif runners == 0.011:
+            runners = 0.010
+            runs_scored += 2
+        elif runners == 0.111:
+            runners = 0.011
+            runs_scored += 2
+        elif runners == 0.101:
+            runners = 0.011
+            runs_scored += 1
+    elif hit_type == 3:
+        if runners == 0.000:
+            runners = 0.001
+        elif runners == 0.100 or runners == 0.010 or runners == 0.001:
+            runners = 0.001
+            runs_scored += 1
+        elif runners == 0.110 or runners == 0.011 or runners == 0.101:
+            runners = 0.001
+            runs_scored += 2
+        elif runners == 0.111:
+            runners = 0.001
+            runs_scored += 3
+    elif hit_type == 4:
+        if runners == 0.000:
+            runs_scored += 1
+        elif runners == 0.100 or runners == 0.010 or runners == 0.001:
+            runners = 0.000
+            runs_scored += 2
+        elif runners == 0.110 or runners == 0.011 or runners == 0.101:
+            runners = 0.000
+            runs_scored += 3
+        elif runners == 0.111:
+            runners = 0.000
+            runs_scored += 4
     return
 
-def check_menu():
-    global currentouts
-    global menu_state
-    if currentouts == 3:
-        pygame.time.delay(500)
-        menu_state = 3
+
+#DEGROM PITCHING AI
+def pitch_decision_maker():
+    global currentballs
+    global currentstrikes
+    rando = random.uniform(1,10)
+    if ((currentballs == 0 and currentstrikes == 0) or
+        (currentballs == 4) or
+        (currentstrikes == 3) or
+        (currentballs == 1 and currentstrikes ==1) or
+        (currentballs == 3 and currentstrikes == 2)
+        ):
+        if rando >= 1 and rando <=3:
+            lowfastball()
+        elif rando > 3 and rando <=5:
+            highfastball()
+        elif rando > 5 and rando <=8:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
+        if rando >=1 and rando <=4:
+            lowfastball()
+        elif rando > 4 and rando <= 5.5:
+            highfastball()
+        elif rando > 5.5 and rando <= 8.5:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
+        if rando >= 1 and rando <= 2:
+            lowfastball()
+        elif rando > 2 and rando <=5:
+            highfastball()
+        elif rando > 5 and rando <= 7:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
+        if rando >=1 and rando <=6:
+            lowfastball()
+        elif rando > 6 and rando <=7:
+            highfastball()
+        elif rando > 7 and rando <= 9:
+            lowslider()
+        else:
+            lowchangeup()
+    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
+        if rando >=1 and rando <=2:
+            lowfastball()
+        elif rando > 2 and rando <=5:
+            highfastball()
+        elif rando > 5 and rando <=7:
+            lowslider()
+        else:
+            lowchangeup()
     return
+
+
+#SALE PITCHING AI
+def lefty_pitch_decision_maker():
+    global currentballs
+    global currentstrikes
+    rando = random.uniform(1,10)
+    # 0-0  OR  1 - 1  OR 3 - 2
+    if ((currentballs == 0 and currentstrikes == 0) or
+        (currentballs == 4) or
+        (currentstrikes == 3) or
+        (currentballs == 1 and currentstrikes == 1) or
+        (currentballs == 3 and currentstrikes == 2)
+        ):
+        if rando >= 1 and rando <=5:
+            leftyfastball()
+        elif rando > 5 and rando <=8:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 1 - 0 OR 2 - 1
+    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
+        if rando >=1 and rando <=5.5:
+            leftyfastball()
+        elif rando > 5.5 and rando <= 8.5:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 0 - 1  OR  2 - 2
+    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
+        if rando >= 1 and rando <= 5:
+            leftyfastball()
+        elif rando > 5 and rando <= 7:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 2 - 0  OR  3 - 1  OR  3 - 0
+    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
+        if rando >=1 and rando <=7:
+            leftyfastball()
+        elif rando > 7 and rando <= 9:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 0 - 2  OR  1 - 2
+    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
+        if rando >=1 and rando <=5:
+            leftyfastball()
+        elif rando > 5 and rando <=7:
+            leftyslider()
+        else:
+            leftychangeup()
+    return
+
+#DEGROM PITCH TYPES
+def lowfastball():
+    xoffset = random.uniform(-0.5, 2)
+    yoffset = random.uniform(-1, 1)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    simulate(True, ball_pos, 2 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.15, 150, 'jacobdegrom')
+    return
+def highfastball():
+    xoffset = random.uniform(-3, 3)
+    yoffset = random.uniform(-2, 1)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    simulate(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150, 'jacobdegrom')
+    return
+def lowslider():
+    xoffset = random.uniform(-1.5, 1)
+    yoffset = random.uniform(0, 3)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 1.5 + yoffset, 0.4, 4, 420, 0.3, 0.5, 250, 'jacobdegrom')
+    return
+def lowchangeup():
+    xoffset = random.uniform(-2, 3)
+    yoffset = random.uniform(-1, 1.5)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    simulate(True, ball_pos, 1 + xoffset, -0.1, 4 + yoffset, 0.2, 4, 450, 0.4, -0.2, 170, 'jacobdegrom')
+    return
+
+#SALE PITCH TYPES
+def leftyfastball():
+    xoffset = random.uniform(-2, 3)
+    yoffset = random.uniform(0, 5)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    simulate(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.10, 4, 400, 0.10, 0.05, 200, 'chrissale')
+    return
+def leftyslider():
+    xoffset = random.uniform(-0.5, 4)
+    yoffset = random.uniform(0, 2)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    simulate(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300, 'chrissale')
+def leftychangeup():
+    xoffset = random.uniform(-4, 1)
+    yoffset = random.uniform(-1, 3)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    simulate(True, ball_pos, -3 + xoffset, 0.15, 2.1 + yoffset, 0.3, 4, 460, 0.4, 0.3, 300, 'chrissale')
+
+
+# CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
+def collision(circlex, circley, radius, rectmiddlex, rectmiddley, rectwidth, rectheight):
+    circleDistancex = abs(circlex - rectmiddlex)
+    circleDistancey = abs(circley - rectmiddley)
+    if (circleDistancex > (rectwidth/2 + radius)):
+        return False
+    if (circleDistancey > (rectheight/2 + radius)):
+        return False
+    if (circleDistancex <= (rectwidth/2)):
+        return True
+    if (circleDistancey <= (rectheight/2)):
+        return True
+    cornerDistance_sq = ((circleDistancex - rectwidth/2)**2) + ((circleDistancey - rectheight/2)**2)
+    return (cornerDistance_sq <= ((radius)**2))
+
+#Low swing animation
+def swing_start(timenow, swing_startime):
+    if timenow <= swing_startime + 100:
+        troutthree(x, y + 40)
+    elif timenow > swing_startime + 100 and timenow <= swing_startime + 150:
+        troutfour(x,y + 90)
+    elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
+        troutfive(x,y + 90)
+    elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
+        troutsix(x,y)
+    elif timenow > swing_startime + 250:
+        troutseven(x,y - 20)
+    return
+
+#Default stance if no swing
+def leg_kick(currenttime, start_time):
+    if currenttime <= start_time + 50:
+        troutone(x,y)
+    elif currenttime > start_time + 50 and currenttime <= start_time + 200:
+        troutraiseleg(x,y)
+    elif currenttime > start_time + 200 and currenttime <= start_time + 500:
+        trouttwo(x,y)
+    elif currenttime > start_time + 500:
+        troutthree(x, y + 40)
+    return
+
+#High screen animation
+def high_swing_start(timenow, swing_startime):
+    if timenow <= swing_startime + 100:
+        troutthree(x, y + 40)
+    elif timenow > swing_startime + 100 and timenow <= swing_startime + 150:
+        troutfourhigh(x,y + 80)
+    elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
+        troutfivehigh(x,y + 90)
+    elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
+        troutsixhigh(x - 60,y)
+    elif timenow > swing_startime + 250:
+        troutseven(x - 10,y - 20)
+    return
+
+
 
 #GAME LOOP FOR END/SUMMARY SCREEN
 def draw_inning_summary():
@@ -445,7 +780,6 @@ def main_menu():
         screen.blit(snip, (300, 170 + textoffset))
         pygame.display.flip()
     return
-
 
 
 #GAME LOOP FOR AT-BAT
@@ -774,6 +1108,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     banner.show()
                     banner.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR,{'time_per_letter': 0.1})
                 else:
+                    #Normal Ball
                     container.clear()
                     string = "<font size=5>PITCH {} : BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
@@ -808,6 +1143,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     currentstrikes = 0
                     currentballs = 0
                 else:
+                    #Normal Strike
                     container.clear()
                     string = "<font size=5>PITCH {} : STRIKE<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
                     textbox = pitchresult(string)
@@ -852,365 +1188,7 @@ def simulate(yes, ball_pos, horizontalspeed,
 
 
 
-#Outcomes for a successful contact hit
-def contact_hit_outcome():
-    global runners
-    global runs_scored
-    global hit_type
-    rand = random.uniform(0,10)
-    if rand > 0 and rand <= 8:
-        hit_type = 1
-        update_runners_and_score(1)
-        return "SINGLE"
-    elif rand > 8 and rand <= 9:
-        hit_type = 2
-        update_runners_and_score(2)
-        return "DOUBLE"
-    elif rand > 9 and rand <= 9.3:
-        hit_type = 3
-        update_runners_and_score(3)
-        return "TRIPLE"
-    elif rand > 9.3 and rand <= 10:
-        hit_type = 4
-        update_runners_and_score(4)
-        return "HOME RUN"
 
-#Outcomes for a successful power hit
-def power_hit_outcome():
-    global runners
-    global runs_scored
-    global hit_type
-    rand = random.uniform(0,10)
-    if rand > 0 and rand <= 3:
-        hit_type = 1
-        update_runners_and_score(1)
-        return "SINGLE"
-    elif rand > 3 and rand <= 6.5:
-        hit_type = 2
-        update_runners_and_score(2)
-        return "DOUBLE"
-    elif rand > 6.5 and rand <= 7.5:
-        hit_type = 3
-        update_runners_and_score(3)
-        return "TRIPLE"
-    elif rand > 7.5 and rand <= 10:
-        hit_type = 4
-        update_runners_and_score(4)
-        return "HOME RUN"
-
-#LOGIC FOR UPDATING BASERUNNERS AFTER A HIT
-def update_runners_and_score(hit_type):
-    global runners
-    global runs_scored
-    if hit_type == 1:
-        if runners == 0.000:
-            runners = 0.100
-        elif runners == 0.100:
-            runners = 0.110
-        elif runners == 0.010:
-            runners = 0.101
-        elif runners == 0.001:
-            runners = 0.100
-            runs_scored += 1
-        elif runners == 0.110:
-            runners = 0.111
-        elif runners == 0.011:
-            runners = 0.101
-            runs_scored += 1
-        elif runners == 0.111:
-            runs_scored += 1
-        elif runners == 0.101:
-            runners = 0.110
-            runs_scored += 1
-    elif hit_type == 2:
-        if runners == 0.000:
-            runners = 0.010
-        elif runners == 0.100:
-            runners = 0.101
-        elif runners == 0.010:
-            runs_scored += 1
-        elif runners == 0.001:
-            runners = 0.010
-            runs_scored += 1
-        elif runners == 0.110:
-            runners = 0.011
-            runs_scored += 1
-        elif runners == 0.011:
-            runners = 0.010
-            runs_scored += 2
-        elif runners == 0.111:
-            runners = 0.011
-            runs_scored += 2
-        elif runners == 0.101:
-            runners = 0.011
-            runs_scored += 1
-    elif hit_type == 3:
-        if runners == 0.000:
-            runners = 0.001
-        elif runners == 0.100 or runners == 0.010 or runners == 0.001:
-            runners = 0.001
-            runs_scored += 1
-        elif runners == 0.110 or runners == 0.011 or runners == 0.101:
-            runners = 0.001
-            runs_scored += 2
-        elif runners == 0.111:
-            runners = 0.001
-            runs_scored += 3
-    elif hit_type == 4:
-        if runners == 0.000:
-            runs_scored += 1
-        elif runners == 0.100 or runners == 0.010 or runners == 0.001:
-            runners = 0.000
-            runs_scored += 2
-        elif runners == 0.110 or runners == 0.011 or runners == 0.101:
-            runners = 0.000
-            runs_scored += 3
-        elif runners == 0.111:
-            runners = 0.000
-            runs_scored += 4
-    return
-
-
-
-
-
-
-#DEGROM PITCHING AI
-def pitch_decision_maker():
-    global currentballs
-    global currentstrikes
-    rando = random.uniform(1,10)
-    if ((currentballs == 0 and currentstrikes == 0) or
-        (currentballs == 4) or
-        (currentstrikes == 3) or
-        (currentballs == 1 and currentstrikes ==1) or
-        (currentballs == 3 and currentstrikes == 2)
-        ):
-        if rando >= 1 and rando <=3:
-            lowfastball()
-        elif rando > 3 and rando <=5:
-            highfastball()
-        elif rando > 5 and rando <=8:
-            lowslider()
-        else:
-            lowchangeup()
-    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
-        if rando >=1 and rando <=4:
-            lowfastball()
-        elif rando > 4 and rando <= 5.5:
-            highfastball()
-        elif rando > 5.5 and rando <= 8.5:
-            lowslider()
-        else:
-            lowchangeup()
-    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
-        if rando >= 1 and rando <= 2:
-            lowfastball()
-        elif rando > 2 and rando <=5:
-            highfastball()
-        elif rando > 5 and rando <= 7:
-            lowslider()
-        else:
-            lowchangeup()
-    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
-        if rando >=1 and rando <=6:
-            lowfastball()
-        elif rando > 6 and rando <=7:
-            highfastball()
-        elif rando > 7 and rando <= 9:
-            lowslider()
-        else:
-            lowchangeup()
-    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
-        if rando >=1 and rando <=2:
-            lowfastball()
-        elif rando > 2 and rando <=5:
-            highfastball()
-        elif rando > 5 and rando <=7:
-            lowslider()
-        else:
-            lowchangeup()
-    return
-
-
-#SALE PITCHING AI
-def lefty_pitch_decision_maker():
-    global currentballs
-    global currentstrikes
-    rando = random.uniform(1,10)
-    # 0-0  OR  1 - 1  OR 3 - 2
-    if ((currentballs == 0 and currentstrikes == 0) or
-        (currentballs == 4) or
-        (currentstrikes == 3) or
-        (currentballs == 1 and currentstrikes == 1) or
-        (currentballs == 3 and currentstrikes == 2)
-        ):
-        if rando >= 1 and rando <=5:
-            leftyfastball()
-        elif rando > 5 and rando <=8:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 1 - 0 OR 2 - 1
-    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
-        if rando >=1 and rando <=5.5:
-            leftyfastball()
-        elif rando > 5.5 and rando <= 8.5:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 0 - 1  OR  2 - 2
-    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
-        if rando >= 1 and rando <= 5:
-            leftyfastball()
-        elif rando > 5 and rando <= 7:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 2 - 0  OR  3 - 1  OR  3 - 0
-    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
-        if rando >=1 and rando <=7:
-            leftyfastball()
-        elif rando > 7 and rando <= 9:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 0 - 2  OR  1 - 2
-    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
-        if rando >=1 and rando <=5:
-            leftyfastball()
-        elif rando > 5 and rando <=7:
-            leftyslider()
-        else:
-            leftychangeup()
-    return
-
-
-
-
-
-
-
-
-
-#DEGROM PITCH TYPES
-def lowfastball():
-    xoffset = random.uniform(-0.5, 2)
-    yoffset = random.uniform(-1, 1)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
-    simulate(True, ball_pos, 2 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.15, 150, 'jacobdegrom')
-    return
-
-def highfastball():
-    xoffset = random.uniform(-3, 3)
-    yoffset = random.uniform(-2, 1)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
-    simulate(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150, 'jacobdegrom')
-    return
-
-def lowslider():
-    xoffset = random.uniform(-1.5, 1)
-    yoffset = random.uniform(0, 3)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
-    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 1.5 + yoffset, 0.4, 4, 420, 0.3, 0.5, 250, 'jacobdegrom')
-    return
-
-def lowchangeup():
-    xoffset = random.uniform(-2, 3)
-    yoffset = random.uniform(-1, 1.5)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
-    simulate(True, ball_pos, 1 + xoffset, -0.1, 4 + yoffset, 0.2, 4, 450, 0.4, -0.2, 170, 'jacobdegrom')
-    return
-
-
-
-#SALE PITCH TYPES
-def leftyfastball():
-    xoffset = random.uniform(-2, 3)
-    yoffset = random.uniform(0, 5)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.10, 4, 400, 0.10, 0.05, 200, 'chrissale')
-    return
-
-def leftyslider():
-    xoffset = random.uniform(-0.5, 4)
-    yoffset = random.uniform(0, 2)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300, 'chrissale')
-
-def leftychangeup():
-    xoffset = random.uniform(-4, 1)
-    yoffset = random.uniform(-1, 3)
-    global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -3 + xoffset, 0.15, 2.1 + yoffset, 0.3, 4, 460, 0.4, 0.3, 300, 'chrissale')
-
-
-
-
-
-# CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
-def collision(circlex, circley, radius, rectmiddlex, rectmiddley, rectwidth, rectheight):
-    circleDistancex = abs(circlex - rectmiddlex)
-    circleDistancey = abs(circley - rectmiddley)
-    if (circleDistancex > (rectwidth/2 + radius)):
-        return False
-    if (circleDistancey > (rectheight/2 + radius)):
-        return False
-    if (circleDistancex <= (rectwidth/2)):
-        return True
-    if (circleDistancey <= (rectheight/2)):
-        return True
-    cornerDistance_sq = ((circleDistancex - rectwidth/2)**2) + ((circleDistancey - rectheight/2)**2)
-    return (cornerDistance_sq <= ((radius)**2))
-
-
-
-#Low swing animation
-def swing_start(timenow, swing_startime):
-    if timenow <= swing_startime + 100:
-        troutthree(x, y + 40)
-    elif timenow > swing_startime + 100 and timenow <= swing_startime + 150:
-        troutfour(x,y + 90)
-    elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
-        troutfive(x,y + 90)
-    elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
-        troutsix(x,y)
-    elif timenow > swing_startime + 250:
-        troutseven(x,y - 20)
-    return
-
-#Default stance if no swing
-def leg_kick(currenttime, start_time):
-    if currenttime <= start_time + 50:
-        troutone(x,y)
-    elif currenttime > start_time + 50 and currenttime <= start_time + 200:
-        troutraiseleg(x,y)
-    elif currenttime > start_time + 200 and currenttime <= start_time + 500:
-        trouttwo(x,y)
-    elif currenttime > start_time + 500:
-        troutthree(x, y + 40)
-    return
-
-#High screen animation
-def high_swing_start(timenow, swing_startime):
-    if timenow <= swing_startime + 100:
-        troutthree(x, y + 40)
-    elif timenow > swing_startime + 100 and timenow <= swing_startime + 150:
-        troutfourhigh(x,y + 80)
-    elif timenow > swing_startime + 150 and timenow <= swing_startime + 200:
-        troutfivehigh(x,y + 90)
-    elif timenow > swing_startime + 200 and timenow <= swing_startime + 250:
-        troutsixhigh(x - 60,y)
-    elif timenow > swing_startime + 250:
-        troutseven(x - 10,y - 20)
-    return
 
 
 

@@ -47,7 +47,7 @@ update_runners_and_score serves to do the actual updating of "runners" and "runs
 
 For example, a single is represented by 1, all runners will move up by 1 base. If there is currently a runner on first base (runners = 0.100), a single would result in runners on first and second (runners = 0.110) -> The runner on first moves to second, and the batter (guy that swung the bat) moves to first.
 
-Another example, if there is currently a runner on second (runners = 0.010), and the batter hits a double (2), the result will be a runner on second (0.010).The origin
+Another example, if there is currently a runner on second (runners = 0.010), and the batter hits a double (2), the result will be a runner on second (0.010) and 1 run scores (runs += 1).The original runner on second moves 2 bases (2nd -> 3rd -> home) and scores (runs += 1) and the batter moves to second. (home -> 1st -> 2nd).
 
 
 

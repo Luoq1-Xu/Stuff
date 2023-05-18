@@ -58,9 +58,21 @@ However, when the count is 0 balls and 2 strikes, the pitcher has a significant 
 
 If the count is 3 balls and 0 strikes, the batter has the significant advantage here, as one more ball means they walk and get a free base. Therefore, we see that the decision maker has a much higher probability of throwing a fastball (High chance of arriving in the zone), to get a strike and avoiding walking the batter on 4 balls.
 
-The different pitch types for each pitcher are represented by the next group of functions. These are the functions that are called when pitch_decision_maker selects a pitch type to use. These functions work by calling the main function to simulate the at-bat, "simulate", and passing in some parameters that will determine how the pitch moves. These variables include: traveltime, breaktime, verticalspeed, horizontalspeed, verticalacceleration, horizontalacceleration, verticalbreak, horizontalbreak. There are also a few other less important parameters, such as pitchername to determine which pitcher is pitching, and ball_pos, used to determine the release point of the ball (which is affected by which pitcher is pitching).
+The different pitch types for each pitcher are represented by the next group of functions. These are the functions that are called when pitch_decision_maker selects a pitch type to use. These functions work by calling the main function to simulate the at-bat, "simulate", and passing in some parameters that will determine how the pitch moves. These variables include: traveltime, breaktime, verticalspeed, horizontalspeed, verticalacceleration, horizontalacceleration, verticalbreak, horizontalbreak. There are also a few other less important parameters, such as pitchername to determine which pitcher is pitching, and ball_pos, used to determine the release point of the ball (which is affected by which pitcher is pitching). These parameters will be covered more in depth below, when we reach the "simulate" function. For these pitch type functions, an additional element of unpredictability is added by having "xoffset" and "yoffset" determined randomly in a range. These offsets will affect the pitch by changing it's initial trajectory. This can cause a fastball to arrive outside the zone, and can cause a slider to arrive in the zone. They also alter the way the pitch appears at the start, which is significant because the player relies on seeing and judging the way the ball moves at the start to decide whether to swing.
+
+
+
+
+
+
+
+
+
+
 
 traveltime, breaktime: traveltime determines how long the ball takes from leaving the pitchers hand to arriving at home plate. Fastballs take shorter time to reach the plate than sliders or changeups. breaktime determines when the ball starts to "break", which means when it starts to appear to move significantly. This is more important for pitches like sliders and changeups, which appear to "break" significantly, moving significantly in a different direction that it first appeared to move when just released out of the pitcher's hand.
+
+verticalspeed, horizontalspeed:
 
 
 

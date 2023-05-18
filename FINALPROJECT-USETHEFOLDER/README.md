@@ -79,7 +79,9 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 - `ball_pos` and `ball_size` : Pretty self explanatory, these reset the ball's size and position to the default values at release point from the pitcher's hand, depending on which pitcher it is.
 
 
+Now, the entire `simulate` function is very long so I will just point out a few design choices.
 
+- 
 
 
 

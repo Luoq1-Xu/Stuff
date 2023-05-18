@@ -53,7 +53,7 @@ Next up are the pitching decision trees for each of the two pitchers. Both utili
 
 Taking a closer look into the pitch decision tree for Chris Sale, we see some patterns.
 When the count is 0 balls and 0 strikes or 3 balls and 2 strikes, the probabilities are relatively evenly balanced, as the pitch type doesn't really have much of an impact in this situation.
-However, when the count is 0 balls and 2 strikes, the pitcher has a significant advantage here. We can see that the 
+However, when the count is 0 balls and 2 strikes, the pitcher has a significant advantage here. We can see that the probability of throwing a slider 
 
 
 

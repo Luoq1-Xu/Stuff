@@ -49,7 +49,7 @@ For example, a single is represented by 1, all runners will move up by 1 base. I
 
 Another example, if there is currently a runner on second (runners = 0.010), and the batter hits a double (2), the result will be a runner on second (0.010) and 1 run scores (runs += 1).The original runner on second moves 2 bases (2nd -> 3rd -> home) and scores (runs += 1) and the batter moves to second. (home -> 1st -> 2nd).
 
-
+Next up are the pitch
 
 
 
@@ -58,13 +58,13 @@ Another example, if there is currently a runner on second (runners = 0.010), and
 
 
 ### Sounds
-A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt), the sounds when the bat makes contact with the ball, and the umpire call sounds. Let's dive a bit deeper.
+A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt aka the ball has finished travelling the full distance), the sounds when the bat makes contact with the ball, and the umpire call sounds.
 
 The glove pop sound plays whenever the ball ends up in the catcher's mitt - basically any outcome other than the batter making contact with the ball.
 
-The bat contact sounds include - Single, Double, Triple, Homerun. Each corresponds to the equivalent outcome and will play accordingly. I got these sounds from the videogame MLB the Show. Very crisp and nice sounds to give maximum satisfaction!
+The bat contact sounds include - Single, Double, Triple, Homerun. Each corresponds to the equivalent outcome and will play accordingly. I got these sounds from the videogame MLB the Show. Very crisp and nice sounds to give maximum satisfaction! There is also the foul sound for when a player fouls off a ball.
 
-The umpire call sounds will play once the ball arrives in the zone without a swing. If you do not swing and the ball clips the zone, the called strike sound will play. If the above happens and it is the third strike, the third strike sound plays. In Major League Baseball, usually umpires will have a more emphatic call when it is the called third strike. On the flip side, if you do not swing and the ball lands outside the zone, the ball call sound plays.
+The umpire call sounds will play once the ball arrives in the zone without a swing. If you do not swing and the ball clips the zone, the called strike sound will play. If the above happens and it is the third strike, the third strike sound plays. On the flip side, if you do not swing and the ball lands outside the zone, the ball call sound plays.
 
 ### Graphics
 To keep simple, I used coloured images for the hitter and the batter, while everything else is basically rendered in black and white.

@@ -60,7 +60,8 @@ If the count is 3 balls and 0 strikes, the batter has the significant advantage 
 
 The different pitch types for each pitcher are represented by the next group of functions. These are the functions that are called when pitch_decision_maker selects a pitch type to use. These functions work by calling the main function to simulate the at-bat, "simulate", and passing in some parameters that will determine how the pitch moves. These variables include: traveltime, breaktime, verticalspeed, horizontalspeed, verticalacceleration, horizontalacceleration, verticalbreak, horizontalbreak. There are also a few other less important parameters, such as pitchername to determine which pitcher is pitching, and ball_pos, used to determine the release point of the ball (which is affected by which pitcher is pitching). These parameters will be covered more in depth below, when we reach the "simulate" function. For these pitch type functions, an additional element of unpredictability is added by having "xoffset" and "yoffset" determined randomly in a range. These offsets will affect the pitch by changing it's initial trajectory. This can cause a fastball to arrive outside the zone, and can cause a slider to arrive in the zone. They also alter the way the pitch appears at the start, which is significant because the player relies on seeing and judging the way the ball moves at the start to decide whether to swing.
 
-
+There is also a simple function called collision that checks whether a ball is touching a rectangle. This is used to check whether the ball touches the strikezone once it arrives at home plate, strike if it is touching, and ball otherwise. All credit goes to e-james, I used his answer on stackoverflow here:
+https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
 
 
 

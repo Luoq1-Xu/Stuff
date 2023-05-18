@@ -66,13 +66,13 @@ swing_start, high_swing_start and leg_kick: These functions will play the respec
 
 draw_inning_summary and main_menu: these are responsible for the summary screen and main menu. The text typing effect was implemented with the help of LeMaster Tech's great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from Coding with Russ's nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
 
-simulate: This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the appearance of the ball as it moves towards home plate, and the management of all outcomes. 
+simulate: This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the appearance of the ball as it moves towards home plate, and the management of all outcomes. A lot of variables here, so I will go through some of the more important ones.
 
-
+First, the important input parameters:
 
 traveltime, breaktime: traveltime determines how long the ball takes from leaving the pitchers hand to arriving at home plate. Fastballs take shorter time to reach the plate than sliders or changeups. breaktime determines when the ball starts to "break", which means when it starts to appear to move significantly. This is more important for pitches like sliders and changeups, which appear to "break" significantly, moving significantly in a different direction that it first appeared to move when just released out of the pitcher's hand.
 
-verticalspeed, horizontalspeed:
+verticalspeed, horizontalspeed: 
 
 
 

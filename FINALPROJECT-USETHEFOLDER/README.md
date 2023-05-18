@@ -70,11 +70,13 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 First, the important input parameters:
 
-traveltime, breaktime: traveltime determines how long the ball takes from leaving the pitchers hand to arriving at home plate. Fastballs take shorter time to reach the plate than sliders or changeups. breaktime determines when the ball starts to "break", which means when it starts to appear to move significantly. This is more important for pitches like sliders and changeups, which appear to "break" significantly, moving significantly in a different direction that it first appeared to move when just released out of the pitcher's hand.
+`traveltime`, `breaktime`: traveltime determines how long the ball takes from leaving the pitchers hand to arriving at home plate. Fastballs take shorter time to reach the plate than sliders or changeups. breaktime determines when the ball starts to "break", which means when it starts to appear to move significantly. This is more important for pitches like sliders and changeups, which appear to "break" significantly, moving significantly in a different direction that it first appeared to move when just released out of the pitcher's hand.
 
-verticalspeed, horizontalspeed: These determine the ball's current velocity. The ball's initial velocity will be affected by the offset( mentioned in the pitch type functions above). The ball's velocity will also be constantly changing, first by verticalacceleration and horizontal acceleration, then later by verticalbreak and horizontalbreak.
+`verticalspeed`, `horizontalspeed`: These determine the ball's current velocity. The ball's initial velocity will be affected by the offset( mentioned in the pitch type functions above). The ball's velocity will also be constantly changing, first by verticalacceleration and horizontal acceleration, then later by verticalbreak and horizontalbreak.
 
-verticalacceleration, horizontalaccceleration, verticalbreak, horizontalbreak: These will update the ball's current verticalspeed and horizontalspeed once per cycle. verticalacceleration and horizontalacceleration apply to the ball initially, then verticalbreak and horizontalbreak take over after breaktime is reached. This is to create the appearance that the ball seems to move significantly after it travels a little from release, instead of moving immediately after release, which mirrors real life.
+`verticalacceleration`, `horizontalaccceleration`, `verticalbreak`, `horizontalbreak`: These will update the ball's current verticalspeed and horizontalspeed once per cycle. verticalacceleration and horizontalacceleration apply to the ball initially, then verticalbreak and horizontalbreak take over after breaktime is reached. This is to create the appearance that the ball seems to move significantly after it travels a little from release, instead of moving immediately after release, which mirrors real life.
+
+`ball_pos` and `ball_size` : Pretty self explanatory, these reset the ball's size and position to the default values at release point from the pitcher's hand, depending on which pitcher it is.
 
 
 

@@ -60,7 +60,7 @@ If the count is 3 balls and 0 strikes, the batter has the significant advantage 
 
 While the probabilities are skewed in certain situations, the random element of it helps to maintain a little bit of realism, as just like real life, you have to be ready for any outcome. Even if you know something is more likely to happen, you still have to prepare for the possibility of something else happening.
 
-The different pitch types for each pitcher are represented by the next group of functions. These are the functions that are called when pitch_decision_maker selects a pitch type to use. These functions work by calling the main function to simulate the at-bat, "simulate", and passing in some parameters that will determine how the pitch moves.
+The different pitch types for each pitcher are represented by the next group of functions. These are the functions that are called when pitch_decision_maker selects a pitch type to use. These functions work by calling the main function to simulate the at-bat, "simulate", and passing in some parameters that will determine how the pitch moves. These variables include: traveltime, breaktime, verticalspeed, horizontalspeed, verticalacceleration, horizontalacceleration, verticalbreak, horizontalbreak
 
 
 

@@ -52,7 +52,8 @@ Another example, if there is currently a runner on second (runners = 0.010), and
 Next up are the pitching decision trees for each of the two pitchers. Both utilise the same structure, albeit with slight differences in probabilities and pitch types chosen. Chris Sale (Left Hander) has 3 pitch types -> Fastball, Slider, Changeup. The pitch decision tree will randomly determine a pitch to choose depending on the current count (the current number of balls and strikes). Degrom (Right Hander) has the same 3 pitch types also, but degrom is slightly different because I implemented a "High fastball" pitch type and a "Low Fastball" pitch type. That means to say that a "High Fastball" is basically guaranteed to arrive high up in the zone and I think you can guess what "Low Fastball" does. The decision tree works by altering the probabilities of each pitch type being thrown depending on the count. This is supplemented by the fact that each pitch type has different behaviours. For example, with Chris Sale, his fastball has a high probability of arriving in the zone (high likelihood of being a "strike") while his slider has a high probability of arriving outside the zone (high chance to be a ball). The pitching decision tree plays with this characteristic, to try to attain the most favourable outcome.
 
 Taking a closer look into the pitch decision tree for Chris Sale, we see some patterns.
-When the count is 0 balls and 0 strikes or 3 balls and 2 strikes, the probabilities are relatively evenly balanced, as the 
+When the count is 0 balls and 0 strikes or 3 balls and 2 strikes, the probabilities are relatively evenly balanced, as the pitch type doesn't really have much of an impact in this situation.
+However, when the count is 0 balls and 2 strikes, the pitcher has a significant advantage here. We can see that the 
 
 
 

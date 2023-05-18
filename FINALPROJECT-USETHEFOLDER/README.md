@@ -26,14 +26,12 @@ The game consists of a few main assets
 
 
 ### Finalproject.py(Main python file)
-As this is the first python program I have written in full, please pardon the relatively poor standard of the code. I apologise in advance for the atrocious infractions that I may have committed in the process of writing this program... With that being said, the main file contains a large selection of functions, and I will explain them in further detail below.
+As this is the first python program I have written in full, please pardon the relatively poor standard of the code. With that being said, the main file contains a large selection of functions, and I will explain them in further detail below.
 
 I utilised pygame_gui for most of the Graphical User Interface in the game, as I intended the GUI to be very simple and straightforward. Pygame_gui seemed to be relatively easy to implement, while retaining the ability to customise appearance through a theme file.
 
 The first section of the code initialises and sets up the game. This includes the pygame setup of the screen, clock and mixer(for sound). Pygame_gui setup is also done here, such as initialising the manager and setting up the buttons and textboxes. Loading in of the graphic and audio resources is also done here.
 The global game variables are also initalised here, like currentouts, currentstrikes, and others. These variables will be constantly changing with multiple functions making use of them.
-
-Next, we have some supplementary functions that assist the main game loop functions.
 
 draw_bases, homeplate and draw_static are pretty self-explanatory - they manage the display of the static elements that do not move during or in between at-bats. draw_bases is where the actual drawing of the base graphic occurs, while draw_static manages the actual logic that determines the correct graphic to be displayed depending on the value of "runners". Admittedly, the method used is very crude but it works (for now). The value of runners is stored as a three decimal place float, and the runners on base are determined by whether each decimal place is 1 or 0. For example, runner on first only is denoted by "0.100", while bases loaded(runners on each of the three bases) is denoted by "0.111". The value of runners is then changed by other functions and then draw_static updates the bases graphic accordingly.
 
@@ -41,7 +39,7 @@ check_menu simply updates the menu_state if 3 outs have been made and the inning
 
 Next, I put all the screen.blit instances for every image into conviniently named functions to make them easier to call instead of copy pasting screen.blit everytime.
 
-Next is contact_hit_outcome and power_hit_outcome. These functions serve to randomly determine the result of a hit. These functions will be called after it is determined that the player successfully gets a hit (which in turn is determined by having perfect timing and location of swing). Choosing to swing with a contact swing (pressing the "w" key) and getting a successful hit will call the contact_hit_outcome function. A contact hit will mean a much higher chance of getting a single (so called "worst" possible outcome) and much lower chance of the other outcomes happening. Conversely, getting a hit with the Power Swing(pressing the "e" key) calls the power_hit_outcome, which gives a higher chance of the other outcomes occuring. This difference is balanced by making the power swing less forgiving than the contact swing, that means your timing has to be more accurate and on time to get a hit using a power swing as compared to using the contact swing. The four possible outcomes in each of these two functions are "Single", "Double", "Triple" and "Home Run". These two functions will then call another function, update_runners_and_score, to do the actual updating of the runners and score ("runs").
+contact_hit_outcome and power_hit_outcome: These functions serve to randomly determine the result of a hit. These functions will be called after it is determined that the player successfully gets a hit (which in turn is determined by having perfect timing and location of swing). Choosing to swing with a contact swing (pressing the "w" key) and getting a successful hit will call the contact_hit_outcome function. A contact hit will mean a much higher chance of getting a single (so called "worst" possible outcome) and much lower chance of the other outcomes happening. Conversely, getting a hit with the Power Swing(pressing the "e" key) calls the power_hit_outcome, which gives a higher chance of the other outcomes occuring. This difference is balanced by making the power swing less forgiving than the contact swing, that means your timing has to be more accurate and on time to get a hit using a power swing as compared to using the contact swing. The four possible outcomes in each of these two functions are "Single", "Double", "Triple" and "Home Run". These two functions will then call another function, update_runners_and_score, to do the actual updating of the runners and score ("runs").
 
 update_runners_and_score serves to do the actual updating of "runners" and "runs" depending on the input. The input is an integer that represents the result to be updated, 1 represents single, 2 represents double, 3 represents triple and 4 represents home run. To keep things simple, all runners move up by the number of bases represented by the outcome. The function manually checks what is the current value of "runners", and then updates it according to the input, updating the "runs" variable also if any runs score.
 
@@ -63,7 +61,7 @@ The different pitch types for each pitcher are represented by the next group of 
 There is also a simple function called collision that checks whether a ball is touching a rectangle. This is used to check whether the ball touches the strikezone once it arrives at home plate, strike if it is touching, and ball otherwise. All credit goes to e-james, I used his answer on stackoverflow here:
 https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
 
-
+swing_start, high_swing_start and leg_kick: These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. swing_start plays the low swing animation, high_swing_start plays the high swing animation, and leg_kick plays the default animation if the player does not swing.
 
 
 

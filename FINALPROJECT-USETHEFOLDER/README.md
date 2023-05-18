@@ -63,7 +63,6 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 `swing_start`, `high_swing_start` and `leg_kick`: These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. swing_start plays the low swing animation, high_swing_start plays the high swing animation, and leg_kick plays the default animation if the player does not swing.
 
-
 `draw_inning_summary` and `main_menu`: these are responsible for the summary screen and main menu. The text typing effect was implemented with the help of LeMaster Tech's great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from Coding with Russ's nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
 
 `simulate` : This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the appearance of the ball as it moves towards home plate, and the management of all outcomes. A lot of variables here, so I will go through some of the more important ones.
@@ -79,7 +78,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 - `ball_pos` and `ball_size` : Pretty self explanatory, these reset the ball's size and position to the default values at release point from the pitcher's hand, depending on which pitcher it is.
 
 
-The entire `simulate` function is very long so I will just point out a few design choices.
+### Key design choices
 
 -
 

@@ -61,10 +61,10 @@ The different pitch types for each pitcher are represented by the next group of 
 There is also a simple function called collision that checks whether a ball is touching a rectangle. This is used to check whether the ball touches the strikezone once it arrives at home plate, strike if it is touching, and ball otherwise. All credit goes to e-james, I used his answer on stackoverflow here:
 https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
 
-swing_start, high_swing_start and leg_kick: These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. swing_start plays the low swing animation, high_swing_start plays the high swing animation, and leg_kick plays the default animation if the player does not swing.
+**swing_start, high_swing_start and leg_kick**: These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. swing_start plays the low swing animation, high_swing_start plays the high swing animation, and leg_kick plays the default animation if the player does not swing.
 
 
-draw_inning_summary and main_menu: these are responsible for the summary screen and main menu. The text typing effect was implemented with the help of LeMaster Tech's great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from Coding with Russ's nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
+**draw_inning_summary and main_menu**: these are responsible for the summary screen and main menu. The text typing effect was implemented with the help of LeMaster Tech's great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from Coding with Russ's nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
 
 simulate: This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the appearance of the ball as it moves towards home plate, and the management of all outcomes. A lot of variables here, so I will go through some of the more important ones.
 
@@ -74,7 +74,7 @@ traveltime, breaktime: traveltime determines how long the ball takes from leavin
 
 verticalspeed, horizontalspeed: These determine the ball's current velocity. The ball's initial velocity will be affected by the offset( mentioned in the pitch type functions above). The ball's velocity will also be constantly changing, first by verticalacceleration and horizontal acceleration, then later by verticalbreak and horizontalbreak.
 
-verticalacceleration, horizontalaccceleration, verticalbreak, horizontalbreak: These will update the ball's current verticalspeed and horizontalspeed once per cycle. verticalacceleration and horizontalacceleration apply to the ball initially, then verticalbreak and horizontalbreak take over after breaktime is reached. 
+verticalacceleration, horizontalaccceleration, verticalbreak, horizontalbreak: These will update the ball's current verticalspeed and horizontalspeed once per cycle. verticalacceleration and horizontalacceleration apply to the ball initially, then verticalbreak and horizontalbreak take over after breaktime is reached.
 
 
 

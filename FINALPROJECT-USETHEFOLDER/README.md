@@ -53,8 +53,13 @@ Next up are the pitching decision trees for each of the two pitchers. Both utili
 
 Taking a closer look into the pitch decision tree for Chris Sale, we see some patterns.
 When the count is 0 balls and 0 strikes or 3 balls and 2 strikes, the probabilities are relatively evenly balanced, as the pitch type doesn't really have much of an impact in this situation.
+
 However, when the count is 0 balls and 2 strikes, the pitcher has a significant advantage here. We can see that the probability of throwing a slider is much higher here. It makes more sense to throw a slider (that likely arrives out of the zone) here because if the batter swings (all likely will miss), then they will strikeout with 3 strikes. Otherwise, if they do not swing, the count only goes to 1ball and 2 strikes.
-If the count is 3 balls and 0 strikes, the batter has the significant advantage here, as one more ball means they walk and get a free base. Therefore, we
+
+If the count is 3 balls and 0 strikes, the batter has the significant advantage here, as one more ball means they walk and get a free base. Therefore, we see that the decision maker has a much higher probability of throwing a fastball (High chance of arriving in the zone), to get a strike and avoiding walking the batter on 4 balls.
+
+While the probabilities are skewed in certain situations, the random element of it helps to maintain a little bit of realism, as just like real life, you have to be ready for any outcome. Even if you know something is more likely to happen, you still have to prepare for the possibility of something else happening.
+
 
 
 

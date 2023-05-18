@@ -391,12 +391,12 @@ def pitch_decision_maker():
     global currentballs
     global currentstrikes
     rando = random.uniform(1,10)
+    # 0-0  OR  1 - 1  OR 3 - 2
     if ((currentballs == 0 and currentstrikes == 0) or
         (currentballs == 4) or
         (currentstrikes == 3) or
         (currentballs == 1 and currentstrikes ==1) or
-        (currentballs == 3 and currentstrikes == 2)
-        ):
+        (currentballs == 3 and currentstrikes == 2)):
         if rando >= 1 and rando <=3:
             lowfastball()
         elif rando > 3 and rando <=5:
@@ -405,6 +405,7 @@ def pitch_decision_maker():
             lowslider()
         else:
             lowchangeup()
+    # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
         if rando >=1 and rando <=4:
             lowfastball()
@@ -414,6 +415,7 @@ def pitch_decision_maker():
             lowslider()
         else:
             lowchangeup()
+    # 0 - 1  OR  2 - 2
     elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
             lowfastball()
@@ -423,6 +425,7 @@ def pitch_decision_maker():
             lowslider()
         else:
             lowchangeup()
+    # 2 - 0  OR  3 - 1  OR  3 - 0
     elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
         if rando >=1 and rando <=6:
             lowfastball()
@@ -432,6 +435,7 @@ def pitch_decision_maker():
             lowslider()
         else:
             lowchangeup()
+    # 0 - 2  OR  1 - 2
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
         if rando >=1 and rando <=2:
             lowfastball()
@@ -454,8 +458,7 @@ def lefty_pitch_decision_maker():
         (currentballs == 4) or
         (currentstrikes == 3) or
         (currentballs == 1 and currentstrikes == 1) or
-        (currentballs == 3 and currentstrikes == 2)
-        ):
+        (currentballs == 3 and currentstrikes == 2)):
         if rando >= 1 and rando <=5:
             leftyfastball()
         elif rando > 5 and rando <=8:
@@ -464,7 +467,7 @@ def lefty_pitch_decision_maker():
             leftychangeup()
     # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
-        if rando >=1 and rando <=5.5:
+        if rando >= 1 and rando <= 5.5:
             leftyfastball()
         elif rando > 5.5 and rando <= 8.5:
             leftyslider()
@@ -480,7 +483,7 @@ def lefty_pitch_decision_maker():
             leftychangeup()
     # 2 - 0  OR  3 - 1  OR  3 - 0
     elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
-        if rando >=1 and rando <=7:
+        if rando >= 1 and rando <= 7:
             leftyfastball()
         elif rando > 7 and rando <= 9:
             leftyslider()
@@ -488,9 +491,9 @@ def lefty_pitch_decision_maker():
             leftychangeup()
     # 0 - 2  OR  1 - 2
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
-        if rando >=1 and rando <=5:
+        if rando >= 1 and rando <= 3:
             leftyfastball()
-        elif rando > 5 and rando <=7:
+        elif rando > 3 and rando <=7:
             leftyslider()
         else:
             leftychangeup()
@@ -589,7 +592,7 @@ def leg_kick(currenttime, start_time):
         troutthree(x, y + 40)
     return
 
-#High screen animation
+#High swing animation
 def high_swing_start(timenow, swing_startime):
     if timenow <= swing_startime + 100:
         troutthree(x, y + 40)
@@ -1054,6 +1057,7 @@ def simulate(yes, ball_pos, horizontalspeed,
             manager.update(time_delta)
             manager.draw_ui(screen)
             pygame.display.flip()
+            #Play sounds
             if soundplayed == 0 and on_time == 1:
                 foulball.play()
                 soundplayed += 1
@@ -1205,8 +1209,6 @@ while running:
         salepitch.show()
         backtomainmenu.show()
         strikezonetoggle.show()
-        # poll for events
-        # pygame.QUIT event means the user clicked X to close your window
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -1225,7 +1227,6 @@ while running:
                     lefty_pitch_decision_maker()
             manager.process_events(event)
         manager.update(time_delta)
-        # fill the screen with a color to wipe away anything from last frame
         screen.fill("black")
         if just_refreshed == 1:
             result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
@@ -1242,7 +1243,6 @@ while running:
         if first_pitch_thrown:
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
         manager.draw_ui(screen)
-        # flip() the display to put your work on screen
         pygame.display.flip()
 
     elif menu_state == 2:
@@ -1250,8 +1250,6 @@ while running:
         degrompitch.show()
         backtomainmenu.show()
         strikezonetoggle.show()
-        # poll for events
-        # pygame.QUIT event means the user clicked X to close your window
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -1270,7 +1268,6 @@ while running:
                     pitch_decision_maker()
             manager.process_events(event)
         manager.update(time_delta)
-        # fill the screen with a color to wipe away anything from last frame
         screen.fill("black")
         if just_refreshed == 1:
             result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
@@ -1287,7 +1284,6 @@ while running:
         troutone(x,y)
         if first_pitch_thrown:
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
-        # flip() the display to put your work on screen
         pygame.display.flip()
 
     elif menu_state == 3:

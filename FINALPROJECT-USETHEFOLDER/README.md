@@ -72,7 +72,9 @@ First, the important input parameters:
 
 traveltime, breaktime: traveltime determines how long the ball takes from leaving the pitchers hand to arriving at home plate. Fastballs take shorter time to reach the plate than sliders or changeups. breaktime determines when the ball starts to "break", which means when it starts to appear to move significantly. This is more important for pitches like sliders and changeups, which appear to "break" significantly, moving significantly in a different direction that it first appeared to move when just released out of the pitcher's hand.
 
-verticalspeed, horizontalspeed: 
+verticalspeed, horizontalspeed: These determine the ball's current velocity. The ball's initial velocity will be affected by the offset( mentioned in the pitch type functions above). The ball's velocity will also be constantly changing, first by verticalacceleration and horizontal acceleration, then later by verticalbreak and horizontalbreak.
+
+verticalacceleration, horizontalaccceleration, verticalbreak, horizontalbreak: These will update the ball's current verticalspeed and horizontalspeed once per cycle. verticalacceleration and horizontalacceleration apply to the ball initially, then verticalbreak and horizontalbreak take over after breaktime is reached. 
 
 
 

@@ -81,7 +81,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 ### Key design choices:
 
 - The function itself it set up like a decision tree, going doing different branches depending on the current time with respect to the starting time.
-    -
+
 
 
 

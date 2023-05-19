@@ -82,7 +82,9 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 - The function itself it set up like a decision tree, going doing different branches depending on the current time with respect to the starting time.
 
-- To determine whether the player swung on time, the function compares the time that the barrel will first enter the zone ()
+- To determine whether the player swung on time, the function compares the time that the barrel will first enter the zone (approximately 150ms from when the swing was initiated/button was first pressed) and compares that with the time the ball will actually arrive in the zone (`starttime` + `traveltime`). If this difference is too great, it will be registered as a swing and miss. If the difference is slight but not in the perfect range, it will be a foul, and if the difference is small enough, the swing will be set as perfect timing.
+
+- 
 
 
 

@@ -78,9 +78,10 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 - `ball_pos` and `ball_size` : Pretty self explanatory, these reset the ball's size and position to the default values at release point from the pitcher's hand, depending on which pitcher it is.
 
 
-### Key design choices
+### Key design choices:
 
 - The function itself it set up like a decision tree, going doing different branches depending on the current time with respect to the starting time.
+    -
 
 
 

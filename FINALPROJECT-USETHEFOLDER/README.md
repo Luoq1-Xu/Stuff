@@ -82,6 +82,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 - The function itself it set up like a decision tree, going doing different branches depending on the current time with respect to the starting time.
 
+- To determine whether the player swung on time, the function compares the time that the barrel will first enter the zone ()
 
 
 

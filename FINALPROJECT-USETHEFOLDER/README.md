@@ -84,7 +84,9 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 - To determine whether the player swung on time, the function compares the time that the barrel will first enter the zone (approximately 150ms from when the swing was initiated/button was first pressed) and compares that with the time the ball will actually arrive in the zone (`starttime` + `traveltime`). If this difference is too great, it will be registered as a swing and miss. If the difference is slight but not in the perfect range, it will be a foul, and if the difference is small enough, the swing will be set as perfect timing.
 
-- 
+- High swing or Low swing is also simply determined by the position of the player's cursor at the moment that the button is pressed. If the y-coordinate of the cursor is above the middle of the zone, it is a high swing and vice versa.
+
+- If it is determined that the timing is sufficiently off such that the player swung and miss, it will follow the same outcome as if the batter never swung. (except of course if the ball ends up outside the zone it would still be a strike because the player swung.) On the other hand, if the timing is foul or perfect, then the function goes down a different path. It will check, at the point of contact, whether the player's bat path(determined by high or low swing), will hit or miss the ball, and then determine and update the results accordingly. For example, if the hit timing is perfect, but the player swings high when the ball actually arrives low in the zone, the end result is still a swing and a miss.
 
 
 

@@ -80,7 +80,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 ### Key design choices
 
-- 
+- The 
 
 
 

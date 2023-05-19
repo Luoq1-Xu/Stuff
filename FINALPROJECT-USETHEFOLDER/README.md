@@ -88,7 +88,10 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 - If it is determined that the timing is sufficiently off such that the player swung and miss, it will follow the same outcome as if the batter never swung. (except of course if the ball ends up outside the zone it would still be a strike because the player swung.) On the other hand, if the timing is foul or perfect, then the function goes down a different path. It will check, at the point of contact, whether the player's bat path(determined by high or low swing), will hit or miss the ball, and then determine and update the results accordingly. For example, if the hit timing is perfect, but the player swings high when the ball actually arrives low in the zone, the end result is still a swing and a miss.
 
-- To keep things simple, 
+- To summarise, a hit will be the outcome if the following conditions are satisfied:
+    - Timing is in the perfect range.
+    - Swing path is correct (low swing if low ball and vice versa)
+    - At the point of contact, the ball's current position falls within the boundaries. (The boundary for the low swing is the bottom half of the zone plus a buffer of approximately one ball diameter from the edges of the strike zone. Similar for the high swing.)
 
 
 

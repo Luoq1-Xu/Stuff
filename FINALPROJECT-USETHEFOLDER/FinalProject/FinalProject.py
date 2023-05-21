@@ -31,6 +31,7 @@ strikezonedrawn = True
 #Global variables for menu and resetting
 menu_state = 0
 just_refreshed = 0
+textfinished = 0
 
 #Global game variables
 pitchnumber = 0
@@ -185,9 +186,14 @@ def draw_static():
 def check_menu():
     global currentouts
     global menu_state
+    global textfinished
     if currentouts == 3:
-        pygame.time.delay(500)
-        menu_state = 3
+        for event in pygame.event.get():
+            if event.type == pygame_gui.UI_TEXT_EFFECT_FINISHED:
+                textfinished += 1
+        if textfinished == 3:
+            pygame.time.delay(500)
+            menu_state = 3
     return
 
 #righty pitcher position
@@ -504,28 +510,28 @@ def lowfastball():
     xoffset = random.uniform(-0.5, 2)
     yoffset = random.uniform(-1, 1)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
     simulate(True, ball_pos, 2 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.15, 150, 'jacobdegrom')
     return
 def highfastball():
     xoffset = random.uniform(-3, 3)
     yoffset = random.uniform(-2, 1)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
     simulate(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150, 'jacobdegrom')
     return
 def lowslider():
     xoffset = random.uniform(-1.5, 1)
     yoffset = random.uniform(0, 3)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
     simulate(True, ball_pos, 0.3 + xoffset, 0.3, 1.5 + yoffset, 0.4, 4, 420, 0.3, 0.5, 250, 'jacobdegrom')
     return
 def lowchangeup():
     xoffset = random.uniform(-2, 3)
     yoffset = random.uniform(-1, 1.5)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 23, (screen.get_height() / 3) + 90 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
     simulate(True, ball_pos, 1 + xoffset, -0.1, 4 + yoffset, 0.2, 4, 450, 0.4, -0.2, 170, 'jacobdegrom')
     return
 
@@ -534,20 +540,20 @@ def leftyfastball():
     xoffset = random.uniform(-2, 3)
     yoffset = random.uniform(0, 5)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 93, (screen.get_height() / 3) + 70 )
     simulate(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.10, 4, 400, 0.10, 0.05, 200, 'chrissale')
     return
 def leftyslider():
     xoffset = random.uniform(-0.5, 4)
     yoffset = random.uniform(0, 2)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 93, (screen.get_height() / 3) + 70 )
     simulate(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300, 'chrissale')
 def leftychangeup():
     xoffset = random.uniform(-4, 1)
     yoffset = random.uniform(-1, 3)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 90, (screen.get_height() / 3) + 70 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 93, (screen.get_height() / 3) + 70 )
     simulate(True, ball_pos, -3 + xoffset, 0.15, 2.1 + yoffset, 0.3, 4, 460, 0.4, 0.3, 300, 'chrissale')
 
 
@@ -623,7 +629,9 @@ def draw_inning_summary():
     global just_refreshed
     global hits
     global first_pitch_thrown
+    global textfinished
 
+    textfinished = 0
     done = False
     counter = 0
     textoffset = 0
@@ -703,11 +711,13 @@ def main_menu():
     global just_refreshed
     global hits
     global first_pitch_thrown
+    global textfinished
 
     done = False
     counter = 0
     textoffset = 0
     messages_finished = 0
+    textfinished = 0
 
     messages = ["BASED BALL","A Baseball At-Bat Simulator"]
 
@@ -911,6 +921,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     if event.key == pygame.K_w and swing_started == 0:
                         swing_type = 1
                         mousepos = pygame.mouse.get_pos()
+                        #LOW SWING
                         if mousepos[1] > 480:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 1
@@ -920,6 +931,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                             elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
                                 on_time = 2
                                 contact_time = swing_starttime + 150
+                        #HIGH SWING
                         elif mousepos[1] < 480:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 2
@@ -933,6 +945,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     elif event.key == pygame.K_e and swing_started == 0:
                         swing_type = 2
                         mousepos = pygame.mouse.get_pos()
+                        #LOW SWING
                         if mousepos[1] > 480:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 1
@@ -942,6 +955,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                             elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 25:
                                 on_time = 2
                                 contact_time = swing_starttime + 150
+                        #HIGH SWING
                         elif mousepos[1] < 480:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 2
@@ -1012,7 +1026,7 @@ def simulate(yes, ball_pos, horizontalspeed,
             #PERFECT TIMING BUT SWING PATH OFF
             if (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 385 or ball_pos.y > 480) and swing_started == 2:
                 made_contact = 1
-            elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 485 or ball_pos.y > 576) and swing_started == 1:
+            elif (ball_pos.x < 554 or ball_pos.x > 706) or (ball_pos.y < 470 or ball_pos.y > 576) and swing_started == 1:
                 made_contact = 1
             #PERFECT TIMING AND SWING PATH ON - SUCCESSFUL HIT
             else:

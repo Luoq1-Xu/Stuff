@@ -879,7 +879,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 if pitchername == 'chrissale':
                     leftyseven(a - 20,b + 25)
                 elif pitchername == 'jacobdegrom':
-                    rightyseven(c - 10,d+30)
+                    rightyseven(c - 10,d + 30)
                 pygame.draw.circle(screen, "white", ball_pos, ballsize)
                 ball_pos.y += verticalspeed
                 ball_pos.x += horizontalspeed

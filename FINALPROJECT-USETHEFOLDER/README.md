@@ -67,7 +67,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 `simulate` : This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the appearance of the ball as it moves towards home plate, and the management of all outcomes. A lot of variables here, so I will go through some of the more important ones.
 
-### Important input parameters:
+### `simulate` - Important input parameters:
 
 - `traveltime`, `breaktime`: traveltime determines how long the ball takes from leaving the pitchers hand to arriving at home plate. Fastballs take shorter time to reach the plate than sliders or changeups. breaktime determines when the ball starts to "break", which means when it starts to appear to move significantly. This is more important for pitches like sliders and changeups, which appear to "break" significantly, moving significantly in a different direction that it first appeared to move when just released out of the pitcher's hand.
 
@@ -78,7 +78,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 - `ball_pos` and `ball_size` : Pretty self explanatory, these reset the ball's size and position to the default values at release point from the pitcher's hand, depending on which pitcher it is.
 
 
-### Key design choices:
+### `simulate` - Key design choices:
 
 - The function itself it set up like a decision tree, going doing different branches depending on the current time with respect to the starting time.
 
@@ -100,6 +100,8 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
     - Ball ends up in the zone or touching the zone
 
     All other scenarios will result in a strike.
+
+### Main Game Loop
 
 
 

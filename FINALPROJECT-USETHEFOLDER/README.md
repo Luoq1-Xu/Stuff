@@ -93,7 +93,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
     - Swing path is correct (low swing if low ball and vice versa)
     - At the point of contact, the ball's current position falls within the boundaries. (The boundary for the low swing is the bottom half of the zone plus a buffer of approximately one ball diameter from the edges of the strike zone. Similar for the high swing.)
 
-- All the calculations for Foul balls and Hits are done at the moment of contact. The position of the b
+- All the calculations for Foul balls and Hits are done at the moment of contact (The timing has to be in the appropiate range first). The position of the ball currently is checked and it is determined whether it is in the correct region (depending on whether it is a high swing or low swing) to be considered for a foul or hit to occur. 
 
 
 ### Sounds

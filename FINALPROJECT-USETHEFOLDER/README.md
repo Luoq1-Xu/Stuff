@@ -95,7 +95,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 - All the calculations for Foul balls and Hits are done at the moment of contact (The timing has to be in the appropiate range first). The position of the ball currently is checked and it is determined whether it is in the correct region (depending on whether it is a high swing or low swing) to be considered for a foul or hit to occur. If the swing path is correct and timing is correct, then it will process the outcome and update all the relevant information using functions like `power_hit_outcome` and `drawscoreboard`. Otherwise, if the swing path is off, it will default to the normal strike sequence. That is, the ball continues to complete it's trajectory and all the relevant information is updated as if it were a strike.
 
-
+- For 
 
 
 

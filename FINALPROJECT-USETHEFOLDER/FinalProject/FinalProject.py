@@ -45,6 +45,7 @@ runs_scored = 0
 swing_started = 0
 hits = 0
 hit_type = 0
+ishomerun = ''
 first_pitch_thrown = False
 
 #Load Sounds
@@ -323,6 +324,9 @@ def power_hit_outcome():
 def update_runners_and_score(hit_type):
     global runners
     global runs_scored
+    global ishomerun
+    ishomerun = ''
+
     if hit_type == 1:
         if runners == 0.000:
             runners = 0.100
@@ -380,15 +384,19 @@ def update_runners_and_score(hit_type):
     elif hit_type == 4:
         if runners == 0.000:
             runs_scored += 1
+            ishomerun = 'SOLO HOME RUN'
         elif runners == 0.100 or runners == 0.010 or runners == 0.001:
             runners = 0.000
             runs_scored += 2
+            ishomerun = '2 RUN HOME RUN'
         elif runners == 0.110 or runners == 0.011 or runners == 0.101:
             runners = 0.000
             runs_scored += 3
+            ishomerun = '3 RUN HOME RUN'
         elif runners == 0.111:
             runners = 0.000
             runs_scored += 4
+            ishomerun = 'GRAND SLAM'
     return
 
 
@@ -551,10 +559,10 @@ def leftyslider():
     simulate(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300, 'chrissale')
 def leftychangeup():
     xoffset = random.uniform(-4, 1)
-    yoffset = random.uniform(0, 3)
+    yoffset = random.uniform(1, 3)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 93, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -3 + xoffset, 0.15, 2.1 + yoffset, 0.2, 4, 460, 0.3, 0.25, 300, 'chrissale')
+    simulate(True, ball_pos, -3 + xoffset, 0.15, 2.5 + yoffset, 0.2, 4, 460, 0.3, 0.25, 300, 'chrissale')
 
 
 # CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
@@ -630,6 +638,7 @@ def draw_inning_summary():
     global hits
     global first_pitch_thrown
     global textfinished
+    global ishomerun
 
     textfinished = 0
     done = False
@@ -1038,7 +1047,10 @@ def simulate(yes, ball_pos, horizontalspeed,
                     hit_string = contact_hit_outcome()
                 elif swing_type == 2:
                     hit_string = power_hit_outcome()
-                banner.set_text("{}".format(hit_string))
+                if ishomerun != '':
+                    banner.set_text("{}".format(ishomerun))
+                else:
+                    banner.set_text("{}".format(hit_string))
                 banner.show()
                 banner.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR,{'time_per_letter': 0.1})
                 string = "<font size=5>PITCH {} :<br>HIT - {}</font>".format(pitchnumber, hit_string)

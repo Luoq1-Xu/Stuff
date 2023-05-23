@@ -106,13 +106,13 @@ strikezonetoggle = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0,100
                                         text = 'STRIKEZONE',
                                         manager=manager)
 salepitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100)),
-                                            text= 'PITCH',
+                                            text = 'PITCH',
                                             manager=manager)
 degrompitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (200,100)),
-                                            text= 'PITCH',
+                                            text = 'PITCH',
                                             manager=manager)
 backtomainmenu = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 620), (200,100)),
-                                            text= 'MAIN MENU',
+                                            text = 'MAIN MENU',
                                             manager=manager)
 container = pygame_gui.core.UIContainer(relative_rect=pygame.Rect((0, 0), (1280,720)),manager=manager, is_window_root_container=False)
 banner = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((440, 0), (400,100)), manager=manager, text="")
@@ -401,19 +401,19 @@ def pitch_decision_maker():
     if ((currentballs == 0 and currentstrikes == 0) or
         (currentballs == 4) or
         (currentstrikes == 3) or
-        (currentballs == 1 and currentstrikes ==1) or
+        (currentballs == 1 and currentstrikes == 1) or
         (currentballs == 3 and currentstrikes == 2)):
-        if rando >= 1 and rando <=3:
+        if rando >= 1 and rando <= 3:
             lowfastball()
-        elif rando > 3 and rando <=5:
+        elif rando > 3 and rando <= 5:
             highfastball()
-        elif rando > 5 and rando <=8:
+        elif rando > 5 and rando <= 8:
             lowslider()
         else:
             lowchangeup()
     # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
-        if rando >=1 and rando <=4:
+        if rando >= 1 and rando <= 4:
             lowfastball()
         elif rando > 4 and rando <= 5.5:
             highfastball()
@@ -425,7 +425,7 @@ def pitch_decision_maker():
     elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
             lowfastball()
-        elif rando > 2 and rando <=5:
+        elif rando > 2 and rando <= 5:
             highfastball()
         elif rando > 5 and rando <= 7:
             lowslider()
@@ -433,9 +433,9 @@ def pitch_decision_maker():
             lowchangeup()
     # 2 - 0  OR  3 - 1  OR  3 - 0
     elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
-        if rando >=1 and rando <=6:
+        if rando >= 1 and rando <= 6:
             lowfastball()
-        elif rando > 6 and rando <=7:
+        elif rando > 6 and rando <= 7:
             highfastball()
         elif rando > 7 and rando <= 9:
             lowslider()
@@ -443,11 +443,11 @@ def pitch_decision_maker():
             lowchangeup()
     # 0 - 2  OR  1 - 2
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
-        if rando >=1 and rando <=2:
+        if rando >= 1 and rando <= 2:
             lowfastball()
-        elif rando > 2 and rando <=5:
+        elif rando > 2 and rando <= 5:
             highfastball()
-        elif rando > 5 and rando <=7:
+        elif rando > 5 and rando <= 7:
             lowslider()
         else:
             lowchangeup()
@@ -499,7 +499,7 @@ def lefty_pitch_decision_maker():
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
         if rando >= 1 and rando <= 3:
             leftyfastball()
-        elif rando > 3 and rando <=7:
+        elif rando > 3 and rando <= 7:
             leftyslider()
         else:
             leftychangeup()
@@ -537,11 +537,11 @@ def lowchangeup():
 
 #SALE PITCH TYPES
 def leftyfastball():
-    xoffset = random.uniform(-2, 3)
-    yoffset = random.uniform(0, 5)
+    xoffset = random.uniform(-3, 3)
+    yoffset = random.uniform(0, 7)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 93, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -4 + xoffset, 0, 0.2 + yoffset, 0.10, 4, 400, 0.10, 0.05, 200, 'chrissale')
+    simulate(True, ball_pos, -4 + xoffset, 0, 0.5 + yoffset, 0.10, 4, 400, 0.10, 0.05, 200, 'chrissale')
     return
 def leftyslider():
     xoffset = random.uniform(-0.5, 4)
@@ -551,10 +551,10 @@ def leftyslider():
     simulate(True, ball_pos, -2 + xoffset, -0.3, 0.2 + yoffset, 0.4, 4, 520, 0.5, -0.65, 300, 'chrissale')
 def leftychangeup():
     xoffset = random.uniform(-4, 1)
-    yoffset = random.uniform(-1, 3)
+    yoffset = random.uniform(0, 3)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 93, (screen.get_height() / 3) + 70 )
-    simulate(True, ball_pos, -3 + xoffset, 0.15, 2.1 + yoffset, 0.3, 4, 460, 0.4, 0.3, 300, 'chrissale')
+    simulate(True, ball_pos, -3 + xoffset, 0.15, 2.1 + yoffset, 0.2, 4, 460, 0.3, 0.25, 300, 'chrissale')
 
 
 # CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
@@ -686,7 +686,7 @@ def draw_inning_summary():
         if messages_finished > 0:
             offset = 0
             while full_message < messages_finished:
-                oldmessage =font.render(messages[full_message], True, 'white')
+                oldmessage = font.render(messages[full_message], True, 'white')
                 screen.blit(oldmessage, (450, 170 + offset))
                 offset += 50
                 full_message += 1
@@ -860,11 +860,11 @@ def simulate(yes, ball_pos, horizontalspeed,
                 elif current_time > starttime + 500 and current_time <= starttime + 700:
                     rightythree(c - 24,d)
                 elif current_time > starttime + 700 and current_time <= starttime + 900:
-                    rightyfour(c - 50,d+10)
+                    rightyfour(c - 50,d + 10)
                 elif current_time > starttime + 900 and current_time <= starttime + 1000:
-                    rightyfive(c - 59,d+20)
+                    rightyfive(c - 59,d + 20)
                 elif current_time > starttime + 1000 and current_time <= starttime + 1100:
-                    rightysix(c,d+30)
+                    rightysix(c,d + 30)
 
             leg_kick(current_time, starttime + 650)
             draw_static()
@@ -1237,7 +1237,7 @@ while running:
                 elif event.ui_element == backtomainmenu:
                     menu_state = 0
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
+                if event.key == pygame.K_q:
                     lefty_pitch_decision_maker()
             manager.process_events(event)
         manager.update(time_delta)
@@ -1278,7 +1278,7 @@ while running:
                 elif event.ui_element == backtomainmenu:
                     menu_state = 0
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
+                if event.key == pygame.K_q:
                     pitch_decision_maker()
             manager.process_events(event)
         manager.update(time_delta)

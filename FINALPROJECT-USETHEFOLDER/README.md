@@ -103,7 +103,7 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 
 ### Main Game Loop
 
-The main game loop deals with everything happening outside of the actual at-bat. That is, things such as menu states and the display of static elements. 
+The main game loop deals with everything happening outside of the actual at-bat. That is, things such as menu states and the display of static elements. The `check_menu` function runs first every loop to check if the inning is over (3 outs).
 
 ### Sounds
 A few sounds were implemented: The glove pop sound (for when the ball hits the catcher's mitt aka the ball has finished travelling the full distance), the sounds when the bat makes contact with the ball, and the umpire call sounds.

@@ -63,15 +63,18 @@ Taking a closer look into the pitch decision tree for Chris Sale, we see somethi
 ### Pitch Types
 The different pitch types for each pitcher are represented by the next group of functions. These are the functions that are called when pitch_decision_maker selects a pitch type to use. These functions work by calling the main function to simulate the at-bat, `simulate`, and passing in some parameters that will determine how the pitch moves. These variables include: traveltime, breaktime, verticalspeed, horizontalspeed, verticalacceleration, horizontalacceleration, verticalbreak, horizontalbreak. There are also a few other less important parameters, such as pitchername to determine which pitcher is pitching, and ball_pos, used to determine the release point of the ball (which is affected by which pitcher is pitching). These parameters will be covered more in depth below, when we reach the `simulate` function. For these pitch type functions, an additional element of unpredictability is added by having `xoffset` and `yoffset` determined randomly in a range. These offsets will affect the pitch by changing it's initial trajectory. This can cause a fastball to arrive outside the zone, and can cause a slider to arrive in the zone. They also alter the way the pitch appears at the start, which is significant because the player relies on seeing and judging the way the ball moves at the start to decide whether to swing.
 
-There is also a simple function called `collision` that checks whether a ball is touching a rectangle. This is used to check whether the ball touches the strikezone once it arrives at home plate, strike if it is touching, and ball otherwise. All credit goes to e-james, I used his answer on stackoverflow here:
+### `collision`
+A simple function that checks whether a ball is touching a rectangle. This is used to check whether the ball touches the strikezone once it arrives at home plate, strike if it is touching, and ball otherwise. All credit goes to e-james, I used his answer on stackoverflow here:
 https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
 
 ### `swing_start`, `high_swing_start` and `leg_kick`
 These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. `swing_start` plays the low swing animation, `high_swing_start` plays the high swing animation, and `leg_kick` plays the default animation if the player does not swing.
 
-`draw_inning_summary` and `main_menu`: these are responsible for the summary screen and main menu. The text typing effect was implemented with the help of **LeMaster Tech's** great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from **Coding with Russ**'s nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
+### `draw_inning_summary` and `main_menu`
+These are responsible for the summary screen and main menu. The text typing effect was implemented with the help of **LeMaster Tech's** great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from **Coding with Russ**'s nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
 
-`simulate` : This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the appearance of the ball as it moves towards home plate, and the management of all outcomes. A lot of variables here, so I will go through some of the more important ones.
+### `simulate`
+This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the drawing of the ball as it moves towards home plate, and the management of all outcomes. A lot of things to talk about here, so I will go through some of the more important ones below.
 
 ### `simulate` - Important input parameters:
 
@@ -94,8 +97,8 @@ These functions will play the respective animations, switching the image to be d
 
 - If it is determined that the timing is sufficiently off such that the player swung and miss, it will follow the same outcome as if the batter never swung. (except of course if the ball ends up outside the zone it would still be a strike because the player swung.) On the other hand, if the timing is foul or perfect, then the function goes down a different path. It will check, at the point of contact, whether the player's bat path(determined by high or low swing), will hit or miss the ball, and then determine and update the results accordingly. For example, if the hit timing is perfect, but the player swings high when the ball actually arrives low in the zone, the end result is still a swing and a miss.
 
-- To summarise, a hit will be the outcome if the following conditions are satisfied:
-    - Timing is in the perfect range.
+- **To summarise, a hit will be the outcome if the following conditions are satisfied**:
+    - Timing is in the perfect range. (Just right not too early not too late)
     - Swing path is correct (low swing if low ball and vice versa)
     - At the point of contact, the ball's current position falls within the boundaries. (The boundary for the low swing is the bottom half of the zone plus a buffer of approximately one ball diameter from the edges of the strike zone. Similar for the high swing.)
 

@@ -128,4 +128,4 @@ For the batter and pitcher, I searched up a couple of videos online that had the
 This is a simple theme file for the pygame_gui elements. Enables the `8bitoperator` font to be used for the buttons and banner.
 
 ## `button.py` file
-A simple file to store the button class to be used in the main menu and end screen menu.
+A simple file to store the button class to be used in the main menu and end screen menu. Courtesy of Coding With Russ : https://www.youtube.com/watch?v=G8MYGDf_9ho.

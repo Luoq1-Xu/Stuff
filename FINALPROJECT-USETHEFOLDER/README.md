@@ -125,4 +125,6 @@ When the ball reaches the strikezone or a batter swings and makes contact with a
 For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and the swinging motion of the batter. The result is a series of images that play to give the impression of the actual motion of a batter and pitcher.
 
 ## `Theme.json` file
-This is a simple theme file for the pygame_gui elements. Enables the `8bitoperator` font to be used for the buttons and banner. 
+This is a simple theme file for the pygame_gui elements. Enables the `8bitoperator` font to be used for the buttons and banner.
+
+## `button.py`

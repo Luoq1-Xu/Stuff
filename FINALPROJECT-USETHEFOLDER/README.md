@@ -66,7 +66,8 @@ The different pitch types for each pitcher are represented by the next group of 
 There is also a simple function called `collision` that checks whether a ball is touching a rectangle. This is used to check whether the ball touches the strikezone once it arrives at home plate, strike if it is touching, and ball otherwise. All credit goes to e-james, I used his answer on stackoverflow here:
 https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
 
-`swing_start`, `high_swing_start` and `leg_kick`: These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. `swing_start` plays the low swing animation, `high_swing_start` plays the high swing animation, and `leg_kick` plays the default animation if the player does not swing.
+### `swing_start`, `high_swing_start` and `leg_kick`
+These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. `swing_start` plays the low swing animation, `high_swing_start` plays the high swing animation, and `leg_kick` plays the default animation if the player does not swing.
 
 `draw_inning_summary` and `main_menu`: these are responsible for the summary screen and main menu. The text typing effect was implemented with the help of **LeMaster Tech's** great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from **Coding with Russ**'s nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
 

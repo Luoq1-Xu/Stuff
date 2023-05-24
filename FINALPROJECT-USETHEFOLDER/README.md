@@ -127,4 +127,5 @@ For the batter and pitcher, I searched up a couple of videos online that had the
 ## `Theme.json` file
 This is a simple theme file for the pygame_gui elements. Enables the `8bitoperator` font to be used for the buttons and banner.
 
-## `button.py`
+## `button.py` file
+A simple file to store the button class to be used in the main menu and 

@@ -113,7 +113,7 @@ The bat contact sounds include - Single, Double, Triple, Homerun. Each correspon
 
 The umpire call sounds will play once the ball arrives in the zone without a swing. If you do not swing and the ball clips the zone, the called strike sound will play. If the above happens and it is the third strike, the third strike sound plays. On the flip side, if you do not swing and the ball lands outside the zone, the ball call sound plays.
 
-### Graphics
+## Graphics
 To keep simple, I used coloured images for the hitter and the batter, while everything else is basically rendered in black and white.
 
 The strikezone and home plate are rendered simply using the built in pygame draw function. The strikezone is a simple Rect and the homeplate is a polygon. The strikezone is also toggleable, for the player's preference. Generally, having the strikezone on makes it easier to determine whether a ball will be a ball or a strike.
@@ -123,3 +123,5 @@ For the ball, I used the pygame draw function to draw a circle that increases in
 When the ball reaches the strikezone or a batter swings and makes contact with a ball, a "ghost" of the ball is left behind at the location where the impact occurred. You will see this in real world television broadcasts as well. This impact point allows the player to know where the ball ended up. This allows you to appreciate really good (and nasty!) strikes that juuust clipped the zone while also knowing where exactly you made contact with the ball.
 
 For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and the swinging motion of the batter. The result is a series of images that play to give the impression of the actual motion of a batter and pitcher.
+
+##

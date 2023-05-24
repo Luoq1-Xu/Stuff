@@ -2,7 +2,7 @@
 ## Video Demo:  <URL HERE>
 #### Description:
 *Based Ball* is a simple simulator that allows you to face off against two pitchers: Chris Sale (Left hand pitcher) and Jacob Degrom (Right Hand pitcher).
-The art of pitching has long fascinated me, and so I wanted to create a simple simulator that allows people to experience what it is like to step into the box and face some good pitching, and to observe some of the nuances of pitching. I had a few preliminary thoughts:
+The art of pitching has long fascinated me, and so I wanted to create a simple simulator that allows people to experience what it is like to step into the box and face some good pitching, and to pick up some of the nuances of pitching. I had a few preliminary thoughts:
 
 - I will need many different functions for various purposes.
 - How to simulate the flight path of the ball visually?
@@ -124,4 +124,5 @@ When the ball reaches the strikezone or a batter swings and makes contact with a
 
 For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and the swinging motion of the batter. The result is a series of images that play to give the impression of the actual motion of a batter and pitcher.
 
-##
+## `Theme.json` file
+This is a simple theme file for the pygame_gui elements. Enables the `8bitoperator` font to be used for the buttons and banner.

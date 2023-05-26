@@ -119,10 +119,10 @@ container = pygame_gui.core.UIContainer(relative_rect=pygame.Rect((0, 0), (1280,
 banner = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((440, 0), (400,100)), manager=manager, text="")
 banner.hide()
 def pitchresult(input):
-    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((980, 350), (200,150)),
+    return pygame_gui.elements.UITextBox(input,relative_rect=pygame.Rect((970, 350), (210,150)),
                                         manager=manager)
 def drawscoreboard(results):
-    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((980, 150), (200,200)),
+    return pygame_gui.elements.UITextBox(results,relative_rect=pygame.Rect((970, 150), (210,200)),
                                         manager=manager)
 
 #Container to house the scoreboard and textbox - to allow for previous instances to be deleted when new ones are created
@@ -519,50 +519,50 @@ def lowfastball():
     yoffset = random.uniform(0,0)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
-    simulate(True, ball_pos, 2 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.15, 150, 'jacobdegrom')
+    simulate(True, ball_pos, 2 + xoffset, 0, 6 + yoffset, 0.1, 4, 390, 0.1, -0.15, 150, 'jacobdegrom', 'FASTBALL')
     return
 def highfastball():
     xoffset = random.uniform(-3, 3)
     yoffset = random.uniform(-2, 1)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
-    simulate(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150, 'jacobdegrom')
+    simulate(True, ball_pos, 0.3 + xoffset, 0, 3 + yoffset, 0, 4, 390, 0, -0.2, 150, 'jacobdegrom', 'FASTBALL')
     return
 def lowslider():
     xoffset = random.uniform(-1.5, 1)
     yoffset = random.uniform(0, 3)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
-    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 1.5 + yoffset, 0.4, 4, 420, 0.3, 0.5, 250, 'jacobdegrom')
+    simulate(True, ball_pos, 0.3 + xoffset, 0.3, 1.5 + yoffset, 0.4, 4, 420, 0.3, 0.5, 250, 'jacobdegrom', 'SLIDER')
     return
 def lowchangeup():
     xoffset = random.uniform(-2, 3)
     yoffset = random.uniform(-1, 1.5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 24, (screen.get_height() / 3) + 84)
-    simulate(True, ball_pos, 1 + xoffset, -0.1, 4 + yoffset, 0.2, 4, 450, 0.5, -0.2, 170, 'jacobdegrom')
+    simulate(True, ball_pos, 1 + xoffset, -0.1, 4 + yoffset, 0.2, 4, 450, 0.5, -0.2, 170, 'jacobdegrom', 'CHANGEUP')
     return
 
 #SALE PITCH TYPES
 def leftyfastball():
-    xoffset = random.uniform(-0.25, 0.15)
-    yoffset = random.uniform(0, 0)
+    xoffset = random.uniform(-0.8, 2.2)
+    yoffset = random.uniform(0, 0.25)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
-    simulate(True, ball_pos, -2, -0.15 + xoffset, 1, 0.15 + xoffset, 4, 390, 0, 0, 390, 'chrissale')
+    simulate(True, ball_pos, -2 + xoffset, -0.16, 1, 0.20, 4, 390, 0.45, -0.17 , 120, 'chrissale', 'FASTBALL')
     return
 def leftyslider():
-    xoffset = random.uniform(-0.5, 3)
+    xoffset = random.uniform(-0.5, 2)
     yoffset = random.uniform(0,0)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
-    simulate(True, ball_pos, -1 + xoffset, -0.3, 0.2 + yoffset, 0.35, 4, 490, 0.5, -0.65, 300, 'chrissale')
+    simulate(True, ball_pos, -1 + xoffset, -0.3, 0.2 + yoffset, 0.35, 4, 490, 0.5, -0.65, 300, 'chrissale', 'SLIDER')
 def leftychangeup():
-    xoffset = random.uniform(-0.25, 0.1)
+    xoffset = random.uniform(-0.25, 0.01)
     yoffset = random.uniform(0, 0)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
-    simulate(True, ball_pos, -1, xoffset, 0.5, 0.15, 4, 435, 0.20, 0, 200, 'chrissale')
+    simulate(True, ball_pos, -1, xoffset, 0.5, 0.15, 4, 435, 0.20, 0, 200, 'chrissale', 'CHANGEUP')
 
 
 # CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
@@ -808,7 +808,7 @@ def main_menu():
 def simulate(yes, ball_pos, horizontalspeed,
             horizontalacceleration, verticalspeed, verticalacceleration,
             ballsize, traveltime, verticalbreak,
-            horizontalbreak, breaktime, pitchername):
+            horizontalbreak, breaktime, pitchername, pitchtype):
 
     pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_CROSSHAIR))
     global currentballs
@@ -1010,7 +1010,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 pitchnumber += 1
                 if currentstrikes == 2:
                     container.clear()
-                    string = "<font size=5>PITCH {}: FOUL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: {}<br>FOUL<br>COUNT IS {} - {}</font>".format(pitchnumber, pitchtype, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
@@ -1019,7 +1019,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 else:
                     currentstrikes += 1
                     container.clear()
-                    string = "<font size=5>PITCH {}: FOUL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: {}<br>FOUL<br>COUNT IS {} - {}</font>".format(pitchnumber, pitchtype, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
@@ -1053,7 +1053,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     banner.set_text("{}".format(hit_string))
                 banner.show()
                 banner.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR,{'time_per_letter': 0.1})
-                string = "<font size=5>PITCH {} :<br>HIT - {}</font>".format(pitchnumber, hit_string)
+                string = "<font size=5>PITCH {}: {}<br>HIT - {}</font>".format(pitchnumber, pitchtype, hit_string)
                 textbox = pitchresult(string)
                 hits += 1
                 textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
@@ -1113,7 +1113,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 #WALK OCCURS
                 if currentballs == 4:
                     container.clear()
-                    string = "<font size=5>PITCH {} : BALL<br>COUNT IS {} - {}<br><b>WALK</b></font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: {}<br>BALL<br>COUNT IS {} - {}<br><b>WALK</b></font>".format(pitchnumber, pitchtype, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentwalks += 1
@@ -1140,7 +1140,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 else:
                     #Normal Ball
                     container.clear()
-                    string = "<font size=5>PITCH {} : BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: {}<br>BALL<br>COUNT IS {} - {}</font>".format(pitchnumber, pitchtype, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)
@@ -1157,7 +1157,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 #STRIKEOUT OCCURS
                 if currentstrikes == 3:
                     container.clear()
-                    string = "<font size=5>PITCH {} : STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b></font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: {}<br>STRIKE<br>COUNT IS {} - {}<br><b>STRIKEOUT</b></font>".format(pitchnumber, pitchtype, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     currentstrikeouts += 1
@@ -1175,7 +1175,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                 else:
                     #Normal Strike
                     container.clear()
-                    string = "<font size=5>PITCH {} : STRIKE<br>COUNT IS {} - {}</font>".format(pitchnumber, currentballs, currentstrikes)
+                    string = "<font size=5>PITCH {}: {}<br>STRIKE<br>COUNT IS {} - {}</font>".format(pitchnumber, pitchtype, currentballs, currentstrikes)
                     textbox = pitchresult(string)
                     textbox.set_active_effect(pygame_gui.TEXT_EFFECT_TYPING_APPEAR)
                     result = "<font size=5>CURRENT OUTS : {}<br>STRIKEOUTS : {}<br>WALKS : {}<br>HITS : {}<br>RUNS SCORED: {}</font>".format(currentouts, currentstrikeouts, currentwalks, hits, runs_scored)

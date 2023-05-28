@@ -102,6 +102,10 @@ This is the real meat of the matter of the game. It is responsible for the entir
     - Swing path is correct (low swing if low ball and vice versa)
     - At the point of contact, the ball's current position falls within the boundaries. (The boundary for the low swing is the bottom half of the zone plus a buffer of approximately one ball diameter from the edges of the strike zone. Similar for the high swing.)
 
+![High and low hit zones for high swing and low swing.](/workspaces/79454985/FINALPROJECT-USETHEFOLDER/Hitzones.png)
+
+<sub>Approximate hit zones. Assuming your timing is on time, if you swing high and make contact in the blue zone, you will get a hit or foul. Otherwise you miss the ball. Same for low swing and the red zone.</sub>
+
 - All the calculations for Foul balls and Hits are done at the moment of contact (The timing has to be in the appropiate range first). The position of the ball currently is checked and it is determined whether it is in the correct region (depending on whether it is a high swing or low swing) to be considered for a foul or hit to occur. If the swing path is correct and timing is correct, then it will process the outcome and update all the relevant information using functions like `power_hit_outcome` and `drawscoreboard`. Otherwise, if the swing path is off, it will default to the normal strike sequence. That is, the ball continues to complete it's trajectory and all the relevant information is updated as if it were a strike.
 
 - For "called" strike and balls (when the player did not swing at all), as well as swinging strikes (player swung but missed the ball for whatever reason), all details are updated when the ball has finished it ball flight and arrived at the plate. Strikeouts and walks are also updated here. First it is checked whether the player swung, if the player did not swing, the ball's ending position is then checked to see if it is in or touching the zone. A ball is only awarded if all of these requirements are met:

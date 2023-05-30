@@ -106,7 +106,7 @@ This is the heart of  the game. It is responsible for the entire process of simu
 
 ![High and low hit zones for high swing and low swing.](/workspaces/79454985/FINALPROJECT-USETHEFOLDER/Hitzones.png)
 
-<sub>Approximate hit zones. Assuming your timing is on time, if you swing high and make contact in the blue zone, you will get a hit or foul. Otherwise you miss the ball. Same for low swing and the red zone.</sub>
+<sub>Approximate hit zones. Assuming your timing is on time, if you swing high and make contact in the blue zone, you will get a hit or foul. Otherwise you miss the ball. Same for low swing and the red zone.</sub>  
 
 - All the calculations for Foul balls and Hits are done at the moment of contact (The timing has to be in the appropiate range first). The position of the ball currently is checked and it is determined whether it is in the correct region (depending on whether it is a high swing or low swing) to be considered for a foul or hit to occur. If the swing path is correct and timing is correct, then it will process the outcome and update all the relevant information using functions like `power_hit_outcome` and `drawscoreboard`. Otherwise, if the swing path is off, it will default to the normal strike sequence. That is, the ball continues to complete it's trajectory and all the relevant information is updated as if it were a strike.
 

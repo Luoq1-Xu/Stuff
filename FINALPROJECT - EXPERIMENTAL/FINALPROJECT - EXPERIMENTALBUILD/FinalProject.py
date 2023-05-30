@@ -213,7 +213,7 @@ def check_menu():
     global currentouts
     global menu_state
     global textfinished
-    if currentouts == 3:
+    if currentouts == 3 and menu_state != 3:
         for event in pygame.event.get():
             if event.type == pygame_gui.UI_TEXT_EFFECT_FINISHED:
                 textfinished += 1
@@ -732,6 +732,7 @@ def draw_inning_summary():
     global textfinished
     global ishomerun
 
+    currentouts = 0
     textfinished = 0
     done = False
     counter = 0

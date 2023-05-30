@@ -71,10 +71,12 @@ https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-
 These functions will play the respective animations, switching the image to be displayed according to the time that has elapsed since the function was first called. `swing_start` plays the low swing animation, `high_swing_start` plays the high swing animation, and `leg_kick` plays the default animation if the player does not swing.
 
 ### `draw_inning_summary` and `main_menu`
-These are responsible for the summary screen and main menu. The text typing effect was implemented with the help of **LeMaster Tech's** great video: https://www.youtube.com/watch?v=DhK5P2bWznA. The buttons were also put in with help from **Coding with Russ**'s nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
+These are responsible for the summary screen and main menu. The text typing effect was implemented with the help of **LeMaster Tech's** great video: https://www.youtube.com/watch?v=DhK5P2bWznA.
+
+The buttons were also put in with help from **Coding with Russ**'s nice tutorial: https://www.youtube.com/watch?v=G8MYGDf_9ho.
 
 ### `simulate`
-This is the real meat of the matter of the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the drawing of the ball as it moves towards home plate, and the management of all outcomes. A lot of things to talk about here, so I will go through some of the more important ones below.
+This is the heart of  the game. It is responsible for the entire process of simulating the at-bat, including the pitcher's pitching motion, the batter's swing, the drawing of the ball as it moves towards home plate, and the management of all outcomes. A lot of things to talk about here, so I will go through some of the more important ones below.
 
 ### `simulate` - Important input parameters:
 

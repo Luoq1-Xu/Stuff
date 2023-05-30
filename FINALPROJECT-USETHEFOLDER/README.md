@@ -112,7 +112,7 @@ This is the heart of  the game. It is responsible for the entire process of simu
 
 
 - For "called" strike and balls (when the player did not swing at all), as well as swinging strikes (player swung but missed the ball for whatever reason), all details are updated when the ball has finished it ball flight and arrived at the plate. Strikeouts and walks are also updated here. First it is checked whether the player swung, if the player did not swing, the ball's ending position is then checked to see if it is in or touching the zone. A ball is only awarded if all of these requirements are met:
-    - Player did not swing
+    - Player did __not__ swing
     - Ball does __not__ end up in the zone or touching the zone
 
     All other scenarios will result in a strike.

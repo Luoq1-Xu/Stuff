@@ -139,10 +139,17 @@ For the ball, I used the pygame draw function to draw a circle that increases in
 
 When the ball reaches the strikezone or a batter swings and makes contact with a ball, a "ghost" of the ball is left behind at the location where the impact occurred. You will see this in real world television broadcasts as well. This impact point allows the player to know where the ball ended up. This allows you to appreciate really good (and nasty!) strikes that juuust clipped the zone while also knowing where exactly you made contact with the ball.
 
-For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and the swinging motion of the batter. The result is a series of images that play to give the impression of the actual motion of a batter and pitcher.
+For the batter and pitcher, I searched up a couple of videos online that had the batter and pitcher from behind the home plate view(the perspective you play as in the game). I then cropped out out a few frames manually to get a series of frames that depicted the sequence - the pitching motion for the pitcher and the swinging motion of the batter. The result is a series of images that play to give the impression of the motion of a batter and pitcher.
 
 ## `Theme.json` file
 This is a simple theme file for the pygame_gui elements. Enables the `8bitoperator` font to be used for the buttons and banner.
 
 ## `button.py` file
 A simple file to store the button class to be used in the main menu and end screen menu. Courtesy of Coding With Russ : https://www.youtube.com/watch?v=G8MYGDf_9ho.
+
+## Converting to exe
+Conversion to a zip file with exe was done with auto-py-to-exe -> https://pypi.org/project/auto-py-to-exe/
+
+## And that's all she wrote! Have fun!
+
+> “Every day is a new opportunity. You can build on yesterday’s success or put its failures behind and start over again. That’s the way life is, with a new game every day, and that’s the way baseball is.” – Bullet Bob Feller

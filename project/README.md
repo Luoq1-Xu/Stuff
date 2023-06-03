@@ -1,14 +1,7 @@
 # BASED BALL : A baseball at-bat simulator
 ## Video Demo:  <URL HERE>
 #### Description:
-*Based Ball* is a simple simulator that allows you to face off against two pitchers: Chris Sale (Left hand pitcher) and Jacob Degrom (Right Hand pitcher).
-The art of pitching has long fascinated me, and so I wanted to create a simple simulator that allows people to experience what it is like to step into the box and face some good pitching, and to pick up some of the nuances of pitching. I had a few preliminary thoughts:
-
-- Need many different functions for various purposes.
-- How to simulate the flight path of the ball visually?
-- How to check for the bat path, both timing and location?
-- How will the Graphical User Interface be set up?
-- and many many more....
+*Based Ball* is a simple simulator that allows you to face off and bat against two pitchers: Chris Sale (Left hand pitcher) and Jacob Degrom (Right Hand pitcher).
 
 ## Meet them all
 The game consists of a few main assets
@@ -51,7 +44,7 @@ Serves to do the actual updating of "runners" and "runs" depending on the input.
 - Another example, if there is currently a runner on second (runners = 0.010), and the batter hits a double (2), the result will be a runner on second (0.010) and 1 run scores (runs += 1).The original runner on second moves 2 bases (2nd -> 3rd -> home) and scores (runs += 1) and the batter moves to second. (home -> 1st -> 2nd).
 
 ### `pitch_decision_maker` and `lefty_pitch_decision_maker`
-Next up are the pitching decision trees for each of the two pitchers. Both utilise the same structure, albeit with slight differences in probabilities and pitch types chosen. Chris Sale (Left Hander) has 3 pitch types -> Fastball, Slider, Changeup. The pitch decision tree will randomly determine a pitch to choose depending on the current count (the current number of balls and strikes). Degrom (Right Hander) has the same 3 pitch types also, but degrom is slightly different because I implemented a "High fastball" pitch type and a "Low Fastball" pitch type. That means to say that a "High Fastball" is basically guaranteed to arrive high up in the zone and I think you can guess what "Low Fastball" does. The decision tree works by altering the probabilities of each pitch type being thrown depending on the count. This is supplemented by the fact that each pitch type has different behaviours. For example, with Chris Sale, his fastball has a high probability of arriving in the zone (high likelihood of being a "strike") while his slider has a high probability of arriving outside the zone (high chance to be a ball). The pitching decision tree plays with this characteristic, to try to attain the most favourable outcome based on the relative risk to reward ratio. This is not completely realistic, because there is so many more factors to consider in real baseball, but sometimes you will see a similar decision making sequence in real life as well. While the probabilities are skewed in certain situations, the random element of it helps to maintain a little bit of realism, as just like real life, you have to be ready for any outcome. Even if you know something is more likely to happen, you still have to prepare for the possibility of something else happening.
+Next up are the pitching decision trees for each of the two pitchers. Both utilise the same structure, albeit with slight differences in probabilities and pitch types chosen. Chris Sale (Left Hander) has 3 pitch types -> Fastball, Slider, Changeup. The pitch decision tree will randomly determine a pitch to choose depending on the current count (the current number of balls and strikes). Degrom (Right Hander) has the same 3 pitch types also. The decision tree works by altering the probabilities of each pitch type being thrown depending on the count. This is supplemented by the fact that each pitch type has different behaviours. For example, with Chris Sale, his fastball has a high probability of arriving in the zone (high likelihood of being a "strike") while his slider has a high probability of arriving outside the zone (high chance to be a ball). The pitching decision tree plays with this characteristic, to try to attain the most favourable outcome based on the relative risk to reward ratio. This is not completely realistic, because there is so many more factors to consider in real baseball, but sometimes you will see a similar decision making sequence in real life as well. While the probabilities are skewed in certain situations, the random element of it helps to maintain a little bit of realism, as just like real life, you have to be ready for any outcome. Even if you know something is more likely to happen, you still have to prepare for the possibility of something else happening.
 
 Taking a closer look into the pitch decision tree for Chris Sale, we see something interesting.
 - When the count is 0 balls and 0 strikes or 3 balls and 2 strikes, the probabilities are relatively evenly balanced, as the pitch type doesn't really have much of an impact in this situation.
@@ -105,7 +98,7 @@ This is the heart of  the game. It is responsible for the entire process of simu
     - At the point of contact, the ball's current position falls within the boundaries. (The boundary for the low swing is the bottom half of the zone plus a buffer of approximately one ball diameter from the edges of the strike zone. Similar for the high swing.)
 
 ![High and low hit zones for high swing and low swing.](./Hitzones.png)
-<sub>Approximate hit zones. Assuming your timing is on time, if you swing high and make contact in the blue zone, you will get a hit or foul. Otherwise you miss the ball. Same for low swing and the red zone.</sub>
+<br><sub>Approximate hit zones. Assuming your timing is on time, if you swing high and make contact in the blue zone, you will get a hit or foul. Otherwise you miss the ball. Same for low swing and the red zone.</sub>
 <br><br>
 
 - All the calculations for Foul balls and Hits are done at the moment of contact (The timing has to be in the appropiate range first). The position of the ball currently is checked and it is determined whether it is in the correct region (depending on whether it is a high swing or low swing) to be considered for a foul or hit to occur. If the swing path is correct and timing is correct, then it will process the outcome and update all the relevant information using functions like `power_hit_outcome` and `drawscoreboard`. Otherwise, if the swing path is off, it will default to the normal strike sequence. That is, the ball continues to complete it's trajectory and all the relevant information is updated as if it were a strike.
@@ -153,3 +146,15 @@ Conversion to a zip file with exe was done with auto-py-to-exe -> https://pypi.o
 ## And that's all she wrote! Have fun!
 
 > “Every day is a new opportunity. You can build on yesterday’s success or put its failures behind and start over again. That’s the way life is, with a new game every day, and that’s the way baseball is.” – Bullet Bob Feller
+
+
+
+## Credits:
+Batter images source video : https://www.youtube.com/watch?v=QXTfBIV5Edo
+Pitcher images source videos: https://www.youtube.com/watch?v=xVMXjyv-4Gs (Chris Sale) and https://www.youtube.com/watch?v=EVJka2V3MhY (Jacob Degrom)
+Sounds: https://www.youtube.com/watch?v=Z5tP0MpXUcw (Umpire call sounds) and https://www.youtube.com/watch?v=08MJLtBNbJI (MLB The Show 23 Bat sounds)
+Tutorial for Button Classes: https://www.youtube.com/watch?v=G8MYGDf_9ho
+Tutorial for text typwriter effect: https://www.youtube.com/watch?v=DhK5P2bWznA
+pygame: https://www.pygame.org/news
+pygame_gui: https://pygame-gui.readthedocs.io/en/v_069/
+Auto-py-to-exe: https://pypi.org/project/auto-py-to-exe/

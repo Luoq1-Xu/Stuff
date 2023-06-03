@@ -6,15 +6,15 @@
 ## Meet them all
 The game consists of a few main assets
 
-* Main Finalproject.py file
+* Main `Finalproject.py` file
 
 * Sounds
 
 * Graphics (Images)
 
-* theme.json file
+* `theme.json` file
 
-* button.py supplementary button class file
+* `button.py` supplementary button class file
 
 
 ### Finalproject.py(Main python file)

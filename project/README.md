@@ -143,7 +143,10 @@ A simple file to store the button class to be used in the main menu and end scre
 ## Converting to exe
 Conversion to a zip file with exe was done with auto-py-to-exe -> https://pypi.org/project/auto-py-to-exe/
 
-## And that's all she wrote! Have fun!
+![High score!](./HIGHSCORE.png)
+<br><sub>Look ma, high score!</sub><br><br><br>
+
+
 
 > “Every day is a new opportunity. You can build on yesterday’s success or put its failures behind and start over again. That’s the way life is, with a new game every day, and that’s the way baseball is.” – Bullet Bob Feller
 

@@ -1,4 +1,5 @@
 import sys
+from tabulate import tabulate
 
 argc = len(sys.argv)
 if argc < 2:

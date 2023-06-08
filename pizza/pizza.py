@@ -9,3 +9,18 @@ elif argc > 2:
 test = sys.argv[1].split(".")
 if test[1] != "csv":
     sys.exit("Not a CSV file")
+
+try:
+    with open(sys.argv[1]) as file:
+        counter = 0
+        header =[]
+        table=[]
+        for line in file:
+            if counter == 0:
+                header = line.split(",")
+                counter += 1
+            else:
+                table.append(line.split(","))
+
+except NameError:
+    sys.exit("File does not exist")

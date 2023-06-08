@@ -18,7 +18,7 @@ try:
         table=[]
         for line in file:
             if counter == 0:
-                header = line.split(",")
+                header = (line.rstrip()).split(",")
                 counter += 1
             else:
                 table.append(line.split(","))

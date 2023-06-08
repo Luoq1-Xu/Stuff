@@ -21,6 +21,7 @@ try:
                 counter += 1
             else:
                 table.append(line.split(","))
+    print(tabulate(table, header, tablefmt="grid"))
 
 except NameError:
     sys.exit("File does not exist")

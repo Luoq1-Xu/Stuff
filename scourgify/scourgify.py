@@ -17,7 +17,7 @@ try:
                 element = element.strip('"')
     with open(sys.argv[2], 'a') as writefile:
         for line in list:
-            
+            writefile.append(line)
 
 except NameError:
     sys.exit("Could not read {}".format(sys.argv[2]))

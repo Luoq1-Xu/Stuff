@@ -21,7 +21,7 @@ try:
                 linelist[1] = linelist[0].strip('"') + ','
                 linelist[0] = temp.strip('" ') + ','
                 list.append(linelist)
-    with open(sys.argv[2], 'a') as writefile:
+    with open(sys.argv[2], 'w') as writefile:
         for line in list:
             for element in line:
                 writefile.write(element)

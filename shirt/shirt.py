@@ -1,5 +1,5 @@
 import sys
-
+from PIL import Image
 argc = len(sys.argv)
 
 

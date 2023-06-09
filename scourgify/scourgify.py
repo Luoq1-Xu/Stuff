@@ -15,8 +15,8 @@ try:
             for element in linelist:
                 element = element.strip('\"')
             temp = linelist[1]
-            linelist[1] = linelist[0]
-            linelist[0] = temp
+            linelist[1] = linelist[0] + ","
+            linelist[0] = temp + ","
             list.append(linelist)
     with open(sys.argv[2], 'a') as writefile:
         for line in list:

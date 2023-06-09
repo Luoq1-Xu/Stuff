@@ -17,11 +17,9 @@ try:
                 counter += 1
             else:
                 linelist = line.split(',')
-                for element in linelist:
-                    element = element.strip('\"')
                 temp = linelist[1]
-                linelist[1] = linelist[0] + ","
-                linelist[0] = temp + ","
+                linelist[1] = linelist[0].strip('"') + ","
+                linelist[0] = temp.strip('"') + ","
                 list.append(linelist)
     with open(sys.argv[2], 'a') as writefile:
         for line in list:

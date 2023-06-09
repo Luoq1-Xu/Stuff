@@ -18,9 +18,10 @@ if (sys.argv[1].rsplit("."))[0] != (sys.argv[2].rsplit("."))[0]:
 
 
 try:
-    with open sys.argv[1] as inputfile:
+    with open(sys.argv[1]) as inputfile:
         inputfilesize = inputfile.size
-        with open sys.argv[2] as output
+        with open("shirt.png") as shirt:
+            
 
 except FileNotFoundError:
     sys.exit=()

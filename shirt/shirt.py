@@ -1,4 +1,5 @@
 import sys
+import os
 from PIL import Image
 from PIL import ImageOps
 argc = len(sys.argv)

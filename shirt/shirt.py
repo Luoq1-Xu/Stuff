@@ -23,7 +23,7 @@ try:
         inputfilesize = inputfile.size
         with Image.open("shirt.png") as shirt:
             resizedshirt = PIL.ImageOps.fit(shirt, inputfilesize)
-        outputimage = inputfile.paste(resizedshirt, resizedshirt)
-        outputimage.save(sys.argv[2])
+        inputfile.paste(resizedshirt, resizedshirt)
+        inputfile.save(sys.argv[2])
 except FileNotFoundError:
     sys.exit("Input does not exist")

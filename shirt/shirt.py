@@ -10,6 +10,7 @@ if argc < 3:
 elif argc > 3:
     sys.exit("Too many command-line arguments")
 
+print(((sys.argv[1].rsplit("."))[0]))
 
 if ((sys.argv[1].rsplit("."))[0] not in ["jpg", "jpeg", "png"]):
     sys.exit("Invalid input")

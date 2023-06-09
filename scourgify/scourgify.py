@@ -14,6 +14,7 @@ try:
         for line in readfile:
             if counter == 0:
                 list.append(line)
+                counter += 1
             else:
                 linelist = line.split(',')
                 for element in linelist:

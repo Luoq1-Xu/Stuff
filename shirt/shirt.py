@@ -1,7 +1,7 @@
 import sys
 import os
+import PIL
 from PIL import Image
-from PIL import ImageOps
 argc = len(sys.argv)
 
 
@@ -21,7 +21,7 @@ if (sys.argv[1].rsplit("."))[1] != (sys.argv[2].rsplit("."))[1]:
 try:
     with Image.open(sys.argv[1]) as inputfile:
         inputfilesize = inputfile.size
-        with open("shirt.png") as shirt:
+        with Image.open("shirt.png") as shirt:
             resizedshirt = PIL.ImageOps.fit(shirt, inputfilesize)
         outputimage = inputfile.paste(resizedshirt, resizedshirt)
     outputimage.save(sys.argv[2])

@@ -1,5 +1,6 @@
 import sys
 from PIL import Image
+from PIL import ImageOps
 argc = len(sys.argv)
 
 
@@ -21,7 +22,7 @@ try:
     with open(sys.argv[1]) as inputfile:
         inputfilesize = inputfile.size
         with open("shirt.png") as shirt:
-            
+            resizedshirt = PIL.ImageOps.fit(shirt, inputfilesize)
 
 except FileNotFoundError:
     sys.exit=()

@@ -11,6 +11,8 @@ list = []
 try:
     with open(sys.argv[2]) as readfile:
         for line in readfile:
-
+            linelist = line.split(',')
+            for element in linelist:
+                element = element.strip('"')
 except NameError:
     sys.exit("Could not read {}".format(sys.argv[2]))

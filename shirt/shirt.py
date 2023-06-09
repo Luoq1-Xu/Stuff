@@ -19,7 +19,7 @@ if (sys.argv[1].rsplit("."))[1] != (sys.argv[2].rsplit("."))[1]:
 
 
 try:
-    with open(sys.argv[1]) as inputfile:
+    with Image.open(sys.argv[1]) as inputfile:
         inputfilesize = inputfile.size
         with open("shirt.png") as shirt:
             resizedshirt = PIL.ImageOps.fit(shirt, inputfilesize)

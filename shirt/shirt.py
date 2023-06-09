@@ -17,3 +17,8 @@ if (sys.argv[1].rsplit("."))[0] != (sys.argv[2].rsplit("."))[0]:
     sys.exit("Input and output have different extensions")
 
 
+try:
+    ...
+
+except FileNotFoundError:
+    sys.exit=()

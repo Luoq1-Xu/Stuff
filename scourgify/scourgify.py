@@ -13,7 +13,7 @@ try:
         for line in readfile:
             linelist = line.split(',')
             for element in linelist:
-                element = element.replace('\"')
+                element = element.strip('\"')
             list.append(linelist)
     with open(sys.argv[2], 'a') as writefile:
         for line in list:

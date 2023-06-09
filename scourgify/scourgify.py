@@ -18,7 +18,7 @@ try:
             else:
                 linelist = line.split(',')
                 for element in linelist:
-                    element = element.strip('"')
+                    element = element.strip('\"')
                 temp = linelist[1]
                 linelist[1] = linelist[0] + ","
                 linelist[0] = temp + ","

@@ -19,7 +19,7 @@ try:
                 linelist = line.split(',')
                 temp = linelist[1]
                 linelist[1] = linelist[0] + '",'
-                linelist[0] = '"' + temp + ','
+                linelist[0] = '"' + temp.strip() + ','
                 list.append(linelist)
     with open(sys.argv[2], 'a') as writefile:
         for line in list:

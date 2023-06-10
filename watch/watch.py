@@ -7,8 +7,8 @@ def main():
 
 
 def parse(s):
-    ...
+    src = re.search()
 
 
 if __name__ == "__main__":
-    main(y)
+    main()

@@ -20,10 +20,10 @@ if (sys.argv[1].rsplit("."))[1] != (sys.argv[2].rsplit("."))[1]:
 
 try:
     with Image.open(sys.argv[1]) as inputfile:
-        inputfilesize = inputfile.size
         with Image.open("shirt.png") as shirt:
-            resizedshirt = PIL.ImageOps.fit(shirt, inputfilesize)
-        inputfile.paste(resizedshirt, resizedshirt)
-        inputfile.save(sys.argv[2])
+            shirtsize = shirt.size
+            resizedinput = PIL.ImageOps.fit(inputfile, shirtsize)
+            resizedinput.paste(shirt, shirt)
+            resizedinput.save(sys.argv[2])
 except FileNotFoundError:
     sys.exit("Input does not exist")

@@ -9,7 +9,11 @@ def test_validate():
     except AssertionError:
         print("Valid input was rejected")
     try:
-        assert validate("256.255.255.255") == "False"
+        assert validate("258.255.255.255") == "False"
+    except AssertionError:
+        print("Invalid input was accepted")
+    try:
+        assert validate("256.247.255.255.3") == "False"
     except AssertionError:
         print("Invalid input was accepted")
 

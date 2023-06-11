@@ -22,9 +22,9 @@ def below_4(p1,p2):
 
 def priority_enqueue(q, fn, p):
     position_reached = False
-    counter = len(q)
+    counter = len(q) + 1
     while not position_reached:
-        if fn(p, q[counter]):
+        if fn(p, q[counter - 1]):
             position_reached = True
         else:
             counter += -1

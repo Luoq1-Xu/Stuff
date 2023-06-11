@@ -28,4 +28,7 @@ def priority_enqueue(q, fn, p):
             position_reached = True
         else:
             counter += -1
-    
+    q.insert(counter, p)
+    return
+
+

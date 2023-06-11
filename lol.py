@@ -22,6 +22,7 @@ class Jedi(ForceUser):
 
 class Sith(ForceUser):
     def __init__(self, *args):
+        super().__init__(args[0])
         self.name = "Darth " + args[0]
         if len(args) == 2:
             self.alias = args[1]

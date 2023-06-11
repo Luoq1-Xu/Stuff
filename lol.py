@@ -15,4 +15,9 @@ def size(q):
     return len(q)
 
 def below_4(p1,p2):
-    if a
+    if age(p1) < 4 and age(p2) >= 4:
+        return True
+    else:
+        return False
+
+

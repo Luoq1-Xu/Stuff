@@ -38,9 +38,10 @@ class JediTurnSith(Sith, Jedi):
 
 
 def main():
-    emperor = Sith("Sidious", "Palpatine")
-    print(emperor.name)
-    print(emperor.alias)
+    vader = JediTurnSith("Vader")
+    vader.do("choke")
+    vader.do("heal")
+    vader.do("jump")
 
 
 if __name__ == "__main__":

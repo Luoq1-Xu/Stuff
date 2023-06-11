@@ -11,7 +11,7 @@ class ForceUser:
 
 class Jedi(ForceUser):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
         self.powers = ['jump', 'heal', 'mind trick', 'push']
     def do(self, action):
         if action in self.powers:

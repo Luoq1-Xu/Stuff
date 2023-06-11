@@ -42,3 +42,8 @@ def valid_heap(node):
         right =  valid_heap(node.right)
     if left and right:
         return True
+
+def swap(n1, n2):
+    temp = n1.value
+    n1.value = n2.value
+    

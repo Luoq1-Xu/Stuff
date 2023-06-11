@@ -1,11 +1,5 @@
-def do(x):
-    try:
-        return x[0] + x[1]
-    except IndexError:
-        print("Bad")
-    except TypeError:
-        print("Good")
-    finally:
-        return x[0] + x
-
-print(do([[1], 2]))
+a = [['a', 'b'], ['c'], 'd']
+b = a[:-1]
+a[1], b[0][1] = b[0], a[2]
+print(a)
+print(b)

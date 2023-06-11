@@ -32,3 +32,7 @@ def priority_enqueue(q, fn, p):
     return
 
 
+def valid_heap(node):
+    if node.value == None:
+        return True
+    if node.value > 

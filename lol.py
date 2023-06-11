@@ -1,52 +1,45 @@
-def make_queue():
-    return []
-
-def enqueue(q, item):
-    q.append(item)
-    return
-
-def dequeue(q):
-    if q == []:
-        return None
-    else:
-        return q.pop(0)
-
-def size(q):
-    return len(q)
-
-def below_4(p1,p2):
-    if age(p1) < 4 and age(p2) >= 4:
-        return True
-    else:
-        return False
-
-def priority_enqueue(q, fn, p):
-    position_reached = False
-    counter = len(q) + 1
-    while not position_reached:
-        if fn(p, q[counter - 1]):
-            position_reached = True
+class ForceUser:
+    def __init__(self, name):
+        self.name = name
+        self.powers = [] # creates empty list of powers
+    def do(self, action):
+        if action in self.powers:
+            print(self.name + " performs Force " + action)
         else:
-            counter += -1
-    q.insert(counter, p)
-    return
+            print(self.name + " does not know Force " + action)
 
 
-def valid_heap(node):
-    if node.value == None:
-        return True
-    elif node.parent != None and node.value < node.parent.value:
-        return False
-    else:
-        left =  valid_heap(node.left)
-        right =  valid_heap(node.right)
-    if left and right:
-        return True
+class Jedi:
+    def __init__(self, name):
+        self.name = name
+        self.powers = ['jump', 'heal', 'mind trick', 'push']
+    def do(self, action):
+        if action in self.powers:
+            print(self.name + " performs Force " + action)
+        else:
+            print(self.name + " does not know Force " + action)
 
-def swap(n1, n2):
-    temp = n1.value
-    templeft = n1.left
-    tempright = n2.right
-    n1.value = n2.value
-    n1.left = n2.left
-    n1.right = n2.right
+
+class Sith:
+    def __init__(self, *args):
+        self.name = "Darth " + args[0]
+        if len(args) == 2:
+            self.alias = args[1]
+        self.powers = ['jump', 'lightning', 'choke', 'push']
+    def do(self, action):
+        if action in self.powers:
+            print(self.name + " performs Force " + action)
+        else:
+            print(self.name + " does not know Force " + action)
+
+
+
+
+def main():
+    emperor = Sith("Sidious", "Palpatine")
+    print(emperor.name)
+    print(emperor.alias)
+
+
+if __name__ == "__main__":
+    main()

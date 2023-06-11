@@ -9,7 +9,7 @@ class ForceUser:
             print(self.name + " does not know Force " + action)
 
 
-class Jedi:
+class Jedi(ForceUser):
     def __init__(self, name):
         self.name = name
         self.powers = ['jump', 'heal', 'mind trick', 'push']
@@ -20,7 +20,7 @@ class Jedi:
             print(self.name + " does not know Force " + action)
 
 
-class Sith:
+class Sith(ForceUser):
     def __init__(self, *args):
         self.name = "Darth " + args[0]
         if len(args) == 2:
@@ -32,7 +32,9 @@ class Sith:
         else:
             print(self.name + " does not know Force " + action)
 
-
+class JediTurnSith(Sith, Jedi):
+    def __init__(self, name):
+        super().__init__(name)
 
 
 def main():

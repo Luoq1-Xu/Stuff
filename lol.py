@@ -12,7 +12,7 @@ class ForceUser:
 class Jedi(ForceUser):
     def __init__(self, name):
         super().__init__(name)
-        self.powers = ['jump', 'heal', 'mind trick', 'push']
+        self.powers += ['jump', 'heal', 'mind trick', 'push']
     def do(self, action):
         if action in self.powers:
             print(self.name + " performs Force " + action)
@@ -26,7 +26,7 @@ class Sith(ForceUser):
         self.name = "Darth " + args[0]
         if len(args) == 2:
             self.alias = args[1]
-        self.powers = ['jump', 'lightning', 'choke', 'push']
+        self.powers += ['jump', 'lightning', 'choke', 'push']
     def do(self, action):
         if action in self.powers:
             print(self.name + " performs Force " + action)
@@ -40,9 +40,9 @@ class JediTurnSith(Sith, Jedi):
 
 def main():
     vader = JediTurnSith("Vader")
-    vader.do("choke")
-    vader.do("heal")
-    vader.do("jump")
+    print(isinstance(vader, Jedi))
+    print(isinstance(vader, Sith))
+
 
 
 if __name__ == "__main__":

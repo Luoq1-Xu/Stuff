@@ -464,7 +464,13 @@ def update_runners_and_score(hit_type):
 
 #SASAKI PITCHING AI
 def Sasaki_AI():
-    sasaki_highfastball()
+    rando = random.uniform(1,10)
+    if rando <= 5:
+        sasaki_splitter()
+    elif rando > 3 and rando < 7:
+        sasaki_highfastball()
+    else:
+        sasaki_lowoutsidefastball()
     return
 
 #DEGROM PITCHING AI

@@ -604,10 +604,10 @@ def lefty_pitch_decision_maker():
 def sasaki_splitter():
     xoffset = random.uniform(-2, 3)
     yoffset = random.uniform(-0.5, 0.5)
-    breakvariability = random.uniform(-0.25,0.15)
+    breakvariability = random.uniform(0,0.20)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104)
-    simulate(True, ball_pos, 3 + xoffset, -0.115, 2.75 + yoffset, 0.315, 4, 407, 0.750 + breakvariability, -0.135, 160, 'rokisasaki', 'SPLITTER')
+    simulate(True, ball_pos, 2 + xoffset, -0.115, 2.75 + yoffset, 0.25 + breakvariability, 4, 407, 0.650 + breakvariability, -0.135, 160, 'rokisasaki', 'SPLITTER')
     return
 def sasaki_highfastball():
     xoffset = random.uniform(0, 2.5)
@@ -616,12 +616,11 @@ def sasaki_highfastball():
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104 )
     simulate(True, ball_pos, 0.30 + xoffset, -0.075, 1.75, 0.015 + breakvariability, 4, 370, 0.010 + breakvariability, -0.40, 150, 'rokisasaki', 'FASTBALL')
     return
-def sasaki_lowfastball():
-    xoffset = random.uniform(-0.25, 1.5)
-    yoffset = random.uniform(0.25, 0.5)
+def sasaki_lowoutsidefastball():
+    vertbreakvariable = random.uniform(0,0.25)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104 )
-    simulate(True, ball_pos, 0.25 + xoffset, 0.145, 1.8 + yoffset, 0.25, 4, 375, 0.525, 0.115 , 120, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 1.5, 0.175, 1.5, 0.23 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.075 , 100, 'rokisasaki', 'FASTBALL')
     return
 
 #DEGROM PITCH TYPES

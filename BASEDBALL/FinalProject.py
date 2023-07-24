@@ -42,6 +42,7 @@ ball_pos = (0,0)
 yes = True
 fourseamballsize = 11
 strikezonedrawn = True
+umpsound = True
 
 #Global variables for menu and resetting
 menu_state = 0
@@ -115,6 +116,9 @@ sasakipitch = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (20
                                             manager=manager)
 backtomainmenu = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 620), (200,100)),
                                             text = 'MAIN MENU',
+                                            manager=manager)
+toggleumpsound = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((0, 200), (200,100)),
+                                            text = 'TOGGLEUMP',
                                             manager=manager)
 container = pygame_gui.core.UIContainer(relative_rect=pygame.Rect((0, 0), (1280,720)),manager=manager, is_window_root_container=False)
 banner = pygame_gui.elements.UILabel(relative_rect=pygame.Rect((440, 0), (400,100)), manager=manager, text="")
@@ -460,13 +464,7 @@ def update_runners_and_score(hit_type):
 
 #SASAKI PITCHING AI
 def Sasaki_AI():
-    rando = random.uniform(1,10)
-    if rando <= 3:
-        sasaki_splitter()
-    elif rando > 3 and rando <= 7:
-        sasaki_highfastball()
-    else:
-        sasaki_lowfastball()
+    sasaki_highfastball()
     return
 
 #DEGROM PITCHING AI
@@ -609,17 +607,17 @@ def sasaki_splitter():
     breakvariability = random.uniform(-0.25,0.15)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104)
-    simulate(True, ball_pos, 2 + xoffset, -0.115, 2.75 + yoffset, 0.315, 4, 407, 0.750 + breakvariability, -0.135, 160, 'rokisasaki', 'SPLITTER')
+    simulate(True, ball_pos, 3 + xoffset, -0.115, 2.75 + yoffset, 0.315, 4, 407, 0.750 + breakvariability, -0.135, 160, 'rokisasaki', 'SPLITTER')
     return
 def sasaki_highfastball():
-    xoffset = random.uniform(-1.25, 2.5)
-    yoffset = random.uniform(-0.25, 3)
+    xoffset = random.uniform(0, 2.5)
+    breakvariability = random.uniform(0,0.3)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104 )
-    simulate(True, ball_pos, 0.30 + xoffset, -0.03, 1.75 + yoffset, 0.015, 4, 370, 0.010, -0.15, 200, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 0.30 + xoffset, -0.075, 1.75, 0.015 + breakvariability, 4, 370, 0.010 + breakvariability, -0.40, 150, 'rokisasaki', 'FASTBALL')
     return
 def sasaki_lowfastball():
-    xoffset = random.uniform(-1.5, 1.5)
+    xoffset = random.uniform(-0.25, 1.5)
     yoffset = random.uniform(0.25, 0.5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104 )
@@ -987,6 +985,7 @@ def simulate(yes, ball_pos, horizontalspeed,
     sasakipitch.hide()
     backtomainmenu.hide()
     banner.hide()
+    toggleumpsound.hide()
 
     soundplayed = 0
     on_time = 0
@@ -1052,7 +1051,7 @@ def simulate(yes, ball_pos, horizontalspeed,
                     roki10(c,d)
                 elif current_time > starttime + 1050 and current_time <= starttime + 1100:
                     roki11(c,d)
-            
+
             leg_kick(current_time, starttime + 700)
             draw_static()
             manager.update(time_delta)
@@ -1325,7 +1324,8 @@ def simulate(yes, ball_pos, horizontalspeed,
             pitch_results_done = True
             #BALL OUTSIDE THE ZONE AND NOT SWUNG AT - BALL
             if (not collision(ball_pos.x, ball_pos.y, 11, 630, 482.5, 130, 165)) and swing_started == 0:
-                ballcall.play()
+                if umpsound:
+                    ballcall.play()
                 currentballs += 1
                 pitchnumber += 1
                 #WALK OCCURS
@@ -1368,9 +1368,9 @@ def simulate(yes, ball_pos, horizontalspeed,
             else:
                 pitchnumber += 1
                 currentstrikes += 1
-                if swing_started == 0 and currentstrikes == 3:
+                if swing_started == 0 and currentstrikes == 3 and umpsound:
                     called_strike_3.play()
-                elif swing_started == 0 and currentstrikes != 3:
+                elif swing_started == 0 and currentstrikes != 3 and umpsound:
                     strikecall.play()
                 #STRIKEOUT OCCURS
                 if currentstrikes == 3:
@@ -1439,6 +1439,7 @@ def simulate(yes, ball_pos, horizontalspeed,
             strikezonetoggle.show()
             backtomainmenu.show()
             sasakipitch.show()
+            toggleumpsound.show()
 
     pygame.mouse.set_cursor(pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW))
     return
@@ -1463,6 +1464,7 @@ while running:
         salepitch.show()
         backtomainmenu.show()
         strikezonetoggle.show()
+        toggleumpsound.show()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -1472,6 +1474,11 @@ while running:
                         strikezonedrawn = False
                     elif strikezonedrawn == False:
                         strikezonedrawn = True
+                elif event.ui_element == toggleumpsound:
+                    if umpsound == True:
+                        umpsound = False
+                    elif umpsound == False:
+                        umpsound = True
                 elif event.ui_element == salepitch:
                     lefty_pitch_decision_maker()
                 elif event.ui_element == backtomainmenu:
@@ -1514,6 +1521,11 @@ while running:
                         strikezonedrawn = False
                     elif strikezonedrawn == False:
                         strikezonedrawn = True
+                elif event.ui_element == toggleumpsound:
+                    if umpsound == True:
+                        umpsound = False
+                    elif umpsound == False:
+                        umpsound = True
                 elif event.ui_element == degrompitch:
                     pitch_decision_maker()
                 elif event.ui_element == backtomainmenu:
@@ -1540,7 +1552,7 @@ while running:
         if first_pitch_thrown:
             pygame.draw.circle(screen, "white", ball_pos, fourseamballsize, 2)
         pygame.display.flip()
-    
+
     elif menu_state == 3:
         salepitch.hide()
         degrompitch.hide()
@@ -1556,6 +1568,11 @@ while running:
                         strikezonedrawn = False
                     elif strikezonedrawn == False:
                         strikezonedrawn = True
+                elif event.ui_element == toggleumpsound:
+                    if umpsound == True:
+                        umpsound = False
+                    elif umpsound == False:
+                        umpsound = True
                 elif event.ui_element == sasakipitch:
                     Sasaki_AI()
                 elif event.ui_element == backtomainmenu:

@@ -1,4 +1,4 @@
-# BasedBall : A baseball at-bat simulator
+# BasedBall : A baseball batting simulator
 import pygame
 import pygame_gui
 import random

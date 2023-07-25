@@ -465,10 +465,10 @@ def update_runners_and_score(hit_type):
 #SASAKI PITCHING AI
 def Sasaki_AI():
     rando = random.uniform(1,10)
-    if rando <= 5:
-        sasaki_splitter()
-    elif rando > 3 and rando < 7:
-        sasaki_highfastball()
+    if rando <= 3:
+        sasaki_lowoutsidesplitter()
+    elif rando > 3 and rando <= 5:
+        sasaki_highinsidefastball()
     else:
         sasaki_lowoutsidefastball()
     return
@@ -607,15 +607,14 @@ def lefty_pitch_decision_maker():
     return
 
 #SASAKI PITCH TYPES
-def sasaki_splitter():
-    xoffset = random.uniform(-2, 3)
-    yoffset = random.uniform(-0.5, 0.5)
-    breakvariability = random.uniform(0,0.20)
+def sasaki_lowoutsidesplitter():
+    vertbreakvariability = random.uniform(0,0.25)
+    horizontalbreakvariability = random.uniform(0,0.20)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104)
-    simulate(True, ball_pos, 2 + xoffset, -0.115, 2.75 + yoffset, 0.25 + breakvariability, 4, 407, 0.650 + breakvariability, -0.135, 160, 'rokisasaki', 'SPLITTER')
+    simulate(True, ball_pos, 1, 0.175 + horizontalbreakvariability, 0.5, 0.4 + vertbreakvariability, 4, 407, 0.650 + vertbreakvariability, 0.025 + horizontalbreakvariability, 160, 'rokisasaki', 'SPLITTER')
     return
-def sasaki_highfastball():
+def sasaki_highinsidefastball():
     xoffset = random.uniform(0, 2.5)
     breakvariability = random.uniform(0,0.3)
     global ball_pos
@@ -623,10 +622,11 @@ def sasaki_highfastball():
     simulate(True, ball_pos, 0.30 + xoffset, -0.075, 1.75, 0.015 + breakvariability, 4, 370, 0.010 + breakvariability, -0.40, 150, 'rokisasaki', 'FASTBALL')
     return
 def sasaki_lowoutsidefastball():
-    vertbreakvariable = random.uniform(0,0.25)
+    vertbreakvariable = random.uniform(0,0.20)
+    horizontalbreakvariable = random.uniform(0,0.165)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 104 )
-    simulate(True, ball_pos, 1.5, 0.175, 1.5, 0.23 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.075 , 100, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, 1.5, 0.23 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
     return
 
 #DEGROM PITCH TYPES

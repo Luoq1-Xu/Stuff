@@ -477,13 +477,17 @@ def update_runners_and_score(hit_type):
 #SASAKI PITCHING AI
 def Sasaki_AI():
     rando = random.uniform(1,10)
-    if rando <= 3:
+    if rando <= 2.5:
         sasaki_highinsidefastball()
-    elif rando > 3 and rando <= 6:
+    elif rando > 2.5 and rando <= 5:
         sasaki_lowoutsidesplitter()
-    else:
+    elif rando > 5 and rando <= 7.5:
         sasaki_highoutsidefastball()
+    else:
+        sasaki_lowinsidefastball()
+
     return
+    
 
 #DEGROM PITCHING AI
 def pitch_decision_maker():
@@ -555,7 +559,7 @@ def lefty_pitch_decision_maker():
 #SASAKI PITCH TYPES
 def sasaki_lowoutsidesplitter():
     vertbreakvariability = random.uniform(0,0.15)
-    horizontalbreakvariability = random.uniform(0,0.20)
+    horizontalbreakvariability = random.uniform(0,0.15)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164)
     simulate(True, ball_pos, 1, 0.175 + horizontalbreakvariability, -0.75, 0.4 + vertbreakvariability, 4, 407, 0.650 + vertbreakvariability, 0.025 + horizontalbreakvariability, 160, 'rokisasaki', 'SPLITTER')
@@ -566,7 +570,14 @@ def sasaki_highinsidefastball():
     yoffset = random.uniform(-0.5,0.5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
-    simulate(True, ball_pos, 0.5, -0.1 + horizontalbreakvariable, -1.5 + yoffset, 0.100 + vertbreakvariable, 4, 370, 0.055 + vertbreakvariable, -0.165 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 0.25, -0.1 + horizontalbreakvariable, -1.5 + yoffset, 0.075 + vertbreakvariable, 4, 370, 0.050 + vertbreakvariable, -0.150 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
+    return
+def sasaki_lowinsidefastball():
+    vertbreakvariable = random.uniform(0,0.095)
+    horizontalbreakvariable = random.uniform(-0.11,0)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
+    simulate(True, ball_pos, 0.25, -0.085 + horizontalbreakvariable, 0.25 , 0.50 + vertbreakvariable, 4, 370, 0.35 + vertbreakvariable, -0.145 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
     return
 def sasaki_highoutsidefastball():
     vertbreakvariable = random.uniform(0,0.15)

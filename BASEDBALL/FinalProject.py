@@ -16,9 +16,6 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-
-
-
 # pygame setup
 pygame.mixer.pre_init(44100, 16, 2, 4096)
 pygame.init()
@@ -65,7 +62,10 @@ ishomerun = ''
 first_pitch_thrown = False
 
 #Load Sounds
-popsfx = pygame.mixer.Sound(resource_path("Sounds/POPSFX.mp3"))
+pop1 = pygame.mixer.Sound(resource_path("Sounds/POPSFX.mp3"))
+pop2 = pygame.mixer.Sound(resource_path("Sounds/POP2.mp3"))
+pop3 = pygame.mixer.Sound(resource_path("Sounds/POP3.mp3"))
+pop4 = pygame.mixer.Sound(resource_path("Sounds/POP4.mp3"))
 strikecall = pygame.mixer.Sound(resource_path("Sounds/STRIKECALL.mp3"))
 ballcall = pygame.mixer.Sound(resource_path("Sounds/BALLCALL.mp3"))
 foulball = pygame.mixer.Sound(resource_path("Sounds/FOULBALL.mp3"))
@@ -74,6 +74,7 @@ double = pygame.mixer.Sound(resource_path("Sounds/DOUBLE.mp3"))
 triple = pygame.mixer.Sound(resource_path("Sounds/TRIPLE.mp3"))
 homer = pygame.mixer.Sound(resource_path("Sounds/HOMERUN.mp3"))
 called_strike_3 = pygame.mixer.Sound(resource_path("Sounds/CALLEDSTRIKE3.mp3"))
+
 
 #Load images
 def loadimg(name,number):
@@ -154,7 +155,7 @@ def draw_bases(base1, base2, base3):
     return
 
 def homeplate():
-    pygame.draw.polygon(screen, "white", ((565, 650), (695, 650), (695, 660), (630, 675), (565, 660)), 3)
+    pygame.draw.polygon(screen, "white", ((565, 650), (695, 650), (695, 660), (630, 675), (565, 660)), 0)
 
 def draw_static():
     global strikezonedrawn
@@ -202,6 +203,17 @@ def check_menu():
             menu_state = 100
     return
 
+def glovepop():
+    rand = random.randint(2,4)
+    if rand == 2:
+        pop2.play()
+    elif rand == 3:
+        pop3.play()
+    else:
+        pop4.play()
+    return
+
+
 #righty pitcher position
 c = (screen.get_width() / 2) - 30
 d = (screen.get_height() / 3) + 180
@@ -214,8 +226,8 @@ j = (screen.get_width() / 2) - 105
 k = (screen.get_height() / 3) - 40
 
 #Lefty pitcher position
-a = (screen.get_width() / 2) - 20
-b = (screen.get_height() / 3) + 120
+a = (screen.get_width() / 2) - 40
+b = (screen.get_height() / 3) + 180
 
 def leftyone(a,b):
     screen.blit(lefty[0], (a,b))
@@ -485,37 +497,37 @@ def pitch_decision_maker():
         (currentballs == 1 and currentstrikes == 1) or
         (currentballs == 3 and currentstrikes == 2)):
         if rando >= 1 and rando <= 3:
-            lowfastball()
+            outsidefastball()
         elif rando > 3 and rando <= 5:
             highfastball()
-        elif rando > 5 and rando <= 8:
+        elif rando > 5 and rando <= 9:
             lowslider()
         else:
             lowchangeup()
     # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
         if rando >= 1 and rando <= 4:
-            lowfastball()
+            outsidefastball()
         elif rando > 4 and rando <= 5.5:
             highfastball()
-        elif rando > 5.5 and rando <= 8.5:
+        elif rando > 5.5 and rando <= 9:
             lowslider()
         else:
             lowchangeup()
     # 0 - 1  OR  2 - 2
     elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
-            lowfastball()
+            outsidefastball()
         elif rando > 2 and rando <= 5:
             highfastball()
-        elif rando > 5 and rando <= 7:
+        elif rando > 5 and rando <= 8:
             lowslider()
         else:
             lowchangeup()
     # 2 - 0  OR  3 - 1  OR  3 - 0
     elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
         if rando >= 1 and rando <= 6:
-            lowfastball()
+            outsidefastball()
         elif rando > 6 and rando <= 7:
             highfastball()
         elif rando > 7 and rando <= 9:
@@ -525,10 +537,10 @@ def pitch_decision_maker():
     # 0 - 2  OR  1 - 2
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
-            lowfastball()
+            outsidefastball()
         elif rando > 2 and rando <= 5:
             highfastball()
-        elif rando > 5 and rando <= 7:
+        elif rando > 5 and rando <= 7.5:
             lowslider()
         else:
             lowchangeup()
@@ -537,73 +549,7 @@ def pitch_decision_maker():
 
 #SALE PITCHING AI
 def lefty_pitch_decision_maker():
-    global currentballs
-    global currentstrikes
-    rando = random.uniform(1,10)
-    # 0-0  OR  1 - 1  OR 3 - 2
-    if ((currentballs == 0 and currentstrikes == 0) or
-        (currentballs == 4) or
-        (currentstrikes == 3) or
-        (currentballs == 1 and currentstrikes == 1) or
-        (currentballs == 3 and currentstrikes == 2)):
-        if rando >= 1 and rando <= 6:
-            highlow = random.uniform(1,10)
-            if highlow >= 1 and highlow <= 6:
-                leftyfastball()
-            else:
-                leftyhighfastball()
-        elif rando > 6 and rando <= 8.5:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 1 - 0 OR 2 - 1
-    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
-        if rando >= 1 and rando <= 6.5:
-            highlow = random.uniform(1,10)
-            if highlow >= 1 and highlow <= 5:
-                leftyfastball()
-            else:
-                leftyhighfastball()
-        elif rando > 6.5 and rando <= 9:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 0 - 1  OR  2 - 2
-    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
-        if rando >= 1 and rando <= 5:
-            highlow = random.uniform(1,10)
-            if highlow >= 1 and highlow <= 4:
-                leftyfastball()
-            else:
-                leftyhighfastball()
-        elif rando > 5 and rando <= 7:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 2 - 0  OR  3 - 1  OR  3 - 0
-    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
-        if rando >= 1 and rando <= 7:
-            highlow = random.uniform(1,10)
-            if highlow >= 1 and highlow <= 8:
-                leftyfastball()
-            else:
-                leftyhighfastball()
-        elif rando > 7 and rando <= 9:
-            leftyslider()
-        else:
-            leftychangeup()
-    # 0 - 2  OR  1 - 2
-    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
-        if rando >= 1 and rando <= 3:
-            highlow = random.uniform(1,10)
-            if highlow >= 1 and highlow <= 3:
-                leftyfastball()
-            else:
-                leftyhighfastball()
-        elif rando > 3 and rando <= 7:
-            leftyslider()
-        else:
-            leftychangeup()
+    leftyhighfastball()
     return
 
 #SASAKI PITCH TYPES
@@ -620,7 +566,7 @@ def sasaki_highinsidefastball():
     yoffset = random.uniform(-0.5,0.5)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
-    simulate(True, ball_pos, 0.5, -0.1 + horizontalbreakvariable, -1.5 + yoffset, 0.125 + vertbreakvariable, 4, 370, 0.075 + vertbreakvariable, -0.165 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 0.5, -0.1 + horizontalbreakvariable, -1.5 + yoffset, 0.100 + vertbreakvariable, 4, 370, 0.055 + vertbreakvariable, -0.165 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
     return
 def sasaki_highoutsidefastball():
     vertbreakvariable = random.uniform(0,0.15)
@@ -638,33 +584,34 @@ def sasaki_lowoutsidefastball():
     return
 
 #DEGROM PITCH TYPES
-def lowfastball():
-    xoffset = random.uniform(-1.5, 1.5)
-    yoffset = random.uniform(0.25, 0.5)
+def outsidefastball():
+    vertbreakvariability = random.uniform(0,0.10)
+    horizontalbreakvariability = random.uniform(0,0.20)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 127 )
-    simulate(True, ball_pos, 1.1 + xoffset, 0.145, 1.8 + yoffset, 0.23, 4, 380, 0.525, 0.115 , 120, 'jacobdegrom', 'FASTBALL')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
+    simulate(True, ball_pos, 1, 0.1 + horizontalbreakvariability, -0.75, 0.05 + vertbreakvariability, 4, 370, 0.15 + vertbreakvariability, 0.05 + horizontalbreakvariability, 150, 'jacobdegrom', 'FASTBALL')
     return
 def highfastball():
-    xoffset = random.uniform(-1.65, 2.5)
-    yoffset = random.uniform(-0.5, 1.75)
+    vertbreakvariable = random.uniform(0,0.075)
+    horizontalbreakvariable = random.uniform(-0.05,0)
+    yoffset = random.uniform(-0.5,0.5)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 127 )
-    simulate(True, ball_pos, -0.5 + xoffset, -0.05, 0.1 + yoffset, 0.015, 4, 380, 0.011, -0.11, 200, 'jacobdegrom', 'FASTBALL')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187 )
+    simulate(True, ball_pos, 0.5, -0.075 + horizontalbreakvariable, -2.5 + yoffset, 0.100 + vertbreakvariable, 4, 370, 0.05 + vertbreakvariable, -0.025 + horizontalbreakvariable, 150, 'jacobdegrom', 'FASTBALL')
     return
 def lowslider():
-    xoffset = random.uniform(-1.35, 0.75)
-    yoffset = random.uniform(0, 2)
+    vertbreakvariability = random.uniform(0,0.15)
+    horizontalbreakvariability = random.uniform(0,0.20)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 127)
-    simulate(True, ball_pos, 0.25 + xoffset, 0.3, 1.5 + yoffset, 0.3, 4, 420, 0.275, 0.375, 250, 'jacobdegrom', 'SLIDER')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
+    simulate(True, ball_pos, 1, 0.085 + horizontalbreakvariability, -0.5, 0.295 + vertbreakvariability, 4, 407, 0.675 + vertbreakvariability, 0.110 + horizontalbreakvariability, 160, 'jacobdegrom', 'SLIDER')
     return
 def lowchangeup():
-    xoffset = random.uniform(-3, 3)
-    yoffset = random.uniform(-0.5, 0.5)
+    vertbreakvariability = random.uniform(0,0.15)
+    horizontalbreakvariability = random.uniform(0,-0.05)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 127)
-    simulate(True, ball_pos, 2 + xoffset, -0.115, 2.25 + yoffset, 0.255, 4, 450, 0.540, -0.165, 170, 'jacobdegrom', 'CHANGEUP')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
+    simulate(True, ball_pos, 1, -0.075 + horizontalbreakvariability, -0.5, 0.200 + vertbreakvariability, 4, 450, 0.500 + vertbreakvariability, -0.075 + horizontalbreakvariability, 160, 'jacobdegrom', 'CHANGEUP')
     return
 
 #SALE PITCH TYPES
@@ -672,27 +619,30 @@ def leftyfastball():
     xoffset = random.uniform(-1, 2.5)
     yoffset = random.uniform(0.25, 0.25)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 209)
     simulate(True, ball_pos, -2 + xoffset, -0.16, 1.5 + yoffset, 0.20, 4, 380, 0.45, -0.17 , 120, 'chrissale', 'FASTBALL')
     return
 def leftyhighfastball():
-    xoffset = random.uniform(-0.30, 0.30)
-    yoffset = random.uniform(-0.75, 0.75)
+    xoffset = random.uniform(0, -0.10)
+    yoffset = random.uniform(0, 0.075)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
-    simulate(True, ball_pos, -2 + xoffset, -0.185, -1.15 + yoffset, 0.095, 4, 380, 0.125, -0.2, 200, 'chrissale', 'FASTBALL')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 61, (screen.get_height() / 3) + 209)
+    simulate(True, ball_pos, 0, -0.25 + xoffset, -1.95, 0.035 + yoffset, 4, 380, 0.025 + yoffset, -0.25 + xoffset, 200, 'chrissale', 'FASTBALL')
+    return
 def leftyslider():
-    xoffset = random.uniform(-0.5, 2)
-    yoffset = random.uniform(0,0)
+    vertbreakvariability = random.uniform(0,0.10)
+    horizontalbreakvariability = random.uniform(0,-0.20)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
-    simulate(True, ball_pos, -1 + xoffset, -0.3, 0.2 + yoffset, 0.35, 4, 490, 0.5, -0.65, 300, 'chrissale', 'SLIDER')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 61, (screen.get_height() / 3) + 209)
+    simulate(True, ball_pos, 1, -0.100 + horizontalbreakvariability, -0.5, 0.250 + vertbreakvariability, 4, 480, 0.500 + vertbreakvariability, -0.150 + horizontalbreakvariability, 160, 'chrissale', 'SLIDER')
+    return
 def leftychangeup():
     xoffset = random.uniform(-1, 2.5)
     yoffset = random.uniform(-0.5, 0.25)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 149 )
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 209)
     simulate(True, ball_pos, -2 + xoffset, -0.16, 1.45 + yoffset, 0.20, 4, 430, 0.50, -0.100 , 120, 'chrissale', 'CHANGEUP')
+    return
 
 
 # CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
@@ -1187,7 +1137,7 @@ def simulate(yes, ball_pos, horizontalspeed,
             pygame.display.flip()
 
             if (current_time > (starttime + traveltime + 1050) and soundplayed == 0 and on_time == 0) or (current_time > contact_time and soundplayed == 0 and (on_time > 0 and made_contact == 1)):
-                popsfx.play()
+                glovepop()
                 soundplayed += 1
 
         #FOUL BALL TIMING
@@ -1429,7 +1379,7 @@ def simulate(yes, ball_pos, horizontalspeed,
             elif pitchername == 'rokisasaki':
                 roki14(c, d)
             if (current_time > contact_time and soundplayed == 0 and (on_time > 0 and made_contact == 1)):
-                popsfx.play()
+                glovepop()
                 soundplayed += 1
             if swing_started > 0:
                 timenow = current_time

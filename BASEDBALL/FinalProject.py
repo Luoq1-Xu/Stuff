@@ -477,17 +477,18 @@ def update_runners_and_score(hit_type):
 #SASAKI PITCHING AI
 def Sasaki_AI():
     rando = random.uniform(1,10)
-    if rando <= 2.5:
+    if rando <= 2:
         sasaki_highinsidefastball()
-    elif rando > 2.5 and rando <= 5:
+    elif rando > 2 and rando <= 4:
         sasaki_lowoutsidesplitter()
-    elif rando > 5 and rando <= 7.5:
+    elif rando > 4 and rando <= 6:
         sasaki_highoutsidefastball()
-    else:
+    elif rando > 6 and rando <= 8:
         sasaki_lowinsidefastball()
-
+    else:
+        sasaki_lowoutsidefastball()
     return
-    
+
 
 #DEGROM PITCHING AI
 def pitch_decision_maker():
@@ -501,9 +502,9 @@ def pitch_decision_maker():
         (currentballs == 1 and currentstrikes == 1) or
         (currentballs == 3 and currentstrikes == 2)):
         if rando >= 1 and rando <= 3:
-            outsidefastball()
+            highoutsidefastball()
         elif rando > 3 and rando <= 5:
-            highfastball()
+            highinsidefastball()
         elif rando > 5 and rando <= 9:
             lowslider()
         else:
@@ -511,9 +512,9 @@ def pitch_decision_maker():
     # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
         if rando >= 1 and rando <= 4:
-            outsidefastball()
+            highoutsidefastball()
         elif rando > 4 and rando <= 5.5:
-            highfastball()
+            highinsidefastball()
         elif rando > 5.5 and rando <= 9:
             lowslider()
         else:
@@ -521,9 +522,9 @@ def pitch_decision_maker():
     # 0 - 1  OR  2 - 2
     elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
-            outsidefastball()
+            highoutsidefastball()
         elif rando > 2 and rando <= 5:
-            highfastball()
+            highinsidefastball()
         elif rando > 5 and rando <= 8:
             lowslider()
         else:
@@ -531,9 +532,9 @@ def pitch_decision_maker():
     # 2 - 0  OR  3 - 1  OR  3 - 0
     elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
         if rando >= 1 and rando <= 6:
-            outsidefastball()
+            highoutsidefastball()
         elif rando > 6 and rando <= 7:
-            highfastball()
+            highinsidefastball()
         elif rando > 7 and rando <= 9:
             lowslider()
         else:
@@ -541,9 +542,9 @@ def pitch_decision_maker():
     # 0 - 2  OR  1 - 2
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
-            outsidefastball()
+            highoutsidefastball()
         elif rando > 2 and rando <= 5:
-            highfastball()
+            highinsidefastball()
         elif rando > 5 and rando <= 7.5:
             lowslider()
         else:
@@ -574,7 +575,7 @@ def sasaki_highinsidefastball():
     return
 def sasaki_lowinsidefastball():
     vertbreakvariable = random.uniform(0,0.095)
-    horizontalbreakvariable = random.uniform(-0.11,0)
+    horizontalbreakvariable = random.uniform(-0.125,0)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
     simulate(True, ball_pos, 0.25, -0.085 + horizontalbreakvariable, 0.25 , 0.50 + vertbreakvariable, 4, 370, 0.35 + vertbreakvariable, -0.145 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
@@ -591,24 +592,24 @@ def sasaki_lowoutsidefastball():
     horizontalbreakvariable = random.uniform(0,0.165)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
-    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, 1.5, 0.23 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, 1.5, 0.20 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
     return
 
 #DEGROM PITCH TYPES
-def outsidefastball():
+def highoutsidefastball():
     vertbreakvariability = random.uniform(0,0.10)
     horizontalbreakvariability = random.uniform(0,0.20)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
     simulate(True, ball_pos, 1, 0.1 + horizontalbreakvariability, -0.75, 0.05 + vertbreakvariability, 4, 370, 0.15 + vertbreakvariability, 0.05 + horizontalbreakvariability, 150, 'jacobdegrom', 'FASTBALL')
     return
-def highfastball():
-    vertbreakvariable = random.uniform(0,0.075)
+def highinsidefastball():
+    vertbreakvariable = random.uniform(0,0.065)
     horizontalbreakvariable = random.uniform(-0.05,0)
-    yoffset = random.uniform(-0.5,0.5)
+    yoffset = random.uniform(-0.5,0.25)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187 )
-    simulate(True, ball_pos, 0.5, -0.075 + horizontalbreakvariable, -2.5 + yoffset, 0.100 + vertbreakvariable, 4, 370, 0.05 + vertbreakvariable, -0.025 + horizontalbreakvariable, 150, 'jacobdegrom', 'FASTBALL')
+    simulate(True, ball_pos, 0.5, -0.075 + horizontalbreakvariable, -2.75 + yoffset, 0.085 + vertbreakvariable, 4, 370, 0.05 + vertbreakvariable, -0.025 + horizontalbreakvariable, 150, 'jacobdegrom', 'FASTBALL')
     return
 def lowslider():
     vertbreakvariability = random.uniform(0,0.15)
@@ -624,6 +625,14 @@ def lowchangeup():
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
     simulate(True, ball_pos, 1, -0.075 + horizontalbreakvariability, -0.5, 0.200 + vertbreakvariability, 4, 450, 0.500 + vertbreakvariability, -0.075 + horizontalbreakvariability, 160, 'jacobdegrom', 'CHANGEUP')
     return
+def lowoutsidefastball():
+    vertbreakvariability = random.uniform(0,0.10)
+    horizontalbreakvariability = random.uniform(0,0.20)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
+    simulate(True, ball_pos, 1, 0.15 + horizontalbreakvariability, -0.75, 0.500 + vertbreakvariability, 4, 370, 0.650 + vertbreakvariability, 0.10 + horizontalbreakvariability, 150, 'jacobdegrom', 'FASTBALL')
+    return
+
 
 #SALE PITCH TYPES
 def leftyfastball():

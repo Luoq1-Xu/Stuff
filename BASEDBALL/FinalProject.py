@@ -563,7 +563,7 @@ def sasaki_lowoutsidesplitter():
     horizontalbreakvariability = random.uniform(0,0.15)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164)
-    simulate(True, ball_pos, 1, 0.175 + horizontalbreakvariability, -0.75, 0.4 + vertbreakvariability, 4, 407, 0.650 + vertbreakvariability, 0.025 + horizontalbreakvariability, 160, 'rokisasaki', 'SPLITTER')
+    simulate(True, ball_pos, 1, 0.175 + horizontalbreakvariability, -0.45, 0.4 + vertbreakvariability, 4, 407, 0.650 + vertbreakvariability, 0.025 + horizontalbreakvariability, 160, 'rokisasaki', 'SPLITTER')
     return
 def sasaki_highinsidefastball():
     vertbreakvariable = random.uniform(0,0.095)
@@ -578,7 +578,7 @@ def sasaki_lowinsidefastball():
     horizontalbreakvariable = random.uniform(-0.125,0)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
-    simulate(True, ball_pos, 0.25, -0.085 + horizontalbreakvariable, 0.25 , 0.50 + vertbreakvariable, 4, 370, 0.35 + vertbreakvariable, -0.145 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 0.25, -0.085 + horizontalbreakvariable, -0.10 , 0.30 + vertbreakvariable, 4, 370, 0.650 + vertbreakvariable, -0.145 + horizontalbreakvariable, 150, 'rokisasaki', 'FASTBALL')
     return
 def sasaki_highoutsidefastball():
     vertbreakvariable = random.uniform(0,0.15)
@@ -592,7 +592,7 @@ def sasaki_lowoutsidefastball():
     horizontalbreakvariable = random.uniform(0,0.165)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
-    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, 1.5, 0.20 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, -0.15, 0.25 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
     return
 
 #DEGROM PITCH TYPES

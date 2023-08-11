@@ -474,6 +474,23 @@ def update_runners_and_score(hit_type):
             ishomerun = 'GRAND SLAM'
     return
 
+#Function to check quality of timing
+def powertiming(swing_starttime, starttime, traveltime):
+    if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 15 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 30:
+        return 1
+    elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 15:
+        return 2
+    else:
+        return 0
+
+def contacttiming(swing_starttime, starttime, traveltime):
+    if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 30 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 60:
+        return 1
+    elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 30:
+        return 2
+    else:
+        return 0
+
 #SASAKI PITCHING AI
 def Sasaki_AI():
     rando = random.uniform(1,10)
@@ -554,7 +571,73 @@ def pitch_decision_maker():
 
 #SALE PITCHING AI
 def lefty_pitch_decision_maker():
-    leftyhighfastball()
+    global currentballs
+    global currentstrikes
+    rando = random.uniform(1,10)
+    # 0-0  OR  1 - 1  OR 3 - 2
+    if ((currentballs == 0 and currentstrikes == 0) or
+        (currentballs == 4) or
+        (currentstrikes == 3) or
+        (currentballs == 1 and currentstrikes == 1) or
+        (currentballs == 3 and currentstrikes == 2)):
+        if rando >= 1 and rando <= 6:
+            highlow = random.uniform(1,10)
+            if highlow >= 1 and highlow <= 6:
+                lowoutsidesinker()
+            else:
+                leftyhighfastball()
+        elif rando > 6 and rando <= 8.5:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 1 - 0 OR 2 - 1
+    elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
+        if rando >= 1 and rando <= 6.5:
+            highlow = random.uniform(1,10)
+            if highlow >= 1 and highlow <= 5:
+                lowoutsidesinker()
+            else:
+                leftyhighfastball()
+        elif rando > 6.5 and rando <= 9:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 0 - 1  OR  2 - 2
+    elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
+        if rando >= 1 and rando <= 5:
+            highlow = random.uniform(1,10)
+            if highlow >= 1 and highlow <= 4:
+                lowoutsidesinker()
+            else:
+                leftyhighfastball()
+        elif rando > 5 and rando <= 7:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 2 - 0  OR  3 - 1  OR  3 - 0
+    elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
+        if rando >= 1 and rando <= 7:
+            highlow = random.uniform(1,10)
+            if highlow >= 1 and highlow <= 8:
+                lowoutsidesinker()
+            else:
+                leftyhighfastball()
+        elif rando > 7 and rando <= 9:
+            leftyslider()
+        else:
+            leftychangeup()
+    # 0 - 2  OR  1 - 2
+    elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
+        if rando >= 1 and rando <= 3:
+            highlow = random.uniform(1,10)
+            if highlow >= 1 and highlow <= 3:
+                lowoutsidesinker()
+            else:
+                leftyhighfastball()
+        elif rando > 3 and rando <= 7:
+            leftyslider()
+        else:
+            leftychangeup()
     return
 
 #SASAKI PITCH TYPES
@@ -592,7 +675,7 @@ def sasaki_lowoutsidefastball():
     horizontalbreakvariable = random.uniform(0,0.165)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 42, (screen.get_height() / 3) + 164 )
-    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, -0.15, 0.25 + vertbreakvariable, 4, 370, 0.525 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
+    simulate(True, ball_pos, 1.5, 0.175 + horizontalbreakvariable, -0.15, 0.175 + vertbreakvariable, 4, 370, 0.575 + vertbreakvariable, 0.055 + horizontalbreakvariable , 100, 'rokisasaki', 'FASTBALL')
     return
 
 #DEGROM PITCH TYPES
@@ -647,22 +730,30 @@ def leftyhighfastball():
     yoffset = random.uniform(0, 0.075)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 61, (screen.get_height() / 3) + 209)
-    simulate(True, ball_pos, 0, -0.25 + xoffset, -1.95, 0.035 + yoffset, 4, 380, 0.025 + yoffset, -0.25 + xoffset, 200, 'chrissale', 'FASTBALL')
+    simulate(True, ball_pos, -2.5, -0.2 + xoffset, -2.5, 0.055 + yoffset, 4, 380, 0.025 + yoffset, -0.25 + xoffset, 200, 'chrissale', 'FASTBALL')
     return
 def leftyslider():
     vertbreakvariability = random.uniform(0,0.10)
-    horizontalbreakvariability = random.uniform(0,-0.20)
+    horizontalbreakvariability = random.uniform(0,-0.15 )
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) + 61, (screen.get_height() / 3) + 209)
-    simulate(True, ball_pos, 1, -0.100 + horizontalbreakvariability, -0.5, 0.250 + vertbreakvariability, 4, 480, 0.500 + vertbreakvariability, -0.150 + horizontalbreakvariability, 160, 'chrissale', 'SLIDER')
+    simulate(True, ball_pos, -0.1, -0.200 + horizontalbreakvariability, -1, 0.225 + vertbreakvariability, 4, 480, 0.450 + vertbreakvariability, -0.275 + horizontalbreakvariability, 160, 'chrissale', 'SLIDER')
     return
 def leftychangeup():
-    xoffset = random.uniform(-1, 2.5)
-    yoffset = random.uniform(-0.5, 0.25)
+    vertbreakvariable = random.uniform(0,0.10)
+    horizontalbreakvariable = random.uniform(0,0.165)
     global ball_pos
-    ball_pos = pygame.Vector2((screen.get_width() / 2) + 81, (screen.get_height() / 3) + 209)
-    simulate(True, ball_pos, -2 + xoffset, -0.16, 1.45 + yoffset, 0.20, 4, 430, 0.50, -0.100 , 120, 'chrissale', 'CHANGEUP')
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 61, (screen.get_height() / 3) + 209 )
+    simulate(True, ball_pos, -1.25, -0.175 + horizontalbreakvariable, -0.45, 0.225 + vertbreakvariable, 4, 430, 0.525 + vertbreakvariable, -0.055 + horizontalbreakvariable , 175, 'chrissale', 'CHANGEUP')
     return
+def lowoutsidesinker():
+    vertbreakvariable = random.uniform(0,0.10)
+    horizontalbreakvariable = random.uniform(0,0.165)
+    global ball_pos
+    ball_pos = pygame.Vector2((screen.get_width() / 2) + 61, (screen.get_height() / 3) + 209 )
+    simulate(True, ball_pos, -1.25, -0.175 + horizontalbreakvariable, -0.35, 0.20 + vertbreakvariable, 4, 380, 0.425 + vertbreakvariable, -0.055 + horizontalbreakvariable , 100, 'chrissale', 'SINKER')
+    return
+
 
 
 # CREDIT TO e-James -> https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
@@ -1102,22 +1193,14 @@ def simulate(yes, ball_pos, horizontalspeed,
                         if mousepos[1] > 500:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 1
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
+                            contact_time = swing_starttime + 150
+                            on_time = contacttiming(swing_starttime,starttime,traveltime)
                         #HIGH SWING
                         elif mousepos[1] < 500:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 2
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 40 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 70:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 40:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
+                            contact_time = swing_starttime + 150
+                            on_time = contacttiming(swing_starttime,starttime,traveltime)
                     #POWER SWING
                     elif event.key == pygame.K_e and swing_started == 0:
                         swing_type = 2
@@ -1126,22 +1209,14 @@ def simulate(yes, ball_pos, horizontalspeed,
                         if mousepos[1] > 500:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 1
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 20 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 40:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 20:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
+                            contact_time = swing_starttime + 150
+                            on_time = powertiming(swing_starttime,starttime,traveltime)
                         #HIGH SWING
                         elif mousepos[1] < 500:
                             swing_starttime = pygame.time.get_ticks()
                             swing_started = 2
-                            if abs((swing_starttime + 150) - (starttime + traveltime + 1150)) > 20 and abs((swing_starttime + 150) - (starttime + traveltime + 1150)) < 40:
-                                on_time = 1
-                                contact_time = swing_starttime + 150
-                            elif abs((swing_starttime + 150) - (starttime + traveltime + 1150)) <= 20:
-                                on_time = 2
-                                contact_time = swing_starttime + 150
+                            contact_time = swing_starttime + 150
+                            on_time = powertiming(swing_starttime,starttime,traveltime)
 
             if swing_started > 0:
                 timenow = current_time

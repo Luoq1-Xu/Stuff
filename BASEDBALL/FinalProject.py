@@ -518,21 +518,19 @@ def pitch_decision_maker():
         (currentstrikes == 3) or
         (currentballs == 1 and currentstrikes == 1) or
         (currentballs == 3 and currentstrikes == 2)):
-        if rando >= 1 and rando <= 3:
+        if rando >= 1 and rando <= 5:
             highoutsidefastball()
-        elif rando > 3 and rando <= 5:
+        elif rando > 5 and rando <= 7.27:
             highinsidefastball()
-        elif rando > 5 and rando <= 9:
+        elif rando > 7.27:
             lowslider()
-        else:
-            lowchangeup()
     # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
         if rando >= 1 and rando <= 4:
             highoutsidefastball()
-        elif rando > 4 and rando <= 5.5:
+        elif rando > 4 and rando <= 7.5:
             highinsidefastball()
-        elif rando > 5.5 and rando <= 9:
+        elif rando > 7.5 and rando <= 9:
             lowslider()
         else:
             lowchangeup()
@@ -540,9 +538,9 @@ def pitch_decision_maker():
     elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
         if rando >= 1 and rando <= 2:
             highoutsidefastball()
-        elif rando > 2 and rando <= 5:
+        elif rando > 2 and rando <= 6:
             highinsidefastball()
-        elif rando > 5 and rando <= 8:
+        elif rando > 6 and rando <= 9.5:
             lowslider()
         else:
             lowchangeup()
@@ -550,9 +548,9 @@ def pitch_decision_maker():
     elif (currentballs == 2 and currentstrikes == 0) or (currentballs == 3 and currentstrikes == 1) or (currentballs == 3 and currentstrikes == 0) :
         if rando >= 1 and rando <= 6:
             highoutsidefastball()
-        elif rando > 6 and rando <= 7:
+        elif rando > 6 and rando <= 7.5:
             highinsidefastball()
-        elif rando > 7 and rando <= 9:
+        elif rando > 7.5 and rando <= 9:
             lowslider()
         else:
             lowchangeup()
@@ -562,7 +560,7 @@ def pitch_decision_maker():
             highoutsidefastball()
         elif rando > 2 and rando <= 5:
             highinsidefastball()
-        elif rando > 5 and rando <= 7.5:
+        elif rando > 5 and rando <= 9:
             lowslider()
         else:
             lowchangeup()
@@ -580,37 +578,37 @@ def lefty_pitch_decision_maker():
         (currentstrikes == 3) or
         (currentballs == 1 and currentstrikes == 1) or
         (currentballs == 3 and currentstrikes == 2)):
-        if rando >= 1 and rando <= 6:
+        if rando >= 1 and rando <= 5.36:
             highlow = random.uniform(1,10)
             if highlow >= 1 and highlow <= 6:
                 lowoutsidesinker()
             else:
                 leftyhighfastball()
-        elif rando > 6 and rando <= 8.5:
+        elif rando > 5.36 and rando <= 8.87:
             leftyslider()
         else:
             leftychangeup()
     # 1 - 0 OR 2 - 1
     elif (currentballs == 1 and currentstrikes == 0) or (currentballs == 2 and currentstrikes == 1):
-        if rando >= 1 and rando <= 6.5:
+        if rando >= 1 and rando <= 6.46:
             highlow = random.uniform(1,10)
             if highlow >= 1 and highlow <= 5:
                 lowoutsidesinker()
             else:
                 leftyhighfastball()
-        elif rando > 6.5 and rando <= 9:
+        elif rando > 6.46 and rando <= 9.04:
             leftyslider()
         else:
             leftychangeup()
     # 0 - 1  OR  2 - 2
     elif (currentballs == 0 and currentstrikes == 1) or (currentballs == 2 and currentstrikes == 2):
-        if rando >= 1 and rando <= 5:
+        if rando >= 1 and rando <= 6.39:
             highlow = random.uniform(1,10)
             if highlow >= 1 and highlow <= 4:
                 lowoutsidesinker()
             else:
                 leftyhighfastball()
-        elif rando > 5 and rando <= 7:
+        elif rando > 6.39 and rando <= 8.54:
             leftyslider()
         else:
             leftychangeup()
@@ -628,13 +626,13 @@ def lefty_pitch_decision_maker():
             leftychangeup()
     # 0 - 2  OR  1 - 2
     elif (currentballs == 0 and currentstrikes == 2) or (currentballs == 1 and currentstrikes == 2):
-        if rando >= 1 and rando <= 3:
+        if rando >= 1 and rando <= 4.5:
             highlow = random.uniform(1,10)
             if highlow >= 1 and highlow <= 3:
                 lowoutsidesinker()
             else:
                 leftyhighfastball()
-        elif rando > 3 and rando <= 7:
+        elif rando > 4.5 and rando <= 8.5:
             leftyslider()
         else:
             leftychangeup()
@@ -696,17 +694,17 @@ def highinsidefastball():
     return
 def lowslider():
     vertbreakvariability = random.uniform(0,0.15)
-    horizontalbreakvariability = random.uniform(0,0.20)
+    horizontalbreakvariability = random.uniform(0,0.15)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
-    simulate(True, ball_pos, 1, 0.085 + horizontalbreakvariability, -0.5, 0.295 + vertbreakvariability, 4, 407, 0.675 + vertbreakvariability, 0.110 + horizontalbreakvariability, 160, 'jacobdegrom', 'SLIDER')
+    simulate(True, ball_pos, 1.25, 0.090 + horizontalbreakvariability, -0.25, 0.300 + vertbreakvariability, 4, 400, 0.645 + vertbreakvariability, 0.115 + horizontalbreakvariability, 160, 'jacobdegrom', 'SLIDER')
     return
 def lowchangeup():
     vertbreakvariability = random.uniform(0,0.15)
     horizontalbreakvariability = random.uniform(0,-0.05)
     global ball_pos
     ball_pos = pygame.Vector2((screen.get_width() / 2) - 45, (screen.get_height() / 3) + 187)
-    simulate(True, ball_pos, 1, -0.075 + horizontalbreakvariability, -0.5, 0.200 + vertbreakvariability, 4, 450, 0.500 + vertbreakvariability, -0.075 + horizontalbreakvariability, 160, 'jacobdegrom', 'CHANGEUP')
+    simulate(True, ball_pos, 1, -0.075 + horizontalbreakvariability, -0.25, 0.220 + vertbreakvariability, 4, 450, 0.500 + vertbreakvariability, -0.075 + horizontalbreakvariability, 160, 'jacobdegrom', 'CHANGEUP')
     return
 def lowoutsidefastball():
     vertbreakvariability = random.uniform(0,0.10)
